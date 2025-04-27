@@ -37,4 +37,5 @@ Advanced usage with custom output directory and force overwrite:
 Searches for the keyword "password" in the specified share path, saves the results to "C:\Results", and forces the operation to overwrite existing results.
 
 ## Notes
-Ensure that the `Find-SensitiveData` function is available in the current session or imported from the correct module.
+- Ensure that the `Find-SensitiveData` function is available in the current session or imported from the correct module.
+- To switch to a different function, modify the `Param` block at the beginning of the script and update the function call accordingly. 
