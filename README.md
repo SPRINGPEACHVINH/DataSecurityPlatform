@@ -26,7 +26,7 @@ The goal of this platform is to enhance visibility, monitoring, and security of 
 
 _Updating..._
 
-![Architecture Diagram](asset/architecture.png  )
+![Architecture Diagram](asset/architecture-final.png  )
 
 ---
 
