@@ -24,8 +24,6 @@ The goal of this platform is to enhance visibility, monitoring, and security of 
 
 ## <!--📋--> Architecture
 
-_Updating..._
-
 ![Architecture Diagram](asset/architecture-final.png  )
 
 ---
@@ -38,3 +36,22 @@ _Updating..._
 | **🖥️ Server Scanner** | Runs scripts on Windows and Linux servers to find sensitive information within file systems. Automatically triggers scans and reports results back to the backend. |
 | **🔗 Backend Server** | Handles API workflows, coordinates scan operations, processes raw logs, and provides structured data to the dashboard for visualization and monitoring. |
 | **📊 Dashboard** | Centralized UI for managing and visualizing processed logs and scan results. Supports searching, filtering, and real-time monitoring of data security posture across environments. |
+
+## Progess Tracking
+
+**System Design**: 🟢 Completed
+
+**Main Components**
+| Module                | Status        | Progress |
+|----------------------|---------------|----------|
+| Log Management        | 🟡 In Progress | 50%      |
+| Cloud Storage Scanner | 🟡 In Progress | 50%      |
+| Server Scanner        | ✅ Completed   | 100%     |
+| Backend Server        | 🟢 Functional  | Ongoing  |
+| Dashboard             | 🟢 Functional  | Ongoing  |
+
+---
+
+### Notes / Challenges
+- Log Management: fine-tuning event correlation logic and S3/Azure integration.
+- Cloud Scanner: working on handling permission edge cases and recurs
