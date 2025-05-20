@@ -1,0 +1,68 @@
+1. Refactor Existing API Routes (current api.js):
+
+<input enabled="" type="checkbox"> Rename DataSecurityPlatform/server/routes/api.js to dashboardApiRoutes.js.
+<input enable="" type="checkbox"> Create controllers/dashboardQueryController.js.
+<input enable="" type="checkbox"> Move the logic from dashboardApiRoutes.js (formerly api.js) into functions within dashboardQueryController.js.
+For example, the logic for the /secure route.
+<input enable="" type="checkbox"> Update dashboardApiRoutes.js to import and use controller functions.
+
+2. Implement Elasticsearch Service:
+
+<input enable="" type="checkbox"> Create services/elasticsearchService.js.
+<input enable="" type="checkbox"> Add functions to connect to Elasticsearch and perform queries needed by the dashboardQueryController.js.
+<input enable="" type="checkbox"> Update dashboardQueryController.js to use elasticsearchService.js to fetch data for the dashboard.
+
+3. Implement Purview Incoming Routes:
+
+<input enable="" type="checkbox"> Create routes/purviewIncomingRoutes.js.
+<input enable="" type="checkbox"> Create controllers/purviewEventController.js.
+<input enable="" type="checkbox"> Define the specific endpoints Purview will call (e.g., /api/purview/event, /api/purview/scan-complete).
+<input enable="" type="checkbox"> Implement the logic in purviewEventController.js to process data received from Purview. This might involve storing it, transforming it, or triggering other actions.
+
+4. Update Main Router (routes/index.js):
+
+<input enable="" type="checkbox"> Ensure routes/index.js imports and uses dashboardApiRoutes.js and purviewIncomingRoutes.js.
+
+```javascript
+// filepath: d:\DSPM\DataSecurityPlatform\server\routes\index.js
+import express from 'express';
+import healthRoutes from './healthRoutes.js';
+import dashboardApiRoutes from './dashboardApiRoutes.js'; // Renamed from api.js
+import purviewIncomingRoutes from './purviewIncomingRoutes.js';
+
+const router = express.Router();
+
+router.use('/health', healthRoutes);
+router.use('/dashboard', dashboardApiRoutes); // Or keep '/api' or choose a new base path
+router.use('/purview', purviewIncomingRoutes); // Base path for Purview calls
+
+export default router;
+```
+
+5. Configuration (config/index.js):
+
+<input enable="" type="checkbox"> Centralize Elasticsearch connection details (host, port, credentials).
+<input enable="" type="checkbox"> Add any configurations needed for interacting with Purview.
+
+6. Error Handling & Middleware:
+
+<input enable="" type="checkbox"> Implement or refine middleware/errorHandler.js.
+<input enable="" type="checkbox"> (Optional) Create middleware/kongConsumerInfo.js if you want to process Kong headers in a standardized way.
+
+```javascript
+// filepath: d:\DSPM\DataSecurityPlatform\server\middleware\kongConsumerInfo.js
+export const processKongHeaders = (req, res, next) => {
+  req.consumer = {
+    username: req.headers['x-consumer-username'] || null,
+    id: req.headers['x-consumer-id'] || null,
+  };
+  next();
+};
+```
+
+You would then use this in server.js or specific routes: app.use(processKongHeaders);
+
+7. Security & Validation:
+
+<input enable="" type="checkbox"> Ensure appropriate authentication/authorization for Purview endpoints if needed (beyond what Kong provides, or if Kong isn't in front of these specific calls).
+<input enable="" type="checkbox"> Add input validation for all incoming data (from Purview and Dashboard requests).

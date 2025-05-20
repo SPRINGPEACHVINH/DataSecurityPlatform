@@ -1,0 +1,1 @@
+// Handles requests from the dashboard (queries Elasticsearch)

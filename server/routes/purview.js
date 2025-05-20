@@ -1,0 +1,1 @@
+// Endpoints that Microsoft Purview will call
