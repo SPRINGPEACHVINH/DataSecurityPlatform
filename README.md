@@ -44,11 +44,11 @@ The goal of this platform is to enhance visibility, monitoring, and security of 
 **Main Components**
 | Module                | Status        | Progress |
 |----------------------|---------------|----------|
-| Log Management        | 🟡 In Progress | 50%      |
-| Cloud Storage Scanner | 🟡 In Progress | 50%      |
+| Log Management        | 🔴 Suspended | 70%      |
+| Cloud Storage Scanner | ✅ Completed | 100%      |
 | Server Scanner        | ✅ Completed   | 100%     |
-| Backend Server        | 🟢 Functional  | Ongoing  |
-| Dashboard             | 🟢 Functional  | Ongoing  |
+| Backend Server        | 🟡 In Progress | Ongoing  |
+| Dashboard             | 🟡 In Progress | Ongoing  |
 
 ---
 

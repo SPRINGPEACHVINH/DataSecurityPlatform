@@ -5,7 +5,8 @@ const router = express.Router();
 
 // Public API
 router.get('/public', isAuthenticated, (req, res) => {
-  res.json({ message: 'This is a public API response.' });
+  res.json({ message: 'This is a public API response with authentication.' });
 });
+
 
 export default router;
