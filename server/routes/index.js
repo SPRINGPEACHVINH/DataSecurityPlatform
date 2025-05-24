@@ -12,7 +12,7 @@ router.get('/health', (req, res) => {
 
 // API routes
 router.use('/dashboard', dashboardAPI);
-//router.use('/auth', authAPI);
+router.use('/auth', authAPI);
 //router.use('/purview', purviewAPI);
 
 export default router;
