@@ -1,4 +1,5 @@
 import express from 'express';
+import {} from '../controllers/dashboardQueryController.js';
 import { isAuthenticated } from '../middleware/isAuthenticated.js';
 
 const router = express.Router();
