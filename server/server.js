@@ -30,13 +30,13 @@ app.use(express.urlencoded({ extended: true })); // Parse URL-encoded request bo
 // Session Configuration
 app.use(
   session({
-    secret: process.env.SESSION_SECRET, // Store in .env
-    resave: false, // Don't save session if unmodified
-    saveUninitialized: false, // Don't create session until something stored
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
     cookie: {
-      secure: process.env.NODE_ENV === "production", // True if using https
+      secure: process.env.NODE_ENV === "production",
       httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24,
+      maxAge: 1000 * 60 * 30, // 30 minutes
     },
   })
 );

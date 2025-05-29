@@ -4,6 +4,7 @@ import {
   createOrUpdateCustomClassificationRule,
   RunScan,
   queryScanResult,
+  getScanStatus,
 } from "../services/purviewDataTransfer.js";
 
 export const getOAuth2Token = async (req, res) => {
@@ -101,5 +102,39 @@ export const handleQueryScanResult = async (req, res) => {
     res
       .status(500)
       .json({ message: error.message || "Failed to query scan result" });
+  }
+};
+
+export const handleGetScanStatus = async (req, res) => {
+  try {
+    const { dataSourceName, scanName, runId } = req.body;
+
+    const missingFields = [];
+    if (!dataSourceName) missingFields.push("dataSourceName");
+    if (!scanName) missingFields.push("scanName");
+    if (!runId) missingFields.push("runId");
+
+    if (missingFields.length > 0) {
+      return res.status(400).json({
+        message: `Missing required fields: ${missingFields.join(", ")}`,
+      });
+    }
+
+    const bearerToken = await getOAuth2();
+
+    const result = await getScanStatus(
+      bearerToken,
+      dataSourceName,
+      scanName,
+      runId
+    );
+    res.status(200).json({
+      message: "Scan status retrieved successfully.",
+      data: result,
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: error.message || "Failed to get scan status" });
   }
 };

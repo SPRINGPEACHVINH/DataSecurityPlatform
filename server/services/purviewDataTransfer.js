@@ -143,6 +143,8 @@ export async function RunScan(
       },
     });
 
+    response.data.runId = runId;
+
     console.log(
       `Successfully triggered scan '${scanName}' for data source '${dataSourceName}' with runId '${runId}'. Response status: ${response.status}`
     );
@@ -211,3 +213,42 @@ export async function queryScanResult(bearerToken, classificationName) {
   }
 }
 
+export async function getScanStatus(
+  bearerToken,
+  dataSourceName,
+  scanName,
+  runId
+) {
+  try {
+    if (!bearerToken) {
+      throw new Error("OAuth2 bearer token is required for Purview API.");
+    }
+
+    const apiUrl = `${PURVIEW_ENDPOINT}/scan/datasources/${dataSourceName}/scans/${scanName}/runs/${runId}?api-version=${api_version}`;
+
+    const response = await axios.get(apiUrl, {
+      headers: {
+        Authorization: `Bearer ${bearerToken}`,
+        "Content-Type": "application/json",
+      },
+    });
+    console.log(
+      `Successfully retrieved scan status for '${scanName}' on data source '${dataSourceName}'.`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(
+      `Error getting scan status for '${scanName}' on data source '${dataSourceName}':`,
+      error.response
+        ? JSON.stringify(error.response.data, null, 2)
+        : error.message
+    );
+    if (error.response) {
+      console.error("Status:", error.response.status);
+      console.error("Headers:", error.response.headers);
+    }
+    throw new Error(
+      `Failed to get scan status for '${scanName}' on data source '${dataSourceName}'.`
+    );
+  }
+}
