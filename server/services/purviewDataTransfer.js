@@ -115,13 +115,9 @@ export async function createOrUpdateCustomClassificationRule(
   }
 }
 
-export async function createNewScanRulesets() {
+export async function createNewScanRulesets() {}
 
-}
-
-export async function createNewScan() {
-
-}
+export async function createNewScan() {}
 
 export async function RunScan(
   bearerToken,
@@ -138,7 +134,7 @@ export async function RunScan(
 
     const apiUrl = `${PURVIEW_ENDPOINT}/scan/datasources/${dataSourceName}/scans/${scanName}:run?runId=${runId}&scanLevel=${scanLevel}&api-version=${api_version}`;
 
-    const requestBody = {}
+    const requestBody = {};
 
     const response = await axios.post(apiUrl, requestBody, {
       headers: {
@@ -167,3 +163,51 @@ export async function RunScan(
     );
   }
 }
+
+export async function queryScanResult(bearerToken, classificationName) {
+  try {
+    if (!bearerToken) {
+      throw new Error("OAuth2 bearer token is required for Purview API.");
+    }
+    if (!classificationName) {
+      throw new Error("classificationName is required to query scan results.");
+    }
+
+    const apiUrl = `${PURVIEW_ENDPOINT}/datamap/api/search/query?api-version=${api_version}`;
+
+    const requestBody = {
+      keywords: null,
+      filter: {
+        classification: classificationName,
+        includeSubClassifications: true,
+      },
+    };
+
+    const response = await axios.post(apiUrl, requestBody, {
+      headers: {
+        Authorization: `Bearer ${bearerToken}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    console.log(
+      `Successfully queried Purview for classification '${classificationName}'.`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(
+      `Error querying Purview for classification '${classificationName}':`,
+      error.response
+        ? JSON.stringify(error.response.data, null, 2)
+        : error.message
+    );
+    if (error.response) {
+      console.error("Status:", error.response.status);
+      console.error("Headers:", error.response.headers);
+    }
+    throw new Error(
+      `Failed to query Purview for classification '${classificationName}'.`
+    );
+  }
+}
+

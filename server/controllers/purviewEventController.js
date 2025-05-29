@@ -3,6 +3,7 @@ import {
   getOAuth2,
   createOrUpdateCustomClassificationRule,
   RunScan,
+  queryScanResult,
 } from "../services/purviewDataTransfer.js";
 
 export const getOAuth2Token = async (req, res) => {
@@ -25,11 +26,9 @@ export const handleCreateRule = async (req, res) => {
     if (!classificationName) missingFields.push("classificationName");
 
     if (missingFields.length > 0) {
-      return res
-        .status(400)
-        .json({
-          message: `Missing required fields: ${missingFields.join(", ")}`,
-        });
+      return res.status(400).json({
+        message: `Missing required fields: ${missingFields.join(", ")}`,
+      });
     }
 
     const bearerToken = await getOAuth2();
@@ -41,35 +40,29 @@ export const handleCreateRule = async (req, res) => {
       classificationName,
       description
     );
-    res
-      .status(201)
-      .json({
-        message: "Classification rule processed successfully.",
-        data: result,
-      });
+    res.status(201).json({
+      message: "Classification rule processed successfully.",
+      data: result,
+    });
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        message: error.message || "Failed to process classification rule.",
-      });
+    res.status(500).json({
+      message: error.message || "Failed to process classification rule.",
+    });
   }
 };
 
 export const handleRunScan = async (req, res) => {
   try {
     const { dataSourceName, scanName, scanLevel } = req.body;
-    
+
     const missingFields = [];
     if (!dataSourceName) missingFields.push("dataSourceName");
     if (!scanName) missingFields.push("scanName");
 
     if (missingFields.length > 0) {
-      return res
-        .status(400)
-        .json({
-          message: `Missing required fields: ${missingFields.join(", ")}`,
-        });
+      return res.status(400).json({
+        message: `Missing required fields: ${missingFields.join(", ")}`,
+      });
     }
 
     const bearerToken = await getOAuth2();
@@ -85,5 +78,28 @@ export const handleRunScan = async (req, res) => {
       .json({ message: "Scan initiated successfully.", data: result });
   } catch (error) {
     res.status(500).json({ message: error.message || "Failed to run scan" });
+  }
+};
+
+export const handleQueryScanResult = async (req, res) => {
+  try {
+    const { classificationName } = req.body;
+    if (!classificationName) {
+      return res.status(400).json({
+        message: "Missing required field: classificationName",
+      });
+    }
+
+    const bearerToken = await getOAuth2();
+
+    const result = await queryScanResult(bearerToken, classificationName);
+    res.status(200).json({
+      message: "Scan result queried successfully.",
+      data: result,
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: error.message || "Failed to query scan result" });
   }
 };
