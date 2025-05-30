@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-// Removed unused import
 
 const scanDefinitionSchema = new mongoose.Schema({
   scanName: {
