@@ -186,18 +186,25 @@ export const handleDashboardSearch = async (req, res) => {
 
     res.status(202).json({
       message: "Search and scan process initiated. Status will be updated.",
-      scanRunDbId: newScanRun._id,
-      purviewRunId: purviewRunId,
+      data: {
+        bearerToken: bearerToken,
+        dataSourceName: dsDocument.dataSourceName,
+        scanName: sdDocument.scanName,
+        purviewRunId: purviewRunId,
+        classificationName: classificationName,
+        scanRunDbId: newScanRun._id,
+      },
     });
 
-    checkScanStatusRecursive(
-      bearerToken,
-      dsDocument.dataSourceName,
-      sdDocument.scanName,
-      purviewRunId,
-      classificationName,
-      newScanRun._id
-    );
+    // checkScanStatusRecursive(
+    //   bearerToken,
+    //   dsDocument.dataSourceName,
+    //   sdDocument.scanName,
+    //   purviewRunId,
+    //   classificationName,
+    //   0,
+    //   newScanRun._id
+    // );
   } catch (error) {
     console.error(
       "Error in handleDashboardSearch:",
@@ -217,7 +224,7 @@ async function checkScanStatusRecursive(
   purviewRunId,
   classificationNameToQuery,
   attempt = 0,
-  scanRunDbId,
+  scanRunDbId
 ) {
   const MAX_ATTEMPTS = 5;
   const DELAY_MS = 5 * 60 * 1000; // 5 phút
@@ -289,7 +296,7 @@ async function checkScanStatusRecursive(
       );
       const names = queryResults?.value?.map((item) => item.name) || [];
       console.log("Extracted names from scan results:", names);
-
+      return;
       await ScanRun.findByIdAndUpdate(scanRunDbId, {
         $set: { result: names },
       });
