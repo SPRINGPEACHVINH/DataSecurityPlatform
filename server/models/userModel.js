@@ -7,8 +7,22 @@ const userSchema = new mongoose.Schema(
   {
     UserName: { type: String, required: true, unique: true },
     Password: { type: String, required: true },
-    // AccessToken: { type: String },
-    // RefreshToken: { type: String }
+  },
+  {
+    timestamps: true,
+  }
+);
+
+const userHistorySchema = new mongoose.Schema(
+  {
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    keyword: { type: String, required: true },
+    ruleName: { type: String, required: true },
+    classificationName: { type: String, required: true },
   },
   {
     timestamps: true,
@@ -32,5 +46,28 @@ export const CreateUser = async (newUser) => {
   return createdUser;
 };
 
+export const createUserHistory = async (
+  userId,
+  keyword,
+  ruleName,
+  classificationName
+) => {
+  if (!userId || !keyword || !ruleName || !classificationName) {
+    throw new Error(
+      "Missing required fields: userId, keyword, ruleName, or classificationName."
+    );
+  }
+
+  const createduserHistory = await userHistory.create({
+    userId,
+    keyword,
+    ruleName,
+    classificationName,
+  });
+
+  return createduserHistory;
+};
+
 const User = mongoose.model("User", userSchema);
-export default User;
+const userHistory = mongoose.model("UserHistory", userHistorySchema);
+export default { User, userHistory };

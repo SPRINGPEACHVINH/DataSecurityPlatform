@@ -3,6 +3,8 @@ import axios from "axios";
 import qs from "qs";
 import dotenv from "dotenv";
 import { generateTimeBasedRunScanID } from "../utils/index.js";
+import { APIResponse } from "../utils/APIResponse.js";
+
 dotenv.config();
 
 const {
@@ -88,16 +90,19 @@ export async function createOrUpdateCustomClassificationRule(
       },
     };
 
-    const response = await axios.put(apiUrl, requestBody, {
-      headers: {
-        Authorization: `Bearer ${bearerToken}`,
-        "Content-Type": "application/json",
-      },
-    });
+    // const response = await axios.put(apiUrl, requestBody, {
+    //   headers: {
+    //     Authorization: `Bearer ${bearerToken}`,
+    //     "Content-Type": "application/json",
+    //   },
+    // });
 
+    console.log(`apiUrl: ${apiUrl}\n requestBody: ${JSON.stringify(requestBody)}\n`);
     console.log(
       `Successfully created/updated classification rule: ${classificationRuleName}`
     );
+    return APIResponse.createRule;
+
     return response.data;
   } catch (error) {
     console.error(
@@ -115,9 +120,70 @@ export async function createOrUpdateCustomClassificationRule(
   }
 }
 
-export async function createNewScanRulesets() {}
+export async function getDataSourceName(bearerToken) {
+  try {
+    if (!bearerToken) {
+      throw new Error("OAuth2 bearer token is required for Purview API.");
+    }
 
-export async function createNewScan() {}
+    const apiUrl = `${PURVIEW_ENDPOINT}/scan/datasources?api-version=${api_version}`;
+
+    // const response = await axios.get(apiUrl, {
+    //   headers: {
+    //     Authorization: `Bearer ${bearerToken}`,
+    //     "Content-Type": "application/json",
+    //   },
+    // });
+
+    console.log(`apiUrl: ${apiUrl}\n`);
+    console.log(`Successfully retrieved data source name.`);
+    return APIResponse.DataSourceName;
+
+    return response.data;
+  } catch (error) {
+    console.error(
+      `Error getting data source name:`,
+      error.response
+        ? JSON.stringify(error.response.data, null, 2)
+        : error.message
+    );
+    if (error.response) {
+      console.error("Status:", error.response.status);
+      console.error("Headers:", error.response.headers);
+    }
+    throw new Error(`Failed to get data source name.`);
+  }
+}
+
+export async function getScanName(bearerToken, dataSourceName) {
+  try {
+    if (!bearerToken) {
+      throw new Error("OAuth2 bearer token is required for Purview API.");
+    }
+
+    const apiUrl = `${PURVIEW_ENDPOINT}/scan/datasources/${dataSourceName}/scans?api-version=${api_version}`;
+
+    // const response = await axios.get(apiUrl, {
+    //   headers: { Authorization: `Bearer ${bearerToken}` },
+    // });
+
+    console.log(`apiUrl: ${apiUrl}\n`);
+    console.log(`Successfully fetched details for scanName from Purview.`);
+    return APIResponse.ScanName;
+
+    return response.data;
+  } catch (error) {
+    if (error.response && error.response.status === 404) {
+      console.warn(`scanName not found in Purview.`);
+      return null;
+    }
+    console.error(
+      `Error fetching Purview Scan:`,
+      error.response ? error.response.data : error.message
+    );
+    throw new Error(`Failed to fetch Purview Scan .`);
+  }
+}
 
 export async function RunScan(
   bearerToken,
@@ -136,18 +202,21 @@ export async function RunScan(
 
     const requestBody = {};
 
-    const response = await axios.post(apiUrl, requestBody, {
-      headers: {
-        Authorization: `Bearer ${bearerToken}`,
-        "Content-Type": "application/json",
-      },
-    });
+    // const response = await axios.post(apiUrl, requestBody, {
+    //   headers: {
+    //     Authorization: `Bearer ${bearerToken}`,
+    //     "Content-Type": "application/json",
+    //   },
+    // });
 
-    response.data.runId = runId;
+    // response.data.runId = runId;
 
+    console.log(`apiUrl: ${apiUrl}\n`);
     console.log(
-      `Successfully triggered scan '${scanName}' for data source '${dataSourceName}' with runId '${runId}'. Response status: ${response.status}`
+      `Successfully triggered scan '${scanName}' for data source '${dataSourceName}' with runId '${runId}'.`
     );
+    return APIResponse.RunScan;
+
     return response.data;
   } catch (error) {
     console.error(
@@ -185,16 +254,19 @@ export async function queryScanResult(bearerToken, classificationName) {
       },
     };
 
-    const response = await axios.post(apiUrl, requestBody, {
-      headers: {
-        Authorization: `Bearer ${bearerToken}`,
-        "Content-Type": "application/json",
-      },
-    });
+    // const response = await axios.post(apiUrl, requestBody, {
+    //   headers: {
+    //     Authorization: `Bearer ${bearerToken}`,
+    //     "Content-Type": "application/json",
+    //   },
+    // });
 
+    console.log(`apiUrl: ${apiUrl}\n requestBody: ${JSON.stringify(requestBody)}\n`);
     console.log(
       `Successfully queried Purview for classification '${classificationName}'.`
     );
+    return APIResponse.queryScanResult;
+
     return response.data;
   } catch (error) {
     console.error(
@@ -226,15 +298,19 @@ export async function getScanStatus(
 
     const apiUrl = `${PURVIEW_ENDPOINT}/scan/datasources/${dataSourceName}/scans/${scanName}/runs/${runId}?api-version=${api_version}`;
 
-    const response = await axios.get(apiUrl, {
-      headers: {
-        Authorization: `Bearer ${bearerToken}`,
-        "Content-Type": "application/json",
-      },
-    });
+    // const response = await axios.get(apiUrl, {
+    //   headers: {
+    //     Authorization: `Bearer ${bearerToken}`,
+    //     "Content-Type": "application/json",
+    //   },
+    // });
+
+    console.log(`apiUrl: ${apiUrl}\n`);
     console.log(
       `Successfully retrieved scan status for '${scanName}' on data source '${dataSourceName}'.`
     );
+    return APIResponse.ScanStatus;
+
     return response.data;
   } catch (error) {
     console.error(

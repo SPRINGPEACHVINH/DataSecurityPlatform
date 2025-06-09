@@ -42,8 +42,13 @@ const scanRunSchema = new mongoose.Schema(
       enum: ["Queued", "Running", "Completed", "Failed"],
       required: true,
     },
+    result: {
+      type: [String], 
+      default: [],
+    },
     startTime: {
       type: Date,
+      required: true,
     },
     endTime: {
       type: Date,
@@ -62,16 +67,81 @@ const scanRunSchema = new mongoose.Schema(
 
 scanRunSchema.index({ runId: 1, status: 1 });
 
+export const createScanDefinition = async (newscanDefinition) => {
+  const { scanName, dataSourceId, classificationName } = newscanDefinition;
+  if (!scanName || !dataSourceId || !classificationName) {
+    throw new Error(
+      "Missing required fields: scanName, dataSourceId, or classificationName."
+    );
+  }
+
+  const existingScanDefinition = await ScanDefinition.findOne({
+    scanName,
+    dataSource: dataSourceId,
+  });
+
+  if (existingScanDefinition) {
+    console.log(
+      `ScanDefinition '${scanName}' already exists for DataSource ${dataSourceId}.`
+    );
+    return existingScanDefinition;
+  }
+
+  const createdScanDefinition = await ScanDefinition.create({
+    scanName,
+    dataSource: dataSourceId,
+    classificationName,
+  });
+  return createdScanDefinition;
+};
+
+export const createScanRun = async (newScanRun) => {
+  const { runId, scanDefinition, scanLevel, status, startTime } = newScanRun;
+  if ((!runId || !scanDefinition || !scanLevel || !status, !startTime)) {
+    throw new Error(
+      "Missing required fields: runId, scanDefinition, scanLevel, status, or startTime."
+    );
+  }
+
+  const existingScanRun = await ScanRun.findOne({ runId });
+  if (existingScanRun) {
+    console.log(`ScanRun with runId '${runId}' already exists.`);
+    return existingScanRun;
+  }
+
+  const createdScanRun = await ScanRun.create({
+    runId,
+    scanDefinition,
+    scanLevel,
+    status,
+    startTime,
+  });
+  return createdScanRun;
+};
+
 export const findScanDefinitionByName = async (scanName, dataSourceId) => {
   const query = { scanName };
   if (dataSourceId) {
     query.dataSource = dataSourceId;
   }
-  return ScanDefinition.findOne({ query }).populate("dataSource");
+  return ScanDefinition.findOne(query).populate("dataSource");
 };
 
 export const findScanRunById = async (runId) => {
   return ScanRun.findOne({ runId }).populate("scanDefinition");
+};
+
+export const findByIdAndUpdateScanRun = async (runId, updateData) => {
+  // Only update the fields provided in updateData
+  const updatedScanRun = await ScanRun.findOneAndUpdate(
+    { runId },
+    { $set: updateData },
+    { new: true }
+  );
+  if (!updatedScanRun) {
+    throw new Error(`ScanRun with runId '${runId}' not found.`);
+  }
+  return updatedScanRun;
 };
 
 const ScanDefinition = mongoose.model("ScanDefinition", scanDefinitionSchema);

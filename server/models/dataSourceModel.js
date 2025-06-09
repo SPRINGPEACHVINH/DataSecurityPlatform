@@ -11,10 +11,6 @@ const dataSourceSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    collectionName: {
-      type: String,
-      required: true,
-    },
     owner: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
@@ -27,10 +23,34 @@ const dataSourceSchema = new mongoose.Schema(
   }
 );
 
-dataSourceSchema.index(
-    { owner: 1, dataSourceName: 1 }, 
-    { unique: true }
-);
+dataSourceSchema.index({ owner: 1, dataSourceName: 1 }, { unique: true });
+
+export const createDataSource = async (newDataSource) => {
+  const { dataSourceName, dataSourceType, userId } = newDataSource;
+  if (!dataSourceName || !dataSourceType || !userId) {
+    throw new Error(
+      "Missing required fields: dataSourceName, dataSourceType, or userId."
+    );
+  }
+  const existingDataSource = await DataSource.findOne({
+    dataSourceName,
+    owner: userId,
+  });
+
+  if (existingDataSource) {
+    console.log(
+      `DataSource '${dataSourceName}' already exists for user ${userId}.`
+    );
+    return existingDataSource;
+  }
+
+  const createdDataSource = await DataSource.create({
+    dataSourceName,
+    dataSourceType,
+    owner: userId,
+  });
+  return createdDataSource;
+};
 
 export const findDataSourceByName = async (dataSourceName, ownerId) => {
   const query = { dataSourceName };
@@ -38,6 +58,10 @@ export const findDataSourceByName = async (dataSourceName, ownerId) => {
     query.owner = ownerId;
   }
   return DataSource.findOne({ query }).populate("owner");
+};
+
+export const findDataSourceByOwner = async (ownerId) => {
+  return DataSource.find({ owner: ownerId }).populate("owner");
 };
 
 const DataSource = mongoose.model("DataSource", dataSourceSchema);

@@ -5,7 +5,11 @@ import {
   RunScan,
   queryScanResult,
   getScanStatus,
+  getDataSourceName,
+  getScanName,
 } from "../services/purviewDataTransfer.js";
+
+import { APIResponse } from "../utils/APIResponse.js";
 
 export const getOAuth2Token = async (req, res) => {
   try {
@@ -19,9 +23,11 @@ export const getOAuth2Token = async (req, res) => {
 
 export const handleCreateRule = async (req, res) => {
   try {
-    const { ruleName, keyword, classificationName, description } = req.body;
+    const { bearerToken, ruleName, keyword, classificationName, description } =
+      req.body;
 
     const missingFields = [];
+    if (!bearerToken) missingFields.push("bearerToken");
     if (!ruleName) missingFields.push("ruleName");
     if (!keyword) missingFields.push("keyword");
     if (!classificationName) missingFields.push("classificationName");
@@ -32,15 +38,15 @@ export const handleCreateRule = async (req, res) => {
       });
     }
 
-    const bearerToken = await getOAuth2();
+    // const result = await createOrUpdateCustomClassificationRule(
+    //   bearerToken,
+    //   ruleName,
+    //   keyword,
+    //   classificationName,
+    //   description
+    // );
+    const result = APIResponse.createRule;
 
-    const result = await createOrUpdateCustomClassificationRule(
-      bearerToken,
-      ruleName,
-      keyword,
-      classificationName,
-      description
-    );
     res.status(201).json({
       message: "Classification rule processed successfully.",
       data: result,
@@ -54,11 +60,12 @@ export const handleCreateRule = async (req, res) => {
 
 export const handleRunScan = async (req, res) => {
   try {
-    const { dataSourceName, scanName, scanLevel } = req.body;
+    const { bearerToken, dataSourceName, scanName, scanLevel } = req.body;
 
     const missingFields = [];
     if (!dataSourceName) missingFields.push("dataSourceName");
     if (!scanName) missingFields.push("scanName");
+    if (!bearerToken) missingFields.push("bearerToken");
 
     if (missingFields.length > 0) {
       return res.status(400).json({
@@ -66,14 +73,15 @@ export const handleRunScan = async (req, res) => {
       });
     }
 
-    const bearerToken = await getOAuth2();
+    // const result = await RunScan(
+    //   bearerToken,
+    //   dataSourceName,
+    //   scanName,
+    //   scanLevel
+    // );
 
-    const result = await RunScan(
-      bearerToken,
-      dataSourceName,
-      scanName,
-      scanLevel
-    );
+    const result = APIResponse.RunScan;
+
     res
       .status(202)
       .json({ message: "Scan initiated successfully.", data: result });
@@ -84,16 +92,20 @@ export const handleRunScan = async (req, res) => {
 
 export const handleQueryScanResult = async (req, res) => {
   try {
-    const { classificationName } = req.body;
+    const { bearerToken, classificationName } = req.body;
     if (!classificationName) {
       return res.status(400).json({
         message: "Missing required field: classificationName",
       });
     }
+    if (!bearerToken) {
+      return res.status(400).json({
+        message: "Bearer token is required to query scan result",
+      });
+    }
+    //const result = await queryScanResult(bearerToken, classificationName);
+    const result = APIResponse.queryScanResult;
 
-    const bearerToken = await getOAuth2();
-
-    const result = await queryScanResult(bearerToken, classificationName);
     res.status(200).json({
       message: "Scan result queried successfully.",
       data: result,
@@ -107,9 +119,10 @@ export const handleQueryScanResult = async (req, res) => {
 
 export const handleGetScanStatus = async (req, res) => {
   try {
-    const { dataSourceName, scanName, runId } = req.body;
+    const { bearerToken, dataSourceName, scanName, runId } = req.body;
 
     const missingFields = [];
+    if (!bearerToken) missingFields.push("bearerToken");
     if (!dataSourceName) missingFields.push("dataSourceName");
     if (!scanName) missingFields.push("scanName");
     if (!runId) missingFields.push("runId");
@@ -120,14 +133,14 @@ export const handleGetScanStatus = async (req, res) => {
       });
     }
 
-    const bearerToken = await getOAuth2();
+    // const result = await getScanStatus(
+    //   bearerToken,
+    //   dataSourceName,
+    //   scanName,
+    //   runId
+    // );
+    const result = APIResponse.ScanStatus;
 
-    const result = await getScanStatus(
-      bearerToken,
-      dataSourceName,
-      scanName,
-      runId
-    );
     res.status(200).json({
       message: "Scan status retrieved successfully.",
       data: result,
@@ -136,5 +149,63 @@ export const handleGetScanStatus = async (req, res) => {
     res
       .status(500)
       .json({ message: error.message || "Failed to get scan status" });
+  }
+};
+
+export const handleGetDataSourceName = async (req, res) => {
+  try {
+    const { bearerToken } = req.body;
+    console.log("handleGetDataSourceName\n");
+    if (!bearerToken) {
+      return res.status(400).json({
+        message: "Bearer token is required to get data source names",
+      });
+    }
+
+    //const result = await getDataSourceName(bearerToken);
+    const result = APIResponse.DataSourceName;
+
+    let names = [];
+    if (result && Array.isArray(result.value)) {
+      names = result.value.map((item) => item.name);
+    }
+
+    res.status(200).json({ names });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: error.message || "Failed to get data source name" });
+  }
+};
+
+export const handleGetScanName = async (req, res) => {
+  try {
+    const { bearerToken, dataSourceName } = req.body;
+
+    if (!bearerToken) {
+      return res.status(400).json({
+        message: "Bearer token is required to get scan names",
+      });
+    }
+    if (!dataSourceName) {
+      return res.status(400).json({
+        message: "Missing required field: dataSourceName",
+      });
+    }
+
+    //const result = await getScanName(bearerToken, dataSourceName);
+
+    const result = APIResponse.ScanName;
+
+    let names = [];
+    if (result && Array.isArray(result.value)) {
+      names = result.value.map((item) => item.name);
+    }
+
+    res.status(200).json({ names });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: error.message || "Failed to get scan names" });
   }
 };
