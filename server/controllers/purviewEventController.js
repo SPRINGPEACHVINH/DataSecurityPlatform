@@ -9,6 +9,11 @@ import {
   getScanName,
 } from "../services/purviewDataTransfer.js";
 
+import {
+  findByIdAndUpdateScanRun,
+  findScanRunById,
+} from "../models/scanModel.js";
+
 import { APIResponse } from "../utils/APIResponse.js";
 
 export const getOAuth2Token = async (req, res) => {
@@ -93,17 +98,17 @@ export const handleRunScan = async (req, res) => {
 export const handleQueryScanResult = async (req, res) => {
   try {
     const { bearerToken, classificationName } = req.body;
-    if (!classificationName) {
+
+    const missingFields = [];
+    if (!classificationName) missingFields.push("classificationName");
+    if (!bearerToken) missingFields.push("bearerToken");
+    if (missingFields.length > 0) {
       return res.status(400).json({
-        message: "Missing required field: classificationName",
+        message: `Missing required fields: ${missingFields.join(", ")}`,
       });
     }
-    if (!bearerToken) {
-      return res.status(400).json({
-        message: "Bearer token is required to query scan result",
-      });
-    }
-    //const result = await queryScanResult(bearerToken, classificationName);
+
+    // const result = await queryScanResult(bearerToken, classificationName);
     const result = APIResponse.queryScanResult;
 
     res.status(200).json({
@@ -140,10 +145,40 @@ export const handleGetScanStatus = async (req, res) => {
     //   runId
     // );
     const result = APIResponse.ScanStatus;
+    const scanRunUpdateData = {
+      status: result.status || "Unknown",
+      startTime: result.startTime ? new Date(result.startTime) : undefined,
+      endTime: result.endTime ? new Date(result.endTime) : undefined,
+      assetDiscovered:
+        result.discoveryExecutionDetails?.statistics?.assets?.discovered || 0,
+      assetClassified:
+        result.discoveryExecutionDetails?.statistics?.assets?.classified || 0,
+    };
+
+    // Only update if there's a value, avoid overwriting startTime if it was already set during creation
+    if (scanRunUpdateData.startTime === undefined)
+      delete scanRunUpdateData.startTime;
+
+    const updatedScanRun = await findByIdAndUpdateScanRun(
+      runId,
+      scanRunUpdateData,
+      { new: true }
+    );
+
+    if (!updatedScanRun) {
+      console.error(`ScanRun with run ID ${runId} not found for update.`);
+      return;
+    }
+    console.log(
+      `ScanRun ${runId} (DB ID: ${updatedScanRun._id}) status updated in DB: ${updatedScanRun.status}`
+    );
+
+    if (result.status == "Succeeded") {
+    }
 
     res.status(200).json({
       message: "Scan status retrieved successfully.",
-      data: result,
+      data: result.status,
     });
   } catch (error) {
     res

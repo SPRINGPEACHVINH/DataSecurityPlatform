@@ -217,6 +217,35 @@ export const handleDashboardSearch = async (req, res) => {
   }
 };
 
+export const handleDashboardScanResult = async (req, res) => {
+  const { bearerToken, classificationName } = req.body;
+
+  const missingFields = [];
+  if (!classificationName) missingFields.push("classificationName");
+  if (!bearerToken) missingFields.push("bearerToken");
+  if (missingFields.length > 0) {
+    return res.status(400).json({
+      message: `Missing required fields: ${missingFields.join(", ")}`,
+    });
+  }
+
+  try {
+    const response = await queryScanResult(bearerToken, classificationName);
+    const names = response?.value?.map((item) => item.name) || [];
+    console.log("Extracted names from scan results:", names);
+
+    res.status(200).json({
+      message: "Scan status check initiated successfully.",
+      data: names,
+    });
+  } catch (error) {
+    console.error("Error in handleDashboardScanResult:", error.message);
+    res.status(500).json({
+      message: error.message || "An error occurred while checking scan status.",
+    });
+  }
+};
+
 async function checkScanStatusRecursive(
   bearerToken,
   dataSourceName,
