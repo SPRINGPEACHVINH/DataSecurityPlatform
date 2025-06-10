@@ -1,5 +1,0 @@
-﻿#TYPE Selected.System.IO.FileInfo
-"FullName","Extension","Length"
-"D:\DSPM\elastic-start-local\sensitive-data\secret.txt",".txt","36"
-"D:\DSPM\elastic-start-local\sensitive-data\secret2.txt",".txt","18"
-"D:\DSPM\elastic-start-local\sensitive-data\something.txt",".txt","26"

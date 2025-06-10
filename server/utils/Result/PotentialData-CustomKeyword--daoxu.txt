@@ -1,3 +1,0 @@
-D:\DSPM\elastic-start-local\sensitive-data\secret.txt:1:password=pwd
-D:\DSPM\elastic-start-local\sensitive-data\secret.txt:2:My password is not pwd
-D:\DSPM\elastic-start-local\sensitive-data\secret2.txt:1:My password is pwd
