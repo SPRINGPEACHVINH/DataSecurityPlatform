@@ -19,7 +19,6 @@ Param(
 	$keyword,
 		
 	[Parameter(Mandatory = $false)]
-	[ValidateNotNullOrEmpty()]
 	[String]
 	$BaseDirectory = 'D:\DSPM\elastic-start-local\Result',
 
@@ -32,7 +31,7 @@ Param(
 	$Force
 )
 
-$envFile = "../.env"
+$envFile = ".env"
 if (Test-Path $envFile) {
 	Get-Content $envFile | ForEach-Object {
 		if ($_ -match "^\s*([^#][^=]+)\s*=\s*(.+)\s*$") {

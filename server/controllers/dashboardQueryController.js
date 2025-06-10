@@ -27,6 +27,8 @@ const { ScanRun } = ScanModels;
 import userModels from "../models/userModel.js";
 const { userHistory } = userModels;
 
+import powershell from "powershell";
+
 const handleDsDocument = async (userId, bearerToken) => {
   // Try to find existing DataSource by owner
   let dsDocument = await findDataSourceByOwner(userId);
@@ -245,6 +247,96 @@ export const handleDashboardScanResult = async (req, res) => {
     });
   }
 };
+
+export const handleScriptExecution = async (req, res) => {
+  const { sharePath, keyword } = req.body;
+
+  // Validate required parameters
+  if (!sharePath || !keyword) {
+    return res.status(400).json({
+      message:
+        "Missing required parameters: sharePath and keyword are required",
+    });
+  }
+
+  try {
+    // Create a promise to handle the asynchronous PowerShell execution
+    const scriptExecution = new Promise((resolve, reject) => {
+      const results = [];
+      const errors = [];
+
+      const ps = new powershell(
+        `powershell.exe -File .\\utils\\finding.ps1 -Function Find-SensitiveData -SharePath "${sharePath}" -keyword "${keyword}"`
+      );
+
+      ps.on("output", (data) => {
+        console.log("PowerShell output:", data);
+        results.push(data);
+      });
+
+      ps.on("error-output", (data) => {
+        console.error("PowerShell error:", data);
+        errors.push(data);
+      });
+
+      ps.on("end", (code) => {
+        const allOutput = results.concat(errors).join("\n");
+        if (
+          code !== 0 ||
+          allOutput.includes("not found") ||
+          allOutput.match(/SharePath '.*' not found/i)
+        ) {
+          reject({ message: allOutput, code });
+        } else {
+          resolve({ results, code });
+        }
+      });
+
+      ps.on("error", (err) => {
+        reject({ error: err, code: -1 });
+      });
+    });
+
+    // Wait for the PowerShell script to complete
+    const { results, code } = await scriptExecution;
+
+    const resultsString = results.join("\n");
+
+    const baseOutputFile = resultsString.match(
+      /adding to (.*FilePaths-ALL--.*\.csv)/
+    )?.[1];
+    const defaultOutputFile = resultsString.match(
+      /to the results to (.*FilePaths--.*\.csv)/
+    )?.[1];
+    const searchStarted = resultsString.match(
+      /Search started for pattern '.*'/
+    )?.[0];
+    const searchComplete = resultsString.match(
+      /Search complete/
+    )?.[0];
+    console.log(
+      baseOutputFile,
+      defaultOutputFile,
+      searchStarted,
+      searchComplete
+    );
+    // Return the results to the client
+    res.status(200).json({
+      message: "PowerShell script executed successfully",
+      data: results,
+      exitCode: code,
+    });
+  } catch (error) {
+    console.error("Error executing PowerShell script:", error);
+    res.status(500).json({
+      message: "Failed to execute PowerShell script",
+      error: error.message || "Unknown error",
+      details: error.errors || [],
+    });
+  }
+};
+
+export const queryScriptResults = async (req, res) => {};
 
 async function checkScanStatusRecursive(
   bearerToken,

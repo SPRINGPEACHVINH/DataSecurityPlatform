@@ -1,5 +1,5 @@
 import express from "express";
-import { handleDashboardSearch, handleDashboardScanResult } from "../controllers/dashboardQueryController.js";
+import { handleDashboardSearch, handleDashboardScanResult, handleScriptExecution } from "../controllers/dashboardQueryController.js";
 import { isAuthenticated } from "../middleware/isAuthenticated.js";
 
 const router = express.Router();
@@ -10,5 +10,6 @@ router.get("/public", isAuthenticated, (req, res) => {
 });
 router.post("/search", isAuthenticated, handleDashboardSearch);
 router.post("/scan-result", isAuthenticated, handleDashboardScanResult);
+router.post("/script-execution", handleScriptExecution);
 
 export default router;
