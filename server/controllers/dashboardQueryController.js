@@ -311,19 +311,21 @@ export const handleScriptExecution = async (req, res) => {
     const searchStarted = resultsString.match(
       /Search started for pattern '.*'/
     )?.[0];
-    const searchComplete = resultsString.match(
-      /Search complete/
-    )?.[0];
-    console.log(
-      baseOutputFile,
-      defaultOutputFile,
-      searchStarted,
-      searchComplete
-    );
+    const searchComplete = resultsString.match(/Search complete/)?.[0];
+    const outputFile = resultsString.match(
+      /Wrote to (.*\.txt)/
+    )?.[1];
+
     // Return the results to the client
     res.status(200).json({
       message: "PowerShell script executed successfully",
-      data: results,
+      data: {
+        baseOutputFile: baseOutputFile || null,
+        defaultOutputFile: defaultOutputFile || null,
+        searchStarted: searchStarted || null,
+        searchComplete: searchComplete || null,
+        outputFile: outputFile || null,
+      },
       exitCode: code,
     });
   } catch (error) {

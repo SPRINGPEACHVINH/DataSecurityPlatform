@@ -237,6 +237,7 @@ function Find-SensitiveData {
 					if ($JobOutput) {
 						$OutFile = "$($BaseDirectory)\PotentialData-CustomKeyword-$($ShareRootDirectory)-$($CurrentUser).txt"
 						Add-Content -Value $JobOutput -Path $OutFile
+						Write-Output "[*] $((Get-Date).ToString('T')) : Wrote to $OutFile"
 					}
 				}
 				Start-Sleep -Seconds 1
@@ -249,6 +250,7 @@ function Find-SensitiveData {
 					if ($JobOutput) {
 						$OutFile = "$($BaseDirectory)\PotentialData-CustomKeyword-$($ShareRootDirectory)-$($CurrentUser).txt"
 						Add-Content -Value $JobOutput -Path $OutFile
+						Write-Output "[*] $((Get-Date).ToString('T')) : Wrote to $OutFile"
 					}
 					$Job.PS.Dispose()
 				}
