@@ -1,5 +1,6 @@
 .env
 APIResponse.js
+server/utils/Result/*
 
 # Logs
 logs
