@@ -1,3 +1,5 @@
+#powershell.exe -File ./finding.ps1 -Function Find-SensitiveData -SharePath "..." -keyword "..."
+#powershell.exe -File ./finding.ps1 -Function Remove-SensitiveData
 Param(
 	[Parameter(Mandatory = $true,
 		Position = 0)]
