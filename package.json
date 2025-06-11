@@ -10,8 +10,5 @@
   },
   "scripts": {
     "dev": "concurrently \"npm run dev --prefix dashboard\" \"npm run dev --prefix server\""
-  },
-  "devDependencies": {
-    "concurrently": "^9.1.2"
   }
 }

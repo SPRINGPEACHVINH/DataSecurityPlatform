@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./DataSources.css";
 import Overview from "./Overview";
 import LogManager from "./LogManager";
-import { use } from "react";
 
 function extractConnectionData(documents, connectionData) {
   const containers = [
@@ -36,12 +35,28 @@ function extractFileData(documents) {
     documents = [documents]; // Convert single document to array
   }
 
-  return documents.map(doc => ({
-    name: doc.title || "Unknown",
-    path: doc.id || "Unknown",
-    container: doc.container || "Unknown",
-    updatedAt: doc.updated_at || "Unknown",
-  }));
+  return documents.map(doc => {
+    // Format date: convert UTC to UTC+7 and format as yyyy-mm-dd hh:mm:ss
+    let formattedDate = "Unknown";
+    if (doc.updated_at) {
+      try {
+        const date = new Date(doc.updated_at);
+        // Add 7 hours for UTC+7
+        date.setHours(date.getHours() + 7);
+        // Format as yyyy-mm-dd hh:mm:ss
+        formattedDate = date.toISOString().replace('T', ' ').substring(0, 19);
+      } catch (e) {
+        console.error("Date parsing error:", e);
+      }
+    }
+    
+    return {
+      name: doc.title || "Unknown",
+      path: doc.id || "Unknown",
+      container: doc.container || "Unknown",
+      updatedAt: formattedDate,
+    };
+  });
 }
 
 function DataSources() {
@@ -116,9 +131,9 @@ function DataSources() {
     setSearchBarTerm("");
   };
 
-  const handleClearContainer = () => {
-    setSelectedContainer(null);
-  };
+  // const handleClearContainer = () => {
+  //   setSelectedContainer(null);
+  // };
 
   const handleShowAllFiles = () => {
     setSelectedContainer(null);
@@ -427,7 +442,6 @@ function DataSources() {
             <div className="files-table-header">
               <div>File Name</div>
               <div>Resources</div>
-              <div></div>
               <div>Updated at</div>
               <div>Actions</div>
             </div>
