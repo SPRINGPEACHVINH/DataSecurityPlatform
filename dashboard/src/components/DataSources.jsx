@@ -96,7 +96,6 @@ function DataSources() {
       type: "Azure Blob",
       status: "Connected",
       fileCount: 12,
-      records: "4 records fond",
     },
     {
       name: "bucket-a",

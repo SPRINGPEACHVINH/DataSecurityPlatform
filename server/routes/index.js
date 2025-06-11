@@ -3,6 +3,7 @@ import express from 'express';
 import dashboardAPI from './dashboardAPI.js';
 import authAPI from './authRoutes.js';
 import purviewAPI from './purview.js';
+import macieRoutes from './macie.js';
 
 const router = express.Router();
 // Health check route
@@ -14,5 +15,6 @@ router.get('/health', (req, res) => {
 router.use('/dashboard', dashboardAPI);
 router.use('/auth', authAPI);
 router.use('/purview', purviewAPI);
+router.use('/macie', macieRoutes);
 
 export default router;
