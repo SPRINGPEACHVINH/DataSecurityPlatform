@@ -1,7 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./DataSources.css";
 import Overview from "./Overview";
 import LogManager from "./LogManager";
+import { use } from "react";
+
+function extractConnectionData(documents, connectionData) {
+  const containers = [
+    ...new Set(documents.map((doc) => doc.container)),
+  ];
+
+  return containers.map((container) => {
+    // Find document for this container to get its index
+    const containerDoc = documents.find(doc => doc.container === container);
+    const containerIndex = containerDoc ? containerDoc.index : null;
+
+    // Find connection data matching this container's index
+    const connection = connectionData.find(conn => conn.name === containerIndex) || {};
+
+    // Count files in this container
+    const containerDocuments = documents.filter(doc => doc.container === container);
+    const fileCount = containerDocuments.length;
+
+    return {
+      name: container,
+      type: connection.type || "Unknown",
+      status: connection.status || "Unknown",
+      fileCount: fileCount,
+      records: null,
+    };
+  });
+}
+
+function extractFileData(documents) {
+  if (!Array.isArray(documents)) {
+    documents = [documents]; // Convert single document to array
+  }
+
+  return documents.map(doc => ({
+    name: doc.title || "Unknown",
+    path: doc.id || "Unknown",
+    container: doc.container || "Unknown",
+    updatedAt: doc.updated_at || "Unknown",
+  }));
+}
 
 function DataSources() {
   const [currentPage, setCurrentPage] = useState("data-sources");
@@ -10,6 +51,30 @@ function DataSources() {
   const [selectedContainer, setSelectedContainer] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [filesData, setDocuments] = useState([]);
+  const [connectionData, setConnectionData] = useState([]);
+
+  useEffect(() => {
+    async function fetchDocuments() {
+      try {
+        const response = await fetch("http://localhost:4000/api/dashboard/elasticsearch/connector");
+        const data = await response.json();
+        console.log("Fetched connection data:", data.data);
+
+        const docResponse = await fetch("http://localhost:4000/api/dashboard/elasticsearch/documents");
+        const docData = await docResponse.json();
+
+        if (docData && docData.data) {
+          setDocuments(extractFileData(docData.data));
+          const extractedData = extractConnectionData(docData.data, data.data);
+          setConnectionData(extractedData);
+        }
+      } catch (error) {
+        console.error("Error fetching documents:", error);
+      }
+    }
+    fetchDocuments();
+  }, []);
 
   const handleNavigation = (section) => {
     console.log(`Navigating to: ${section}`);
@@ -90,102 +155,71 @@ function DataSources() {
     };
   }, [isModalOpen]);
 
-  const connectionData = [
-    {
-      name: "container-a",
-      type: "Azure Blob",
-      status: "Connected",
-      fileCount: 12,
-      records: "4 records fond",
-    },
-    {
-      name: "bucket-a",
-      type: "AWS S3",
-      status: "Disconnected",
-      fileCount: 4,
-      records: null,
-    },
-    {
-      name: "bucket-b",
-      type: "AWS S3",
-      status: "Connected",
-      fileCount: 0,
-      records: null,
-    },
-    {
-      name: "container-b",
-      type: "Azure Blob",
-      status: "Connected",
-      fileCount: 1,
-      records: null,
-    },
-  ];
-
-  const filesData = [
-    {
-      name: "train.csv",
-      path: "bucket-a/archive_2/DeSSI_v2/test/",
-      container: "bucket-a",
-      severity: "Low",
-      updatedAt: "1 day ago",
-    },
-    {
-      name: "bank.csv",
-      path: "bucket-a/archive_2/DeSSI_v2/standard_data/",
-      container: "bucket-a",
-      severity: "Critical",
-      updatedAt: "1 day ago",
-    },
-    {
-      name: "dev.txt",
-      path: "bucket-a/archive_2/dessi/",
-      container: "bucket-a",
-      severity: "Medium",
-      updatedAt: "1 day ago",
-    },
-    {
-      name: "archive.csv",
-      path: "bucket-a/data/credentials",
-      container: "bucket-a",
-      severity: "High",
-      updatedAt: "1 day ago",
-    },
-    {
-      name: "config.json",
-      path: "container-a/settings/",
-      container: "container-a",
-      severity: "Low",
-      updatedAt: "2 days ago",
-    },
-    {
-      name: "users.csv",
-      path: "container-a/data/users/",
-      container: "container-a",
-      severity: "High",
-      updatedAt: "1 day ago",
-    },
-    {
-      name: "logs.txt",
-      path: "container-a/logs/",
-      container: "container-a",
-      severity: "Medium",
-      updatedAt: "3 hours ago",
-    },
-    {
-      name: "backup.zip",
-      path: "bucket-b/backups/",
-      container: "bucket-b",
-      severity: "Low",
-      updatedAt: "1 week ago",
-    },
-    {
-      name: "temp.csv",
-      path: "container-b/temp/",
-      container: "container-b",
-      severity: "Low",
-      updatedAt: "5 days ago",
-    },
-  ];
+  // const filesData = [
+  //   {
+  //     name: "train.csv",
+  //     path: "bucket-a/archive_2/DeSSI_v2/test/",
+  //     container: "bucket-a",
+  //     : "Low",
+  //     updatedAt: "1 day ago",
+  //   },
+  //   {
+  //     name: "bank.csv",
+  //     path: "bucket-a/archive_2/DeSSI_v2/standard_data/",
+  //     container: "bucket-a",
+  //     : "Critical",
+  //     updatedAt: "1 day ago",
+  //   },
+  //   {
+  //     name: "dev.txt",
+  //     path: "bucket-a/archive_2/dessi/",
+  //     container: "bucket-a",
+  //     : "Medium",
+  //     updatedAt: "1 day ago",
+  //   },
+  //   {
+  //     name: "archive.csv",
+  //     path: "bucket-a/data/credentials",
+  //     container: "bucket-a",
+  //     : "High",
+  //     updatedAt: "1 day ago",
+  //   },
+  //   {
+  //     name: "config.json",
+  //     path: "container-a/settings/",
+  //     container: "container-a",
+  //     : "Low",
+  //     updatedAt: "2 days ago",
+  //   },
+  //   {
+  //     name: "users.csv",
+  //     path: "container-a/data/users/",
+  //     container: "container-a",
+  //     : "High",
+  //     updatedAt: "1 day ago",
+  //   },
+  //   {
+  //     name: "logs.txt",
+  //     path: "container-a/logs/",
+  //     container: "container-a",
+  //     : "Medium",
+  //     updatedAt: "3 hours ago",
+  //   },
+  //   {
+  //     name: "backup.zip",
+  //     path: "bucket-b/backups/",
+  //     container: "bucket-b",
+  //     : "Low",
+  //     updatedAt: "1 week ago",
+  //   },
+  //   {
+  //     name: "temp.csv",
+  //     path: "container-b/temp/",
+  //     container: "container-b",
+  //     : "Low",
+  //     updatedAt: "5 days ago",
+  //   },
+  // ];
 
   // Filter files based on search term and selected container
   const filteredFiles = filesData.filter((file) => {
@@ -200,9 +234,8 @@ function DataSources() {
     const searchLower = searchBarTerm.toLowerCase();
     const nameMatch = file.name.toLowerCase().includes(searchLower);
     const pathMatch = file.path.toLowerCase().includes(searchLower);
-    const severityMatch = file.severity.toLowerCase().includes(searchLower);
 
-    return nameMatch || pathMatch || severityMatch;
+    return nameMatch || pathMatch;
   });
 
   // Get total files for the selected container or all files
@@ -460,7 +493,7 @@ function DataSources() {
             <div className="files-table-header">
               <div>File Name</div>
               <div>Resources</div>
-              <div>Severity</div>
+              <div></div>
               <div>Updated at</div>
               <div>Actions</div>
             </div>
@@ -472,13 +505,6 @@ function DataSources() {
                   </div>
                   <div>
                     <div className="file-path">{file.path}</div>
-                  </div>
-                  <div>
-                    <span
-                      className={`severity-badge severity-${file.severity.toLowerCase()}`}
-                    >
-                      {file.severity}
-                    </span>
                   </div>
                   <div>{file.updatedAt}</div>
                   <div>
@@ -594,17 +620,6 @@ function DataSources() {
                   <div className="file-detail-label">File Path</div>
                   <div className="file-detail-value path">
                     {selectedFile.path}
-                  </div>
-                </div>
-
-                <div className="file-detail-row">
-                  <div className="file-detail-label">Severity Level</div>
-                  <div className="file-detail-value">
-                    <span
-                      className={`severity-badge severity-${selectedFile.severity.toLowerCase()} file-severity-display`}
-                    >
-                      {selectedFile.severity}
-                    </span>
                   </div>
                 </div>
 

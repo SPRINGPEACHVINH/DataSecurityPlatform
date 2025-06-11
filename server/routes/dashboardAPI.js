@@ -11,7 +11,7 @@ router.get("/public", isAuthenticated, (req, res) => {
 });
 router.post("/search", isAuthenticated, handleDashboardSearch);
 router.post("/scan-result", isAuthenticated, handleDashboardScanResult);
-router.post("/script-execution", handleScriptExecution);
+router.post("/script-execution", isAuthenticated, handleScriptExecution);
 router.get("/elasticsearch/connector", getConnector);
 router.get("/elasticsearch/documents", getDocuments);
 

@@ -19,13 +19,13 @@ app.use(express.json()); // Parse JSON request bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded request bodies
 
 // Enable CORS for all routes
-// app.use(
-//   cors({
-//     origin: process.env.frontend_url,
-//     methods: ["GET", "POST", "PUT", "DELETE"],
-//     credentials: true,
-//   })
-// );
+app.use(
+  cors({
+    origin: process.env.frontend_url,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 
 // Session Configuration
 app.use(
