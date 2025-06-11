@@ -30,14 +30,15 @@ const {
 async function getOAuth2TokenInternal() {
   const url = `https://login.microsoftonline.com/${PURVIEW_TENANT_ID}/oauth2/v2.0/token`;
 
+  const requestbody = {
+    client_id: PURVIEW_CLIENT_ID,
+    client_secret: PURVIEW_CLIENT_SECRET,
+    scope: "https://purview.azure.net/.default",
+    grant_type: "client_credentials",
+  };
   const response = await axios.post(
     url,
-    qs.stringify({
-      client_id: PURVIEW_CLIENT_ID,
-      client_secret: PURVIEW_CLIENT_SECRET,
-      scope: "https://purview.azure.net/.default",
-      grant_type: "client_credentials",
-    }),
+    qs.stringify(requestbody), // Use qs to format the body as x-www-form-urlencoded
     {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
     }
@@ -97,7 +98,9 @@ export async function createOrUpdateCustomClassificationRule(
     //   },
     // });
 
-    console.log(`apiUrl: ${apiUrl}\n requestBody: ${JSON.stringify(requestBody)}\n`);
+    console.log(
+      `apiUrl: ${apiUrl}\n requestBody: ${JSON.stringify(requestBody)}\n`
+    );
     console.log(
       `Successfully created/updated classification rule: ${classificationRuleName}`
     );
@@ -261,7 +264,9 @@ export async function queryScanResult(bearerToken, classificationName) {
     //   },
     // });
 
-    console.log(`apiUrl: ${apiUrl}\n requestBody: ${JSON.stringify(requestBody)}\n`);
+    console.log(
+      `apiUrl: ${apiUrl}\n requestBody: ${JSON.stringify(requestBody)}\n`
+    );
     console.log(
       `Successfully queried Purview for classification '${classificationName}'.`
     );
