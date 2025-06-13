@@ -1,0 +1,272 @@
+/* Import Open Sans font */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
+
+/* Login Container */
+.login-container {
+  background-color: #fcfaff;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-family: "Open Sans", sans-serif;
+  overflow: hidden;
+}
+
+/* Form Section */
+.form-section {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 634px;
+  height: 558px;
+}
+
+.form-container {
+  width: 634px;
+  height: 558px;
+  position: relative;
+}
+
+.welcome-title {
+  position: absolute;
+  left: 221px;
+  top: 0px;
+  width: 239px;
+  height: 24px;
+  color: #774aa4;
+  font-family: "Open Sans", sans-serif;
+  font-size: 33px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.welcome-subtitle {
+  position: absolute;
+  left: 177px;
+  top: 47px;
+  width: 327px;
+  height: 11px;
+  color: #b1a8b9;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* Form */
+.login-form {
+  position: absolute;
+  left: 0px;
+  top: 102px;
+  width: 634px;
+}
+
+.form-group {
+  position: relative;
+  height: 69px;
+  margin-bottom: 34px;
+}
+
+.form-label {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  color: #37234b;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.form-input {
+  position: absolute;
+  left: 0px;
+  top: 25px;
+  width: 100%;
+  height: 44px;
+  border-radius: 6px;
+  border: 1px solid #e4dbed;
+  background: #fff;
+  padding: 0 16px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #37234b;
+  box-sizing: border-box;
+}
+
+.password-input-wrapper .form-input {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+.form-input::placeholder {
+  color: #b1a8b9;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #774aa4;
+  box-shadow: 0 0 0 2px rgba(119, 74, 164, 0.1);
+}
+
+.password-input-wrapper {
+  position: absolute;
+  left: 0px;
+  top: 25px;
+  width: 100%;
+  height: 44px;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eye-icon {
+  width: 22px;
+  height: 17px;
+  fill: #b1a8b9;
+}
+
+/* Form Footer */
+.form-footer {
+  position: absolute;
+  left: 0px;
+  width: 100%;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checkbox-input {
+  display: none;
+}
+
+.checkbox-custom {
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  border: 1px solid #b1a8b9;
+  background: #fff;
+  margin-right: 10px;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.checkbox-input:checked + .checkbox-custom {
+  background: #774aa4;
+  border-color: #774aa4;
+}
+
+.checkbox-input:checked + .checkbox-custom::after {
+  content: "✓";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.checkbox-label {
+  color: #b1a8b9;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.forgot-password-link {
+  color: #774aa4;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.forgot-password-link:hover {
+  text-decoration: underline;
+}
+
+/* Login Button */
+.login-button {
+  position: absolute;
+  left: 0px;
+  top: 300px;
+  width: 100%;
+  height: 44px;
+  background: #774aa4;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-button:hover {
+  background: #6a3f93;
+}
+
+.login-button:active {
+  background: #5d3482;
+}
+
+.login-button-text {
+  color: #fff;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* Signup Section */
+.signup-section {
+  position: absolute;
+  top: 370px;
+  width: 333px;
+  height: 11px;
+  display: flex;
+  align-items: center;
+}
+
+.signup-text {
+  color: #b1a8b9;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  margin-right: 6px;
+}
+
+.signup-link {
+  color: #774aa4;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+}

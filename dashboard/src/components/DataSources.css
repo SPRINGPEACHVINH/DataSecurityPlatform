@@ -3,13 +3,12 @@
   display: flex;
   min-height: 100vh;
   overflow: hidden;
-  /* Hide scrollbar for the main container */
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .data-sources-container::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
 }
 
 .sidebar-container {
