@@ -49,7 +49,7 @@ function extractFileData(documents) {
         console.error("Date parsing error:", e);
       }
     }
-    
+
     return {
       name: doc.title || "Unknown",
       path: doc.id || "Unknown",
@@ -59,7 +59,7 @@ function extractFileData(documents) {
   });
 }
 
-function DataSources() {
+function DataSources({ onLogout }) {
   const [currentPage, setCurrentPage] = useState("data-sources");
   const [searchTerm, setSearchTerm] = useState("");
   const [searchBarTerm, setSearchBarTerm] = useState("");
@@ -68,15 +68,27 @@ function DataSources() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [filesData, setDocuments] = useState([]);
   const [connectionData, setConnectionData] = useState([]);
+  const [isUserProfileDropdownOpen, setIsUserProfileDropdownOpen] = useState(false); // 2. State cho dropdown
+
 
   useEffect(() => {
     async function fetchDocuments() {
       try {
-        const response = await fetch("http://localhost:4000/api/dashboard/elasticsearch/connector");
+        const response = await fetch("http://localhost:4000/api/dashboard/elasticsearch/connector", {
+          credentials: "include",
+          headers: {
+            "Cookie": localStorage.getItem("sessionId") || "",
+          },
+        });
         const data = await response.json();
         console.log("Fetched connection data:", data.data);
 
-        const docResponse = await fetch("http://localhost:4000/api/dashboard/elasticsearch/documents");
+        const docResponse = await fetch("http://localhost:4000/api/dashboard/elasticsearch/documents", {
+          credentials: "include",
+          headers: {
+            "Cookie": localStorage.getItem("sessionId") || "",
+          },
+        });
         const docData = await docResponse.json();
 
         if (docData && docData.data) {
@@ -99,6 +111,7 @@ function DataSources() {
     setSearchBarTerm("");
     setSelectedFile(null);
     setIsModalOpen(false);
+    setIsUserProfileDropdownOpen(false); // Close dropdown on navigation
   };
 
   const handleViewClick = (type, item) => {
@@ -110,6 +123,7 @@ function DataSources() {
       setSelectedFile(item);
       setIsModalOpen(true);
     }
+    setIsUserProfileDropdownOpen(false); // Close dropdown on view click
   };
 
   const handleSearch = () => {
@@ -118,8 +132,7 @@ function DataSources() {
   };
 
   const handleUserProfileClick = () => {
-    console.log("User profile clicked");
-    // Add user profile dropdown logic here
+    setIsUserProfileDropdownOpen(prev => !prev);
   };
 
   const handleHelpClick = () => {
@@ -202,20 +215,38 @@ function DataSources() {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <div className="user-profile" onClick={handleUserProfileClick}>
-        <div className="user-info">
+      <div className="user-profile-wrapper">
+        <div className="user-profile" onClick={handleUserProfileClick}>
+          <div className="user-info">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/26f0a624d150c8c02938247753a1054d42060a0b?placeholderIfAbsent=true"
+              className="user-avatar"
+              alt="User Avatar"
+            />
+            <div className="user-name">Xuan Tung</div>
+          </div>
           <img
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/26f0a624d150c8c02938247753a1054d42060a0b?placeholderIfAbsent=true"
-            className="user-avatar"
-            alt="User Avatar"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/2b743dbcd0157a48cdbb66a0049f7867f7fa50ed?placeholderIfAbsent=true"
+            className="user-dropdown-arrow"
+            alt="Dropdown"
           />
-          <div className="user-name">Xuan Tung</div>
         </div>
-        <img
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/2b743dbcd0157a48cdbb66a0049f7867f7fa50ed?placeholderIfAbsent=true"
-          className="user-dropdown-arrow"
-          alt="Dropdown"
-        />
+        {isUserProfileDropdownOpen && ( // 4. Hiển thị dropdown nếu state là true
+          <div className="user-profile-dropdown">
+            <button
+              onClick={() => {
+                if (onLogout) {
+                  onLogout(); // Gọi hàm onLogout từ props
+                }
+                setIsUserProfileDropdownOpen(false); // Đóng dropdown sau khi click
+              }}
+              className="dropdown-item logout-button"
+            >
+              Logout
+            </button>
+            {/* Thêm các mục khác cho dropdown nếu cần */}
+          </div>
+        )}
       </div>
     </div>
   );

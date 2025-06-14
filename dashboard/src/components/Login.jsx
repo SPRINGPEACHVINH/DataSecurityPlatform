@@ -2,22 +2,45 @@ import React, { useState } from "react";
 import "./Login.css";
 
 function Login({ onLogin }) {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Login attempt:", { email, password, rememberMe });
+    setError("");
 
-    // Call API o day
-    if (email && password) {
-      if (onLogin) {
-        onLogin();
+    if (!username || !password) {
+      setError("Please enter both username and password.");
+      return;
+    }
+    try {
+      const res = await fetch("http://localhost:4000/api/auth/signin", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ UserName: username, Password: password }),
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        let sessionId = null;
+        const cookies = document.cookie.split("; ");
+        for (let c of cookies) {
+          if (c.startsWith("sessionid=")) {
+            sessionId = c.split("=")[1];
+            break;
+          }
+        }
+        onLogin({ user: data.user, sessionId });
+      } else {
+        setError(data.message || "Login failed");
       }
-    } else {
-      alert("Please enter both email and password");
+    } catch (err) {
+      console.error("Login error:", err);
+      setError("An error occurred while logging in. Please try again.");
     }
   };
 
@@ -37,16 +60,16 @@ function Login({ onLogin }) {
 
             <form onSubmit={handleSubmit} className="login-form">
               <div className="form-group">
-                <label htmlFor="email" className="form-label">
-                  Email
+                <label htmlFor="username" className="form-label">
+                  Username
                 </label>
                 <input
-                  type="email"
-                  id="email"
+                  type="username"
+                  id="username"
                   className="form-input"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   required
                 />
               </div>

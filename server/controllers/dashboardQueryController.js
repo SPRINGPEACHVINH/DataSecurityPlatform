@@ -4,7 +4,6 @@ import {
   createOrUpdateCustomClassificationRule,
   RunScan,
   queryScanResult,
-  getScanStatus,
   getDataSourceName,
   getScanName,
 } from "../services/purviewDataTransfer.js";
@@ -18,16 +17,14 @@ import {
   findScanDefinitionByName,
   createScanDefinition,
   createScanRun,
-  findByIdAndUpdateScanRun,
 } from "../models/scanModel.js";
-
-import ScanModels from "../models/scanModel.js";
-const { ScanRun } = ScanModels;
 
 import userModels from "../models/userModel.js";
 const { userHistory } = userModels;
 
 import powershell from "powershell";
+import fs from "fs";
+import path from "path";
 
 const handleDsDocument = async (userId, bearerToken) => {
   // Try to find existing DataSource by owner
@@ -312,16 +309,12 @@ export const handleScriptExecution = async (req, res) => {
       /Search started for pattern '.*'/
     )?.[0];
     const searchComplete = resultsString.match(/Search complete/)?.[0];
-    const outputFile = resultsString.match(
-      /Wrote to (.*\.txt)/
-    )?.[1];
+    const outputFile = resultsString.match(/Wrote to (.*\.txt)/)?.[1];
 
     // Return the results to the client
     res.status(200).json({
       message: "PowerShell script executed successfully",
       data: {
-        baseOutputFile: baseOutputFile || null,
-        defaultOutputFile: defaultOutputFile || null,
         searchStarted: searchStarted || null,
         searchComplete: searchComplete || null,
         outputFile: outputFile || null,
@@ -338,126 +331,65 @@ export const handleScriptExecution = async (req, res) => {
   }
 };
 
-export const queryScriptResults = async (req, res) => {};
-
-async function checkScanStatusRecursive(
-  bearerToken,
-  dataSourceName,
-  scanName,
-  purviewRunId,
-  classificationNameToQuery,
-  attempt = 0,
-  scanRunDbId
-) {
-  const MAX_ATTEMPTS = 5;
-  const DELAY_MS = 5 * 60 * 1000; // 5 phút
-
-  if (attempt >= MAX_ATTEMPTS) {
-    console.error(
-      `Max attempts reached for checking scan status of runId ${purviewRunId}.`
-    );
-    await findByIdAndUpdateScanRun(purviewRunId, { status: "Timeout" });
-    return;
-  }
-
+export const queryScriptResults = async (req, res) => {
   try {
-    console.log(
-      `Checking status for Purview runId ${purviewRunId} (DB ID: ${scanRunDbId}), attempt ${
-        attempt + 1
-      }`
-    );
-    const statusResponse = await getScanStatus(
-      bearerToken,
-      dataSourceName,
-      scanName,
-      purviewRunId
-    );
+    const { outputFile } = req.body;
+    let filePath = null;
 
-    const scanRunUpdateData = {
-      status: statusResponse.status || "Unknown",
-      startTime: statusResponse.startTime
-        ? new Date(statusResponse.startTime)
-        : undefined,
-      endTime: statusResponse.endTime
-        ? new Date(statusResponse.endTime)
-        : undefined,
-      assetDiscovered:
-        statusResponse.discoveryExecutionDetails?.statistics?.assets
-          ?.discovered || 0,
-      assetClassified:
-        statusResponse.discoveryExecutionDetails?.statistics?.assets
-          ?.classified || 0,
-    };
-
-    // Chỉ cập nhật nếu có giá trị, tránh ghi đè startTime nếu nó đã được set lúc tạo
-    if (scanRunUpdateData.startTime === undefined)
-      delete scanRunUpdateData.startTime;
-
-    const updatedScanRun = await findByIdAndUpdateScanRun(
-      purviewRunId,
-      scanRunUpdateData,
-      { new: true }
-    );
-
-    if (!updatedScanRun) {
-      console.error(
-        `ScanRun with run ID ${purviewRunId} not found for update.`
+    filePath =
+      outputFile ||
+      path.join(
+        __dirname,
+        "../utils/Result/PotentialData-CustomKeyword--daoxu.txt"
       );
-      return;
-    }
-    console.log(
-      `ScanRun ${purviewRunId} (DB ID: ${updatedScanRun._id}) status updated in DB: ${updatedScanRun.status}`
-    );
 
-    if (updatedScanRun.status === "Succeeded") {
-      const queryResults = await queryScanResult(
-        bearerToken,
-        classificationNameToQuery
-      );
-      console.log(
-        `Scan ${purviewRunId} completed. Query results obtained for ${classificationNameToQuery}.`
-      );
-      const names = queryResults?.value?.map((item) => item.name) || [];
-      console.log("Extracted names from scan results:", names);
-      return;
-      await ScanRun.findByIdAndUpdate(scanRunDbId, {
-        $set: { result: names },
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).json({
+        message: "Result file not found.",
       });
-      return true;
-    } else if (
-      updatedScanRun.status === "Failed" ||
-      updatedScanRun.status === "Canceled"
-    ) {
-      console.error(
-        `Scan ${purviewRunId} failed or was canceled. Status: ${updatedScanRun.status}`
-      );
-      return false;
-    } else if (
-      updatedScanRun.status === "InProgress" ||
-      updatedScanRun.status === "Accepted"
-    ) {
-      setTimeout(() => {
-        checkScanStatusRecursive(
-          bearerToken,
-          dataSourceName,
-          scanName,
-          purviewRunId,
-          classificationNameToQuery,
-          attempt + 1,
-          scanRunDbId
-        );
-      }, DELAY_MS);
-    } else {
-      console.log(
-        `Scan ${purviewRunId} is in status '${updatedScanRun.status}', no further action needed.`
-      );
     }
+
+    const content = fs.readFileSync(filePath, "utf8");
+    if (!content) {
+      return res.status(404).json({
+        message: "Result file is empty.",
+      });
+    }
+
+    const fileRowsMap = {};
+    content
+      .split("\n")
+      .filter(Boolean)
+      .forEach((line) => {
+        const firstColon = line.indexOf(":");
+        const secondColon = line.indexOf(":", firstColon + 1);
+        const fileName =
+          secondColon !== -1 ? line.substring(0, secondColon) : line;
+
+        const match = line.match(/\.txt:(\d+):/);
+        const row = match ? parseInt(match[1], 10) : null;
+
+        if (!fileRowsMap[fileName]) {
+          fileRowsMap[fileName] = [];
+        }
+        fileRowsMap[fileName].push(row);
+      });
+      
+    if (!fileRowsMap) {
+      return res.status(404).json({
+        message: "No file names found in the result file.",
+      });
+    }
+
+    res.status(200).json({
+      message: "Found file names successfully.",
+      data: fileRowsMap,
+    });
   } catch (error) {
-    console.error(
-      `Error checking scan status for ${purviewRunId} (attempt ${
-        attempt + 1
-      }):`,
-      error
-    );
+    console.error("Error extracting file names:", error);
+    res.status(500).json({
+      message: "Failed to extract file names.",
+      error: error.message || "Unknown error",
+    });
   }
-}
+};
