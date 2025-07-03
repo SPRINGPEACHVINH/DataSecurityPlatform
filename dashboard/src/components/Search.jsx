@@ -11,6 +11,10 @@ function Search({
 }) {
   const [searchType, setSearchType] = useState("AWS");
   const [searchTerm, setSearchTerm] = useState("");
+  const [filePath, setFilePath] = useState("");
+  const [scanLevel, setScanLevel] = useState("full");
+  const [ruleName, setRuleName] = useState("");
+  const [classificationName, setClassificationName] = useState("");
 
   // Sample data for messages
   const allMessages = [
@@ -61,29 +65,34 @@ function Search({
   ];
 
   // Filter messages based on search type and term
-  const filteredMessages = searchTerm
-    ? allMessages.filter((item) => {
+  const filteredMessages =
+    (searchType === "Server" ? filePath || searchTerm : searchTerm)
+      ? allMessages.filter((item) => {
         const searchLower = searchTerm.toLowerCase();
+        const filePathLower = filePath.toLowerCase();
         if (searchType === "AWS") {
-          // AWS: Search by format
           return item.format.toLowerCase().includes(searchLower);
-        } else {
-          // Azure: Search by keyword
+        } else if (searchType === "Azure") {
           return (
             item.keywords.some((keyword) =>
-              keyword.toLowerCase().includes(searchLower),
+              keyword.toLowerCase().includes(searchLower)
             ) || item.message.toLowerCase().includes(searchLower)
           );
+        } else if (searchType === "Server") {
+          return (
+            item.resource.toLowerCase().includes(filePathLower) &&
+            (item.fileName.toLowerCase().includes(searchLower) ||
+              item.message.toLowerCase().includes(searchLower))
+          );
         }
+        return true;
       })
-    : allMessages;
-
-  const handleHelp = () => {
-    console.log("Help clicked");
-  };
+      : allMessages;
 
   const handleSearchTypeChange = (e) => {
     setSearchType(e.target.value);
+    setSearchTerm("");
+    setFilePath("");
   };
 
   const handleSearchChange = (value) => {
@@ -104,73 +113,88 @@ function Search({
         <Header
           pageTitle="Search"
           searchTerm=""
-          onSearchChange={() => {}}
+          onSearchChange={() => { }}
           onLogout={onLogout}
           showSearch={false}
         />
 
         <div className="search-content">
           <div className="sensitive-data-title">Sensitive data</div>
-          <div className="main-search-bar">
-            <div className="state-layer">
-              <div className="leading-icon">
-                <div className="leading-icon-content">
-                  <div className="leading-icon-state-layer">
-                    <div>
-                      <svg
-                        className="menu-icon"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M3 18V16H21V18H3ZM3 13V11H21V13H3ZM3 8V6H21V8H3Z"
-                          fill="#49454F"
-                        />
-                      </svg>
-                    </div>
-                  </div>
+          <div className="search-bar-row">
+            <div className="main-search-bar">
+              <div className="state-layer">
+                <div className="leading-icon">
+                  {/* Search icon SVG */}
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style={{ display: "block" }}
+                  >
+                    <circle cx="11" cy="11" r="7" stroke="#774aa4" strokeWidth="2" />
+                    <line x1="16.018" y1="16.4853" x2="20" y2="20.4853" stroke="#774aa4" strokeWidth="2" strokeLinecap="round" />
+                  </svg>
                 </div>
-              </div>
-              <div className="search-content-input">
-                <input
-                  type="text"
-                  className="search-input-field"
-                  placeholder={
-                    searchType === "AWS"
-                      ? "Search by format (e.g., csv, txt)"
-                      : "Search by keyword"
-                  }
-                  value={searchTerm}
-                  onChange={(e) => handleSearchChange(e.target.value)}
-                />
-              </div>
-              <div className="trailing-elements">
-                <div className="trailing-icon">
-                  <div className="trailing-icon-content">
-                    <div className="trailing-icon-state-layer">
-                      <div>
-                        <svg
-                          className="search-icon-large"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M19.6 21L13.3 14.7C12.8 15.1 12.225 15.4167 11.575 15.65C10.925 15.8833 10.2333 16 9.5 16C7.68333 16 6.14583 15.3708 4.8875 14.1125C3.62917 12.8542 3 11.3167 3 9.5C3 7.68333 3.62917 6.14583 4.8875 4.8875C6.14583 3.62917 7.68333 3 9.5 3C11.3167 3 12.8542 3.62917 14.1125 4.8875C15.3708 6.14583 16 7.68333 16 9.5C16 10.2333 15.8833 10.925 15.65 11.575C15.4167 12.225 15.1 12.8 14.7 13.3L21 19.6L19.6 21ZM9.5 14C10.75 14 11.8125 13.5625 12.6875 12.6875C13.5625 11.8125 14 10.75 14 9.5C14 8.25 13.5625 7.1875 12.6875 6.3125C11.8125 5.4375 10.75 5 9.5 5C8.25 5 7.1875 5.4375 6.3125 6.3125C5.4375 7.1875 5 8.25 5 9.5C5 10.75 5.4375 11.8125 6.3125 12.6875C7.1875 13.5625 8.25 14 9.5 14Z"
-                            fill="#49454F"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
+                <div className="search-content-input">
+                  <input
+                    type="text"
+                    className="search-input-field"
+                    placeholder={
+                      searchType === "AWS"
+                        ? "Search by format (e.g., csv, txt)"
+                        : searchType === "Server"
+                          ? "Enter keyword"
+                          : "Search by keyword"
+                    }
+                    value={searchTerm}
+                    onChange={(e) => handleSearchChange(e.target.value)}
+                  />
+                </div>
+                <div className="trailing-elements">
+                  {/* ...icon code... */}
                 </div>
               </div>
             </div>
+            {searchType === "Server" && (
+              <input
+                type="text"
+                className="file-path-input"
+                placeholder="Enter file path"
+                value={filePath}
+                onChange={(e) => setFilePath(e.target.value)}
+              />
+            )}
+            {searchType === "Azure" && (
+              <>
+                <select
+                  className="scan-level-select"
+                  value={scanLevel}
+                  onChange={(e) => setScanLevel(e.target.value)}
+                  style={{ height: 44, borderRadius: 22, marginLeft: 8 }}
+                >
+                  <option value="full">Full</option>
+                  <option value="quick">Quick</option>
+                </select>
+                <input
+                  type="text"
+                  className="rule-name-input"
+                  placeholder="Rule name"
+                  value={ruleName}
+                  onChange={(e) => setRuleName(e.target.value)}
+                  style={{ height: 44, borderRadius: 22, marginLeft: 8, padding: "0 12px" }}
+                />
+                <input
+                  type="text"
+                  className="classification-name-input"
+                  placeholder="Classification name"
+                  value={classificationName}
+                  onChange={(e) => setClassificationName(e.target.value)}
+                  style={{ height: 44, borderRadius: 22, marginLeft: 8, padding: "0 12px" }}
+                />
+              </>
+            )}
           </div>
 
           {/* Search Type Select */}
@@ -186,96 +210,36 @@ function Search({
             >
               <option value="AWS">AWS</option>
               <option value="Azure">Azure</option>
+              <option value="Server">Server</option>
             </select>
           </div>
 
           {/* Data Table */}
           <div className="data-table-container">
-            <div className="table-bg" />
             <div className="table-content">
-              {/* Table Headers and Rows */}
-              <div className="table-divider table-divider-0" />
-              <div className="table-divider table-divider-1" />
-              <div className="table-divider table-divider-2" />
-              <div className="table-divider table-divider-3" />
-              <div className="table-divider table-divider-4" />
-              <div className="table-divider table-divider-5" />
-
-              {/* File Names Column */}
-              <div className="file-name-column">
-                <div className="column-header">File Name</div>
-                {filteredMessages.map((item, index) => (
-                  <div
-                    key={item.id}
-                    className="file-name-item"
-                    style={{ top: `${75 + index * 147}px` }}
-                  >
-                    {item.fileName}
-                  </div>
-                ))}
+              {/* Header */}
+              <div className="table-row table-header">
+                <div className="file-name-column column-header">File Name</div>
+                <div className="resources-column column-header">Resources</div>
+                <div className="severity-column column-header">Severity</div>
+                <div className="updated-at-column column-header">Updated at</div>
+                <div className="message-column column-header">Message</div>
               </div>
-
-              {/* Resources Column */}
-              <div className="resources-column">
-                <div className="column-header">Resources</div>
-                {filteredMessages.map((item, index) => (
-                  <div
-                    key={item.id}
-                    className="resource-path"
-                    style={{ top: `${75 + index * 147}px` }}
-                  >
-                    {item.resource}
-                  </div>
-                ))}
-              </div>
-
-              {/* Severity Column */}
-              <div className="severity-column">
-                <div className="column-header">Serverity</div>
-                {filteredMessages.map((item, index) => (
-                  <div
-                    key={item.id}
-                    className={`severity-badge severity-${item.severity}`}
-                    style={{ top: `${75 + index * 147}px` }}
-                  >
-                    <div
-                      className={`severity-bg severity-bg-${item.severity}`}
-                    />
+              {/* Data rows */}
+              {filteredMessages.map((item) => (
+                <div className="table-row" key={item.id}>
+                  <div className="file-name-column">{item.fileName}</div>
+                  <div className="resources-column">{item.resource}</div>
+                  <div className={`severity-column severity-badge severity-${item.severity}`}>
+                    <div className={`severity-bg severity-bg-${item.severity}`} />
                     <div className="severity-text">
-                      {item.severity.charAt(0).toUpperCase() +
-                        item.severity.slice(1)}
+                      {item.severity.charAt(0).toUpperCase() + item.severity.slice(1)}
                     </div>
                   </div>
-                ))}
-              </div>
-
-              {/* Updated At Column */}
-              <div className="updated-at-column">
-                <div className="column-header">Updated at</div>
-                {filteredMessages.map((item, index) => (
-                  <div
-                    key={item.id}
-                    className="update-time"
-                    style={{ top: `${75 + index * 147}px` }}
-                  >
-                    {item.updatedAt}
-                  </div>
-                ))}
-              </div>
-
-              {/* Message Column */}
-              <div className="message-column">
-                <div className="column-header">Message</div>
-                {filteredMessages.map((item, index) => (
-                  <div
-                    key={item.id}
-                    className="alert-message"
-                    style={{ top: `${75 + index * 147}px` }}
-                  >
-                    {item.message}
-                  </div>
-                ))}
-              </div>
+                  <div className="updated-at-column">{item.updatedAt}</div>
+                  <div className="message-column alert-message">{item.message}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
