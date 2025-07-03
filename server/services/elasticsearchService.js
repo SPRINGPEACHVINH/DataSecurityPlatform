@@ -195,3 +195,94 @@ export const getDocuments = async (req, res) => {
     });
   }
 };
+
+export const SyncConnectors = async (req, res) => {
+  try {
+    const { id, job_type = "full" } = req.body;
+    if (!id) {
+      return res.status(400).json({
+        message: "Connector ID is required to synchronize.",
+      });
+    }
+    if (!job_type || (job_type !== "full" && job_type !== "incremental")) {
+      return res.status(400).json({
+        message: "Invalid job type. Must be 'full' or 'incremental'.",
+      });
+    }
+
+    const response = await axios.post(
+      `${ES_LOCAL_URL}/_connector/_sync_job`,
+      {
+        id: id,
+        job_type: job_type,
+        trigger_method: "on_demand",
+      },
+      {
+        auth: {
+          username: ES_LOCAL_USERNAME,
+          password: ES_LOCAL_PASSWORD,
+        },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    res.status(200).json({
+      message: "Elasticsearch connectors synchronized successfully.",
+      sync_id: response.data.id,
+    });
+  } catch (error) {
+    console.error("Error synchronizing Elasticsearch connectors:", error);
+    res.status(500).json({
+      message: "Failed to synchronize Elasticsearch connectors.",
+      error: error.response
+        ? error.response.data
+        : error.message || "Unknown error",
+    });
+  }
+};
+
+export const getSyncStatus = async (req, res) => {
+  try {
+    const { sync_id } = req.body;
+    if (!sync_id) {
+      return res.status(400).json({
+        message: "Sync ID is required to check synchronization status.",
+      });
+    }
+
+    const response = await axios.get(
+      `${ES_LOCAL_URL}/_connector/_sync_job/${sync_id}`,
+      {
+        auth: {
+          username: ES_LOCAL_USERNAME,
+          password: ES_LOCAL_PASSWORD,
+        },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (!response.data) {
+      return res.status(404).json({
+        message: "No synchronization status found for the provided sync ID.",
+        data: null,
+      });
+    }
+
+    res.status(200).json({
+      message: "Synchronization status retrieved successfully.",
+      status: response.data.status,
+    });
+  } catch (error) {
+    console.error("Error fetching synchronization status:", error);
+    res.status(500).json({
+      message: "Failed to retrieve synchronization status.",
+      error: error.response
+        ? error.response.data
+        : error.message || "Unknown error",
+    });
+  }
+};

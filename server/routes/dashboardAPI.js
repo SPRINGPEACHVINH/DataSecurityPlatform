@@ -8,6 +8,8 @@ import {
 import {
   getConnector,
   getDocuments,
+  SyncConnectors,
+  getSyncStatus,
 } from "../services/elasticsearchService.js";
 import { isAuthenticated } from "../middleware/isAuthenticated.js";
 
@@ -23,5 +25,7 @@ router.post("/script-execution", isAuthenticated, handleScriptExecution);
 router.get("/script-results", isAuthenticated, queryScriptResults);
 router.get("/elasticsearch/connector", isAuthenticated, getConnector);
 router.get("/elasticsearch/documents", isAuthenticated, getDocuments);
+router.post("/elasticsearch/sync-connectors", SyncConnectors);
+router.get("/elasticsearch/sync-status", getSyncStatus);
 
 export default router;
