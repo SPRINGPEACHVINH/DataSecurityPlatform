@@ -1,7 +1,7 @@
 import React from "react";
 import "./Overview.css";
 
-function Overview({ userProfileSection }) {
+function Overview({ headerComponent }) {
   const metrics = [
     {
       title: "Data Sources",
@@ -84,10 +84,7 @@ function Overview({ userProfileSection }) {
 
   return (
     <div className="main-content">
-      <div className="header-section">
-        <div className="page-title">Overview</div>
-        {userProfileSection}
-      </div>
+      {headerComponent}
 
       <div className="metrics-grid">
         {metrics.map((metric, index) => (
