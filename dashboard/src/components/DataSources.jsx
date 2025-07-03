@@ -144,10 +144,6 @@ function DataSources({ onLogout }) {
     setSearchBarTerm("");
   };
 
-  // const handleClearContainer = () => {
-  //   setSelectedContainer(null);
-  // };
-
   const handleShowAllFiles = () => {
     setSelectedContainer(null);
     setSearchBarTerm("");
@@ -163,6 +159,10 @@ function DataSources({ onLogout }) {
       handleCloseModal();
     }
   };
+
+  const handleSyncClick = () => {
+    
+  }
 
   // Handle ESC key to close modal
   React.useEffect(() => {

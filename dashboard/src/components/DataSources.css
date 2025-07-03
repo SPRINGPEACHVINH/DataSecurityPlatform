@@ -18,12 +18,7 @@
   min-width: 280px;
   padding: 41px 34px 34px 0;
   flex-direction: column;
-  font-family:
-    Open Sans,
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
+  font-family: Open Sans, -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 16px;
   color: rgba(175, 169, 182, 1);
   font-weight: 600;
@@ -213,12 +208,7 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 50px;
-  font-family:
-    Open Sans,
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
+  font-family: Open Sans, -apple-system, Roboto, Helvetica, sans-serif;
   flex-wrap: wrap;
   gap: 20px;
 }
@@ -306,12 +296,7 @@
   background-color: rgba(255, 255, 255, 1);
   border: 1px solid rgba(228, 219, 237, 1);
   padding: 29px 33px;
-  font-family:
-    Open Sans,
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
+  font-family: Open Sans, -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 46px;
@@ -429,12 +414,7 @@
   border: none;
   outline: none;
   padding: 16px 20px;
-  font-family:
-    Roboto,
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
+  font-family: Roboto, -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 16px;
   color: #49454f;
   font-weight: 400;
@@ -474,12 +454,7 @@
   background-color: rgba(255, 255, 255, 1);
   border: 1px solid rgba(228, 219, 237, 1);
   padding: 29px 33px;
-  font-family:
-    Open Sans,
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
+  font-family: Open Sans, -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 15px;
   color: #7b7b7b;
   font-weight: 600;
@@ -606,12 +581,7 @@
   color: #37234b;
   font-size: 20px;
   font-weight: 700;
-  font-family:
-    Open Sans,
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
+  font-family: Open Sans, -apple-system, Roboto, Helvetica, sans-serif;
 }
 
 .modal-close-button {
@@ -645,23 +615,13 @@
   color: #37234b;
   font-weight: 600;
   font-size: 14px;
-  font-family:
-    Open Sans,
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
+  font-family: Open Sans, -apple-system, Roboto, Helvetica, sans-serif;
 }
 
 .file-detail-value {
   color: #7b7b7b;
   font-size: 16px;
-  font-family:
-    Open Sans,
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
+  font-family: Open Sans, -apple-system, Roboto, Helvetica, sans-serif;
   word-break: break-all;
 }
 
@@ -796,4 +756,49 @@
   .modal-button {
     width: 100%;
   }
+}
+.user-profile-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown container - phần dưới của khung chung */
+.user-profile-dropdown {
+  position: absolute;
+  top: 100%; /* Đặt ngay dưới nút profile, không có khoảng cách */
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 1);
+  /* Cùng shadow với nút profile để tạo hiệu ứng liền mạch */
+  box-shadow: 0px 8px 24px -4px rgba(0, 0, 0, 0.1);
+  /* Chỉ bo tròn góc dưới */
+  border-radius: 0 0 5px 5px;
+  padding: 8px;
+  border-top: 1px solid rgba(228, 219, 237, 1);
+  overflow: hidden;
+}
+
+/* Nút Logout bên trong dropdown */
+.dropdown-item.logout-button {
+  /* Reset style mặc định */
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+
+  /* Style mới */
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 4px; /* Bo tròn nhẹ cho hiệu ứng hover */
+  color: rgba(55, 35, 75, 1);
+  font-family: Open Sans, -apple-system, Roboto, Helvetica, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-item.logout-button:hover {
+  background-color: rgba(245, 240, 250, 1); /* Màu nền khi hover */
 }
