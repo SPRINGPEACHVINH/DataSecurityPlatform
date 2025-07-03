@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./LogManager.css";
 
-function LogManager({ userProfileSection }) {
+function LogManager({ headerComponent }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterLevel, setFilterLevel] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
@@ -157,10 +157,7 @@ function LogManager({ userProfileSection }) {
 
   return (
     <div className="main-content">
-      <div className="header-section">
-        <div className="page-title">Log Manager</div>
-        {userProfileSection}
-      </div>
+      {headerComponent}
 
       <div className="log-controls">
         <input

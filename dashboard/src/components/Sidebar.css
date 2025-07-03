@@ -1,0 +1,167 @@
+.sidebar-container {
+  background-color: rgba(255, 255, 255, 1);
+  display: flex;
+  padding-right: 34px;
+  padding-top: 41px;
+  padding-bottom: 850px;
+  flex-direction: column;
+  font-family:
+    Open Sans,
+    -apple-system,
+    Roboto,
+    Helvetica,
+    sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 0;
+  width: fit-content;
+}
+
+@media (max-width: 991px) {
+  .sidebar-container {
+    padding-bottom: 100px;
+  }
+}
+
+.sidebar-content {
+  align-self: start;
+  display: flex;
+  align-items: stretch;
+}
+
+.sidebar-nav-content {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.logo-image {
+  aspect-ratio: 7.41;
+  object-fit: contain;
+  object-position: center;
+  width: 193px;
+  align-self: end;
+  max-width: 100%;
+}
+
+.nav-item,
+.nav-item-active {
+  align-self: start;
+  display: flex;
+  margin-top: 14px;
+  align-items: center;
+  gap: 10px;
+  color: rgba(175, 169, 182, 1);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.nav-item-active {
+  color: rgba(119, 74, 164, 1);
+}
+
+@media (max-width: 991px) {
+  .nav-item,
+  .nav-item-active {
+    white-space: initial;
+  }
+}
+
+.nav-active-indicator {
+  border-radius: 0px 3px 3px 0px;
+  background-color: rgba(119, 74, 164, 1);
+  display: flex;
+  width: 5px;
+  flex-shrink: 0;
+  height: 20px;
+}
+
+.nav-item > div:first-child,
+.nav-item-active > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-icon {
+  aspect-ratio: 2;
+  object-fit: contain;
+  object-position: center;
+  width: 20px;
+  flex-shrink: 0;
+  filter: brightness(0) saturate(100%) invert(70%) sepia(7%) saturate(1234%)
+    hue-rotate(258deg) brightness(94%) contrast(86%);
+}
+
+.nav-item-active .nav-icon {
+  filter: brightness(0) saturate(100%) invert(28%) sepia(29%) saturate(1686%)
+    hue-rotate(259deg) brightness(89%) contrast(89%);
+}
+
+.nav-icon.overview {
+  aspect-ratio: 2;
+  width: 20px;
+}
+
+.nav-icon.log-manager {
+  aspect-ratio: 1.7;
+  width: 17px;
+}
+
+.nav-icon.data-sources {
+  aspect-ratio: 1.4;
+  width: 14px;
+}
+
+.sidebar-footer {
+  align-self: end;
+  display: flex;
+  margin-top: 15px;
+  width: 205px;
+  max-width: 100%;
+  align-items: stretch;
+  gap: 20px;
+  color: rgba(175, 169, 182, 1);
+  white-space: nowrap;
+  justify-content: space-between;
+}
+
+@media (max-width: 991px) {
+  .sidebar-footer {
+    white-space: initial;
+  }
+}
+
+.help-section {
+  display: flex;
+  align-items: stretch;
+  gap: 14px;
+  cursor: pointer;
+}
+
+@media (max-width: 991px) {
+  .help-section {
+    white-space: initial;
+  }
+}
+
+.help-icon {
+  aspect-ratio: 1.45;
+  object-fit: contain;
+  object-position: center;
+  width: 16px;
+  align-self: start;
+  flex-shrink: 0;
+}
+
+.help-arrow {
+  aspect-ratio: 2.4;
+  object-fit: contain;
+  object-position: center;
+  width: 12px;
+  align-self: start;
+  flex-shrink: 0;
+}
