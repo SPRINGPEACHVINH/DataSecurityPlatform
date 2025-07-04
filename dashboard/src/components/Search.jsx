@@ -22,58 +22,75 @@ function Search({
   const [scanResults, setScanResults] = useState([]);
   const [isLoadingScanResults, setIsLoadingScanResults] = useState(false);
 
-  // Helper function to get source type from container
-  const getSourceType = (container, index) => {
-    const connectionByIndex = connectionData.find(conn => conn.name === index);
-    if (connectionByIndex) {
-      return connectionByIndex.type;
-    }
+  // Fetch documents from API
+  useEffect(() => {
+    async function fetchDocuments() {
+      try {
+        const response = await fetch(
+          "http://localhost:4000/api/dashboard/elasticsearch/connector",
+          {
+            credentials: "include",
+            headers: {
+              Cookie: localStorage.getItem("sessionId") || "",
+            },
+          },
+        );
+        const data = await response.json();
+        console.log("Fetched connection data:", data.data);
 
-    const connectionByName = connectionData.find(conn => conn.name === container);
-    if (connectionByName) {
-      return connectionByName.type;
-    }
+        const docResponse = await fetch(
+          "http://localhost:4000/api/dashboard/elasticsearch/documents",
+          {
+            credentials: "include",
+            headers: {
+              Cookie: localStorage.getItem("sessionId") || "",
+            },
+          },
+        );
+        const docData = await docResponse.json();
 
-    return "Unknown";
-  };
-
-  // Convert documents to search format
-  const convertDocumentsToMessages = (documents) => {
-    return documents.map((doc, index) => {
-      const sourceType = getSourceType(doc.container, doc.index);
-
-      let formattedDate = "1 day ago";
-      if (doc.updated_at) {
-        try {
-          const date = new Date(doc.updated_at);
-          const now = new Date();
-          const diffDays = Math.floor((now - date) / (1000 * 60 * 60 * 24));
-          formattedDate = diffDays === 0 ? "Today" : `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
-        } catch (e) {
-          formattedDate = "1 day ago";
+        if (docData && docData.data) {
+          setDocumentsData(docData.data);
+          setConnectionData(data.data);
         }
+      } catch (error) {
+        console.error("Error fetching documents:", error);
       }
+    }
+    fetchDocuments();
+  }, []);
+
+  // Extract connection data function (same as DataSources.jsx)
+  const extractConnectionData = (documents, connectionData) => {
+    const containers = [...new Set(documents.map((doc) => doc.container))];
+
+    return containers.map((container) => {
+      // Find document for this container to get its index
+      const containerDoc = documents.find((doc) => doc.container === container);
+      const containerIndex = containerDoc ? containerDoc.index : null;
+
+      // Find connection data matching this container's index
+      const connection =
+        connectionData.find((conn) => conn.name === containerIndex) || {};
+
+      // Count files in this container
+      const containerDocuments = documents.filter(
+        (doc) => doc.container === container,
+      );
+      const fileCount = containerDocuments.length;
 
       return {
-        id: index + 1,
-        fileName: doc.title || "Unknown",
-        resource: doc.id || "Unknown",
-        updatedAt: formattedDate,
-        format: doc.title ? doc.title.split('.').pop().toLowerCase() : "unknown",
-        container: doc.container,
-        sourceType: sourceType,
-        keywords: [
-          sourceType.toLowerCase(),
-          doc.title ? doc.title.split('.').pop().toLowerCase() : "unknown",
-          "sensitive",
-          "serviceadmin"
-        ]
+        name: container,
+        type: connection.type || "Unknown",
+        status: connection.status || "Unknown",
+        fileCount: fileCount,
+        records: null,
       };
     });
   };
 
-  // Get all messages from documents
-  const allMessages = convertDocumentsToMessages(documentsData);
+  // Get extracted connection data
+  const extractedConnectionData = extractConnectionData(documentsData, connectionData);
 
   // Function to query scan results
   const handleQueryScanResults = async () => {
@@ -189,43 +206,19 @@ function Search({
     }
   };
 
-  // Filter messages based on search type and term
-  const filteredMessages = allMessages.filter((item) => {
-    // First filter by search type (source type)
-    let typeMatch = true;
+  // Filter connection data based on search type
+  const filteredConnections = extractedConnectionData.filter((connection) => {
     if (searchType === "AWS") {
-      typeMatch = item.sourceType.toLowerCase().includes('aws');
+      return connection.type.toLowerCase().includes('aws') || 
+             connection.type.toLowerCase().includes('s3') ||
+             connection.type.toLowerCase().includes('amazon');
     } else if (searchType === "Azure") {
-      typeMatch = item.sourceType.toLowerCase().includes('azure');
-    } else if (searchType === "Server") {
-      typeMatch = !item.sourceType.toLowerCase().includes('aws') &&
-        !item.sourceType.toLowerCase().includes('azure');
+      return connection.type.toLowerCase().includes('azure') || 
+             connection.type.toLowerCase().includes('blob') ||
+             connection.type.toLowerCase().includes('microsoft');
     }
-
-    if (!typeMatch) return false;
-
-    // Then filter by search term if provided (for display purposes)
-    if (searchType === "Server" && filePath) {
-      const filePathLower = filePath.toLowerCase();
-      return item.resource.toLowerCase().includes(filePathLower) &&
-        (searchTerm ? (item.fileName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          item.resource.toLowerCase().includes(searchTerm.toLowerCase())) : true);
-    } else if (searchTerm) {
-      const searchLower = searchTerm.toLowerCase();
-      if (searchType === "AWS") {
-        return item.format.toLowerCase().includes(searchLower) ||
-          item.fileName.toLowerCase().includes(searchLower);
-      } else if (searchType === "Azure") {
-        return item.keywords.some((keyword) =>
-          keyword.toLowerCase().includes(searchLower)
-        ) || item.fileName.toLowerCase().includes(searchLower);
-      } else if (searchType === "Server") {
-        return item.fileName.toLowerCase().includes(searchLower) ||
-          item.resource.toLowerCase().includes(searchLower);
-      }
-    }
-
-    return true;
+    // For Server type, we don't show the table
+    return false;
   });
 
   const handleSearchTypeChange = (e) => {
@@ -395,27 +388,29 @@ function Search({
               {isLoading ? "Searching..." : "Search"}
             </button>
 
-            {/* NEW: Query Results Button */}
-            <button
-              className="query-results-button"
-              onClick={handleQueryScanResults}
-              disabled={isLoadingScanResults || !classificationName.trim()}
-              style={{
-                height: 44,
-                borderRadius: 22,
-                marginLeft: 8,
-                padding: "0 20px",
-                backgroundColor: isLoadingScanResults || !classificationName.trim() ? "#ccc" : "#28a745",
-                color: "white",
-                border: "none",
-                cursor: isLoadingScanResults || !classificationName.trim() ? "not-allowed" : "pointer",
-                fontWeight: "500",
-                fontSize: "14px",
-                transition: "background-color 0.3s ease"
-              }}
-            >
-              {isLoadingScanResults ? "Querying..." : "Query Results"}
-            </button>
+            {/* Query Results Button - only show for Azure */}
+            {searchType === "Azure" && (
+              <button
+                className="query-results-button"
+                onClick={handleQueryScanResults}
+                disabled={isLoadingScanResults || !classificationName.trim()}
+                style={{
+                  height: 44,
+                  borderRadius: 22,
+                  marginLeft: 8,
+                  padding: "0 20px",
+                  backgroundColor: isLoadingScanResults || !classificationName.trim() ? "#ccc" : "#28a745",
+                  color: "white",
+                  border: "none",
+                  cursor: isLoadingScanResults || !classificationName.trim() ? "not-allowed" : "pointer",
+                  fontWeight: "500",
+                  fontSize: "14px",
+                  transition: "background-color 0.3s ease"
+                }}
+              >
+                {isLoadingScanResults ? "Querying..." : "Query Results"}
+              </button>
+            )}
           </div>
 
           {/* Search Type Select */}
@@ -462,7 +457,7 @@ function Search({
             </div>
           )}
 
-          {/* NEW: Scan Results Section */}
+          {/* Scan Results Section */}
           {scanResults.length > 0 && (
             <div className="scan-results-section" style={{
               padding: "16px",
@@ -491,42 +486,66 @@ function Search({
             </div>
           )}
 
-          {/* Data Table */}
-          <div className="data-table-container">
-            <div className="table-content">
-              <div className="table-row table-header">
-                <div className="file-name-column column-header">File Name</div>
-                <div className="resources-column column-header">Resources</div>
-                <div className="source-type-column column-header">Source Type</div>
-                <div className="updated-at-column column-header">Updated at</div>
-              </div>
-              {filteredMessages.length > 0 ? (
-                filteredMessages.map((item) => (
-                  <div className="table-row" key={item.id}>
-                    <div className="file-name-column">{item.fileName}</div>
-                    <div className="resources-column">{item.resource}</div>
-                    <div className={`source-type-column ${
-                      item.sourceType.toLowerCase().includes('aws') ? 'source-aws' :
-                      item.sourceType.toLowerCase().includes('azure') ? 'source-azure' :
-                      'source-server'
-                    }`}>
-                      {item.sourceType.toLowerCase().includes('aws') ? 'AWS' :
-                       item.sourceType.toLowerCase().includes('azure') ? 'Azure' : 'Server'}
-                    </div>
-                    <div className="updated-at-column">{item.updatedAt}</div>
-                  </div>
-                ))
-              ) : (
-                <div className="table-row">
-                  <div className="file-name-column" style={{ gridColumn: "1 / -1", textAlign: "center", padding: "20px", color: "#999" }}>
-                    {searchTerm || filePath ? 
-                      `No results found for "${searchTerm || filePath}" in ${searchType}` : 
-                      `No ${searchType} documents available`}
-                  </div>
+          {/* Data Table - Only show for AWS and Azure */}
+          {searchType !== "Server" && (
+            <div className="data-table-container">
+              <div className="table-content">
+                <div className="table-row table-header">
+                  <div className="container-name-column column-header">Container Name</div>
+                  <div className="source-type-column column-header">Source Type</div>
+                  <div className="file-count-column column-header">File Count</div>
                 </div>
-              )}
+                {filteredConnections.length > 0 ? (
+                  filteredConnections.map((connection, index) => (
+                    <div className="table-row" key={index}>
+                      <div className="container-name-column">{connection.name}</div>
+                      <div className={`source-type-column ${
+                        connection.type.toLowerCase().includes('aws') || 
+                        connection.type.toLowerCase().includes('s3') ? 'source-aws' :
+                        connection.type.toLowerCase().includes('azure') ? 'source-azure' : 'source-server'
+                      }`}>
+                        {connection.type.toLowerCase().includes('aws') || 
+                         connection.type.toLowerCase().includes('s3') ? 'AWS' :
+                         connection.type.toLowerCase().includes('azure') ? 'Azure' : 'Server'}
+                      </div>
+                      <div className="file-count-column">{connection.fileCount}</div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="table-row">
+                    <div className="container-name-column" style={{ gridColumn: "1 / -1", textAlign: "center", padding: "20px", color: "#999" }}>
+                      No {searchType} containers available
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
+          )}
+
+          {/* Message for Server type */}
+          {searchType === "Server" && (
+            <div style={{
+              padding: "40px",
+              textAlign: "center",
+              backgroundColor: "#f8f9fa",
+              borderRadius: "8px",
+              color: "#666",
+              fontSize: "16px"
+            }}>
+              <div style={{ marginBottom: "12px" }}>
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style={{ opacity: 0.5 }}>
+                  <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" strokeWidth="2"/>
+                  <circle cx="8" cy="8" r="1" fill="currentColor"/>
+                  <circle cx="8" cy="12" r="1" fill="currentColor"/>
+                  <circle cx="8" cy="16" r="1" fill="currentColor"/>
+                </svg>
+              </div>
+              <strong>Server File Search</strong>
+              <div style={{ marginTop: "8px", fontSize: "14px" }}>
+                Enter a file path and keyword to search for sensitive data in server files
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
