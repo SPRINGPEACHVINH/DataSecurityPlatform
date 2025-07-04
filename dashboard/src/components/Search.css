@@ -34,7 +34,6 @@
   box-sizing: border-box;
 }
 
-/* Đảm bảo hai input nằm cùng hàng, căn giữa */
 .search-bar-row {
   display: flex;
   align-items: center;
@@ -276,15 +275,15 @@
 
 .file-name-column,
 .resources-column,
-.severity-column,
+.source-type-column,
 .updated-at-column,
-.message-column {
+/* .source-type-column {
   padding: 12px 8px;
   min-width: 0;
   word-break: break-word;
   display: flex;
   align-items: center;
-}
+} */
 
 .file-name-column {
   flex: 1 1 120px;
@@ -294,7 +293,7 @@
   flex: 2 1 200px;
 }
 
-.severity-column {
+.source-type-column {
   flex: 0.7 1 80px;
 }
 

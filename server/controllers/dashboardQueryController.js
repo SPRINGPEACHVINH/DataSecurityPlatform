@@ -217,11 +217,10 @@ export const handleDashboardSearch = async (req, res) => {
 };
 
 export const handleDashboardScanResult = async (req, res) => {
-  const { bearerToken, classificationName } = req.body;
+  const { classificationName } = req.body;
 
   const missingFields = [];
   if (!classificationName) missingFields.push("classificationName");
-  if (!bearerToken) missingFields.push("bearerToken");
   if (missingFields.length > 0) {
     return res.status(400).json({
       message: `Missing required fields: ${missingFields.join(", ")}`,
@@ -229,6 +228,7 @@ export const handleDashboardScanResult = async (req, res) => {
   }
 
   try {
+    const bearerToken = await getOAuth2();
     const response = await queryScanResult(bearerToken, classificationName);
     const names = response?.value?.map((item) => item.name) || [];
     console.log("Extracted names from scan results:", names);
@@ -374,7 +374,7 @@ export const queryScriptResults = async (req, res) => {
         }
         fileRowsMap[fileName].push(row);
       });
-      
+
     if (!fileRowsMap) {
       return res.status(404).json({
         message: "No file names found in the result file.",
