@@ -6,16 +6,18 @@ function Login({ onLogin }) {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
-  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
+    setIsLoading(true);
 
     if (!username || !password) {
-      setError("Please enter both username and password.");
+      alert("Please enter both username and password.");
+      setIsLoading(false);
       return;
     }
+
     try {
       const res = await fetch("http://localhost:4000/api/auth/signin", {
         method: "POST",
@@ -25,6 +27,7 @@ function Login({ onLogin }) {
       });
 
       const data = await res.json();
+
       if (res.ok) {
         let sessionId = null;
         const cookies = document.cookie.split("; ");
@@ -36,11 +39,22 @@ function Login({ onLogin }) {
         }
         onLogin({ user: data.user, sessionId });
       } else {
-        setError(data.message || "Login failed");
+        // Hiển thị thông báo lỗi bằng alert
+        if (res.status === 401) {
+          alert("Invalid username or password. Please try again.");
+        } else if (res.status === 404) {
+          alert("Account not found. Please check your username.");
+        } else if (res.status === 403) {
+          alert("Account is locked or inactive. Please contact administrator.");
+        } else {
+          alert(data.message || "Login failed. Please try again.");
+        }
       }
     } catch (err) {
       console.error("Login error:", err);
-      setError("An error occurred while logging in. Please try again.");
+      alert("Unable to connect to server. Please check your connection and try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -64,12 +78,13 @@ function Login({ onLogin }) {
                   Username
                 </label>
                 <input
-                  type="username"
+                  type="text"
                   id="username"
                   className="form-input"
                   placeholder="Enter your username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
+                  disabled={isLoading}
                   required
                 />
               </div>
@@ -86,12 +101,14 @@ function Login({ onLogin }) {
                     placeholder="************"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    disabled={isLoading}
                     required
                   />
                   <button
                     type="button"
                     className="password-toggle"
                     onClick={() => setShowPassword(!showPassword)}
+                    disabled={isLoading}
                     aria-label={
                       showPassword ? "Hide password" : "Show password"
                     }
@@ -120,6 +137,7 @@ function Login({ onLogin }) {
                     className="checkbox-input"
                     checked={rememberMe}
                     onChange={(e) => setRememberMe(e.target.checked)}
+                    disabled={isLoading}
                   />
                   <span className="checkbox-custom"></span>
                   <span className="checkbox-label">Remember Me</span>
@@ -130,8 +148,15 @@ function Login({ onLogin }) {
                 </a>
               </div>
 
-              <button type="submit" className="login-button">
-                <span className="login-button-text">Login</span>
+              <button type="submit" className="login-button" disabled={isLoading}>
+                {isLoading ? (
+                  <div className="login-button-loading">
+                    <div className="spinner"></div>
+                    <span className="login-button-text">Logging in...</span>
+                  </div>
+                ) : (
+                  <span className="login-button-text">Login</span>
+                )}
               </button>
             </form>
 

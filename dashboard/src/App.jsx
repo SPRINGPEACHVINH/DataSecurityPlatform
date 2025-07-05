@@ -2,24 +2,48 @@ import { useState, useEffect } from "react";
 import Login from "./components/Login";
 import DataSources from "./components/DataSources";
 import Search from "./components/Search";
+import { useSessionCheck } from "./hooks/useSessionCheck";
 import "./App.css";
 
 function App() {
   const [currentView, setCurrentView] = useState("login");
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    // Kiểm tra session khi load lại trang
-    fetch("http://localhost:4000/api/auth/session", {
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.isAuthenticated) {
-          setUser(data.user);
-          setCurrentView("DataSources");
-        }
+  const checkSession = async () => {
+    try {
+      const response = await fetch("http://localhost:4000/api/auth/session", {
+        credentials: "include",
       });
+      const data = await response.json();
+
+      if (data.isAuthenticated) {
+        setUser(data.user);
+        return true;
+      } else {
+        // Session không hợp lệ, đăng xuất
+        handleSessionExpired();
+        return false;
+      }
+    } catch (error) {
+      console.error("Session check failed:", error);
+      handleSessionExpired();
+      return false;
+    }
+  };
+
+  // Sử dụng hook kiểm tra session tự động
+  useSessionCheck(checkSession);
+
+  // Xử lý khi session hết hạn
+  const handleSessionExpired = () => {
+    setUser(null);
+    setCurrentView("login");
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("sessionId");
+  };
+
+  useEffect(() => {
+    checkSession();
   }, []);
 
   const handleLogin = ({ user, sessionId }) => {
@@ -36,20 +60,33 @@ function App() {
     }).then(() => window.location.reload());
   };
 
-  const handleNavigateToSearch = () => {
-    setCurrentView("Search");
+  // Các hàm navigate với kiểm tra session
+  const handleNavigateToSearch = async () => {
+    const isValid = await checkSession();
+    if (isValid) {
+      setCurrentView("Search");
+    }
   };
 
-  const handleNavigateToDataSources = () => {
-    setCurrentView("DataSources");
+  const handleNavigateToDataSources = async () => {
+    const isValid = await checkSession();
+    if (isValid) {
+      setCurrentView("DataSources");
+    }
   };
 
-  const handleNavigateToOverview = () => {
-    setCurrentView("Overview");
+  const handleNavigateToOverview = async () => {
+    const isValid = await checkSession();
+    if (isValid) {
+      setCurrentView("Overview");
+    }
   };
 
-  const handleNavigateToLogManager = () => {
-    setCurrentView("LogManager");
+  const handleNavigateToLogManager = async () => {
+    const isValid = await checkSession();
+    if (isValid) {
+      setCurrentView("LogManager");
+    }
   };
 
   const renderCurrentView = () => {
@@ -62,6 +99,7 @@ function App() {
             onLogout={handleLogout}
             onNavigateToSearch={handleNavigateToSearch}
             initialPage="data-sources"
+            checkSession={checkSession}
           />
         );
       case "Overview":
@@ -70,6 +108,7 @@ function App() {
             onLogout={handleLogout}
             onNavigateToSearch={handleNavigateToSearch}
             initialPage="overview"
+            checkSession={checkSession}
           />
         );
       case "LogManager":
@@ -78,6 +117,7 @@ function App() {
             onLogout={handleLogout}
             onNavigateToSearch={handleNavigateToSearch}
             initialPage="log-manager"
+            checkSession={checkSession}
           />
         );
       case "Search":
@@ -87,6 +127,7 @@ function App() {
             onNavigateToDataSources={handleNavigateToDataSources}
             onNavigateToOverview={handleNavigateToOverview}
             onNavigateToLogManager={handleNavigateToLogManager}
+            checkSession={checkSession}
           />
         );
       default:
