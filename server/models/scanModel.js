@@ -43,7 +43,7 @@ const scanRunSchema = new mongoose.Schema(
       required: true,
     },
     result: {
-      type: [String], 
+      type: [String],
       default: [],
     },
     startTime: {
@@ -120,11 +120,25 @@ export const createScanRun = async (newScanRun) => {
 };
 
 export const findScanDefinitionByName = async (scanName, dataSourceId) => {
-  const query = { scanName };
-  if (dataSourceId) {
-    query.dataSource = dataSourceId;
+  try {
+    const query = { scanName };
+    if (dataSourceId) {
+      query.dataSource = dataSourceId;
+    }
+    return ScanDefinition.findOne(query).populate("dataSource");
+  } catch (error) {
+    console.error(`Error finding ScanDefinition by name: ${error.message}`);
+    throw error;
   }
-  return ScanDefinition.findOne(query).populate("dataSource");
+};
+
+export const findScanDefinitionById = async (definitionId) => {
+  try {
+    return ScanDefinition.findOne(definitionId).populate("dataSource");
+  } catch (error) {
+    console.error(`Error finding ScanDefinition by ID: ${error.message}`);
+    throw error;
+  }
 };
 
 export const findScanRunById = async (runId) => {
@@ -132,16 +146,21 @@ export const findScanRunById = async (runId) => {
 };
 
 export const findByIdAndUpdateScanRun = async (runId, updateData) => {
-  // Only update the fields provided in updateData
-  const updatedScanRun = await ScanRun.findOneAndUpdate(
-    { runId },
-    { $set: updateData },
-    { new: true }
-  );
-  if (!updatedScanRun) {
-    throw new Error(`ScanRun with runId '${runId}' not found.`);
+  try {
+    // Only update the fields provided in updateData
+    const updatedScanRun = await ScanRun.findOneAndUpdate(
+      { runId },
+      { $set: updateData },
+      { new: true }
+    );
+    if (!updatedScanRun) {
+      throw new Error(`ScanRun with runId '${runId}' not found.`);
+    }
+    return updatedScanRun;
+  } catch (error) {
+    console.error(`Error updating ScanRun: ${error.message}`);
+    throw error;
   }
-  return updatedScanRun;
 };
 
 const ScanDefinition = mongoose.model("ScanDefinition", scanDefinitionSchema);

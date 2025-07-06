@@ -2,6 +2,7 @@ import express from "express";
 import {
   handleDashboardSearch,
   handleDashboardScanResult,
+  handleDashboardGetScanStatus,
   handleScriptExecution,
   queryScriptResults,
 } from "../controllers/dashboardQueryController.js";
@@ -22,6 +23,7 @@ router.get("/public", isAuthenticated, (req, res) => {
 router.post("/search", isAuthenticated, handleDashboardSearch);
 router.post("/scan-result", isAuthenticated, handleDashboardScanResult);
 router.post("/script-execution", isAuthenticated, handleScriptExecution);
+router.get("/scan-status", isAuthenticated, handleDashboardGetScanStatus);
 router.get("/script-results", isAuthenticated, queryScriptResults);
 router.get("/elasticsearch/connector", isAuthenticated, getConnector);
 router.get("/elasticsearch/documents", isAuthenticated, getDocuments);

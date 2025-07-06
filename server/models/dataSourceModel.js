@@ -52,6 +52,10 @@ export const createDataSource = async (newDataSource) => {
   return createdDataSource;
 };
 
+export const findDataSourceById = async (dataSourceId) => {
+  return DataSource.findById(dataSourceId).populate("owner");
+};
+
 export const findDataSourceByName = async (dataSourceName, ownerId) => {
   const query = { dataSourceName };
   if (ownerId) {

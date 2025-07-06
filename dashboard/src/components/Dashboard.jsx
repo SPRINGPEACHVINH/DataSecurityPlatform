@@ -160,7 +160,7 @@ function Dashboard() {
                   alt="User avatar"
                   className="user-avatar"
                 />
-                <div className="user-name">Xuan Tung</div>
+                <div className="user-name">{username}</div>
               </div>
               <img
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/2b743dbcd0157a48cdbb66a0049f7867f7fa50ed?placeholderIfAbsent=true"

@@ -15,6 +15,8 @@ function Header({
     setIsUserProfileDropdownOpen((prev) => !prev);
   };
 
+  const username = localStorage.getItem("username")
+
   return (
     <div className="header-section">
       <div className="page-title">{pageTitle}</div>
@@ -36,7 +38,7 @@ function Header({
                 className="user-avatar"
                 alt="User Avatar"
               />
-              <div className="user-name">Xuan Tung</div>
+              <div className="user-name">{username}</div>
             </div>
             <img
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/2b743dbcd0157a48cdbb66a0049f7867f7fa50ed?placeholderIfAbsent=true"

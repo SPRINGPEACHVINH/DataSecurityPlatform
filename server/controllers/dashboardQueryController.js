@@ -6,17 +6,22 @@ import {
   queryScanResult,
   getDataSourceName,
   getScanName,
+  getScanStatus,
 } from "../services/purviewDataTransfer.js";
 
 import {
   findDataSourceByOwner,
   createDataSource,
+  findDataSourceById,
 } from "../models/dataSourceModel.js";
 
 import {
   findScanDefinitionByName,
   createScanDefinition,
   createScanRun,
+  findScanRunById,
+  findByIdAndUpdateScanRun,
+  findScanDefinitionById,
 } from "../models/scanModel.js";
 
 import userModels from "../models/userModel.js";
@@ -25,6 +30,10 @@ const { userHistory } = userModels;
 import powershell from "powershell";
 import fs from "fs";
 import path from "path";
+import dotenv from "dotenv";
+dotenv.config();
+const classificationName = process.env.classification_name;
+const ruleName = process.env.rule_name;
 
 const handleDsDocument = async (userId, bearerToken) => {
   // Try to find existing DataSource by owner
@@ -109,7 +118,7 @@ const handleSdDocument = async ({
 };
 
 export const handleDashboardSearch = async (req, res) => {
-  const { keyword, ruleName, classificationName, scanLevel } = req.body;
+  const { keyword, scanLevel } = req.body;
   const userId = req.session.userId;
 
   const missingFields = [];
@@ -126,7 +135,6 @@ export const handleDashboardSearch = async (req, res) => {
   try {
     const bearerToken = await getOAuth2();
 
-    // --- Xử lý DataSource ---
     let dsDocument = await handleDsDocument(userId, bearerToken);
     if (!dsDocument) {
       return res.status(404).json({
@@ -138,7 +146,6 @@ export const handleDashboardSearch = async (req, res) => {
       `Using DataSource '${dsDocument.dataSourceName}' for user ${userId}, dsDocument_.id: ${dsDocument._id}.`
     );
 
-    // --- Xử lý ScanDefinition ---
     let sdDocument = await handleSdDocument({
       scanName: null,
       dsDocument: dsDocument,
@@ -146,7 +153,6 @@ export const handleDashboardSearch = async (req, res) => {
       bearerToken: bearerToken,
     });
 
-    // Lưu lịch sử tìm kiếm
     await userHistory.findOneAndUpdate(
       { userId, keyword, ruleName, classificationName },
       { $set: { lastUsedAt: new Date() } },
@@ -154,7 +160,6 @@ export const handleDashboardSearch = async (req, res) => {
     );
     console.log("Search history saved/updated.");
 
-    // Tiếp tục luồng hiện tại
     await createOrUpdateCustomClassificationRule(
       bearerToken,
       ruleName,
@@ -186,12 +191,12 @@ export const handleDashboardSearch = async (req, res) => {
     res.status(202).json({
       message: "Search and scan process initiated. Status will be updated.",
       data: {
-        bearerToken: bearerToken,
+        //bearerToken: bearerToken,
         dataSourceName: dsDocument.dataSourceName,
         scanName: sdDocument.scanName,
         purviewRunId: purviewRunId,
         classificationName: classificationName,
-        scanRunDbId: newScanRun._id,
+        //scanRunDbId: newScanRun._id,
       },
     });
 
@@ -217,7 +222,7 @@ export const handleDashboardSearch = async (req, res) => {
 };
 
 export const handleDashboardScanResult = async (req, res) => {
-  const { classificationName } = req.body;
+  // const { classificationName } = req.body;
 
   const missingFields = [];
   if (!classificationName) missingFields.push("classificationName");
@@ -230,18 +235,126 @@ export const handleDashboardScanResult = async (req, res) => {
   try {
     const bearerToken = await getOAuth2();
     const response = await queryScanResult(bearerToken, classificationName);
-    const names = response?.value?.map((item) => item.name) || [];
-    console.log("Extracted names from scan results:", names);
+    if (response["@search.count"] === 1) {
+      const names =
+        response?.value?.map((item) => {
+          const qualifiedName = item.qualifiedName;
+          return qualifiedName
+            ? qualifiedName.replace(/^https:\/\/[^\/]+\//, "")
+            : qualifiedName;
+        }) || [];
+      console.log("Extracted names from scan results:", names);
 
-    res.status(200).json({
-      message: "Scan status check initiated successfully.",
-      data: names,
-    });
+      res.status(200).json({
+        message: "Scan status check initiated successfully.",
+        data: names,
+      });
+    } else {
+      res.status(200).json({
+        message:
+          "Scan status check initiated successfully, but no results found.",
+        data: [],
+      });
+    }
   } catch (error) {
     console.error("Error in handleDashboardScanResult:", error.message);
     res.status(500).json({
       message: error.message || "An error occurred while checking scan status.",
     });
+  }
+};
+
+export const handleDashboardGetScanStatus = async (req, res) => {
+  try {
+    const { encodedrunId } = req.query;
+
+    if (!encodedrunId) {
+      return res.status(400).json({
+        message: "Missing required parameter: runId",
+      });
+    }
+
+    const runId = decodeURIComponent(encodedrunId);
+    console.log(`Decoded runId: ${runId}`);
+
+    const bearerToken = await getOAuth2();
+    const scanRun = await findScanRunById(runId);
+    if (!scanRun) {
+      return res.status(404).json({
+        message: `ScanRun with run ID ${runId} not found.`,
+      });
+    }
+    const scanDefinition = await findScanDefinitionById(
+      scanRun.scanDefinition._id
+    );
+    if (!scanDefinition) {
+      return res.status(404).json({
+        message: `ScanDefinition or DataSource not found for run ID ${runId}.`,
+      });
+    }
+    const dataSource = await findDataSourceById(scanDefinition.dataSource._id);
+    const dataSourceName = dataSource.dataSourceName;
+    if (!dataSource) {
+      return res.status(404).json({
+        message: `DataSource not found for run ID ${runId}.`,
+      });
+    }
+    const scanName = scanDefinition.scanName;
+    if (!dataSourceName || !scanName) {
+      return res.status(404).json({
+        message: `DataSource or ScanName not found for run ID ${runId}.`,
+      });
+    }
+    console.log(
+      `Checking scan status for DataSource '${dataSourceName}' and Scan '${scanName}' with run ID ${runId}.`
+    );
+
+    const result = await getScanStatus(
+      bearerToken,
+      dataSourceName,
+      scanName,
+      runId
+    );
+
+    const scanRunUpdateData = {
+      status: result.status || "Unknown",
+      startTime: result.startTime ? new Date(result.startTime) : undefined,
+      endTime: result.endTime ? new Date(result.endTime) : undefined,
+      assetDiscovered:
+        result.discoveryExecutionDetails?.statistics?.assets?.discovered || 0,
+      assetClassified:
+        result.discoveryExecutionDetails?.statistics?.assets?.classified || 0,
+    };
+
+    // Only update if there's a value, avoid overwriting startTime if it was already set during creation
+    if (scanRunUpdateData.startTime === undefined)
+      delete scanRunUpdateData.startTime;
+
+    const updatedScanRun = await findByIdAndUpdateScanRun(
+      runId,
+      scanRunUpdateData,
+      { new: true }
+    );
+
+    if (!updatedScanRun) {
+      console.error(`ScanRun with run ID ${runId} not found for update.`);
+      return;
+    }
+    console.log(
+      `ScanRun ${runId} (DB ID: ${updatedScanRun._id}) status updated in DB: ${updatedScanRun.status}`
+    );
+
+    if (result.status == "Succeeded") {
+    }
+
+    res.status(200).json({
+      message: "Scan status retrieved successfully.",
+      data: result.status,
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: error.message || "Failed to get scan status" });
   }
 };
 

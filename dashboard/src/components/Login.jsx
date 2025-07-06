@@ -27,6 +27,7 @@ function Login({ onLogin }) {
       });
 
       const data = await res.json();
+      console.log("Login response:", data);
 
       if (res.ok) {
         let sessionId = null;
@@ -37,7 +38,12 @@ function Login({ onLogin }) {
             break;
           }
         }
-        onLogin({ user: data.user, sessionId });
+        
+        onLogin({
+          user: data.user,
+          sessionId,
+        });
+
       } else {
         // Hiển thị thông báo lỗi bằng alert
         if (res.status === 401) {
