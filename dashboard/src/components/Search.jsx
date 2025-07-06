@@ -144,6 +144,7 @@ function Search({
     });
   };
 
+
   // Function to start the interval (separated from initial setup)
   const startStatusMonitoringInterval = (runId) => {
     if (intervalRef.current) {
@@ -455,22 +456,21 @@ function Search({
         console.error("Error during search:", error);
         alert("An error occurred during the search. Please try again.");
         setIsLoading(false);
-      if (!searchTerm.trim() || !ruleName.trim() || !classificationName.trim()) {
-        alert("Please fill in Keyword, Rule Name and Classification Name for Azure search");
-        return;
+        if (!searchTerm.trim()) {
+          alert("Please fill in Keyword for Azure search");
+          return;
+        }
       }
     }
-
-    if (searchType === "Server") {
+    else if (searchType === "Server") {
       if (!searchTerm.trim() || !filePath.trim()) {
         alert("Please enter a keyword and file path for Server search");
         return;
       }
     }
-
-    setIsLoading(true);
-    try {
-      if (searchType === "AWS") {
+    else if (searchType === "AWS") {
+      setIsLoading(true);
+      try {
         const params = new URLSearchParams();
         if (category) params.append("category", category); // lấy từ dropdown
         if (searchTerm) params.append("sensitiveType", searchTerm.trim()); // lấy từ ô search (type)
@@ -492,44 +492,12 @@ function Search({
         } else {
           alert(`Search failed: ${result.message}`);
         }
-      } else {
-        const searchData = {
-          keyword: searchTerm.trim(),
-          scanLevel: scanLevel || "Full",
-          ruleName: ruleName.trim() || `rule-${Date.now()}`,
-          classificationName: classificationName.trim() || `classification-${Date.now()}`,
-        };
-
-        console.log("Sending search request:", searchData);
-
-        const response = await fetch(
-          "http://localhost:4000/api/dashboard/search",
-          {
-            method: "POST",
-            credentials: "include",
-            headers: {
-              "Content-Type": "application/json",
-              Cookie: localStorage.getItem("sessionId") || "",
-            },
-            body: JSON.stringify(searchData),
-          }
-        );
-
-        const result = await response.json();
-        console.log("Search result:", result);
-
-        if (response.ok) {
-          alert("Search initiated successfully! Check the scan results for updates.");
-          setSearchResults(result.data || []);
-        } else {
-          alert(`Search failed: ${result.message}`);
-        }
+      } catch (error) {
+        console.error("Error during search:", error);
+        alert("An error occurred during the search. Please try again.");
+      } finally {
+        setIsLoading(false);
       }
-    } catch (error) {
-      console.error("Error during search:", error);
-      alert("An error occurred during the search. Please try again.");
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -723,7 +691,7 @@ function Search({
               onClick={handleSearchClick}
               disabled={
                 isLoading ||
-                (searchType === "Azure" && (!searchTerm.trim() || !ruleName.trim() || !classificationName.trim())) ||
+                (searchType === "Azure" && (!searchTerm.trim())) ||
                 (searchType === "Server" && (!searchTerm.trim() || !filePath.trim()))
               }
               style={{
@@ -733,7 +701,7 @@ function Search({
                 padding: "0 20px",
                 backgroundColor:
                   isLoading ||
-                    (searchType === "Azure" && (!searchTerm.trim() || !ruleName.trim() || !classificationName.trim())) ||
+                    (searchType === "Azure" && (!searchTerm.trim())) ||
                     (searchType === "Server" && (!searchTerm.trim() || !filePath.trim()))
                     ? "#ccc"
                     : "#774aa4",
@@ -741,7 +709,7 @@ function Search({
                 border: "none",
                 cursor:
                   isLoading ||
-                    (searchType === "Azure" && (!searchTerm.trim() || !ruleName.trim() || !classificationName.trim())) ||
+                    (searchType === "Azure" && (!searchTerm.trim())) ||
                     (searchType === "Server" && (!searchTerm.trim() || !filePath.trim()))
                     ? "not-allowed"
                     : "pointer",
@@ -819,8 +787,6 @@ function Search({
                   {searchType === "Azure" && (
                     <>
                       <div>• Scan Level: {scanLevel}</div>
-                      {ruleName && <div>• Rule Name: {ruleName}</div>}
-                      {classificationName && <div>• Classification: {classificationName}</div>}
                     </>
                   )}
                   {searchType === "Server" && filePath && (
@@ -895,7 +861,7 @@ function Search({
           )}
 
           {/* Data Table - Only show for AWS and Azure */}
-          {searchType === "Server" || searchType !== "AWS" && (
+          {(searchType === "Azure" || searchType === "AWS") && (
             <div className="data-table-container">
               <div className="table-content">
                 <div className="table-row table-header">
