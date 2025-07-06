@@ -861,7 +861,7 @@ function Search({
           )}
 
           {/* Data Table - Only show for AWS and Azure */}
-          {(searchType === "Azure" || searchType === "AWS") && (
+          {(searchType === "Azure" || (searchType === "AWS" && searchResults.length === 0)) && (
             <div className="data-table-container">
               <div className="table-content">
                 <div className="table-row table-header">
