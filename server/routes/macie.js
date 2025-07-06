@@ -6,8 +6,8 @@ import {
   handleGetFindingDetails,
   handleGetFindingsFilter,
   handleFilterFindings,
+  getFindingsBySensitiveType,
 } from "../controllers/macieEventController.js";
-import { isAuthenticated } from "../middleware/isAuthenticated.js";
 
 const router = express.Router();
 
@@ -17,5 +17,6 @@ router.get("/findings", handleListFindings);
 router.post("/findings/details", handleGetFindingDetails);
 router.get("/findings/filters", handleGetFindingsFilter);
 router.get("/findings/filter", handleFilterFindings);
+router.get("/findings/types", getFindingsBySensitiveType);
 
 export default router;
