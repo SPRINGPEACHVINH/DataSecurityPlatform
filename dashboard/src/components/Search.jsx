@@ -169,6 +169,10 @@ function Search({
     }, 300000); // 5 minutes
   };
 
+  const [sensitiveType, setSensitiveType] = useState("");
+  const [category, setCategory] = useState("");
+  const [macieFindings, setMacieFindings] = useState([]);
+
   // Fetch documents from API
   useEffect(() => {
     async function fetchDocuments() {
@@ -388,12 +392,6 @@ function Search({
 
   // Handle search button click or Enter key
   const handleSearchClick = async () => {
-    // Validate required fields
-    if (!searchTerm.trim()) {
-      alert("Please enter a keyword to search");
-      return;
-    }
-
     if (searchType === "Azure") {
       // Stop any existing monitoring
       stopStatusMonitoring();
@@ -457,14 +455,81 @@ function Search({
         console.error("Error during search:", error);
         alert("An error occurred during the search. Please try again.");
         setIsLoading(false);
+      if (!searchTerm.trim() || !ruleName.trim() || !classificationName.trim()) {
+        alert("Please fill in Keyword, Rule Name and Classification Name for Azure search");
+        return;
       }
     }
 
     if (searchType === "Server") {
-      if (!filePath.trim()) {
-        alert("Please enter a file path for Server search");
+      if (!searchTerm.trim() || !filePath.trim()) {
+        alert("Please enter a keyword and file path for Server search");
         return;
       }
+    }
+
+    setIsLoading(true);
+    try {
+      if (searchType === "AWS") {
+        const params = new URLSearchParams();
+        if (category) params.append("category", category); // lấy từ dropdown
+        if (searchTerm) params.append("sensitiveType", searchTerm.trim()); // lấy từ ô search (type)
+
+        const response = await fetch(
+          `http://localhost:4000/api/macie/findings/types?${params}`,
+          {
+            credentials: "include",
+            headers: {
+              Cookie: localStorage.getItem("sessionId") || "",
+            },
+          }
+        );
+        const result = await response.json();
+        console.log("AWS search result:", result);
+        if (response.ok) {
+          setSearchResults(result.data || []);
+          alert(`Found ${result.data?.length || 0} sensitive findings`);
+        } else {
+          alert(`Search failed: ${result.message}`);
+        }
+      } else {
+        const searchData = {
+          keyword: searchTerm.trim(),
+          scanLevel: scanLevel || "Full",
+          ruleName: ruleName.trim() || `rule-${Date.now()}`,
+          classificationName: classificationName.trim() || `classification-${Date.now()}`,
+        };
+
+        console.log("Sending search request:", searchData);
+
+        const response = await fetch(
+          "http://localhost:4000/api/dashboard/search",
+          {
+            method: "POST",
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+              Cookie: localStorage.getItem("sessionId") || "",
+            },
+            body: JSON.stringify(searchData),
+          }
+        );
+
+        const result = await response.json();
+        console.log("Search result:", result);
+
+        if (response.ok) {
+          alert("Search initiated successfully! Check the scan results for updates.");
+          setSearchResults(result.data || []);
+        } else {
+          alert(`Search failed: ${result.message}`);
+        }
+      }
+    } catch (error) {
+      console.error("Error during search:", error);
+      alert("An error occurred during the search. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -631,19 +696,55 @@ function Search({
               </>
             )}
 
+            {searchType === "AWS" && (
+              <select
+                className="aws-category-select"
+                value={category}
+                onChange={e => setCategory(e.target.value)}
+                style={{
+                  height: 44,
+                  borderRadius: 22,
+                  marginLeft: 8,
+                  padding: "0 16px",
+                  fontSize: "14px"
+                }}
+                disabled={isLoading}
+              >
+                <option value="">All Categories</option>
+                <option value="CREDENTIALS">CREDENTIALS</option>
+                <option value="FINANCIAL_INFORMATION">FINANCIAL_INFORMATION</option>
+                <option value="PERSONAL_INFORMATION">PERSONAL_INFORMATION</option>
+                <option value="MEDICAL_INFORMATION">MEDICAL_INFORMATION</option>
+              </select>
+            )}
+
             <button
               className="search-button"
               onClick={handleSearchClick}
-              disabled={isLoading || !searchTerm.trim()}
+              disabled={
+                isLoading ||
+                (searchType === "Azure" && (!searchTerm.trim() || !ruleName.trim() || !classificationName.trim())) ||
+                (searchType === "Server" && (!searchTerm.trim() || !filePath.trim()))
+              }
               style={{
                 height: 44,
                 borderRadius: 22,
                 marginLeft: 8,
                 padding: "0 20px",
-                backgroundColor: isLoading || !searchTerm.trim() ? "#ccc" : "#774aa4",
+                backgroundColor:
+                  isLoading ||
+                    (searchType === "Azure" && (!searchTerm.trim() || !ruleName.trim() || !classificationName.trim())) ||
+                    (searchType === "Server" && (!searchTerm.trim() || !filePath.trim()))
+                    ? "#ccc"
+                    : "#774aa4",
                 color: "white",
                 border: "none",
-                cursor: isLoading || !searchTerm.trim() ? "not-allowed" : "pointer",
+                cursor:
+                  isLoading ||
+                    (searchType === "Azure" && (!searchTerm.trim() || !ruleName.trim() || !classificationName.trim())) ||
+                    (searchType === "Server" && (!searchTerm.trim() || !filePath.trim()))
+                    ? "not-allowed"
+                    : "pointer",
                 fontWeight: "500",
                 fontSize: "14px",
                 transition: "background-color 0.3s ease"
@@ -705,15 +806,27 @@ function Search({
               color: "#666"
             }}>
               <strong>Search Parameters:</strong>
-              <div>• Keyword: "{searchTerm}"</div>
-              <div>• Type: {searchType}</div>
-              {searchType === "Azure" && (
+              {searchType === "AWS" ? (
                 <>
                   <div>• Scan Level: {scanLevel}</div>
+                  <div>• Category: {category || "All"}</div>
+                  <div>• Type: {searchTerm || "All"}</div>
                 </>
-              )}
-              {searchType === "Server" && filePath && (
-                <div>• File Path: {filePath}</div>
+              ) : (
+                <>
+                  <div>• Keyword: "{searchTerm}"</div>
+                  <div>• Type: {searchType}</div>
+                  {searchType === "Azure" && (
+                    <>
+                      <div>• Scan Level: {scanLevel}</div>
+                      {ruleName && <div>• Rule Name: {ruleName}</div>}
+                      {classificationName && <div>• Classification: {classificationName}</div>}
+                    </>
+                  )}
+                  {searchType === "Server" && filePath && (
+                    <div>• File Path: {filePath}</div>
+                  )}
+                </>
               )}
             </div>
           )}
@@ -782,7 +895,7 @@ function Search({
           )}
 
           {/* Data Table - Only show for AWS and Azure */}
-          {searchType !== "Server" && (
+          {searchType === "Server" || searchType !== "AWS" && (
             <div className="data-table-container">
               <div className="table-content">
                 <div className="table-row table-header">
@@ -837,6 +950,54 @@ function Search({
               <strong>Server File Search</strong>
               <div style={{ marginTop: "8px", fontSize: "14px" }}>
                 Enter a file path and keyword to search for sensitive data in server files
+              </div>
+            </div>
+          )}
+          {/* AWS Search Results Table */}
+          {searchType === "AWS" && searchResults.length > 0 && (
+            <div className="data-table-container" style={{ marginTop: 24 }}>
+              <div className="table-content">
+                <div className="table-row table-header">
+                  <div className="file-name-column column-header">File Name</div>
+                  <div className="bucket-column column-header">Bucket</div>
+                  <div className="category-column column-header">Category</div>
+                  <div className="type-column column-header">Type</div>
+                  <div className="count-column column-header">Count</div>
+                  <div className="severity-column column-header">Severity</div>
+                  <div className="created-at-column column-header">Created At</div>
+                </div>
+                {searchResults.map((item, idx) => (
+                  <div className="table-row" key={item.id || idx}>
+                    <div className="file-name-column">{item.key}</div>
+                    <div className="bucket-column">{item.bucket}</div>
+                    <div className="category-column">{item.matchedTypes?.[0]?.category || "N/A"}</div>
+                    <div className="type-column">{item.matchedTypes?.[0]?.type || "N/A"}</div>
+                    <div className="count-column">{item.matchedTypes?.[0]?.count ?? "N/A"}</div>
+                    <div className="severity-column">
+                      <span style={{
+                        display: "inline-block",
+                        minWidth: 60,
+                        padding: "2px 10px",
+                        borderRadius: 12,
+                        background: item.severity === "High" ? "#ffa352"
+                          : item.severity === "Medium" ? "#e9f178"
+                            : item.severity === "Low" ? "#e8f6ea"
+                              : "#eee",
+                        color: item.severity === "High" ? "#fff"
+                          : item.severity === "Medium" ? "#925f00"
+                            : item.severity === "Low" ? "#34af3e"
+                              : "#333",
+                        fontWeight: 600,
+                        textAlign: "center"
+                      }}>
+                        {item.severity}
+                      </span>
+                    </div>
+                    <div className="created-at-column">
+                      {item.createdAt ? new Date(item.createdAt).toLocaleString() : "N/A"}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           )}

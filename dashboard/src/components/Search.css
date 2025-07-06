@@ -363,3 +363,64 @@
   left: unset;
   top: unset;
 }
+
+.aws-category-select {
+  border: 1px solid #ece6f0;
+  outline: none;
+  background: #fff;
+  color: #49454f;
+  font: 400 16px/24px Roboto, sans-serif;
+  letter-spacing: 0.5px;
+  padding: 0 12px;
+  height: 44px;
+  border-radius: 22px;
+  box-sizing: border-box;
+}
+
+.file-name-column,
+.bucket-column,
+.category-column,
+.type-column,
+.count-column,
+.severity-column,
+.created-at-column {
+  padding: 12px 8px;
+  min-width: 0; 
+  overflow: hidden;        
+  text-overflow: ellipsis; 
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 14px;
+  font-family: inherit;
+  box-sizing: border-box;
+  max-width: 220px;  
+  white-space: normal;   
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1.5fr 1.5fr 1fr 1.2fr 2fr; /* Số cột và tỉ lệ có thể chỉnh */
+  align-items: center;
+  min-height: 48px;
+}
+
+.table-row > div {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 12px 8px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.table-header {
+  background: #f5f5f5;
+  font-weight: 600;
+}
+
+.count-column,
+.severity-column {
+  justify-content: center !important;
+  text-align: center !important;
+}

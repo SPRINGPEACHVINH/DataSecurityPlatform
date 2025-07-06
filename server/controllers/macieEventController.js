@@ -4,7 +4,8 @@ import {
     getFindingStats,
     listFindings,
     getFindings,
-    listFindingsWithFilters
+    listFindingsWithFilters,
+    filterFindingsBySensitiveDataType,
 } from "../services/macieDataTransfer.js";
 
 export const handleGetFindingDetails = async (req, res) => {
@@ -174,3 +175,42 @@ export const handleGetFindingStats = async (req, res) => {
         });
     }
 };
+
+export const getFindingsBySensitiveType = async (req, res) => {
+    try {
+        const { sensitiveType, category } = req.query;
+
+        const sensitiveTypes = sensitiveType
+            ? Array.isArray(sensitiveType) ? sensitiveType : [sensitiveType]
+            : [];
+
+        const categories = category
+            ? Array.isArray(category) ? category : [category]
+            : [];
+
+        // 🔧 FIX: lấy đúng `findingIds` từ response
+        const findingListRes = await listFindings();
+        const findingIds = findingListRes.findingIds;
+
+        if (!findingIds || findingIds.length === 0) {
+            return res.json({ message: "No findings found", data: [] });
+        }
+
+        const findingDetailsRes = await getFindings(findingIds);
+        const findings = findingDetailsRes.findings || [];
+
+        // 🔍 In ra để debug nếu cần
+        console.log(`✅ Total findings fetched: ${findings.length}`);
+
+        const filteredFindings = filterFindingsBySensitiveDataType(findings, sensitiveTypes, categories);
+
+        return res.json({
+            message: "Filtered findings",
+            data: filteredFindings
+        });
+    } catch (error) {
+        console.error("❌ Error in getFindingsBySensitiveType:", error);
+        return res.status(500).json({ message: "Internal server error", error });
+    }
+};
+

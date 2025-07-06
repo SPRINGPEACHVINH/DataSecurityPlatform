@@ -111,3 +111,45 @@ export async function getFindingsFilter() {
     const response = await macieClient.send(command);
     return response;
 }
+
+export function filterFindingsBySensitiveDataType(findings, sensitiveTypes = [], categories = []) {
+    return findings
+        .map(finding => {
+            const sensitiveData = finding?.classificationDetails?.result?.sensitiveData || [];
+
+            const matchedTypes = [];
+
+            for (const category of sensitiveData) {
+                if (categories.length > 0 && !categories.includes(category.category)) {
+                    continue;
+                }
+
+                for (const detection of category.detections) {
+                    if (sensitiveTypes.length > 0 && !sensitiveTypes.includes(detection.type)) {
+                        continue;
+                    }
+
+                    matchedTypes.push({
+                        type: detection.type,
+                        count: detection.count,
+                        category: category.category
+                    });
+                }
+            }
+
+            if (matchedTypes.length === 0) return null;
+
+            return {
+                id: finding.id,
+                bucket: finding.resourcesAffected?.s3Bucket?.name,
+                key: finding.resourcesAffected?.s3Object?.key,
+                matchedTypes,
+                createdAt: finding.createdAt,
+                severity: finding.severity?.description
+            };
+        })
+        .filter(Boolean);
+}
+
+
+
