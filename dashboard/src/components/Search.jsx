@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef, useImperativeHandle } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Search.css";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
-import { clearSearchSession } from "../hooks/clearSearchSession";
 
 function Search({
   onLogout,
@@ -640,7 +639,7 @@ function Search({
               <input
                 type="text"
                 className="file-path-input"
-                placeholder="Enter file path (e.g., \\\\server\\share\\folder)"
+                placeholder="Enter file path (e.g., C:\\pathto\\folder)"
                 value={filePath}
                 onChange={(e) => setFilePath(e.target.value)}
                 onKeyPress={handleSearchKeyPress}

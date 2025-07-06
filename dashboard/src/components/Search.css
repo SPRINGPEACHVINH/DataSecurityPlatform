@@ -385,17 +385,17 @@
 .severity-column,
 .created-at-column {
   padding: 12px 8px;
-  min-width: 0; 
-  overflow: hidden;        
-  text-overflow: ellipsis; 
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   font-size: 14px;
   font-family: inherit;
   box-sizing: border-box;
-  max-width: 220px;  
-  white-space: normal;   
+  max-width: 220px;
+  white-space: normal;
 }
 
 .table-row {
