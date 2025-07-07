@@ -5,6 +5,7 @@ import {
   handleDashboardGetScanStatus,
   handleScriptExecution,
   queryScriptResults,
+  checkScriptStatus,
 } from "../controllers/dashboardQueryController.js";
 import {
   getConnector,
@@ -22,9 +23,10 @@ router.get("/public", isAuthenticated, (req, res) => {
 });
 router.post("/search", isAuthenticated, handleDashboardSearch);
 router.post("/scan-result", isAuthenticated, handleDashboardScanResult);
-router.post("/script-execution", isAuthenticated, handleScriptExecution);
 router.get("/scan-status", isAuthenticated, handleDashboardGetScanStatus);
-router.get("/script-results", isAuthenticated, queryScriptResults);
+router.post("/script-execution", isAuthenticated, handleScriptExecution);
+router.get("/script-status", checkScriptStatus);
+router.post("/script-results", isAuthenticated, queryScriptResults);
 router.get("/elasticsearch/connector", isAuthenticated, getConnector);
 router.get("/elasticsearch/documents", isAuthenticated, getDocuments);
 router.post("/elasticsearch/sync-connectors", SyncConnectors);

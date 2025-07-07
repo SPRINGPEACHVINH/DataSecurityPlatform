@@ -9,6 +9,13 @@ function Search({
   onNavigateToOverview,
   onNavigateToLogManager,
 }) {
+  const [scriptStatus, setScriptStatus] = useState({
+    isReady: false,
+    checks: {},
+    loading: true,
+    recommendations: []
+  });
+
   const [searchType, setSearchType] = useState(() => {
     return localStorage.getItem("searchType") || "AWS";
   });
@@ -37,6 +44,12 @@ function Search({
   const [scanStatusMessage, setScanStatusMessage] = useState(() => {
     return localStorage.getItem("scanStatusMessage") || "";
   });
+
+  const [serverSearchResults, setServerSearchResults] = useState(() => {
+    const saved = localStorage.getItem("serverSearchResults");
+    return saved ? JSON.parse(saved) : [];
+  });
+
   const searchFoundRef = useRef(false);
 
   // Other states
@@ -54,6 +67,10 @@ function Search({
   const intervalRef = useRef(null);
 
   // Save state to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("serverSearchResults", JSON.stringify(serverSearchResults));
+  }, [serverSearchResults]);
+
   useEffect(() => {
     localStorage.setItem("searchType", searchType);
   }, [searchType]);
@@ -110,7 +127,6 @@ function Search({
     }
   }, []);
 
-
   useEffect(() => {
     return () => {
       if (intervalRef.current) {
@@ -118,6 +134,124 @@ function Search({
       }
     };
   }, []);
+
+  useEffect(() => {
+    checkScriptStatus();
+  }, []);
+
+  // Function to check if script is ready
+  const checkScriptStatus = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:4000/api/dashboard/script-status",
+        {
+          method: "GET",
+          credentials: "include",
+          headers: {
+            Cookie: localStorage.getItem("sessionId") || "",
+          },
+        }
+      );
+      const result = await response.json();
+
+      if (response.ok) {
+        setScriptStatus({
+          isReady: result.data.isReady,
+          checks: result.data.checks,
+          loading: false,
+          recommendations: result.data.recommendations,
+          paths: result.data.paths
+        });
+      } else {
+        setScriptStatus({
+          isReady: false,
+          checks: {},
+          loading: false,
+          recommendations: [`Failed to check script status: ${result.message}`]
+        });
+      }
+    } catch (error) {
+      console.error("Error checking script status:", error);
+      setScriptStatus({
+        isReady: false,
+        checks: {},
+        loading: false,
+        recommendations: ["Failed to connect to server for script status check"]
+      });
+    }
+  };
+
+  const queryServerResults = async (outputFile) => {
+    try {
+      if (outputFile === null) {
+        const emptyResult = {
+          fileName: "No files found",
+          filePath: "N/A",
+          matchCount: 0,
+          lineNumbers: [],
+          isEmpty: true,
+        };
+
+        setServerSearchResults([emptyResult]);
+
+        return;
+      }
+
+      const response = await fetch("http://localhost:4000/api/dashboard/script-results", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          Cookie: localStorage.getItem("sessionId") || "",
+        },
+        body: JSON.stringify({
+          outputFile: outputFile,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        const rawData = result.data || {};
+        const serverResults = [];
+
+        Object.entries(rawData).forEach(([filePath, lineNumbers]) => {
+          const fileName = filePath.split('\\').pop() || filePath;
+          const totalMatches = Array.isArray(lineNumbers) ? lineNumbers.length : 0;
+
+          serverResults.push({
+            fileName: fileName,
+            filePath: filePath,
+            matchCount: totalMatches,
+            lineNumbers: lineNumbers,
+            isEmpty: false,
+          });
+        });
+
+
+        if (serverResults.length > 0) {
+          setServerSearchResults(serverResults);
+        } else {
+          const emptyResult = {
+            fileName: "No files found",
+            filePath: "N/A",
+            matchCount: 0,
+            lineNumbers: [],
+            isEmpty: true
+          };
+
+          setServerSearchResults([emptyResult]); alert("No sensitive data found in the specified files.");
+        }
+      } else {
+        console.error("Failed to query server results:", result.message);
+        alert(`Failed to load search results: ${result.message}`);
+      }
+    } catch (error) {
+      console.error("Error querying server results:", error);
+      alert("An error occurred while loading search results.");
+    }
+  };
+
   // Function to resume status monitoring after reload
   const resumeStatusMonitoring = (runId) => {
     console.log("Resuming status monitoring for runId:", runId);
@@ -187,7 +321,6 @@ function Search({
           },
         );
         const data = await response.json();
-        console.log("Fetched connection data:", data.data);
 
         const docResponse = await fetch(
           "http://localhost:4000/api/dashboard/elasticsearch/documents",
@@ -463,7 +596,50 @@ function Search({
         alert("Please enter a keyword and file path for Server search");
         return;
       }
-      
+
+      // Kiểm tra script status trước khi search
+      if (!scriptStatus.isReady) {
+        alert("Script is not ready. Please check the script status.");
+        return;
+      }
+
+      setIsLoading(true);
+
+      try {
+        const normalizedPath = filePath.trim().replace(/\//g, '\\');
+
+        const searchData = {
+          sharePath: normalizedPath,
+          keyword: searchTerm.trim(),
+        };
+
+        const response = await fetch("http://localhost:4000/api/dashboard/script-execution", {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+            Cookie: localStorage.getItem("sessionId") || "",
+          },
+          body: JSON.stringify(searchData),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          if (result.data.searchComplete) {
+            await queryServerResults(result.data.outputFile);
+          } else {
+            alert(`Server search initiated but status unknown:\n${JSON.stringify(result.data, null, 2)}`);
+          }
+        } else {
+          alert(`❌ Server search failed: ${result.message}`);
+        }
+      } catch (error) {
+        console.error("Error during Server search:", error);
+        alert("An error occurred during the Server search. Please try again.");
+      } finally {
+        setIsLoading(false);
+      }
     }
     else if (searchType === "AWS") {
       setIsLoading(true);
@@ -528,10 +704,13 @@ function Search({
     // Stop monitoring khi change search type
     stopStatusMonitoring();
     setScanResults([]);
+    setServerSearchResults([]);
 
     localStorage.removeItem("searchTerm");
     localStorage.removeItem("filePath");
     localStorage.removeItem("scanResults");
+    localStorage.removeItem("currentRunId");
+    localStorage.removeItem("serverSearchResults");
   };
 
   const handleSearchChange = (value) => {
@@ -543,12 +722,15 @@ function Search({
     setSearchTerm("");
     setFilePath("");
     setScanResults([]);
+    setServerSearchResults([]);
 
     stopStatusMonitoring();
 
     localStorage.removeItem("searchTerm");
     localStorage.removeItem("filePath");
     localStorage.removeItem("scanResults");
+    localStorage.removeItem("currentRunId");
+    localStorage.removeItem("serverSearchResults");
   };
 
 
@@ -892,27 +1074,92 @@ function Search({
             </div>
           )}
 
-          {/* Message for Server type */}
+          {/* Script Status Section - Only for Server search */}
           {searchType === "Server" && (
-            <div style={{
-              padding: "40px",
-              textAlign: "center",
-              backgroundColor: "#f8f9fa",
+            <div className="script-status-section" style={{
+              padding: "16px",
+              backgroundColor: scriptStatus.isReady ? "#e8f5e8" : "#f8d7da",
               borderRadius: "8px",
-              color: "#666",
-              fontSize: "16px"
+              marginBottom: "16px",
+              border: `1px solid ${scriptStatus.isReady ? "#28a745" : "#dc3545"}`
             }}>
-              <div style={{ marginBottom: "12px" }}>
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style={{ opacity: 0.5 }}>
-                  <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" strokeWidth="2" />
-                  <circle cx="8" cy="8" r="1" fill="currentColor" />
-                  <circle cx="8" cy="12" r="1" fill="currentColor" />
-                  <circle cx="8" cy="16" r="1" fill="currentColor" />
-                </svg>
+              <div style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: "12px"
+              }}>
+                <h3 style={{ margin: 0, color: scriptStatus.isReady ? "#155724" : "#721c24" }}>
+                  Script Status: {scriptStatus.loading ? "Checking..." : scriptStatus.isReady ? "Ready" : "Not Ready"}
+                </h3>
               </div>
-              <strong>Server File Search</strong>
-              <div style={{ marginTop: "8px", fontSize: "14px" }}>
-                Enter a file path and keyword to search for sensitive data in server files
+
+              {/* Detailed status checks */}
+              {!scriptStatus.isReady && (<div style={{ fontSize: "14px", marginBottom: "12px" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
+                  <div>
+                    <strong>Script File:</strong> {scriptStatus.checks.scriptExists ? "✅ Found" : "❌ Not Found"}
+                  </div>
+                  <div>
+                    <strong>Script Readable:</strong> {scriptStatus.checks.scriptReadable ? "✅ Yes" : "❌ No"}
+                  </div>
+                  <div>
+                    <strong>Base Directory:</strong> {scriptStatus.checks.baseDirectoryExists ? "✅ Exists" : "❌ Missing"}
+                  </div>
+                  <div>
+                    <strong>Directory Writable:</strong> {scriptStatus.checks.baseDirectoryWritable ? "✅ Yes" : "❌ No"}
+                  </div>
+                  <div>
+                    <strong>PowerShell:</strong> {scriptStatus.checks.powershellAvailable ? "✅ Available" : "❌ Not Available"}
+                  </div>
+                  <div>
+                    <strong>Environment:</strong> {
+                      scriptStatus.checks.environmentVariables?.BASE_DIRECTORY ? "✅ Configured" : "❌ Incomplete"
+                    }
+                  </div>
+                </div>
+              </div>
+              )}
+
+              {/* Recommendations */}
+              {scriptStatus.recommendations && scriptStatus.recommendations.length > 0 && (
+                <div style={{ fontSize: "13px", color: "#721c24" }}>
+                  <strong>Recommendations:</strong>
+                  <ul style={{ margin: "4px 0", paddingLeft: "20px" }}>
+                    {scriptStatus.recommendations.map((rec, index) => (
+                      <li key={index} style={{ marginBottom: "2px" }}>{rec}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Paths info */}
+              {scriptStatus.paths && (
+                <div style={{ fontSize: "12px", color: "#666", marginTop: "8px" }}>
+                  <div><strong>Script Path:</strong> {scriptStatus.paths.scriptPath}</div>
+                </div>
+              )}
+
+              <div style={{
+                padding: "40px",
+                textAlign: "center",
+                backgroundColor: "#f8f9fa",
+                borderRadius: "8px",
+                color: "#666",
+                fontSize: "16px"
+              }}>
+                <div style={{ marginBottom: "12px" }}>
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style={{ opacity: 0.5 }}>
+                    <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" strokeWidth="2" />
+                    <circle cx="8" cy="8" r="1" fill="currentColor" />
+                    <circle cx="8" cy="12" r="1" fill="currentColor" />
+                    <circle cx="8" cy="16" r="1" fill="currentColor" />
+                  </svg>
+                </div>
+                <strong>Server File Search</strong>
+                <div style={{ marginTop: "8px", fontSize: "14px" }}>
+                  Enter a file path and keyword to search for sensitive data in server files
+                </div>
               </div>
             </div>
           )}
@@ -962,6 +1209,209 @@ function Search({
                   </div>
                 ))}
               </div>
+            </div>
+          )}
+
+          {/* Server Search Results Table */}
+          {searchType === "Server" && serverSearchResults.length > 0 && (
+            <div className="data-table-container" style={{ marginTop: 16 }}>
+              <div style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: "12px"
+              }}>
+                <h3 style={{ margin: 0, color: serverSearchResults[0]?.isEmpty ? "#721c24" : "#155724" }}>
+                  📄 Server Search Results {serverSearchResults[0]?.isEmpty ? "(No matches)" : `(${serverSearchResults.length} files found)`}
+                </h3>
+                <div style={{ fontSize: "14px", color: "#666" }}>
+                  Total matches: {serverSearchResults.reduce((sum, item) => sum + (item.matchCount || 0), 0)}
+                </div>
+              </div>
+
+              <div className="table-content">
+                <div className="table-row table-header">
+                  <div className="file-name-column column-header">File Name</div>
+                  <div className="file-path-column column-header">File Path</div>
+                  <div className="match-count-column column-header">Matches</div>
+                  <div className="line-numbers-column column-header">Line Numbers</div>
+                  <div className="file-size-column column-header">Size</div>
+                </div>
+                {serverSearchResults.map((item, idx) => (
+                  <div className="table-row" key={idx} style={{
+                    backgroundColor: item.isEmpty ? "#f8f9fa" : "inherit",
+                    opacity: item.isEmpty ? 0.7 : 1
+                  }}>
+                    <div className="file-name-column" title={item.fileName}>
+                      {item.isEmpty ? "❌" : "📄"} {item.fileName}
+                    </div>
+                    <div className="file-path-column" title={item.filePath}>
+                      {item.filePath}
+                    </div>
+                    <div className="match-count-column">
+                      <span style={{
+                        display: "inline-block",
+                        minWidth: "30px",
+                        padding: "4px 8px",
+                        borderRadius: "12px",
+                        backgroundColor: item.matchCount > 0 ? "#ffa352" : "#e8f6ea",
+                        color: item.matchCount > 0 ? "#fff" : "#34af3e",
+                        fontWeight: "600",
+                        textAlign: "center",
+                        fontSize: "12px"
+                      }}>
+                        {item.matchCount || 0}
+                      </span>
+                    </div>
+                    <div className="line-numbers-column">
+                      <div style={{
+                        display: "flex",
+                        flexWrap: "wrap",
+                        gap: "4px"
+                      }}>
+                        {item.lineNumbers && item.lineNumbers.length > 0 ? (
+                          item.lineNumbers.slice(0, 5).map((lineNum, lineIdx) => (
+                            <span key={lineIdx} style={{
+                              display: "inline-block",
+                              padding: "2px 6px",
+                              backgroundColor: "#e7f3ff",
+                              color: "#0066cc",
+                              borderRadius: "8px",
+                              fontSize: "11px",
+                              fontWeight: "500"
+                            }}>
+                              {lineNum}
+                            </span>
+                          ))
+                        ) : (
+                          <span style={{ color: "#999", fontSize: "12px" }}>
+                            {item.isEmpty ? "No matches" : "N/A"}
+                          </span>
+                        )}
+                        {item.lineNumbers && item.lineNumbers.length > 5 && (
+                          <span style={{
+                            color: "#666",
+                            fontSize: "11px",
+                            fontStyle: "italic"
+                          }}>
+                            +{item.lineNumbers.length - 5} more
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    <div className="file-size-column">{item.fileSize}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* SỬA: Conditional Summary based on isEmpty */}
+              <div style={{
+                marginTop: "16px",
+                padding: "12px",
+                backgroundColor: serverSearchResults[0]?.isEmpty ? "#f8d7da" : "#f8f9fa",
+                borderRadius: "8px",
+                border: `1px solid ${serverSearchResults[0]?.isEmpty ? "#f5c6cb" : "#dee2e6"}`
+              }}>
+                <h4 style={{ margin: "0 0 8px 0", color: "#495057", fontSize: "14px" }}>
+                  📊 Search Summary
+                </h4>
+                <div style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+                  gap: "12px",
+                  fontSize: "13px"
+                }}>
+                  <div>
+                    <strong>Search Keyword:</strong> "{searchTerm}"
+                  </div>
+                  <div>
+                    <strong>Search Path:</strong> {filePath}
+                  </div>
+                  <div>
+                    <strong>Files Found:</strong> {serverSearchResults[0]?.isEmpty ? 0 : serverSearchResults.length}
+                  </div>
+                  <div>
+                    <strong>Total Matches:</strong> {serverSearchResults.reduce((sum, item) => sum + (item.matchCount || 0), 0)}
+                  </div>
+                </div>
+
+                {/* SỬA: Add status message for empty results */}
+                {serverSearchResults[0]?.isEmpty && (
+                  <div style={{
+                    marginTop: "12px",
+                    padding: "12px",
+                    backgroundColor: "#fff3cd",
+                    borderRadius: "8px",
+                    border: "1px solid #ffeaa7",
+                    color: "#856404"
+                  }}>
+                    <strong>ℹ️ Search Status:</strong> The search completed successfully but no files containing the keyword "{searchTerm}" were found in the specified path.
+                  </div>
+                )}
+              </div>
+
+              {/* SỬA: Conditional File Details */}
+              {!serverSearchResults[0]?.isEmpty && (
+                <div style={{ marginTop: "16px" }}>
+                  <h4 style={{ margin: "0 0 8px 0", color: "#155724", fontSize: "14px" }}>
+                    📋 File Details
+                  </h4>
+                  <div style={{
+                    maxHeight: "300px",
+                    overflowY: "auto",
+                    border: "1px solid #dee2e6",
+                    borderRadius: "8px",
+                    backgroundColor: "#fff"
+                  }}>
+                    {serverSearchResults.map((item, idx) => (
+                      <div key={idx} style={{
+                        padding: "12px",
+                        borderBottom: idx < serverSearchResults.length - 1 ? "1px solid #eee" : "none"
+                      }}>
+                        <div style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                          marginBottom: "8px"
+                        }}>
+                          <div style={{
+                            fontWeight: "600",
+                            color: "#155724",
+                            fontSize: "14px"
+                          }}>
+                            📄 {item.fileName}
+                          </div>
+                          <div style={{
+                            fontSize: "12px",
+                            color: "#666"
+                          }}>
+                            {item.matchCount} matches
+                          </div>
+                        </div>
+
+                        <div style={{
+                          fontSize: "12px",
+                          color: "#666",
+                          marginBottom: "8px",
+                          wordBreak: "break-all"
+                        }}>
+                          Path: {item.filePath}
+                        </div>
+
+                        {item.lineNumbers && item.lineNumbers.length > 0 && (
+                          <div style={{
+                            fontSize: "12px",
+                            color: "#495057"
+                          }}>
+                            <strong>Found on lines:</strong>{" "}
+                            {item.lineNumbers.join(", ")}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>

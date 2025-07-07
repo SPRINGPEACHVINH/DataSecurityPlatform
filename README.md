@@ -47,8 +47,8 @@ The goal of this platform is to enhance visibility, monitoring, and security of 
 | Log Management        | 🔴 Suspended | 70%      |
 | Cloud Storage Scanner | ✅ Completed | 100%      |
 | Server Scanner        | ✅ Completed   | 100%     |
-| Backend Server        | 🟡 In Progress | Ongoing  |
-| Dashboard             | 🟡 In Progress | Ongoing  |
+| Backend Server        | ✅ Completed | 100%  |
+| Dashboard             | 🟡 In Progres | 80%  |
 
 ---
 
