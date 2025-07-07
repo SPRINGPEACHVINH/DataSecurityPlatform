@@ -506,3 +506,137 @@ export const queryScriptResults = async (req, res) => {
     });
   }
 };
+
+export const checkScriptStatus = async (req, res) => {
+  try {
+    const scriptPath = path.join(process.cwd(), 'utils', 'finding.ps1');
+    const baseDirectory = process.env.BASE_DIRECTORY;
+    
+    const checks = {
+      scriptExists: false,
+      scriptReadable: false,
+      baseDirectoryExists: false,
+      baseDirectoryWritable: false,
+      powershellAvailable: false,
+      environmentVariables: {
+        BASE_DIRECTORY: !!process.env.BASE_DIRECTORY,
+      }
+    };
+
+    // 1. Check script file
+    if (fs.existsSync(scriptPath)) {
+      checks.scriptExists = true;
+      try {
+        fs.accessSync(scriptPath, fs.constants.R_OK);
+        checks.scriptReadable = true;
+      } catch (error) {
+        console.log('Script not readable:', error.message);
+      }
+    }
+
+    // 2. Check base directory
+    if (fs.existsSync(baseDirectory)) {
+      checks.baseDirectoryExists = true;
+      try {
+        fs.accessSync(baseDirectory, fs.constants.W_OK);
+        checks.baseDirectoryWritable = true;
+      } catch (error) {
+        console.log('Base directory not writable:', error.message);
+      }
+    } else {
+      // Try to create directory
+      try {
+        fs.mkdirSync(baseDirectory, { recursive: true });
+        checks.baseDirectoryExists = true;
+        checks.baseDirectoryWritable = true;
+      } catch (error) {
+        console.log('Cannot create base directory:', error.message);
+      }
+    }
+
+    // 3. Check PowerShell
+    const powershellCheck = new Promise((resolve) => {
+      const ps = new powershell('Get-Host');
+      
+      ps.on('output', (data) => {
+        if (data) {
+          checks.powershellAvailable = true;
+        }
+      });
+
+      ps.on('end', () => {
+        resolve();
+      });
+
+      ps.on('error', () => {
+        checks.powershellAvailable = false;
+        resolve();
+      });
+
+      setTimeout(() => {
+        checks.powershellAvailable = false;
+        resolve();
+      }, 5000);
+    });
+
+    await powershellCheck;
+
+    // Overall status
+    const isReady = checks.scriptExists && 
+                   checks.scriptReadable && 
+                   checks.baseDirectoryExists && 
+                   checks.baseDirectoryWritable && 
+                   checks.powershellAvailable;
+
+    res.status(200).json({
+      message: "Script status check completed",
+      data: {
+        isReady,
+        checks,
+        paths: {
+          scriptPath,
+          baseDirectory
+        },
+        recommendations: generateRecommendations(checks)
+      }
+    });
+
+  } catch (error) {
+    console.error("Error checking script status:", error);
+    res.status(500).json({
+      message: "Failed to check script status",
+      error: error.message
+    });
+  }
+};
+
+// Helper function to generate recommendations
+const generateRecommendations = (checks) => {
+  const recommendations = [];
+
+  if (!checks.scriptExists) {
+    recommendations.push("PowerShell script 'finding.ps1' not found. Please ensure the script is in the utils folder.");
+  }
+
+  if (!checks.scriptReadable) {
+    recommendations.push("PowerShell script is not readable. Please check file permissions.");
+  }
+
+  if (!checks.baseDirectoryExists) {
+    recommendations.push("Base directory does not exist. Please create the directory or check the BASE_DIRECTORY environment variable.");
+  }
+
+  if (!checks.baseDirectoryWritable) {
+    recommendations.push("Base directory is not writable. Please check directory permissions.");
+  }
+
+  if (!checks.powershellAvailable) {
+    recommendations.push("PowerShell is not available or not responding. Please ensure PowerShell is installed and accessible.");
+  }
+
+  if (!checks.environmentVariables.BASE_DIRECTORY) {
+    recommendations.push("BASE_DIRECTORY environment variable is not set. Please check your .env file.");
+  }
+
+  return recommendations;
+};
