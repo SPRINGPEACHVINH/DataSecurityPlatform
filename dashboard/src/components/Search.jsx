@@ -37,6 +37,7 @@ function Search({
   const [scanStatusMessage, setScanStatusMessage] = useState(() => {
     return localStorage.getItem("scanStatusMessage") || "";
   });
+  const searchFoundRef = useRef(false);
 
   // Other states
   const [documentsData, setDocumentsData] = useState([]);
@@ -49,7 +50,6 @@ function Search({
   });
   const [isLoadingScanResults, setIsLoadingScanResults] = useState(false);
   const [hasDisplayedResults, setHasDisplayedResults] = useState(false);
-  const [searchFound, setSearchFound] = useState(null);
 
   const intervalRef = useRef(null);
 
@@ -350,7 +350,7 @@ function Search({
       console.log("Scan results response:", result);
       let fileNames = [];
       if (response.ok) {
-        if (searchFound) {
+        if (searchFoundRef.current) {
           fileNames = result.data || [];
         }
         else {
@@ -399,7 +399,6 @@ function Search({
       setIsLoading(true);
       setScanResults([]); // Clear previous results
       setHasDisplayedResults(false);
-
       try {
         const searchData = {
           keyword: searchTerm.trim(),
@@ -407,13 +406,11 @@ function Search({
         };
 
         if (searchData.keyword === "somethings") {
-          setSearchFound(true);
+          searchFoundRef.current = true;
         }
         else {
-          setSearchFound(false);
+          searchFoundRef.current = false;
         }
-
-        console.log("Sending search request:", searchData);
 
         const response = await fetch(
           "http://localhost:4000/api/dashboard/search",
@@ -466,6 +463,7 @@ function Search({
         alert("Please enter a keyword and file path for Server search");
         return;
       }
+      
     }
     else if (searchType === "AWS") {
       setIsLoading(true);
