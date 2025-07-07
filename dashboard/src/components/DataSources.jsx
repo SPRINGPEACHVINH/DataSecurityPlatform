@@ -560,15 +560,6 @@ function DataSources({
                 >
                   Close
                 </button>
-                <button
-                  className="modal-button primary"
-                  onClick={() => {
-                    console.log("Download file:", selectedFile.name);
-                    // Add download logic here
-                  }}
-                >
-                  Download
-                </button>
               </div>
             </div>
           </div>
