@@ -17,16 +17,34 @@ export async function listBucketsAndFiles() {
   const result = [];
 
   for (const bucket of bucketsResponse.Buckets || []) {
-    const objectsResponse = await s3.send(
-      new ListObjectsV2Command({ Bucket: bucket.Name })
-    );
+    let continuationToken = undefined;
+    let allObjects = [];
+
+    do {
+      const objectsResponse = await s3.send(
+        new ListObjectsV2Command({
+          Bucket: bucket.Name,
+          ContinuationToken: continuationToken,
+        })
+      );
+
+      const filteredObjects = (objectsResponse.Contents || []).filter(
+        (obj) => !obj.Key.startsWith("AWSLogs/")
+      );
+
+      allObjects.push(...filteredObjects);
+
+      continuationToken = objectsResponse.IsTruncated
+        ? objectsResponse.NextContinuationToken
+        : undefined;
+    } while (continuationToken);
 
     result.push({
       container: bucket.Name,
       type: "AWS S3",
       status: "Connected",
-      files: (objectsResponse.Contents || []).map((obj) => ({
-        name: obj.Key,
+      files: allObjects.map((obj) => ({
+        name: obj.Key.split("/").pop(),
         path: `s3://${bucket.Name}/${obj.Key}`,
         container: bucket.Name,
         updated_at: obj.LastModified,
