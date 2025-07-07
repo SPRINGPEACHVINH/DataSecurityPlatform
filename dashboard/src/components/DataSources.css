@@ -319,32 +319,6 @@
   width: 100%;
 }
 
-.table-header {
-  display: grid;
-  grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr;
-  gap: 20px;
-  padding: 16px 14px;
-  border-bottom: 1px solid rgba(228, 219, 237, 1);
-  background-color: #e4dbed;
-  color: #37234b;
-  font-weight: 600;
-}
-
-.table-row {
-  display: grid;
-  grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr;
-  gap: 20px;
-  padding: 12px 14px;
-  border-bottom: 1px solid rgba(228, 219, 237, 1);
-  align-items: center;
-  color: #7b7b7b;
-  font-size: 15px;
-}
-
-.table-row:hover {
-  background-color: rgba(252, 250, 255, 0.5);
-}
-
 .status-badge {
   border-radius: 3px;
   padding: 7px 20px;
@@ -473,7 +447,7 @@
 
 .files-table-header {
   display: grid;
-  grid-template-columns: 1.5fr 2fr 1fr 1fr 1fr;
+  grid-template-columns: 1.5fr 2fr 1fr 1fr;
   gap: 20px;
   padding: 16px 14px;
   border-bottom: 1px solid rgba(228, 219, 237, 1);
@@ -485,7 +459,7 @@
 
 .files-table-row {
   display: grid;
-  grid-template-columns: 1.5fr 2fr 1fr 1fr 1fr;
+  grid-template-columns: 1.5fr 2fr 1fr 1fr;
   gap: 20px;
   padding: 12px 14px;
   border-bottom: 1px solid rgba(228, 219, 237, 1);
@@ -710,18 +684,6 @@
     padding: 20px;
   }
 
-  .table-header,
-  .table-row {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  .files-table-header,
-  .files-table-row {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
   .header-controls {
     flex-direction: column;
     gap: 15px;
@@ -801,4 +763,87 @@
 
 .dropdown-item.logout-button:hover {
   background-color: rgba(245, 240, 250, 1); /* Màu nền khi hover */
+}
+
+/* Connection Status Table */
+.connection-table {
+  width: 100%;
+}
+
+.table-header, .table-row {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr;
+  gap: 20px;
+  align-items: center;
+}
+
+.table-header {
+  padding: 16px 14px;
+  border-bottom: 1px solid rgba(228, 219, 237, 1);
+  background-color: #e4dbed;
+  color: #37234b;
+  font-weight: 600;
+}
+
+.table-row {
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(228, 219, 237, 1);
+  color: #7b7b7b;
+  font-size: 15px;
+  transition: background-color 0.2s;
+}
+
+.table-row:hover {
+  background-color: rgba(252, 250, 255, 0.5);
+}
+
+.table-header > div,
+.table-row > div {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  text-align: left;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+/* Căn giữa badge và action nếu muốn */
+.table-row .status-badge,
+.table-header .status-header {
+  justify-content: center;
+  text-align: center;
+}
+
+.centered-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-row > div:nth-child(2),
+.table-row > div:nth-child(3),
+.table-header > div:nth-child(2),
+.table-header > div:nth-child(3) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.table-header > div,
+.table-row > div,
+.files-table-header > div,
+.files-table-row > div {
+  text-align: left;
+  padding-left: 4px;
+  padding-right: 4px;
+  /* Đảm bảo không bị co lại */
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

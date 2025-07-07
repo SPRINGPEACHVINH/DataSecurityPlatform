@@ -19,7 +19,7 @@ function extractConnectionData(documents, connectionData) {
 
     // Count files in this container
     const containerDocuments = documents.filter(
-      (doc) => doc.container === container,
+      (doc) => doc.container === container
     );
     const fileCount = containerDocuments.length;
 
@@ -76,39 +76,68 @@ function DataSources({
   const [filesData, setDocuments] = useState([]);
   const [connectionData, setConnectionData] = useState([]);
   const [isUserProfileDropdownOpen, setIsUserProfileDropdownOpen] =
-    useState(false); // 2. State cho dropdown
+    useState(false);
 
   useEffect(() => {
     async function fetchDocuments() {
       try {
         const response = await fetch(
           "http://localhost:4000/api/dashboard/elasticsearch/connector",
-          {
-            credentials: "include",
-            headers: {
-              Cookie: localStorage.getItem("sessionId") || "",
-            },
-          },
+          { credentials: "include" }
         );
         const data = await response.json();
-        console.log("Fetched connection data:", data.data);
 
         const docResponse = await fetch(
           "http://localhost:4000/api/dashboard/elasticsearch/documents",
-          {
-            credentials: "include",
-            headers: {
-              Cookie: localStorage.getItem("sessionId") || "",
-            },
-          },
+          { credentials: "include" }
         );
         const docData = await docResponse.json();
+        const s3Response = await fetch("http://localhost:4000/api/s3/data");
+        const s3Data = await s3Response.json();
+        console.log("S3 DATA:", s3Data);
 
+        let allFiles = [];
         if (docData && docData.data) {
-          setDocuments(extractFileData(docData.data));
-          const extractedData = extractConnectionData(docData.data, data.data);
-          setConnectionData(extractedData);
+          allFiles = extractFileData(docData.data);
         }
+        if (s3Data && s3Data.data) {
+          s3Data.data.forEach((bucket) => {
+            allFiles = allFiles.concat(
+              bucket.files.map((f) => ({
+                name: f.name,
+                path: f.path,
+                container: f.container,
+                updatedAt: f.updated_at
+                  ? new Date(f.updated_at)
+                      .toISOString()
+                      .replace("T", " ")
+                      .substring(0, 19)
+                  : "Unknown",
+                size: f.size,
+              }))
+            );
+          });
+        }
+        setDocuments(allFiles);
+        console.log("All Files:", allFiles);
+
+        let allConnections = [];
+        if (docData && docData.data && data && data.data) {
+          allConnections = extractConnectionData(docData.data, data.data);
+        }
+        if (s3Data && s3Data.data) {
+          s3Data.data.forEach((bucket) => {
+            allConnections.push({
+              name: bucket.container,
+              type: bucket.type,
+              status: bucket.status,
+              fileCount: bucket.files.length,
+              records: null,
+            });
+          });
+        }
+        setConnectionData(allConnections);
+        console.log("All Connections:", allConnections);
       } catch (error) {
         console.error("Error fetching documents:", error);
       }
@@ -173,9 +202,7 @@ function DataSources({
     }
   };
 
-  const handleSyncClick = () => {
-    
-  }
+  const handleSyncClick = () => {};
 
   // Handle ESC key to close modal
   React.useEffect(() => {
@@ -277,26 +304,14 @@ function DataSources({
               <div>File Count</div>
               <div>Actions</div>
             </div>
-            {connectionData.map((item, index) => (
-              <div key={index} className="table-row">
+            {connectionData.map((item, idx) => (
+              <div className="table-row" key={idx}>
                 <div>{item.name}</div>
-                <div>
-                  {item.type}
-                  {item.records && (
-                    <div
-                      style={{
-                        fontSize: "14px",
-                        color: "#999",
-                        marginTop: "4px",
-                      }}
-                    >
-                      {item.records}
-                    </div>
-                  )}
-                </div>
-                <div>
+                <div className="centered-cell">{item.type}</div>{" "}
+                {/* Source Type */}
+                <div className="centered-cell">
                   <span
-                    className={`status-badge ${item.status === "Connected" ? "status-connected" : "status-disconnected"}`}
+                    className={`status-badge status-${item.status.toLowerCase()}`}
                   >
                     {item.status}
                   </span>
@@ -339,8 +354,8 @@ function DataSources({
                 ? `${filteredFiles.length} of ${totalFilesCount} files found in ${selectedContainer}`
                 : `${totalFilesCount} files in ${selectedContainer}`
               : searchBarTerm
-                ? `${filteredFiles.length} of ${filesData.length} files found`
-                : `${filesData.length} files total`}
+              ? `${filteredFiles.length} of ${filesData.length} files found`
+              : `${filesData.length} files total`}
           </div>
         </div>
 
@@ -523,10 +538,10 @@ function DataSources({
                     {selectedFile.name.endsWith(".csv")
                       ? "2.4 MB"
                       : selectedFile.name.endsWith(".zip")
-                        ? "15.7 MB"
-                        : selectedFile.name.endsWith(".json")
-                          ? "1.2 KB"
-                          : "856 KB"}
+                      ? "15.7 MB"
+                      : selectedFile.name.endsWith(".json")
+                      ? "1.2 KB"
+                      : "856 KB"}
                   </div>
                 </div>
 

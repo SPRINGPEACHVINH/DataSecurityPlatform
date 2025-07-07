@@ -272,7 +272,7 @@
   border-bottom: 2px solid #e4dbed;
 }
 
-.table-row {
+.aws-category-select .table-row {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
   gap: 16px;
@@ -398,7 +398,7 @@
   white-space: normal;
 }
 
-.table-row {
+.data-table-container .table-row {
   display: grid;
   grid-template-columns: 2fr 1.5fr 1.5fr 1.5fr 1fr 1.2fr 2fr; /* Số cột và tỉ lệ có thể chỉnh */
   align-items: center;
