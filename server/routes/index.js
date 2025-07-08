@@ -21,7 +21,6 @@ router.use('/auth', authAPI);
 router.use('/purview', purviewAPI);
 router.use('/macie', macieRoutes);
 router.use("/s3", s3Route);
-router.use('/aws', accessLogRoutes);
 router.use("/aws", cloudwatchLogsRoutes);
 router.use('/overview', overviewRoutes);
 

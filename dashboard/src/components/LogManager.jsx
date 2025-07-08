@@ -6,23 +6,18 @@ function exportLogsToCSV(logs) {
 
   const headers = Object.keys(logs[0]).filter(
     (k) => k !== "level" && k !== "statusText"
-  ); // bỏ các trường hiển thị phụ
+  );
   const csvRows = [];
 
-  // Add header
   csvRows.push(headers.join(","));
-
-  // Add rows
   logs.forEach((log) => {
     const values = headers.map((key) => {
       const val = log[key] ?? "";
-      // Escape double quotes
       return `"${String(val).replace(/"/g, '""')}"`;
     });
     csvRows.push(values.join(","));
   });
 
-  // Create blob and trigger download
   const blob = new Blob([csvRows.join("\n")], {
     type: "text/csv;charset=utf-8;",
   });
@@ -38,42 +33,51 @@ function exportLogsToCSV(logs) {
   URL.revokeObjectURL(url);
 }
 
-function parseLogMessage(message) {
+function parseCloudTrailLog(message) {
   try {
-    const quoted = [...message.matchAll(/"([^"]*)"/g)].map((m) => m[1]);
-    const unquoted = message.replace(/"[^"]*"/g, "QUOTED");
-    const parts = unquoted.trim().split(/\s+/);
+    const data = JSON.parse(message);
 
-    const timeMatch = message.match(/\[(.*?)\]/);
+    let requester = "-";
+
+    // Ưu tiên lấy userName từ sessionIssuer nếu là AssumedRole
+    if (data.userIdentity?.type === "AssumedRole") {
+      requester =
+        data.userIdentity?.sessionContext?.sessionIssuer?.userName &&
+        data.userIdentity?.accountId
+          ? `${data.userIdentity.sessionContext.sessionIssuer.userName} (${data.userIdentity.accountId})`
+          : data.userIdentity?.principalId ?? "-";
+    } else if (data.userIdentity?.userName && data.userIdentity?.accountId) {
+      requester = `${data.userIdentity.userName} (${data.userIdentity.accountId})`;
+    } else {
+      requester = data.userIdentity?.principalId ?? "-";
+    }
 
     return {
-      bucketOwner: parts[0] || "-",
-      bucket: parts[1] || "-",
-      time: timeMatch ? timeMatch[1] : null,
-      remoteIP: parts[4] || "-",
-      requester: parts[5] || "-",
-      requestId: parts[6] || "-",
-      operation: parts[7] || "-",
-      objectKey: parts[8] || "-",
-      requestURI: quoted[0] || "-",
-      statusCode: parts[10] || "-",
-      bytesSent: parts[11] || "-",
-      objectSize: parts[12] || "-",
-      totalTime: parts[13] || "-",
-      turnaroundTime: parts[14] || "-",
-      referrer: quoted[1] || "-",
-      userAgent: quoted[2] || "-",
-      sslCipher: parts[17] || "-",
-      sslProtocol: parts[18] || "-",
+      raw: data,
+      time: data.eventTime ?? "-",
+      requester,
+      operation: data.eventName ?? "-",
+      remoteIP: data.sourceIPAddress ?? "-",
+      requestURI: data.requestParameters?.bucketName ?? "-",
+      statusCode: data.errorCode ? "500" : "200",
+      userAgent: data.userAgent ?? "-",
+      eventSource: data.eventSource ?? "-",
+      objectKey: data.requestParameters?.key ?? "-",
     };
   } catch (err) {
-    console.warn("❌ Failed to parse log message:", err.message);
-    return {};
+    console.warn("❌ Failed to parse CloudTrail JSON:", err.message);
+    return null;
   }
 }
 
 function formatLogTime(raw) {
   if (!raw) return "N/A";
+
+  if (raw.includes("T")) {
+    const date = new Date(raw);
+    return date.toLocaleString();
+  }
+
   const match = raw.match(/^(\d{2})\/(\w{3})\/(\d{4}):(\d{2}:\d{2}:\d{2})/);
   if (!match) return raw;
 
@@ -101,7 +105,6 @@ function LogManager({ headerComponent }) {
   const [showModal, setShowModal] = useState(false);
   const [logs, setLogs] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [filterLevel, setFilterLevel] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
   const logsPerPage = 10;
 
@@ -110,22 +113,24 @@ function LogManager({ headerComponent }) {
       try {
         const response = await fetch(
           "http://localhost:4000/api/aws/cloudwatch/logs",
-          {
-            credentials: "include",
-          }
+          { credentials: "include" }
         );
         const result = await response.json();
 
         if (response.ok && Array.isArray(result.data)) {
-          const transformed = result.data.map((log, index) => {
-            const parsed = parseLogMessage(log.message);
-            return {
-              id: index + 1,
-              timestamp: formatLogTime(parsed.time),
-              statusText: parsed.statusCode === "200" ? "SUCCEED" : "FAILED",
-              ...parsed,
-            };
-          });
+          const transformed = result.data
+            .map((log, index) => {
+              const parsed = parseCloudTrailLog(log.message);
+              if (!parsed) return null;
+
+              return {
+                id: index + 1,
+                timestamp: formatLogTime(parsed.time),
+                statusText: parsed.statusCode === "200" ? "SUCCEED" : "FAILED",
+                ...parsed,
+              };
+            })
+            .filter(Boolean);
 
           setLogs(transformed);
         } else {
@@ -140,11 +145,10 @@ function LogManager({ headerComponent }) {
   }, []);
 
   const filteredLogs = logs.filter((log) => {
-    const searchMatch =
+    return (
       log.operation.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      log.requester.toLowerCase().includes(searchTerm.toLowerCase());
-
-    return searchMatch;
+      log.requester.toLowerCase().includes(searchTerm.toLowerCase())
+    );
   });
 
   const totalPages = Math.ceil(filteredLogs.length / logsPerPage);
@@ -155,7 +159,6 @@ function LogManager({ headerComponent }) {
   );
 
   const handleExport = () => {
-    console.log("Export logs...");
     exportLogsToCSV(filteredLogs);
   };
 
@@ -211,6 +214,7 @@ function LogManager({ headerComponent }) {
             </div>
           ))}
         </div>
+
         <div className="log-pagination">
           <div className="log-pagination-info">
             Showing {startIndex + 1}-
@@ -249,23 +253,26 @@ function LogManager({ headerComponent }) {
           </div>
         </div>
       </div>
+
       {showModal && selectedLog && (
         <div className="log-modal-overlay">
           <div className="log-modal">
-            <h3>Log Details</h3>
+            <h3>Log Details (CloudTrail)</h3>
             <div className="log-modal-body">
               <table className="log-detail-table">
                 <tbody>
-                  {Object.entries(selectedLog)
-                    .filter(([key]) => key !== "statusText")
-                    .map(([key, value]) => (
-                      <tr key={key}>
-                        <td>
-                          <strong>{key}</strong>
-                        </td>
-                        <td>{value ?? "-"}</td>
-                      </tr>
-                    ))}
+                  {Object.entries(selectedLog.raw).map(([key, value]) => (
+                    <tr key={key}>
+                      <td>
+                        <strong>{key}</strong>
+                      </td>
+                      <td>
+                        {typeof value === "object"
+                          ? JSON.stringify(value, null, 2)
+                          : String(value)}
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>

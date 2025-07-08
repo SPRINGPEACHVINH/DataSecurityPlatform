@@ -24,6 +24,8 @@ function Overview({ headerComponent }) {
   const [error, setError] = useState(null);
   const [selectedLogType, setSelectedLogType] = useState("macie");
   const [metricsRaw, setMetricsRaw] = useState({});
+  const [sensitiveFiles, setSensitiveFiles] = useState(0);
+  const [alertsByDate, setAlertsByDate] = useState([]);
 
   useEffect(() => {
     async function fetchOverviewData() {
@@ -103,8 +105,50 @@ function Overview({ headerComponent }) {
 
   const s3Activities = recentActivities.filter((a) => a.type === "s3");
   const macieActivities = recentActivities.filter((a) => a.type === "macie");
-  const [sensitiveFiles, setSensitiveFiles] = useState(0);
-  const [alertsByDate, setAlertsByDate] = useState([]);
+
+  function formatS3Activity(activity) {
+    try {
+      const parsed = JSON.parse(activity.description);
+      const eventName = parsed.eventName || activity.title;
+      const bucket = parsed.requestParameters?.bucketName || "unknown bucket";
+      const objectKey = parsed.requestParameters?.key || "";
+      const shortObject =
+        objectKey.length > 50 ? objectKey.slice(0, 50) + "..." : objectKey;
+
+      const arn = parsed.userIdentity?.arn || "";
+      const userName =
+        parsed.userIdentity?.userName || arn.split("/").pop() || "unknown user";
+      const accountId = parsed.userIdentity?.accountId || "unknown";
+
+      return {
+        title: eventName,
+        description: `${eventName} on ${bucket}/${shortObject} by ${userName} (Account: ${accountId})`,
+        time: activity.time,
+      };
+    } catch {
+      const match = activity.description.match(
+        /([a-f0-9]+) ([^ ]+) \[(.*?)\].*?svc:([^ ]+) [^ ]+ [^ ]+ (REST\.[A-Z.]+)/
+      );
+
+      if (match) {
+        const bucket = match[2];
+        const requester = match[4];
+        const action = match[5];
+
+        return {
+          title: action,
+          description: `${action} by ${requester} on bucket ${bucket}`,
+          time: activity.time,
+        };
+      }
+
+      return {
+        title: activity.title,
+        description: activity.description,
+        time: activity.time,
+      };
+    }
+  }
 
   if (loading) {
     return (
@@ -219,11 +263,9 @@ function Overview({ headerComponent }) {
                 <Tooltip />
                 <Bar dataKey="count" radius={[4, 4, 0, 0]}>
                   {alertsSummary.map((entry, index) => {
-                    let fillColor = "#10b981"; // default: low → xanh lá
-
-                    if (entry.severity === "high") fillColor = "#ef4444"; // đỏ
-                    else if (entry.severity === "medium") fillColor = "#facc15"; // vàng
-
+                    let fillColor = "#10b981";
+                    if (entry.severity === "high") fillColor = "#ef4444";
+                    else if (entry.severity === "medium") fillColor = "#facc15";
                     return <Cell key={`cell-${index}`} fill={fillColor} />;
                   })}
                 </Bar>
@@ -232,6 +274,7 @@ function Overview({ headerComponent }) {
           </div>
         </div>
       </div>
+
       <div className="overview-content">
         <div className="recent-activity-card">
           <div className="activity-header">
@@ -249,39 +292,38 @@ function Overview({ headerComponent }) {
           </div>
 
           {selectedLogType === "macie" && macieActivities.length > 0 && (
-            <>
-              <div className="activity-list">
-                {macieActivities.map((activity, index) => (
-                  <div key={index} className="activity-item">
-                    <div className="activity-content">
-                      <div className="activity-title">{activity.title}</div>
-                      <div className="activity-description">
-                        {activity.description}
-                      </div>
+            <div className="activity-list">
+              {macieActivities.map((activity, index) => (
+                <div key={index} className="activity-item">
+                  <div className="activity-content">
+                    <div className="activity-title">{activity.title}</div>
+                    <div className="activity-description">
+                      {activity.description}
                     </div>
-                    <div className="activity-time">{activity.time}</div>
                   </div>
-                ))}
-              </div>
-            </>
+                  <div className="activity-time">{activity.time}</div>
+                </div>
+              ))}
+            </div>
           )}
 
           {selectedLogType === "s3" && s3Activities.length > 0 && (
-            <>
-              <div className="activity-list">
-                {s3Activities.map((activity, index) => (
+            <div className="activity-list">
+              {s3Activities.map((activity, index) => {
+                const formatted = formatS3Activity(activity);
+                return (
                   <div key={index} className="activity-item">
                     <div className="activity-content">
-                      <div className="activity-title">{activity.title}</div>
+                      <div className="activity-title">{formatted.title}</div>
                       <div className="activity-description">
-                        {activity.description}
+                        {formatted.description}
                       </div>
                     </div>
-                    <div className="activity-time">{activity.time}</div>
+                    <div className="activity-time">{formatted.time}</div>
                   </div>
-                ))}
-              </div>
-            </>
+                );
+              })}
+            </div>
           )}
         </div>
 

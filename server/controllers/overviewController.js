@@ -203,16 +203,38 @@ function parseMacieLog(log) {
 }
 
 function parseS3Log(log) {
-  const desc = log.message;
+  const raw = log.message;
   let title = "S3 Event";
-  if (desc.includes("REST.PUT.OBJECT")) title = "Put Object";
-  else if (desc.includes("REST.GET.ACL")) title = "Get ACL";
-  else if (desc.includes("REST.DELETE.OBJECT")) title = "Delete Object";
+  let description = raw;
+  let parsed;
+
+  // thử parse JSON
+  try {
+    parsed = JSON.parse(raw);
+
+    // xác định title từ eventName nếu có
+    if (parsed.eventName) {
+      title = parsed.eventName;
+    }
+
+    // tạo description thân thiện từ các trường quan trọng
+    const user = parsed.userIdentity?.arn?.split("/").pop() || "Unknown";
+    const bucket = parsed.requestParameters?.bucketName || "Unknown bucket";
+    const object = parsed.requestParameters?.key || "Unknown object";
+    description = `${user} accessed ${bucket}/${object}`;
+  } catch (e) {
+    // nếu không phải JSON, fallback như cũ
+    if (raw.includes("REST.PUT.OBJECT")) title = "Put Object";
+    else if (raw.includes("REST.GET.ACL")) title = "Get ACL";
+    else if (raw.includes("REST.DELETE.OBJECT")) title = "Delete Object";
+
+    description = raw.slice(0, 200); // fallback
+  }
 
   return {
     type: "s3",
     title,
-    description: desc.slice(0, 200),
+    description,
     time: new Date(log.timestamp).toLocaleTimeString(),
     icon: "S",
   };
