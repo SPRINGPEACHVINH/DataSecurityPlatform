@@ -24,7 +24,7 @@ The goal of this platform is to enhance visibility, monitoring, and security of 
 
 ## <!--📋--> Architecture
 
-![Architecture Diagram](asset/architecture-final.png  )
+![Architecture Diagram](asset/DSPM-Arch.png)
 
 ---
 
