@@ -6,6 +6,7 @@ import purviewAPI from './purview.js';
 import macieRoutes from './macie.js';
 import s3Route from './s3Route.js';
 import accessLogRoutes from "./awsAccessLogsRoutes.js";
+import cloudwatchLogsRoutes from "./cloudwatchLogsRoutes.js";
 
 
 const router = express.Router();
@@ -21,6 +22,7 @@ router.use('/purview', purviewAPI);
 router.use('/macie', macieRoutes);
 router.use("/s3", s3Route);
 router.use('/aws', accessLogRoutes);
+router.use("/aws", cloudwatchLogsRoutes);
 
 
 export default router;
