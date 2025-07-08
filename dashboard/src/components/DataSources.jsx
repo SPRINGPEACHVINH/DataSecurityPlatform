@@ -119,7 +119,6 @@ function DataSources({
           });
         }
         setDocuments(allFiles);
-        console.log("All Files:", allFiles);
 
         let allConnections = [];
         if (docData && docData.data && data && data.data) {
