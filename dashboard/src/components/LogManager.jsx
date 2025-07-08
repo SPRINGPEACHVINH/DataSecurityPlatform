@@ -1,7 +1,104 @@
 import React, { useState, useEffect } from "react";
 import "./LogManager.css";
 
+function exportLogsToCSV(logs) {
+  if (!logs.length) return;
+
+  const headers = Object.keys(logs[0]).filter(
+    (k) => k !== "level" && k !== "statusText"
+  ); // bỏ các trường hiển thị phụ
+  const csvRows = [];
+
+  // Add header
+  csvRows.push(headers.join(","));
+
+  // Add rows
+  logs.forEach((log) => {
+    const values = headers.map((key) => {
+      const val = log[key] ?? "";
+      // Escape double quotes
+      return `"${String(val).replace(/"/g, '""')}"`;
+    });
+    csvRows.push(values.join(","));
+  });
+
+  // Create blob and trigger download
+  const blob = new Blob([csvRows.join("\n")], {
+    type: "text/csv;charset=utf-8;",
+  });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "logs_export.csv";
+  a.style.display = "none";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function parseLogMessage(message) {
+  try {
+    const quoted = [...message.matchAll(/"([^"]*)"/g)].map((m) => m[1]);
+    const unquoted = message.replace(/"[^"]*"/g, "QUOTED");
+    const parts = unquoted.trim().split(/\s+/);
+
+    const timeMatch = message.match(/\[(.*?)\]/);
+
+    return {
+      bucketOwner: parts[0] || "-",
+      bucket: parts[1] || "-",
+      time: timeMatch ? timeMatch[1] : null,
+      remoteIP: parts[4] || "-",
+      requester: parts[5] || "-",
+      requestId: parts[6] || "-",
+      operation: parts[7] || "-",
+      objectKey: parts[8] || "-",
+      requestURI: quoted[0] || "-",
+      statusCode: parts[10] || "-",
+      bytesSent: parts[11] || "-",
+      objectSize: parts[12] || "-",
+      totalTime: parts[13] || "-",
+      turnaroundTime: parts[14] || "-",
+      referrer: quoted[1] || "-",
+      userAgent: quoted[2] || "-",
+      sslCipher: parts[17] || "-",
+      sslProtocol: parts[18] || "-",
+    };
+  } catch (err) {
+    console.warn("❌ Failed to parse log message:", err.message);
+    return {};
+  }
+}
+
+function formatLogTime(raw) {
+  if (!raw) return "N/A";
+  const match = raw.match(/^(\d{2})\/(\w{3})\/(\d{4}):(\d{2}:\d{2}:\d{2})/);
+  if (!match) return raw;
+
+  const [_, day, monStr, year, time] = match;
+  const months = {
+    Jan: "01",
+    Feb: "02",
+    Mar: "03",
+    Apr: "04",
+    May: "05",
+    Jun: "06",
+    Jul: "07",
+    Aug: "08",
+    Sep: "09",
+    Oct: "10",
+    Nov: "11",
+    Dec: "12",
+  };
+  const month = months[monStr] || "01";
+  return `${year}-${month}-${day} ${time}`;
+}
+
 function LogManager({ headerComponent }) {
+  const [selectedLog, setSelectedLog] = useState(null);
+  const [showModal, setShowModal] = useState(false);
   const [logs, setLogs] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterLevel, setFilterLevel] = useState("all");
@@ -11,26 +108,25 @@ function LogManager({ headerComponent }) {
   useEffect(() => {
     async function fetchLogs() {
       try {
-        // Prioritize MongoDB first
-        const response = await fetch("http://localhost:4000/api/aws/access-logs", {
-          credentials: "include",
-        });
+        const response = await fetch(
+          "http://localhost:4000/api/aws/cloudwatch/logs",
+          {
+            credentials: "include",
+          }
+        );
         const result = await response.json();
 
         if (response.ok && Array.isArray(result.data)) {
-          const transformed = result.data.map((log, index) => ({
-            id: index + 1,
-            timestamp: log.time || "N/A",
-            requester: log.requester || "-",
-            operation: log.operation || "-",
-            statusCode: log.statusCode || "-",
-            level:
-              log.statusCode === "200"
-                ? "info"
-                : log.statusCode?.startsWith("4")
-                ? "warning"
-                : "error",
-          }));
+          const transformed = result.data.map((log, index) => {
+            const parsed = parseLogMessage(log.message);
+            return {
+              id: index + 1,
+              timestamp: formatLogTime(parsed.time),
+              statusText: parsed.statusCode === "200" ? "SUCCEED" : "FAILED",
+              ...parsed,
+            };
+          });
+
           setLogs(transformed);
         } else {
           console.warn("Failed to load logs:", result);
@@ -48,9 +144,7 @@ function LogManager({ headerComponent }) {
       log.operation.toLowerCase().includes(searchTerm.toLowerCase()) ||
       log.requester.toLowerCase().includes(searchTerm.toLowerCase());
 
-    const levelMatch = filterLevel === "all" || log.level === filterLevel;
-
-    return searchMatch && levelMatch;
+    return searchMatch;
   });
 
   const totalPages = Math.ceil(filteredLogs.length / logsPerPage);
@@ -62,16 +156,13 @@ function LogManager({ headerComponent }) {
 
   const handleExport = () => {
     console.log("Export logs...");
+    exportLogsToCSV(filteredLogs);
   };
 
   const handleViewDetails = (log) => {
-    alert(`Status: ${log.statusCode}`);
+    setSelectedLog(log);
+    setShowModal(true);
   };
-
-  const logStats = ["error", "warning", "info"].map((level) => ({
-    label: level.charAt(0).toUpperCase() + level.slice(1),
-    value: filteredLogs.filter((log) => log.level === level).length,
-  }));
 
   return (
     <div className="main-content">
@@ -85,28 +176,9 @@ function LogManager({ headerComponent }) {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <select
-          className="log-filter-select"
-          value={filterLevel}
-          onChange={(e) => setFilterLevel(e.target.value)}
-        >
-          <option value="all">All Levels</option>
-          <option value="error">Error</option>
-          <option value="warning">Warning</option>
-          <option value="info">Info</option>
-        </select>
         <button className="log-export-button" onClick={handleExport}>
           Export Logs
         </button>
-      </div>
-
-      <div className="log-stats">
-        {logStats.map((stat, idx) => (
-          <div key={idx} className="log-stat">
-            <div className="log-stat-value">{stat.value}</div>
-            <div className="log-stat-label">{stat.label}</div>
-          </div>
-        ))}
       </div>
 
       <div className="logs-table-card">
@@ -124,7 +196,9 @@ function LogManager({ headerComponent }) {
               <div>{log.requester}</div>
               <div>{log.operation}</div>
               <div>
-                <span className={`log-level ${log.level}`}>{log.statusCode}</span>
+                <span className={`log-level ${log.level}`}>
+                  {log.statusText}
+                </span>
               </div>
               <div className="log-actions">
                 <button
@@ -137,11 +211,11 @@ function LogManager({ headerComponent }) {
             </div>
           ))}
         </div>
-
         <div className="log-pagination">
           <div className="log-pagination-info">
             Showing {startIndex + 1}-
-            {Math.min(startIndex + logsPerPage, filteredLogs.length)} of {filteredLogs.length} logs
+            {Math.min(startIndex + logsPerPage, filteredLogs.length)} of{" "}
+            {filteredLogs.length} logs
           </div>
           <div className="log-pagination-controls">
             <button
@@ -175,6 +249,37 @@ function LogManager({ headerComponent }) {
           </div>
         </div>
       </div>
+      {showModal && selectedLog && (
+        <div className="log-modal-overlay">
+          <div className="log-modal">
+            <h3>Log Details</h3>
+            <div className="log-modal-body">
+              <table className="log-detail-table">
+                <tbody>
+                  {Object.entries(selectedLog)
+                    .filter(([key]) => key !== "statusText")
+                    .map(([key, value]) => (
+                      <tr key={key}>
+                        <td>
+                          <strong>{key}</strong>
+                        </td>
+                        <td>{value ?? "-"}</td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="log-modal-footer">
+              <button
+                className="log-modal-close"
+                onClick={() => setShowModal(false)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

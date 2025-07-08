@@ -43,7 +43,7 @@
   object-fit: contain;
   object-position: center;
   width: 193px;
-  align-self: end;
+  align-self: start;
   max-width: 100%;
 }
 
