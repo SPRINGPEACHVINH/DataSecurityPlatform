@@ -41,7 +41,7 @@ export async function listBucketsAndFiles() {
 
     result.push({
       container: bucket.Name,
-      type: "AWS S3",
+      type: "s3",
       status: "Connected",
       files: allObjects.map((obj) => ({
         name: obj.Key.split("/").pop(),

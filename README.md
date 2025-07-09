@@ -16,7 +16,7 @@ This project is a **Data Security Posture Management (DSPM)** platform designed 
 
 - **Log Management**: Tracks activities such as file uploads, user modifications (capturing the usernames who made changes), and file downloads.
 - **Search and Scan**: Scans cloud storage repositories to identify files containing sensitive information.
-- **Server Scan**: Scans Windows and Linux servers to detect files that may contain sensitive data.
+- **Server Scan**: Scans Windows servers to detect files that may contain sensitive data.
 
 The goal of this platform is to enhance visibility, monitoring, and security of data assets across hybrid cloud environments.
 
@@ -53,5 +53,3 @@ The goal of this platform is to enhance visibility, monitoring, and security of 
 ---
 
 ### Notes / Challenges
-- Log Management: fine-tuning event correlation logic and S3/Azure integration.
-- Cloud Scanner: working on handling permission edge cases and recurs
