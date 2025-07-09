@@ -21,11 +21,20 @@ const macieClient = new Macie2Client({
 });
 
 export async function getFindings(findingIds) {
-  const command = new GetFindingsCommand({
-    findingIds,
-  });
-  const response = await macieClient.send(command);
-  return response;
+  const MAX_IDS = 50;
+  const batches = [];
+  for (let i = 0; i < findingIds.length; i += MAX_IDS) {
+    batches.push(findingIds.slice(i, i + MAX_IDS));
+  }
+
+  const allFindings = [];
+  for (const batch of batches) {
+    const command = new GetFindingsCommand({ findingIds: batch });
+    const response = await macieClient.send(command);
+    allFindings.push(...(response.findings || []));
+  }
+
+  return { findings: allFindings };
 }
 
 export const listFindingsWithFilters = async ({
@@ -60,9 +69,7 @@ export const listFindingsWithFilters = async ({
     return { findings: [] };
   }
 
-  const details = await client.send(
-    new GetFindingsCommand({ findingIds: result.ids })
-  );
+  const details = await getFindings(result.ids);
   console.log("Macie filter criteria:", criteria);
 
   return { findings: details.findings };
@@ -108,9 +115,26 @@ export async function getFindingStats(findingIds) {
 }
 
 export async function listFindings() {
-  const command = new ListFindingsCommand({});
-  const response = await macieClient.send(command);
-  return response;
+  const findingIds = [];
+  let nextToken = undefined;
+
+  do {
+    const command = new ListFindingsCommand({
+      maxResults: 50,
+      nextToken,
+    });
+
+    const response = await macieClient.send(command);
+    if (response.findingIds) {
+      findingIds.push(...response.findingIds);
+    }
+
+    nextToken = response.nextToken;
+  } while (nextToken);
+
+  return {
+    findingIds,
+  };
 }
 
 export async function getFindingsFilter() {

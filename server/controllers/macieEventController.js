@@ -171,56 +171,56 @@ export const handleListFindings = async (req, res) => {
   }
 };
 
-export const handleGetFindingStats = async (req, res) => {
-  try {
-    const findingIdsResponse = await listFindings();
-    const findingIds = findingIdsResponse.findingIds;
+// export const handleGetFindingStats = async (req, res) => {
+//   try {
+//     const findingIdsResponse = await listFindings();
+//     const findingIds = findingIdsResponse.findingIds;
 
-    if (!findingIds || findingIds.length === 0) {
-      return res.status(200).json({
-        message: "No findings found",
-        data: {
-          alertsSummary: [],
-          findings: [],
-        },
-      });
-    }
+//     if (!findingIds || findingIds.length === 0) {
+//       return res.status(200).json({
+//         message: "No findings found",
+//         data: {
+//           alertsSummary: [],
+//           findings: [],
+//         },
+//       });
+//     }
 
-    const result = await getFindings(findingIds); // ⚠️ Dùng đúng hàm
-    const highFindings = result.findings.filter(
-      (f) => f?.severity?.description?.toLowerCase() === "high"
-    );
+//     const result = await getFindings(findingIds); // ⚠️ Dùng đúng hàm
+//     const highFindings = result.findings.filter(
+//       (f) => f?.severity?.description?.toLowerCase() === "high"
+//     );
 
-    if (highFindings.length > 0) {
-      const message = highFindings
-        .map((f, i) => {
-          return `🔒 [${i + 1}] ${f.title}
-📦 Bucket: ${f.resourcesAffected?.s3Bucket?.name}
-🗂️ Object: ${f.resourcesAffected?.s3Object?.key}
-⚠️ Severity: ${f.severity?.description}
-🕒 Time: ${f.createdAt}
-🔗 Type: ${f.type}
-`;
-        })
-        .join("\n\n");
+//     if (highFindings.length > 0) {
+//       const message = highFindings
+//         .map((f, i) => {
+//           return `🔒 [${i + 1}] ${f.title}
+// 📦 Bucket: ${f.resourcesAffected?.s3Bucket?.name}
+// 🗂️ Object: ${f.resourcesAffected?.s3Object?.key}
+// ⚠️ Severity: ${f.severity?.description}
+// 🕒 Time: ${f.createdAt}
+// 🔗 Type: ${f.type}
+// `;
+//         })
+//         .join("\n\n");
 
-      await sendAlertEmail(
-        `[ALERT] ${highFindings.length} high-severity findings detected`,
-        message
-      );
-    }
+//       await sendAlertEmail(
+//         `[ALERT] ${highFindings.length} high-severity findings detected`,
+//         message
+//       );
+//     }
 
-    res.status(200).json({
-      message: "Finding statistics retrieved",
-      data: result,
-    });
-  } catch (error) {
-    console.error("Get finding statistics error:", error);
-    res.status(500).json({
-      message: error.message || "Failed to get finding statistics",
-    });
-  }
-};
+//     res.status(200).json({
+//       message: "Finding statistics retrieved",
+//       data: result,
+//     });
+//   } catch (error) {
+//     console.error("Get finding statistics error:", error);
+//     res.status(500).json({
+//       message: error.message || "Failed to get finding statistics",
+//     });
+//   }
+// };
 
 export const getFindingsBySensitiveType = async (req, res) => {
   try {

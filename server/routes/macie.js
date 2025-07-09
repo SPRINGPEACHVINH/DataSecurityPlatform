@@ -7,7 +7,7 @@ import {
   handleGetFindingsFilter,
   handleFilterFindings,
   getFindingsBySensitiveType,
-  handleGetFindingStats
+  // handleGetFindingStats
 } from "../controllers/macieEventController.js";
 
 const router = express.Router();
@@ -19,7 +19,7 @@ router.post("/findings/details", handleGetFindingDetails);
 router.get("/findings/filters", handleGetFindingsFilter);
 router.get("/findings/filter", handleFilterFindings);
 router.get("/findings/types", getFindingsBySensitiveType);
-router.get("/findings/stats", handleGetFindingStats);
+// router.get("/findings/stats", handleGetFindingStats);
 
 
 export default router;
