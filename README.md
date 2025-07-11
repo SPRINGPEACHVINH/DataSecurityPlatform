@@ -1,5 +1,5 @@
 # Data Security Posture Management on Cloud Storage
-![Status](https://img.shields.io/badge/status-in%20progress-yellow)
+![Status](https://img.shields.io/badge/status-complete-green)
 ---
 <!-- ## 📚 Table of Contents
 - [Description](#-description)
