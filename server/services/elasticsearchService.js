@@ -286,3 +286,95 @@ export const getSyncStatus = async (req, res) => {
     });
   }
 };
+
+export const deleteFileContent = async (req, res) => {
+  try {
+    const { connector_name, connector_names } = req.body;
+    
+    // Support both single connector và multiple connectors
+    let connectorsToProcess = [];
+    
+    if (connector_name) {
+      connectorsToProcess = [connector_name];
+    } else if (connector_names && Array.isArray(connector_names)) {
+      connectorsToProcess = connector_names;
+    } else {
+      return res.status(400).json({
+        message: "Either 'connector_name' or 'connector_names' array is required.",
+      });
+    }
+
+    const requestBody = {
+      script: {
+        source: "ctx._source.remove('body')",
+        lang: "painless"
+      },
+      query: {
+        exists: { field: "body" }
+      }
+    };
+
+    const results = [];
+
+    // Process each connector
+    for (const connectorName of connectorsToProcess) {
+      try {
+        const response = await axios.post(
+          `${ES_LOCAL_URL}/${connectorName}/_update_by_query`,
+          requestBody,
+          {
+            auth: {
+              username: ES_LOCAL_USERNAME,
+              password: ES_LOCAL_PASSWORD,
+            },
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        results.push({
+          connector_name: connectorName,
+          success: true,
+          data: {
+            execution_time_ms: response.data.took,
+            total_documents: response.data.total,
+            updated_documents: response.data.updated,
+            version_conflicts: response.data.version_conflicts,
+            failures: response.data.failures || []
+          }
+        });
+
+      } catch (connectorError) {
+        console.error(`Error processing connector ${connectorName}:`, connectorError);
+        results.push({
+          connector_name: connectorName,
+          success: false,
+          error: connectorError.response
+            ? connectorError.response.data
+            : connectorError.message
+        });
+      }
+    }
+
+    // Check if all operations were successful
+    const allSuccessful = results.every(result => result.success);
+    const successfulCount = results.filter(result => result.success).length;
+
+    res.status(allSuccessful ? 200 : 207).json({
+      message: allSuccessful 
+        ? "File content deleted successfully from all connectors."
+        : `File content deletion completed. ${successfulCount}/${results.length} connectors processed successfully.`,
+      data: results
+    });
+
+  } catch (error) {
+    console.error("Error deleting file content:", error);
+    res.status(500).json({
+      message: "Failed to delete file content.",
+      error: error.response
+        ? error.response.data
+        : error.message || "Unknown error",
+    });
+  }
+};

@@ -12,6 +12,7 @@ import {
   getDocuments,
   SyncConnectors,
   getSyncStatus,
+  deleteFileContent,
 } from "../services/elasticsearchService.js";
 import { isAuthenticated } from "../middleware/isAuthenticated.js";
 
@@ -31,5 +32,6 @@ router.get("/elasticsearch/connector", isAuthenticated, getConnector);
 router.get("/elasticsearch/documents", isAuthenticated, getDocuments);
 router.post("/elasticsearch/sync-connectors", SyncConnectors);
 router.get("/elasticsearch/sync-status", getSyncStatus);
+router.post("/elasticsearch/delete-file-content", deleteFileContent);
 
 export default router;
