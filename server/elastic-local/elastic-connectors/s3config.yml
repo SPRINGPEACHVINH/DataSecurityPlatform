@@ -1,0 +1,14 @@
+connectors:
+-
+  connector_id: ""
+  service_type: "s3"
+
+elasticsearch:
+  host: "http://host.docker.internal:9200"
+  api_key: ${S3CONFIG_APIKEY}
+  log_level: INFO
+  request_timeout: 120
+  max_wait_duration: 60
+
+# Run this command
+# docker run --env-file "D:\DSPM\elastic-start-local\.env" -v "D:\DSPM\elastic-start-local\elastic-connectors:/s3config" --tty --rm docker.elastic.co/integrations/elastic-connectors:8.17.1 /app/bin/elastic-ingest -c /s3config/s3config.yml
