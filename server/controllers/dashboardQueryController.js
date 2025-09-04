@@ -118,17 +118,12 @@ const handleSdDocument = async ({
 };
 
 export const handleDashboardSearch = async (req, res) => {
-  const { keyword, scanLevel } = req.body;
+  const { keyword } = req.body;
   const userId = req.session.userId;
 
-  const missingFields = [];
-  if (!keyword) missingFields.push("keyword");
-  if (!ruleName) missingFields.push("ruleName");
-  if (!classificationName) missingFields.push("classificationName");
-
-  if (missingFields.length > 0) {
+  if (!keyword) {
     return res.status(400).json({
-      message: `Missing required fields: ${missingFields.join(", ")}`,
+      message: "Missing required field: keyword",
     });
   }
 
@@ -509,9 +504,9 @@ export const queryScriptResults = async (req, res) => {
 
 export const checkScriptStatus = async (req, res) => {
   try {
-    const scriptPath = path.join(process.cwd(), 'utils', 'finding.ps1');
+    const scriptPath = path.join(process.cwd(), "utils", "finding.ps1");
     const baseDirectory = process.env.BASE_DIRECTORY;
-    
+
     const checks = {
       scriptExists: false,
       scriptReadable: false,
@@ -520,7 +515,7 @@ export const checkScriptStatus = async (req, res) => {
       powershellAvailable: false,
       environmentVariables: {
         BASE_DIRECTORY: !!process.env.BASE_DIRECTORY,
-      }
+      },
     };
 
     // 1. Check script file
@@ -530,7 +525,7 @@ export const checkScriptStatus = async (req, res) => {
         fs.accessSync(scriptPath, fs.constants.R_OK);
         checks.scriptReadable = true;
       } catch (error) {
-        console.log('Script not readable:', error.message);
+        console.log("Script not readable:", error.message);
       }
     }
 
@@ -541,7 +536,7 @@ export const checkScriptStatus = async (req, res) => {
         fs.accessSync(baseDirectory, fs.constants.W_OK);
         checks.baseDirectoryWritable = true;
       } catch (error) {
-        console.log('Base directory not writable:', error.message);
+        console.log("Base directory not writable:", error.message);
       }
     } else {
       // Try to create directory
@@ -550,25 +545,25 @@ export const checkScriptStatus = async (req, res) => {
         checks.baseDirectoryExists = true;
         checks.baseDirectoryWritable = true;
       } catch (error) {
-        console.log('Cannot create base directory:', error.message);
+        console.log("Cannot create base directory:", error.message);
       }
     }
 
     // 3. Check PowerShell
     const powershellCheck = new Promise((resolve) => {
-      const ps = new powershell('Get-Host');
-      
-      ps.on('output', (data) => {
+      const ps = new powershell("Get-Host");
+
+      ps.on("output", (data) => {
         if (data) {
           checks.powershellAvailable = true;
         }
       });
 
-      ps.on('end', () => {
+      ps.on("end", () => {
         resolve();
       });
 
-      ps.on('error', () => {
+      ps.on("error", () => {
         checks.powershellAvailable = false;
         resolve();
       });
@@ -582,11 +577,12 @@ export const checkScriptStatus = async (req, res) => {
     await powershellCheck;
 
     // Overall status
-    const isReady = checks.scriptExists && 
-                   checks.scriptReadable && 
-                   checks.baseDirectoryExists && 
-                   checks.baseDirectoryWritable && 
-                   checks.powershellAvailable;
+    const isReady =
+      checks.scriptExists &&
+      checks.scriptReadable &&
+      checks.baseDirectoryExists &&
+      checks.baseDirectoryWritable &&
+      checks.powershellAvailable;
 
     res.status(200).json({
       message: "Script status check completed",
@@ -595,17 +591,16 @@ export const checkScriptStatus = async (req, res) => {
         checks,
         paths: {
           scriptPath,
-          baseDirectory
+          baseDirectory,
         },
-        recommendations: generateRecommendations(checks)
-      }
+        recommendations: generateRecommendations(checks),
+      },
     });
-
   } catch (error) {
     console.error("Error checking script status:", error);
     res.status(500).json({
       message: "Failed to check script status",
-      error: error.message
+      error: error.message,
     });
   }
 };
@@ -615,27 +610,39 @@ const generateRecommendations = (checks) => {
   const recommendations = [];
 
   if (!checks.scriptExists) {
-    recommendations.push("PowerShell script 'finding.ps1' not found. Please ensure the script is in the utils folder.");
+    recommendations.push(
+      "PowerShell script 'finding.ps1' not found. Please ensure the script is in the utils folder."
+    );
   }
 
   if (!checks.scriptReadable) {
-    recommendations.push("PowerShell script is not readable. Please check file permissions.");
+    recommendations.push(
+      "PowerShell script is not readable. Please check file permissions."
+    );
   }
 
   if (!checks.baseDirectoryExists) {
-    recommendations.push("Base directory does not exist. Please create the directory or check the BASE_DIRECTORY environment variable.");
+    recommendations.push(
+      "Base directory does not exist. Please create the directory or check the BASE_DIRECTORY environment variable."
+    );
   }
 
   if (!checks.baseDirectoryWritable) {
-    recommendations.push("Base directory is not writable. Please check directory permissions.");
+    recommendations.push(
+      "Base directory is not writable. Please check directory permissions."
+    );
   }
 
   if (!checks.powershellAvailable) {
-    recommendations.push("PowerShell is not available or not responding. Please ensure PowerShell is installed and accessible.");
+    recommendations.push(
+      "PowerShell is not available or not responding. Please ensure PowerShell is installed and accessible."
+    );
   }
 
   if (!checks.environmentVariables.BASE_DIRECTORY) {
-    recommendations.push("BASE_DIRECTORY environment variable is not set. Please check your .env file.");
+    recommendations.push(
+      "BASE_DIRECTORY environment variable is not set. Please check your .env file."
+    );
   }
 
   return recommendations;

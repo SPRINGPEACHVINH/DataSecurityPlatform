@@ -1,13 +1,17 @@
 connectors:
 -
-  connector_id: ""
+  connector_id: ${AZCONFIG_CONNECTOR_ID}
   service_type: "azure_blob_storage"
-
+  configuration:
+    account_name: ${AZCONFIG_ACCOUNTNAME}
+    account_key: ${AZCONFIG_ACCOUNTKEY}
+    blob_endpoint: ${AZCONFIG_BLOBENDPOINT}
+    containers: ${AZCONFIG_CONTAINERS}
+    use_text_extraction_service: true
+    
 elasticsearch:
   host: "http://host.docker.internal:9200"
   api_key: ${AZCONFIG_APIKEY}
   log_level: INFO
   request_timeout: 120
   max_wait_duration: 60
-# Run this command
-# docker run --env-file "D:\DSPM\elastic-start-local\.env" -v "D:\DSPM\elastic-start-local\elastic-connectors:/azconfig" --tty --rm docker.elastic.co/integrations/elastic-connectors:8.17.1 /app/bin/elastic-ingest -c /azconfig/azconfig.yml
