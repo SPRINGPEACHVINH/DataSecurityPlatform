@@ -222,7 +222,6 @@ function Search({
           }
         );
         const data = await response.json();
-        console.log("Connector data:", data);
 
         const docResponse = await fetch(
           "http://localhost:4000/api/dashboard/elasticsearch/documents",
@@ -430,31 +429,88 @@ function Search({
       }
     } else if (searchType === "AWS") {
       setIsLoading(true);
+      setSearchResults([]);
+      setHasDisplayedResults(false);
       try {
-        const params = new URLSearchParams();
-        if (category) params.append("category", category); // lấy từ dropdown
-        if (searchTerm) params.append("sensitiveType", searchTerm.trim()); // lấy từ ô search (type)
-
-        const response = await fetch(
-          `http://localhost:4000/api/macie/findings/types?${params}`,
-          {
-            credentials: "include",
-            headers: {
-              Cookie: localStorage.getItem("sessionId") || "",
-            },
-          }
+        const s3Connectors = connectionData.filter(
+          (conn) => conn.type === "s3"
         );
-        const result = await response.json();
-        console.log("AWS search result:", result);
-        if (response.ok) {
-          setSearchResults(result.data || []);
-          alert(`Found ${result.data?.length || 0} sensitive findings`);
+
+        if (s3Connectors.length === 0) {
+          alert("No S3 connectors found");
+          setIsLoading(false);
+          return;
+        }
+
+        let allSearchResults = [];
+
+        for (const s3Connector of s3Connectors) {
+          try {
+            const searchData = {
+              keyword: searchTerm.trim(),
+              index_name: s3Connector.name,
+            };
+
+            console.log("Searching S3 with data:", searchData);
+
+            const response = await fetch(
+              "http://localhost:4000/api/dashboard/elasticsearch/search-keyword",
+              {
+                method: "POST",
+                credentials: "include",
+                headers: {
+                  "Content-Type": "application/json",
+                  Cookie: localStorage.getItem("sessionId") || "",
+                },
+                body: JSON.stringify(searchData),
+              }
+            );
+
+            if (response.ok) {
+              const result = await response.json();
+
+              if (result.data && result.data.results) {
+                // Map results to consistent format
+                const mappedResults = result.data.results.map((item) => ({
+                  id: item.id,
+                  index: item.index,
+                  container: item.container,
+                  title: item.title,
+                  size: item.size,
+                  storage_type: item.storage_type,
+                  updated_at: item.updated_at,
+                  searchKeyword: searchTerm.trim(),
+                }));
+
+                allSearchResults = allSearchResults.concat(mappedResults);
+              }
+            } else {
+              const result = await response.json();
+              console.warn(
+                `Search failed for ${s3Connector.name}:`,
+                result.message
+              );
+            }
+          } catch (connectorError) {
+            console.warn(
+              `Search failed for connector ${s3Connector.name}:`,
+              connectorError
+            );
+          }
+        }
+
+        if (allSearchResults.length > 0) {
+          setSearchResults(allSearchResults);
+          alert(
+            `Found ${allSearchResults.length} results for "${searchTerm}" in S3 storage`
+          );
         } else {
-          alert(`Search failed: ${result.message}`);
+          setSearchResults([]);
+          alert(`No results found for "${searchTerm}" in S3 storage`);
         }
       } catch (error) {
-        console.error("Error during search:", error);
-        alert("An error occurred during the search. Please try again.");
+        console.error("Error during S3 search:", error);
+        alert("An error occurred during the S3 search. Please try again.");
       } finally {
         setIsLoading(false);
       }
@@ -493,7 +549,7 @@ function Search({
     setFilePath("");
 
     setServerSearchResults([]);
-    setSearchResults([]); 
+    setSearchResults([]);
 
     localStorage.removeItem("searchTerm");
     localStorage.removeItem("filePath");
@@ -644,7 +700,7 @@ function Search({
               />
             )}
 
-            {searchType === "AWS" && (
+            {/* {searchType === "AWS" && (
               <select
                 className="aws-category-select"
                 value={category}
@@ -668,7 +724,7 @@ function Search({
                 </option>
                 <option value="MEDICAL_INFORMATION">MEDICAL_INFORMATION</option>
               </select>
-            )}
+            )} */}
 
             <button
               className="search-button"
@@ -743,9 +799,8 @@ function Search({
               <strong>Search Parameters:</strong>
               {searchType === "AWS" ? (
                 <>
-                  <div>• Scan Level: {scanLevel}</div>
-                  <div>• Category: {category || "All"}</div>
-                  <div>• Type: {searchTerm || "All"}</div>
+                  <div>• Keyword: "{searchTerm}"</div>
+                  <div>• Type: {searchType}</div>
                 </>
               ) : (
                 <>
@@ -975,75 +1030,132 @@ function Search({
             </div>
           )}
           {/* AWS Search Results Table */}
-          {searchType === "AWS" && searchResults.length > 0 && (
-            <div className="data-table-container" style={{ marginTop: 24 }}>
-              <div className="table-content">
-                <div className="table-row table-header">
-                  <div className="file-name-column column-header">
-                    File Name
+          {searchType === "AWS" &&
+            searchResults.length > 0 &&
+            searchTerm.trim() && (
+              <div className="data-table-container" style={{ marginTop: 24 }}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    marginBottom: "12px",
+                  }}
+                >
+                  <h3 style={{ margin: 0, color: "#155724" }}>
+                    🔍 AWS S3 Search Results ({searchResults.length} files
+                    found)
+                  </h3>                 
+                </div>
+
+                <div className="table-content">
+                  <div className="table-row table-header">
+                    <div className="file-name-column column-header">
+                      File Name
+                    </div>
+                    <div className="container-column column-header">
+                      Container
+                    </div>
+                    <div className="index-column column-header">Index</div>
+                    <div className="size-column column-header">Size</div>
+                    <div className="storage-type-column column-header">
+                      Storage
+                    </div>
+                    <div className="updated-at-column column-header">
+                      Updated At
+                    </div>
                   </div>
-                  <div className="bucket-column column-header">Bucket</div>
-                  <div className="category-column column-header">Category</div>
-                  <div className="type-column column-header">Type</div>
-                  <div className="count-column column-header">Count</div>
-                  <div className="severity-column column-header">Severity</div>
-                  <div className="created-at-column column-header">
-                    Created At
+                  {searchResults.map((item, idx) => (
+                    <div className="table-row" key={item.id || idx}>
+                      <div className="file-name-column" title={item.title}>
+                        📄 {item.title}
+                      </div>
+                      <div className="container-column">{item.container}</div>
+                      <div
+                        className="index-column"
+                        style={{ fontSize: "12px", color: "#666" }}
+                      >
+                        {item.index}
+                      </div>
+                      <div className="size-column">
+                        {item.size
+                          ? `${item.size} KB`
+                          : "N/A"}
+                      </div>
+                      <div className="storage-type-column">
+                        <span
+                          style={{
+                            display: "inline-block",
+                            padding: "2px 8px",
+                            borderRadius: "12px",
+                            backgroundColor: "#ff9500", // Orange for AWS
+                            color: "white",
+                            fontWeight: "600",
+                            fontSize: "10px",
+                          }}
+                        >
+                          {item.storage_type?.toUpperCase() || "S3"}
+                        </span>
+                      </div>
+                      <div
+                        className="updated-at-column"
+                        style={{ fontSize: "12px" }}
+                      >
+                        {item.updated_at || "N/A"}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div
+                  style={{
+                    marginTop: "16px",
+                    padding: "12px",
+                    backgroundColor: "#f8f9fa",
+                    borderRadius: "8px",
+                    border: "1px solid #dee2e6",
+                  }}
+                >
+                  <h4
+                    style={{
+                      margin: "0 0 8px 0",
+                      color: "#495057",
+                      fontSize: "14px",
+                    }}
+                  >
+                    📊 AWS S3 Search Summary
+                  </h4>
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns:
+                        "repeat(auto-fit, minmax(200px, 1fr))",
+                      gap: "12px",
+                      fontSize: "13px",
+                    }}
+                  >
+                    <div>
+                      <strong>Search Keyword:</strong> "{searchTerm}"
+                    </div>
+                    <div>
+                      <strong>Results Found:</strong> {searchResults.length}
+                    </div>
+                    <div>
+                      <strong>Containers:</strong>{" "}
+                      {[...new Set(searchResults.map((r) => r.container))].join(
+                        ", "
+                      )}
+                    </div>
+                    <div>
+                      <strong>Indexes:</strong>{" "}
+                      {[...new Set(searchResults.map((r) => r.index))].join(
+                        ", "
+                      )}
+                    </div>                 
                   </div>
                 </div>
-                {searchResults.map((item, idx) => (
-                  <div className="table-row" key={item.id || idx}>
-                    <div className="file-name-column">{item.key}</div>
-                    <div className="bucket-column">{item.bucket}</div>
-                    <div className="category-column">
-                      {item.matchedTypes?.[0]?.category || "N/A"}
-                    </div>
-                    <div className="type-column">
-                      {item.matchedTypes?.[0]?.type || "N/A"}
-                    </div>
-                    <div className="count-column">
-                      {item.matchedTypes?.[0]?.count ?? "N/A"}
-                    </div>
-                    <div className="severity-column">
-                      <span
-                        style={{
-                          display: "inline-block",
-                          minWidth: 60,
-                          padding: "2px 10px",
-                          borderRadius: 12,
-                          background:
-                            item.severity === "High"
-                              ? "#ffa352"
-                              : item.severity === "Medium"
-                              ? "#e9f178"
-                              : item.severity === "Low"
-                              ? "#e8f6ea"
-                              : "#eee",
-                          color:
-                            item.severity === "High"
-                              ? "#fff"
-                              : item.severity === "Medium"
-                              ? "#925f00"
-                              : item.severity === "Low"
-                              ? "#34af3e"
-                              : "#333",
-                          fontWeight: 600,
-                          textAlign: "center",
-                        }}
-                      >
-                        {item.severity}
-                      </span>
-                    </div>
-                    <div className="created-at-column">
-                      {item.createdAt
-                        ? new Date(item.createdAt).toLocaleString()
-                        : "N/A"}
-                    </div>
-                  </div>
-                ))}
               </div>
-            </div>
-          )}
+            )}
           {/* Azure Search Results Table */}
           {searchType === "Azure" && searchResults.length > 0 && (
             <div className="data-table-container" style={{ marginTop: 24 }}>

@@ -2,7 +2,6 @@
 import express from 'express';
 import dashboardAPI from './dashboardAPI.js';
 import authAPI from './authRoutes.js';
-import purviewAPI from './purview.js';
 import macieRoutes from './macie.js';
 import s3Route from './s3Route.js';
 import accessLogRoutes from "./awsAccessLogsRoutes.js";
@@ -18,7 +17,6 @@ router.get('/health', (req, res) => {
 // API routes
 router.use('/dashboard', dashboardAPI);
 router.use('/auth', authAPI);
-router.use('/purview', purviewAPI);
 router.use('/macie', macieRoutes);
 router.use("/s3", s3Route);
 router.use("/aws", cloudwatchLogsRoutes);

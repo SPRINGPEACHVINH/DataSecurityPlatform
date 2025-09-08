@@ -6,7 +6,6 @@ import {
   listClassificationJobs,
   getSeverityStats,
 } from "../services/macieDataTransfer.js";
-import { getDataSourceName } from "../services/purviewDataTransfer.js";
 import { getCloudWatchLogs } from "../services/cloudwatchLogsService.js";
 
 export const getOverviewData = async (req, res) => {

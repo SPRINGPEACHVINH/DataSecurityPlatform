@@ -1,29 +1,4 @@
 // Handles requests from the dashboard (queries Elasticsearch)
-import {
-  getOAuth2,
-  createOrUpdateCustomClassificationRule,
-  RunScan,
-  queryScanResult,
-  getDataSourceName,
-  getScanName,
-  getScanStatus,
-} from "../services/purviewDataTransfer.js";
-
-import {
-  findDataSourceByOwner,
-  createDataSource,
-  findDataSourceById,
-} from "../models/dataSourceModel.js";
-
-import {
-  findScanDefinitionByName,
-  createScanDefinition,
-  createScanRun,
-  findScanRunById,
-  findByIdAndUpdateScanRun,
-  findScanDefinitionById,
-} from "../models/scanModel.js";
-
 import userModels from "../models/userModel.js";
 const { userHistory } = userModels;
 
@@ -32,9 +7,6 @@ import fs from "fs";
 import path from "path";
 import dotenv from "dotenv";
 dotenv.config();
-const classificationName = process.env.classification_name;
-const ruleName = process.env.rule_name;
-
 
 export const handleScriptExecution = async (req, res) => {
   const { sharePath, keyword } = req.body;
