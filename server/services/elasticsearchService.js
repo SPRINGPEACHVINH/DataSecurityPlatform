@@ -378,3 +378,145 @@ export const deleteFileContent = async (req, res) => {
     });
   }
 };
+
+export const SearchKeyword = async (req, res) => {
+  try {
+    const { keyword, index_name } = req.body;
+
+    // Validate required parameters
+    if (!keyword) {
+      return res.status(400).json({
+        message: "Keyword is required for search.",
+      });
+    }
+
+    if (!index_name) {
+      return res.status(400).json({
+        message: "Index name is required for search.",
+      });
+    }
+
+    // Encode keyword để handle special characters
+    const encodedKeyword = encodeURIComponent(keyword);
+
+    // Execute search query
+    const response = await axios.get(
+      `${ES_LOCAL_URL}/${index_name}/_search?q=${encodedKeyword}`,
+      {
+        auth: {
+          username: ES_LOCAL_USERNAME,
+          password: ES_LOCAL_PASSWORD,
+        },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (response.status !== 200) {
+      throw new Error(
+        `Failed to search documents. Status code: ${response.status}`
+      );
+    }
+
+    // Convert UTC to UTC+7
+    const convertToUTC7 = (timestamp) => {
+      if (!timestamp) return null;
+      try {
+        const date = new Date(timestamp);
+        date.setHours(date.getHours() + 7);
+        return date.toISOString().replace('T', ' ').substring(0, 19);
+      } catch (error) {
+        console.warn(`Failed to convert timestamp: ${timestamp}`);
+        return timestamp;
+      }
+    };
+
+    // Convert bytes to KB
+    const convertBytesToKB = (bytes) => {
+      if (!bytes || isNaN(bytes)) return 0;
+      return Math.round(bytes / 1024 * 100) / 100; // Round to 2 decimal places
+    };
+
+    // Determine storage type based on index structure
+    const firstHit = response.data.hits.hits[0];
+    const isS3Storage = firstHit && firstHit._source.bucket && firstHit._source.filename;
+    const isAzureStorage = firstHit && firstHit._source.container && firstHit._source.title;
+
+    // Extract fields based on storage type
+    const searchResults = response.data.hits.hits.map((hit) => {
+      const baseResult = {
+        index: hit._index,
+        id: hit._id,
+        updated_at: convertToUTC7(hit._source._timestamp),
+      };
+
+      if (isS3Storage) {
+        // S3 bucket structure
+        return {
+          ...baseResult,
+          container: hit._source.bucket,
+          title: hit._source.filename,
+          size: convertBytesToKB(hit._source.size_in_bytes), // Convert to KB
+          size_unit: "KB",
+          storage_type: "s3",
+        };
+      } else if (isAzureStorage) {
+        // Azure Blob Storage structure
+        return {
+          ...baseResult,
+          container: hit._source.container,
+          title: hit._source.title,
+          size: hit._source.size,
+          content_type: hit._source["content type"],
+          storage_type: "azure_blob_storage",
+        };
+      } else {
+        // Fallback for unknown structure
+        return {
+          ...baseResult,
+          container: hit._source.container || hit._source.bucket || "Unknown",
+          title: hit._source.title || hit._source.filename || hit._id,
+          size: hit._source.size || convertBytesToKB(hit._source.size_in_bytes) || 0,
+          size_unit: "KB",
+        };
+      }
+    });
+
+    // Check if no results found
+    if (searchResults.length === 0) {
+      return res.status(200).json({
+        message: `Search executed successfully. No documents found for keyword: "${keyword}"`,
+        data: {
+          keyword: keyword,
+          index_name: index_name,
+          storage_type: "unknown",
+          total_hits: 0,
+          results: []
+        }
+      });
+    }
+
+    // Determine storage type for response
+    const storageType = isS3Storage ? "s3" : isAzureStorage ? "azure_blob_storage" : "unknown";
+
+    res.status(200).json({
+      message: "Search completed successfully.",
+      data: {
+        keyword: keyword,
+        index_name: index_name,
+        took_ms: response.data.took,
+        results: searchResults
+      }
+    });
+
+  } catch (error) {
+    console.error("Error searching documents:", error);
+    res.status(500).json({
+      message: "Failed to search documents.",
+      error: error.response
+        ? error.response.data
+        : error.message || "Unknown error",
+    });
+  }
+};

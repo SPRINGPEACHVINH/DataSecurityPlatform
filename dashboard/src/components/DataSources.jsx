@@ -92,51 +92,20 @@ function DataSources({
           { credentials: "include" }
         );
         const docData = await docResponse.json();
-        const s3Response = await fetch("http://localhost:4000/api/s3/data");
-        const s3Data = await s3Response.json();
-        console.log("S3 DATA:", s3Data);
 
         let allFiles = [];
         if (docData && docData.data) {
           allFiles = extractFileData(docData.data);
         }
-        if (s3Data && s3Data.data) {
-          s3Data.data.forEach((bucket) => {
-            allFiles = allFiles.concat(
-              bucket.files.map((f) => ({
-                name: f.name,
-                path: f.path,
-                container: f.container,
-                updatedAt: f.updated_at
-                  ? new Date(f.updated_at)
-                      .toISOString()
-                      .replace("T", " ")
-                      .substring(0, 19)
-                  : "Unknown",
-                size: f.size,
-              }))
-            );
-          });
-        }
         setDocuments(allFiles);
 
         let allConnections = [];
+
         if (docData && docData.data && data && data.data) {
           allConnections = extractConnectionData(docData.data, data.data);
         }
-        if (s3Data && s3Data.data) {
-          s3Data.data.forEach((bucket) => {
-            allConnections.push({
-              name: bucket.container,
-              type: bucket.type,
-              status: bucket.status,
-              fileCount: bucket.files.length,
-              records: null,
-            });
-          });
-        }
+
         setConnectionData(allConnections);
-        console.log("All Connections:", allConnections);
       } catch (error) {
         console.error("Error fetching documents:", error);
       }
