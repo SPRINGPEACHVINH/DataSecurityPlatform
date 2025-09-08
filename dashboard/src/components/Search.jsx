@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import "./Search.css";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
@@ -28,25 +28,16 @@ function Search({
     return localStorage.getItem("filePath") || "";
   });
 
-  const [scanLevel, setScanLevel] = useState(() => {
-    return localStorage.getItem("scanLevel") || "full";
-  });
-
   const [serverSearchResults, setServerSearchResults] = useState(() => {
     const saved = localStorage.getItem("serverSearchResults");
     return saved ? JSON.parse(saved) : [];
   });
-
-  const searchFoundRef = useRef(false);
 
   // Other states
   const [documentsData, setDocumentsData] = useState([]);
   const [connectionData, setConnectionData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
-  const [hasDisplayedResults, setHasDisplayedResults] = useState(false);
-
-  const intervalRef = useRef(null);
 
   // Save state to localStorage whenever it changes
   useEffect(() => {
@@ -67,18 +58,6 @@ function Search({
   useEffect(() => {
     localStorage.setItem("filePath", filePath);
   }, [filePath]);
-
-  useEffect(() => {
-    localStorage.setItem("scanLevel", scanLevel);
-  }, [scanLevel]);
-
-  useEffect(() => {
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-  }, []);
 
   useEffect(() => {
     checkScriptStatus();
@@ -204,10 +183,6 @@ function Search({
     }
   };
 
-  const [sensitiveType, setSensitiveType] = useState("");
-  const [category, setCategory] = useState("");
-  const [macieFindings, setMacieFindings] = useState([]);
-
   // Fetch documents from API
   useEffect(() => {
     async function fetchDocuments() {
@@ -285,7 +260,6 @@ function Search({
     if (searchType === "Azure") {
       setIsLoading(true);
       setSearchResults([]);
-      setHasDisplayedResults(false);
       try {
         const azureConnectors = connectionData.filter(
           (conn) => conn.type === "azure_blob_storage"
@@ -430,7 +404,6 @@ function Search({
     } else if (searchType === "AWS") {
       setIsLoading(true);
       setSearchResults([]);
-      setHasDisplayedResults(false);
       try {
         const s3Connectors = connectionData.filter(
           (conn) => conn.type === "s3"
@@ -731,6 +704,7 @@ function Search({
               onClick={handleSearchClick}
               disabled={
                 isLoading ||
+                (searchType === "AWS" && !searchTerm.trim()) ||
                 (searchType === "Azure" && !searchTerm.trim()) ||
                 (searchType === "Server" &&
                   (!searchTerm.trim() || !filePath.trim()))
@@ -742,6 +716,7 @@ function Search({
                 padding: "0 20px",
                 backgroundColor:
                   isLoading ||
+                  (searchType === "AWS" && !searchTerm.trim()) ||
                   (searchType === "Azure" && !searchTerm.trim()) ||
                   (searchType === "Server" &&
                     (!searchTerm.trim() || !filePath.trim()))
@@ -751,6 +726,7 @@ function Search({
                 border: "none",
                 cursor:
                   isLoading ||
+                  (searchType === "AWS" && !searchTerm.trim()) ||
                   (searchType === "Azure" && !searchTerm.trim()) ||
                   (searchType === "Server" &&
                     (!searchTerm.trim() || !filePath.trim()))

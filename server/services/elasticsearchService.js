@@ -467,7 +467,7 @@ export const SearchKeyword = async (req, res) => {
           ...baseResult,
           container: hit._source.container,
           title: hit._source.title,
-          size: hit._source.size,
+          size: convertBytesToKB(hit._source.size),
           content_type: hit._source["content type"],
           storage_type: "azure_blob_storage",
         };

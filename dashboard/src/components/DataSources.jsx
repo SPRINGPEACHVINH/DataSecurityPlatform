@@ -501,19 +501,6 @@ function DataSources({
                 </div>
 
                 <div className="file-detail-row">
-                  <div className="file-detail-label">File Size</div>
-                  <div className="file-detail-value">
-                    {selectedFile.name.endsWith(".csv")
-                      ? "2.4 MB"
-                      : selectedFile.name.endsWith(".zip")
-                      ? "15.7 MB"
-                      : selectedFile.name.endsWith(".json")
-                      ? "1.2 KB"
-                      : "856 KB"}
-                  </div>
-                </div>
-
-                <div className="file-detail-row">
                   <div className="file-detail-label">File Type</div>
                   <div className="file-detail-value">
                     {selectedFile.name.split(".").pop().toUpperCase()} File
