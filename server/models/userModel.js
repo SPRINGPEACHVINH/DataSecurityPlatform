@@ -13,24 +13,51 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-const userHistorySchema = new mongoose.Schema(
+const connectorSchema = new mongoose.Schema(
   {
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
-    keyword: { type: String, required: true },
-    ruleName: { type: String, required: true },
-    classificationName: { type: String, required: true },
+    connector_id: { type: String, required: true, unique: true },
+    connector_name: { type: String, required: true, unique: true },
+    connector_type: { type: String, required: true },
+    status: {
+      type: String,
+      enum: ["connected", "disconnected"],
+      default: "connected",
+    },
   },
+  { timestamps: true }
+);
+
+const syncSchema = new mongoose.Schema(
   {
-    timestamps: true,
-  }
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    sync_id: { type: String, required: true, unique: true },
+    connector_id: { type: String, required: true },
+    connector_name: { type: String, required: true },
+    last_synced_at: { type: Date, default: Date.now },
+    status: {
+      type: String,
+      enum: ["pending", "completed", "failed"],
+      default: "pending",
+    },
+  },
+  { timestamps: true }
 );
 
 export const findUserByUsername = async (username) => {
   return User.findOne({ UserName: username });
+};
+
+export const findSyncByConnectorName = async (connector_name) => {
+  return Sync.findOne({ connector_name: connector_name });
 };
 
 export const CreateUser = async (newUser) => {
@@ -46,28 +73,8 @@ export const CreateUser = async (newUser) => {
   return createdUser;
 };
 
-export const createUserHistory = async (
-  userId,
-  keyword,
-  ruleName,
-  classificationName
-) => {
-  if (!userId || !keyword || !ruleName || !classificationName) {
-    throw new Error(
-      "Missing required fields: userId, keyword, ruleName, or classificationName."
-    );
-  }
-
-  const createduserHistory = await userHistory.create({
-    userId,
-    keyword,
-    ruleName,
-    classificationName,
-  });
-
-  return createduserHistory;
-};
-
 const User = mongoose.model("User", userSchema);
-const userHistory = mongoose.model("UserHistory", userHistorySchema);
-export default { User, userHistory };
+const Sync = mongoose.model("Sync", syncSchema);
+const Connector = mongoose.model("Connector", connectorSchema);
+
+export default { User, Sync, Connector };

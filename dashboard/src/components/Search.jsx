@@ -280,10 +280,8 @@ function Search({
               index_name: azureConnector.name,
             };
 
-            console.log("Searching Azure with data:", searchData);
-
             const response = await fetch(
-              "http://localhost:4000/api/dashboard/elasticsearch/search-keyword",
+              "http://localhost:4000/api/dashboard/search",
               {
                 method: "POST",
                 credentials: "include",
@@ -298,9 +296,9 @@ function Search({
             if (response.ok) {
               const result = await response.json();
 
-              if (result.data && result.data.results) {
+              if (result.data.data && result.data.data.results) {
                 // Map results to consistent format
-                const mappedResults = result.data.results.map((item) => ({
+                const mappedResults = result.data.data.results.map((item) => ({
                   id: item.id,
                   index: item.index,
                   container: item.container,
@@ -317,7 +315,7 @@ function Search({
               const result = await response.json();
               console.warn(
                 `Search failed for ${azureConnector.name}:`,
-                result.message
+                result.data.message
               );
             }
           } catch (connectorError) {
@@ -424,10 +422,8 @@ function Search({
               index_name: s3Connector.name,
             };
 
-            console.log("Searching S3 with data:", searchData);
-
             const response = await fetch(
-              "http://localhost:4000/api/dashboard/elasticsearch/search-keyword",
+              "http://localhost:4000/api/dashboard/search",
               {
                 method: "POST",
                 credentials: "include",
@@ -442,9 +438,9 @@ function Search({
             if (response.ok) {
               const result = await response.json();
 
-              if (result.data && result.data.results) {
+              if (result.data.data && result.data.data.results) {
                 // Map results to consistent format
-                const mappedResults = result.data.results.map((item) => ({
+                const mappedResults = result.data.data.results.map((item) => ({
                   id: item.id,
                   index: item.index,
                   container: item.container,
@@ -460,13 +456,13 @@ function Search({
             } else {
               const result = await response.json();
               console.warn(
-                `Search failed for ${s3Connector.name}:`,
-                result.message
+                `Search failed for ${s3Connectors.name}:`,
+                result.data.message
               );
             }
           } catch (connectorError) {
             console.warn(
-              `Search failed for connector ${s3Connector.name}:`,
+              `Search failed for connector ${s3Connectors.name}:`,
               connectorError
             );
           }
@@ -1021,7 +1017,7 @@ function Search({
                   <h3 style={{ margin: 0, color: "#155724" }}>
                     🔍 AWS S3 Search Results ({searchResults.length} files
                     found)
-                  </h3>                 
+                  </h3>
                 </div>
 
                 <div className="table-content">
@@ -1054,9 +1050,7 @@ function Search({
                         {item.index}
                       </div>
                       <div className="size-column">
-                        {item.size
-                          ? `${item.size} KB`
-                          : "N/A"}
+                        {item.size ? `${item.size} KB` : "N/A"}
                       </div>
                       <div className="storage-type-column">
                         <span
@@ -1127,7 +1121,7 @@ function Search({
                       {[...new Set(searchResults.map((r) => r.index))].join(
                         ", "
                       )}
-                    </div>                 
+                    </div>
                   </div>
                 </div>
               </div>
