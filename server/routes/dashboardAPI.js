@@ -12,6 +12,7 @@ import {
   getSyncStatus,
   deleteFileContent,
   SearchKeyword,
+  SearchRegexPattern
 } from "../services/elasticsearchService.js";
 import { isAuthenticated } from "../middleware/isAuthenticated.js";
 
@@ -35,5 +36,6 @@ router.post(
   deleteFileContent
 );
 router.post("/elasticsearch/search-keyword", SearchKeyword);
+router.post("/elasticsearch/search-regex", SearchRegexPattern);
 
 export default router;

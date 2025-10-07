@@ -674,13 +674,6 @@ function Search({
                 className="aws-category-select"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                style={{
-                  height: 44,
-                  borderRadius: 22,
-                  marginLeft: 8,
-                  padding: "0 16px",
-                  fontSize: "14px",
-                }}
                 disabled={isLoading}
               >
                 <option value="">All Categories</option>

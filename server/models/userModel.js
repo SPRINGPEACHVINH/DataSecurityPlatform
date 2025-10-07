@@ -13,6 +13,16 @@ const userSchema = new mongoose.Schema(
   }
 );
 
+const sensitive_patternSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+  primary_account_number: { type: String, default: false },
+  cardholder_name: { type: String, default: false },
+});
+
 const connectorSchema = new mongoose.Schema(
   {
     userId: {

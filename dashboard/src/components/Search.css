@@ -1,5 +1,5 @@
 /* File path input nằm cạnh search input */
-.file-path-input {
+.search-bar-row .file-path-input {
   border: 1px solid #ece6f0;
   outline: none;
   background: #fff;
@@ -8,12 +8,12 @@
   letter-spacing: 0.5px;
   padding: 0 12px;
   width: 180px;
-  height: 44px;
-  border-radius: 22px;
+  height: 48px;
+  border-radius: 24px;
   box-sizing: border-box;
 }
 
-.file-path-input::placeholder {
+.search-bar-row .file-path-input::placeholder {
   color: #49454f;
   opacity: 0.7;
 }
@@ -432,8 +432,6 @@
   min-width: 150px;
   max-width: 200px;
 }
-
-
 
 /* Line number badges */
 .line-number-badge {
