@@ -276,6 +276,7 @@ function Search({
         for (const azureConnector of azureConnectors) {
           try {
             const searchData = {
+              search_type: "keyword",
               keyword: searchTerm.trim(),
               index_name: azureConnector.name,
             };
@@ -418,6 +419,7 @@ function Search({
         for (const s3Connector of s3Connectors) {
           try {
             const searchData = {
+              search_type: "keyword",
               keyword: searchTerm.trim(),
               index_name: s3Connector.name,
             };

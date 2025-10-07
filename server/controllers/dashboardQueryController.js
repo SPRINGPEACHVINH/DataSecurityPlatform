@@ -15,13 +15,33 @@ dotenv.config();
 
 export const handleDashboardSearch = async (req, res) => {
   try {
-    const { keyword, index_name } = req.body;
+    const { search_type, keyword, pattern, index_name } = req.body;
 
     // Validate required parameters
-    if (!keyword || !index_name) {
+    if (!index_name) {
       return res.status(400).json({
-        message:
-          "Missing required parameters: keyword and index_name are required",
+        message: "Missing required parameters: index_name is required",
+      });
+    }
+
+    // Validate search parameters based on search type
+    if (search_type === "regex") {
+      if (!pattern) {
+        return res.status(400).json({
+          message:
+            "Missing required parameter: pattern is required for regex search",
+        });
+      }
+    } else if (search_type === "keyword") {
+      if (!keyword) {
+        return res.status(400).json({
+          message:
+            "Missing required parameter: keyword is required for keyword search",
+        });
+      }
+    } else {
+      return res.status(400).json({
+        message: "Invalid search_type",
       });
     }
 
@@ -70,10 +90,21 @@ export const handleDashboardSearch = async (req, res) => {
       console.log("Sync completed successfully.");
 
       // Perform the search
-      const results = await utilitySearchKeyword(
-        keyword,
-        connector.connector_name
-      );
+      let results;
+      if (search_type === "regex") {
+        console.log(`Performing regex search with pattern: ${pattern}`);
+        results = await utilitySearchRegexPattern(
+          pattern,
+          connector.connector_name
+        );
+      } else if (search_type === "keyword") {
+        console.log(`Performing keyword search with keyword: ${keyword}`);
+        results = await utilitySearchKeyword(keyword, connector.connector_name);
+      } else {
+        return res.status(400).json({
+          message: "There was an error with the search_type",
+        });
+      }
 
       if (!results || !results.data) {
         res.status(500).json({
