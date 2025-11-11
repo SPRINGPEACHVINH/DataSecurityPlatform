@@ -21,14 +21,13 @@ This project focuses on developing a **Data Security Posture Management (DSPM)**
 | **Risk Detection & Remediation Module** | Identifies misconfigurations in cloud storage that could cause data exposure and provides actionable recommendations for remediation. |
 | **Dashboard** | Provides a web-based interface for real-time monitoring, visualization, and management of scan results and risk assessments. |
 ## Progess Tracking
-<!-- **System Design**: 🟢 Completed
+**System Design**: In-progress
 **Main Components**
 | Module                | Status        | Progress |
 |----------------------|---------------|----------|
-| Log Management        | ✅ Completed | 100%      |
-| Cloud Storage Scanner | ✅ Completed | 100%      |
-| Server Scanner        | ✅ Completed   | 100%     |
-| Backend Server        | ✅ Completed | 100%  |
-| Dashboard             | ✅ Completed | 100%  | -->
+| Data Collection & Detection        | Completed | 100%      |
+| Sensitive Data Classification | In-progress | 70%      |
+| Risk Detection & Remediation      | In-progress   | 40%     |
+| Dashboard             | In-progress | 60%  |
 ---
 ### Notes / Challenges
