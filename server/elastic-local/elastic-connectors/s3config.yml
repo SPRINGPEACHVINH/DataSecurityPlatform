@@ -1,16 +1,19 @@
 connectors:
 -
-  connector_id: ${S3CONFIG_CONNECTOR_ID}
+  connector_id: "${S3CONFIG_CONNECTOR_ID}"
   service_type: "s3"
-  configuration:
-    bucket: ${buckets}
-    access_key_id: ${aws_access_key_id}
-    secret_access_key: ${aws_secret_access_key}
-    use_text_extraction_service: true
+
+extraction_service:
+  host: http://host.docker.internal:${ES_LOCAL_EXTRACTION_PORT} #8090
+  timeout: 30
+  use_file_pointers: false
+  stream_chunk_size: 65536
+  shared_volume_dir: '/app/files'
 
 elasticsearch:
-  host: "http://host.docker.internal:9200"
-  api_key: ${S3CONFIG_APIKEY}
+  host: "http://host.docker.internal:${ES_LOCAL_PORT}" #9200
+  username: "${ES_LOCAL_USERNAME}"
+  password: "${ES_LOCAL_PASSWORD}"
   log_level: INFO
   request_timeout: 120
   max_wait_duration: 60

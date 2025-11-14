@@ -6,14 +6,18 @@ import {
   checkScriptStatus,
 } from "../controllers/dashboardQueryController.js";
 import {
-  getConnector,
   getDocuments,
+  deleteFileContent
+} from "../services/elasticsearchService/document.js";
+import {
+  getConnector,
   SyncConnectors,
-  getSyncStatus,
-  deleteFileContent,
+  getSyncStatus
+} from "../services/elasticsearchService/connector.js";
+import {
   SearchKeyword,
   SearchRegexPattern
-} from "../services/elasticsearchService.js";
+} from "../services/elasticsearchService/search.js";
 import { isAuthenticated } from "../middleware/isAuthenticated.js";
 
 const router = express.Router();
@@ -30,12 +34,8 @@ router.get("/elasticsearch/connector", isAuthenticated, getConnector);
 router.get("/elasticsearch/documents", isAuthenticated, getDocuments);
 router.post("/elasticsearch/sync-connectors", isAuthenticated, SyncConnectors);
 router.get("/elasticsearch/sync-status", isAuthenticated, getSyncStatus);
-router.post(
-  "/elasticsearch/delete-file-content",
-  isAuthenticated,
-  deleteFileContent
-);
-router.post("/elasticsearch/search-keyword", SearchKeyword);
-router.post("/elasticsearch/search-regex", SearchRegexPattern);
+router.post("/elasticsearch/delete-file-content", isAuthenticated, deleteFileContent);
+// router.post("/elasticsearch/search-keyword", isAuthenticated, SearchKeyword);
+// router.post("/elasticsearch/search-regex", isAuthenticated, SearchRegexPattern);
 
 export default router;

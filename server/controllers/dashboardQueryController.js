@@ -1,10 +1,13 @@
 // Handles requests from the dashboard (queries Elasticsearch)
 import {
+  utilitySearchRegexPattern,
+  utilitySearchKeyword,
+} from "../services/elasticsearchService/search.js";
+import {
   utilitySyncConnectors,
   utilitygetSyncStatus,
-  utilityDeleteFileContent,
-  utilitySearchKeyword,
-} from "../services/elasticsearchService.js";
+} from "../services/elasticsearchService/connector.js";
+import { utilityDeleteFileContent } from "../services/elasticsearchService/document.js";
 import Models from "../models/userModel.js";
 const { Sync, Connector } = Models;
 import powershell from "powershell";
@@ -77,7 +80,7 @@ export const handleDashboardSearch = async (req, res) => {
       );
       console.log("Sync status response:", syncStatusResponse);
 
-      syncStatus = syncStatusResponse?.status || "pending";
+      syncStatus = syncStatusResponse?.sync_status || "pending";
       attempts++;
     }
     if (syncStatus !== "completed") {
@@ -121,10 +124,12 @@ export const handleDashboardSearch = async (req, res) => {
           );
 
           if (
-            deleteFileContentRes &&
-            deleteFileContentRes.data.every((item) => item.success === true)
+            deleteFileContentRes?.status === 200 &&
+            deleteFileContentRes?.summary?.successful > 0
           ) {
-            console.log("File content deleted after search.");
+            console.log(
+              `File content deleted successfully. ${deleteFileContentRes.summary.total_documents_updated} documents updated.`
+            );
           } else {
             console.warn(
               "Warning: File content deletion reported failure:",
