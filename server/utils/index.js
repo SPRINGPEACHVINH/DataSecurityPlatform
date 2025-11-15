@@ -34,21 +34,14 @@ function generateTimeBasedRunScanID() {
     return RunScanID;
 }
 
+// ECC-256
 function encryptedFunc(text) {
-    const iv = crypto.randomBytes(16);
-    const cipher = crypto.createCipheriv(algorithm, Buffer.from(key, 'hex'), iv);
-    let encrypted = cipher.update(text);
-    encrypted = Buffer.concat([encrypted, cipher.final()]);
-    return iv.toString('hex') + encrypted.toString('hex');
+
 }
 
 function decryptedFunc(encryptedText) {
-    const iv = Buffer.from(encryptedText.substring(0, 32), 'hex');
-    let decipher = crypto.createDecipheriv(algorithm, Buffer.from(key, 'hex'), iv);
-    let decrypted = decipher.update(Buffer.from(encryptedText.substring(32), 'hex'));
-    decrypted = Buffer.concat([decrypted, decipher.final()]);
-    return decrypted.toString();
+
 }
 
-export { generateTimeBasedRunScanID, encryptedFunc, decryptedFunc };
+export { generateTimeBasedRunScanID };
 
