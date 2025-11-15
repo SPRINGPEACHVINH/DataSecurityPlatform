@@ -2,11 +2,6 @@
 import express from 'express';
 import dashboardAPI from './dashboardAPI.js';
 import authAPI from './authRoutes.js';
-import macieRoutes from './macie.js';
-import s3Route from './s3Route.js';
-import accessLogRoutes from "./awsAccessLogsRoutes.js";
-import cloudwatchLogsRoutes from "./cloudwatchLogsRoutes.js";
-import overviewRoutes from './overview.js';
 
 const router = express.Router();
 // Health check route
@@ -17,10 +12,5 @@ router.get('/health', (req, res) => {
 // API routes
 router.use('/dashboard', dashboardAPI);
 router.use('/auth', authAPI);
-router.use('/macie', macieRoutes);
-router.use("/s3", s3Route);
-router.use("/aws", cloudwatchLogsRoutes);
-router.use('/overview', overviewRoutes);
-
 
 export default router;

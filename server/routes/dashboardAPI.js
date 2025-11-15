@@ -19,6 +19,7 @@ import {
   SearchRegexPattern
 } from "../services/elasticsearchService/search.js";
 import { isAuthenticated } from "../middleware/isAuthenticated.js";
+import { getOverviewData } from "../controllers/overviewController.js";
 
 const router = express.Router();
 
@@ -37,5 +38,6 @@ router.get("/elasticsearch/sync-status", isAuthenticated, getSyncStatus);
 router.post("/elasticsearch/delete-file-content", isAuthenticated, deleteFileContent);
 // router.post("/elasticsearch/search-keyword", isAuthenticated, SearchKeyword);
 // router.post("/elasticsearch/search-regex", isAuthenticated, SearchRegexPattern);
+router.get("/overview/data", getOverviewData);
 
 export default router;

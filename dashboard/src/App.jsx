@@ -149,13 +149,13 @@ function App() {
     }
   };
 
-  const handleNavigateToLogManager = async () => {
-    const isValid = await checkSession();
-    if (isValid) {
-      setCurrentView("LogManager");
-      localStorage.setItem("currentView", "LogManager");
-    }
-  };
+  // const handleNavigateToLogManager = async () => {
+  //   const isValid = await checkSession();
+  //   if (isValid) {
+  //     setCurrentView("LogManager");
+  //     localStorage.setItem("currentView", "LogManager");
+  //   }
+  // };
 
   const renderCurrentView = () => {
     switch (currentView) {
@@ -181,23 +181,23 @@ function App() {
             user={user}
           />
         );
-      case "LogManager":
-        return (
-          <DataSources
-            onLogout={handleLogout}
-            onNavigateToSearch={handleNavigateToSearch}
-            initialPage="log-manager"
-            checkSession={checkSession}
-            user={user}
-          />
-        );
+      // case "LogManager":
+      //   return (
+      //     <DataSources
+      //       onLogout={handleLogout}
+      //       onNavigateToSearch={handleNavigateToSearch}
+      //       initialPage="log-manager"
+      //       checkSession={checkSession}
+      //       user={user}
+      //     />
+      //   );
       case "Search":
         return (
           <Search
             onLogout={handleLogout}
             onNavigateToDataSources={handleNavigateToDataSources}
             onNavigateToOverview={handleNavigateToOverview}
-            onNavigateToLogManager={handleNavigateToLogManager}
+            // onNavigateToLogManager={handleNavigateToLogManager}
             checkSession={checkSession}
           />
         );

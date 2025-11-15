@@ -4,7 +4,7 @@ import "./Sidebar.css";
 function Sidebar({
   currentPage,
   onNavigateToOverview,
-  onNavigateToLogManager,
+  //onNavigateToLogManager,
   onNavigateToDataSources,
   onNavigateToSearch,
 }) {
@@ -35,7 +35,7 @@ function Sidebar({
             <div>Overview</div>
           </div>
 
-          <div
+          {/* <div
             className={
               currentPage === "log-manager" ? "nav-item-active" : "nav-item"
             }
@@ -50,7 +50,7 @@ function Sidebar({
               alt="Log Manager"
             />
             <div>Log Manager</div>
-          </div>
+          </div> */}
 
           <div
             className={
