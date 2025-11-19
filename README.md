@@ -10,10 +10,16 @@
 This project focuses on developing a **Data Security Posture Management (DSPM)** system capable of detecting and classifying sensitive data stored across cloud and on-premise environments. It aims to offer a cost-effective, open-source, and language-aware alternative that addresses limitations in Vietnamese data handling and accessibility for small to medium-sized enterprises. The system also detects misconfigurations in cloud storage (e.g., Azure Blob, AWS S3) that may lead to data exposure and provides recommendations for remediation, contributing to stronger data governance and compliance.
 
 ---
-## <!--📋--> Architecture
-<!-- ![Architecture Diagram](asset/DSPM-Arch.png) -->
+## Architecture
+
+### Functional Architecture
+![Functional Architecture Diagram](asset/FuncArch.png)
+
+### Deployment Architecture
+![Deployment Architecture Diagram](asset/DeployArch.png)
+
 ---
-## <!--🛠️--> Main Component Overview
+## Main Component Overview
 | Main Component | Description |
 | :------------- | :---------- |
 | **Data Collection & Detection Module** | Collects and scans data from cloud (Azure Blob, AWS S3) and on-premise storages to detect sensitive information based on keywords, predefined or custom patterns (e.g., PCI DSS). |

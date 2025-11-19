@@ -35,13 +35,19 @@ function generateTimeBasedRunScanID() {
 }
 
 // ECC-256
-function encryptedFunc(text) {
-
+function encryptedFunc(text, publicKey) {
+    return encryptedText = crypto.publicEncrypt({
+        key: publicKey,
+        padding: crypto.constants.RSA_PKCS1_OAEP_PADDING,
+    }, Buffer.from(text));
 }
 
-function decryptedFunc(encryptedText) {
-
+function decryptedFunc(encryptedText, privateKey) {
+    return crypto.privateDecrypt({
+        key: privateKey,
+        padding: crypto.constants.RSA_PKCS1_OAEP_PADDING,
+    }, encryptedText);
 }
 
-export { generateTimeBasedRunScanID };
+export { generateTimeBasedRunScanID, encryptedFunc, decryptedFunc };
 
