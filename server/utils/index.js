@@ -6,7 +6,7 @@ dotenv.config();
 const key = process.env.key;
 const algorithm = process.env.algorithm;
 
-function generateTimeBasedRunScanID() {
+export function generateTimeBasedRunScanID() {
     const vietnamTimeOffset = 7 * 60 * 60 * 1000;
     const now = new Date(Date.now() + vietnamTimeOffset);
 
@@ -34,20 +34,45 @@ function generateTimeBasedRunScanID() {
     return RunScanID;
 }
 
-// ECC-256
-function encryptedFunc(text, publicKey) {
-    return encryptedText = crypto.publicEncrypt({
-        key: publicKey,
-        padding: crypto.constants.RSA_PKCS1_OAEP_PADDING,
-    }, Buffer.from(text));
+// Encryption Function: Requires sender's (User) Private Key and receiver's (CloudSploit) Public Key
+export function encryptedFunc(text, senderPrivateKey, receiverPublicKey) {
+    try {
+        const privateKeyObj = crypto.createPrivateKey(senderPrivateKey);
+        const publicKeyObj = crypto.createPublicKey(receiverPublicKey);
+
+        // Create ECDH instance
+        const ecdh = crypto.createECDH(privateKeyObj.asymmetricKeyDetails.namedCurve);
+
+        // Set private key
+        ecdh.setPrivateKey(privateKeyObj.export({ format: 'der', type: 'sec1' }));
+
+        // Compute shared secret
+        const sharedSecret = ecdh.computeSecret(
+            publicKeyObj.export({ format: 'der', type: 'spki' })
+        );
+
+        // Create AES Key from Shared Secret (Hash to 32 bytes)
+        const aesKey = crypto.createHash('sha256').update(sharedSecret).digest();
+
+        // Encryption
+        const iv = crypto.randomBytes(12);
+        const cipher = crypto.createCipheriv(algorithm, aesKey, iv);
+
+        let encrypted = cipher.update(text, 'utf8', 'hex');
+        encrypted += cipher.final('hex');
+        const authTag = cipher.getAuthTag().toString('hex');
+
+        // Return object containing all information needed for decryption
+        return {
+            ciphertext: encrypted,
+            iv: iv.toString('hex'),
+            authTag: authTag
+        };
+    }
+    catch (error) {
+        return {
+            status: 500,
+            error: error.message
+        }
+    }
 }
-
-function decryptedFunc(encryptedText, privateKey) {
-    return crypto.privateDecrypt({
-        key: privateKey,
-        padding: crypto.constants.RSA_PKCS1_OAEP_PADDING,
-    }, encryptedText);
-}
-
-export { generateTimeBasedRunScanID, encryptedFunc, decryptedFunc };
-
