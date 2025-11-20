@@ -1,10 +1,10 @@
 import crypto from 'crypto';
+import eckey from 'eckey-utils'
 
 import dotenv from 'dotenv';
 dotenv.config();
 
-const key = process.env.key;
-const algorithm = process.env.algorithm;
+const algorithm = process.env.algorithm || 'aes-256-gcm';
 
 export function generateTimeBasedRunScanID() {
     const vietnamTimeOffset = 7 * 60 * 60 * 1000;
@@ -37,18 +37,19 @@ export function generateTimeBasedRunScanID() {
 // Encryption Function: Requires sender's (User) Private Key and receiver's (CloudSploit) Public Key
 export function encryptedFunc(text, senderPrivateKey, receiverPublicKey) {
     try {
-        const privateKeyObj = crypto.createPrivateKey(senderPrivateKey);
-        const publicKeyObj = crypto.createPublicKey(receiverPublicKey);
+        const senderParsed = eckey.parsePem(senderPrivateKey);
+        const receiverParsed = eckey.parsePem(receiverPublicKey);
 
+        console.log('Sender Parsed Key:', senderParsed);
         // Create ECDH instance
-        const ecdh = crypto.createECDH(privateKeyObj.asymmetricKeyDetails.namedCurve);
+        const ecdh = crypto.createECDH(senderParsed.curveName);
 
         // Set private key
-        ecdh.setPrivateKey(privateKeyObj.export({ format: 'der', type: 'sec1' }));
+        ecdh.setPrivateKey(senderParsed.privateKey)
 
         // Compute shared secret
         const sharedSecret = ecdh.computeSecret(
-            publicKeyObj.export({ format: 'der', type: 'spki' })
+            receiverParsed.publicKey
         );
 
         // Create AES Key from Shared Secret (Hash to 32 bytes)
@@ -70,9 +71,6 @@ export function encryptedFunc(text, senderPrivateKey, receiverPublicKey) {
         };
     }
     catch (error) {
-        return {
-            status: 500,
-            error: error.message
-        }
+        throw new Error(`Encryption failed: ${error.message}`);
     }
 }

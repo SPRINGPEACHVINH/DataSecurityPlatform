@@ -1,6 +1,7 @@
 .env
 APIResponse.js
 server/utils/Result/*
+server/utils/secure_keys/*
 
 # Logs
 logs

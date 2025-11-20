@@ -1,9 +1,12 @@
-import { encryptedFunc } from '../utils/index.js';
+import { encryptedFunc, decryptedFunc } from '../utils/index.js';
 import crypto from 'crypto';
+import ecKeyUtils from 'eckey-utils';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import axios from 'axios';
+import dotenv from "dotenv";
+dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -12,9 +15,7 @@ if (!fs.existsSync(KEY_DIR)) fs.mkdirSync(KEY_DIR);
 
 const getCloudsploitKey = async () => {
     try {
-        const response = await axios.get('https://springpeachvinh.id.vn/v1/getkey', {
-            headers: { 'Content-Type': 'application/json' }
-        });
+        const response = await axios.get(`${process.env.CLOUDSPLOIT_ENDPOINT}/getkey`);
 
         if (response.status !== 200) {
             throw new Error(`Error fetching key: Status ${response.status}`);
@@ -22,10 +23,10 @@ const getCloudsploitKey = async () => {
 
         return {
             status: 200,
-            publicKey: response.publicKey,
-            keyType: response.keyType,
-            curve: response.curve,
-            format: response.format
+            publicKey: response.data.publicKey,
+            keyType: response.data.keyType,
+            curve: response.data.curve,
+            format: response.data.format
         }
     }
     catch (error) {
@@ -36,24 +37,124 @@ const getCloudsploitKey = async () => {
     }
 }
 
-export const generateUserKeys = (req, res) => {
+export const generateUserKeys = () => {
     try {
+        const ecdh = crypto.createECDH('secp256k1');
+        ecdh.generateKeys();
+
         //Tạo cặp key ECC secp256k1
-        const { publicKey, privateKey } = crypto.generateKeyPairSync('ec', {
-            namedCurve: 'secp256k1',
-            publicKeyEncoding: { type: 'spki', format: 'pem' },
-            privateKeyEncoding: { type: 'pkcs8', format: 'pem' }
-        });
+        const { publicKey, privateKey } = {
+            publicKey: ecdh.getPublicKey(),
+            privateKey: ecdh.getPrivateKey()
+        }
+
+        let pem = ecKeyUtils.generatePem('secp256k1', { sk: privateKey, pk: publicKey });
 
         //Lưu Key vào file (ghi đè nếu đã tồn tại)
-        fs.writeFileSync(path.join(KEY_DIR, 'user_private.pem'), privateKey, { flag: 'w' });
-        fs.writeFileSync(path.join(KEY_DIR, 'user_public.pem'), publicKey, { flag: 'w' });
+        fs.writeFileSync(path.join(KEY_DIR, 'user_private.pem'), pem.privateKey, { flag: 'w' });
+        fs.writeFileSync(path.join(KEY_DIR, 'user_public.pem'), pem.publicKey, { flag: 'w' });
 
-        return res.status(200).json({
+        return {
             message: 'Keys generated successfully',
-            publicKey: publicKey
-        });
+            publicKey: pem.publicKey,
+        };
     } catch (error) {
-        return res.status(500).json({ error: error.message });
+        return { error: error.message };
     }
-}; 
+};
+
+export const scanCloudMisconfig = async (cloud) => {
+    try {
+
+        let credentials = {};
+
+        if (cloud === 'aws') {
+            credentials = {
+                aws_access_key_id: process.env.AWS_ACCESS_KEY_ID,
+                aws_secret_access_key: process.env.AWS_SECRET_ACCESS_KEY,
+                aws_region: process.env.AWS_REGION
+            };
+
+            // Validate credentials
+            if (!credentials.aws_access_key_id || !credentials.aws_secret_access_key) {
+                throw new Error('Missing AWS credentials in .env file. Please check AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY');
+            }
+
+            console.log('AWS credentials loaded successfully');
+        }
+        else if (cloud === 'azure') {
+            return { status: 400, error: 'Azure scanning not implemented yet.' };
+        }
+        else {
+            return { status: 400, error: 'Invalid cloud provider. Must be "aws" or "azure".' };
+        }
+
+        // Load User Private Key (PEM string)
+        const userPrivateKeyPem = fs.readFileSync(path.join(KEY_DIR, 'user_private.pem'), 'utf8');
+        const userPublicKeyPem = fs.readFileSync(path.join(KEY_DIR, 'user_public.pem'), 'utf8');
+
+        // Prepare credentials
+        const credentialsJson = JSON.stringify(credentials);
+
+        const cloudsploitPublicPem = (await getCloudsploitKey()).publicKey;
+
+        // Pass PEM strings, NOT parsed Buffers
+        const { ciphertext, iv, authTag } = encryptedFunc(
+            credentialsJson,
+            userPrivateKeyPem,        // PEM string
+            cloudsploitPublicPem      // PEM string (NOT parsed)
+        );
+
+        // Validate encryption
+        if (ciphertext.length < 100) {
+            throw new Error(`Ciphertext too short (${ciphertext.length} chars). Encryption failed.`);
+        }
+
+        const payload = {
+            ciphertext: ciphertext,
+            iv: iv,
+            authTag: authTag,
+            userPublicKey: userPublicKeyPem
+        };
+
+        // Uncomment to send to CloudSploit
+        // const response = await axios.post('', payload);
+        // return { status: 200, message: 'Scan completed', data: response.data };
+
+        return {
+            status: 200,
+            message: 'Payload prepared and validated successfully',
+            payloadInfo: {
+                ciphertextLength: ciphertext.length,
+                ivLength: iv.length,
+                authTagLength: authTag.length
+            }
+        };
+    }
+    catch (error) {
+        return {
+            status: 500,
+            error: error.message
+        }
+    }
+}
+
+// Test function
+(async () => {
+    try {
+        console.log('='.repeat(60));
+        console.log('🚀 Testing scanCloudMisconfig');
+        console.log('='.repeat(60));
+
+        const result = await scanCloudMisconfig('aws');
+
+        console.log('\n' + '='.repeat(60));
+        console.log('📊 RESULT:');
+        console.log('='.repeat(60));
+        console.log(JSON.stringify(result, null, 2));
+
+    } catch (error) {
+        console.error('\n❌ Test failed:', error);
+        process.exit(1);
+    }
+})();
