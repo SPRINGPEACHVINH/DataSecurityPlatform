@@ -465,3 +465,385 @@
   background-color: #e8f6ea;
   color: #34af3e;
 }
+
+/* Search Mode Container */
+.search-mode-container {
+  margin-bottom: 16px;
+}
+
+.search-mode-label {
+  margin-right: 8px;
+  font-weight: 600;
+}
+
+.search-mode-select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.search-mode-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* SVG Icons */
+.leading-icon svg {
+  display: block;
+}
+
+/* Clear Search Button */
+.clear-search-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: #999;
+}
+
+.clear-search-button:hover {
+  color: #666;
+}
+
+/* File Path Input (when inline) */
+.search-bar-row .file-path-input.inline {
+  height: 44px;
+  border-radius: 22px;
+  margin-left: 8px;
+  padding: 0 12px;
+}
+
+/* Search Button */
+.search-button {
+  height: 44px;
+  border-radius: 22px;
+  margin-left: 8px;
+  padding: 0 20px;
+  background-color: #774aa4;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.search-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.search-button:hover:not(:disabled) {
+  background-color: #5f3a85;
+}
+
+/* Search Parameters */
+.search-parameters {
+  padding: 12px 16px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* No Containers Message */
+.no-containers-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 20px;
+  color: #999;
+}
+
+/* Script Status Section */
+.script-status-section {
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.script-status-section.ready {
+  background-color: #e8f5e8;
+  border: 1px solid #28a745;
+}
+
+.script-status-section.not-ready {
+  background-color: #f8d7da;
+  border: 1px solid #dc3545;
+}
+
+.script-status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.script-status-header h3 {
+  margin: 0;
+}
+
+.script-status-header h3.ready {
+  color: #155724;
+}
+
+.script-status-header h3.not-ready {
+  color: #721c24;
+}
+
+.script-status-checks {
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.script-status-checks-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.script-status-recommendations {
+  font-size: 13px;
+  color: #721c24;
+}
+
+.script-status-recommendations ul {
+  margin: 4px 0;
+  padding-left: 20px;
+}
+
+.script-status-recommendations li {
+  margin-bottom: 2px;
+}
+
+.script-status-paths {
+  font-size: 12px;
+  color: #666;
+  margin-top: 8px;
+}
+
+.server-search-placeholder {
+  padding: 40px;
+  text-align: center;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  color: #666;
+  font-size: 16px;
+}
+
+.server-search-placeholder-icon {
+  margin-bottom: 12px;
+  opacity: 0.5;
+}
+
+.server-search-placeholder-subtitle {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+/* Search Results Section */
+.search-results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.search-results-title {
+  margin: 0;
+  color: #155724;
+}
+
+.search-results-summary {
+  margin-top: 16px;
+  padding: 12px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+}
+
+.search-summary-title {
+  margin: 0 0 8px 0;
+  color: #495057;
+  font-size: 14px;
+}
+
+.search-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  font-size: 13px;
+}
+
+/* Table Columns */
+.file-name-column {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.container-column,
+.index-column,
+.size-column,
+.storage-type-column,
+.updated-at-column,
+.file-path-column,
+.match-count-column,
+.line-numbers-column,
+.file-size-column {
+  padding: 12px 8px;
+}
+
+.index-column {
+  font-size: 12px;
+  color: #666;
+}
+
+.updated-at-column {
+  font-size: 12px;
+}
+
+.storage-type-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  font-size: 10px;
+}
+
+.storage-type-badge.s3 {
+  background-color: #ff9500;
+}
+
+.storage-type-badge.azure {
+  background-color: #007bff;
+}
+
+.line-numbers-display {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.line-number-item {
+  display: inline-block;
+  padding: 2px 6px;
+  background-color: #e7f3ff;
+  color: #0066cc;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.line-numbers-more {
+  color: #666;
+  font-size: 11px;
+  font-style: italic;
+}
+
+.line-numbers-na {
+  color: #999;
+  font-size: 12px;
+}
+
+/* Search Status */
+.search-status-message {
+  margin-top: 12px;
+  padding: 12px;
+  background-color: #fff3cd;
+  border-radius: 8px;
+  border: 1px solid #ffeaa7;
+  color: #856404;
+}
+
+/* Empty Results */
+.table-row.empty-result {
+  background-color: #f8f9fa;
+  opacity: 0.7;
+}
+
+/* File Details Section */
+.file-details-section {
+  margin-top: 16px;
+}
+
+.file-details-title {
+  margin: 0 0 8px 0;
+  color: #155724;
+  font-size: 14px;
+}
+
+.file-details-container {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.file-detail-item {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.file-detail-item:last-child {
+  border-bottom: none;
+}
+
+.file-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.file-detail-name {
+  font-weight: 600;
+  color: #155724;
+  font-size: 14px;
+}
+
+.file-detail-match-count {
+  font-size: 12px;
+  color: #666;
+}
+
+.file-detail-path {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 8px;
+  word-break: break-all;
+}
+
+.file-detail-lines {
+  font-size: 12px;
+  color: #495057;
+}
+
+/* Specific margin utilities */
+.data-table-container.mt-24 {
+  margin-top: 24px;
+}
+
+.data-table-container.mt-16 {
+  margin-top: 16px;
+}
+
+.total-matches-info {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Error states */
+.search-results-summary.error-summary {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.search-results-title.error {
+  color: #721c24;
+}

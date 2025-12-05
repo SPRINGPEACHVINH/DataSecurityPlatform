@@ -20,6 +20,10 @@ function Search({
     return localStorage.getItem("searchType") || "AWS";
   });
 
+  const [searchMode, setSearchMode] = useState(() => {
+    return localStorage.getItem("searchMode") || "keyword";
+  });
+
   const [searchTerm, setSearchTerm] = useState(() => {
     return localStorage.getItem("searchTerm") || "";
   });
@@ -50,6 +54,10 @@ function Search({
   useEffect(() => {
     localStorage.setItem("searchType", searchType);
   }, [searchType]);
+
+  useEffect(() => {
+    localStorage.setItem("searchMode", searchMode);
+  }, [searchMode]);
 
   useEffect(() => {
     localStorage.setItem("searchTerm", searchTerm);
@@ -257,6 +265,94 @@ function Search({
 
   // Handle search button click or Enter key
   const handleSearchClick = async () => {
+    // Pattern search mode - works for all storage types
+    if (searchMode === "pattern") {
+      if (!searchTerm.trim()) {
+        alert("Please enter a pattern to search.");
+        return;
+      }
+
+      // Get selected connection's index_name based on searchType
+      let selectedIndexName = null;
+
+      if (searchType === "AWS") {
+        const s3Connector = connectionData.find((conn) => conn.type === "s3");
+        selectedIndexName = s3Connector ? s3Connector.name : null;
+      } else if (searchType === "Azure") {
+        const azureConnector = connectionData.find(
+          (conn) => conn.type === "azure_blob_storage"
+        );
+        selectedIndexName = azureConnector ? azureConnector.name : null;
+      } else if (searchType === "Server") {
+        alert("Pattern search is not supported for Server search type.");
+        return;
+      }
+
+      if (!selectedIndexName) {
+        alert(`No ${searchType} connector found with an index name.`);
+        return;
+      }
+
+      setIsLoading(true);
+      setSearchResults([]);
+
+      try {
+        const response = await fetch(
+          "http://localhost:4000/api/dashboard/elasticsearch/search-pattern",
+          {
+            method: "POST",
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+              Cookie: localStorage.getItem("sessionId") || "",
+            },
+            body: JSON.stringify({
+              pattern: searchTerm.trim(),
+              index_name: selectedIndexName,
+            }),
+          }
+        );
+
+        const result = await response.json();
+
+        if (response.ok && result.data) {
+          const results = result.data.results || [];
+
+          // Transform the results to match the expected format
+          const transformedResults = results.map((item) => ({
+            id: item.id,
+            index: item.index,
+            container: item.container,
+            title: item.title,
+            size: item.size,
+            size_unit: item.size_unit,
+            storage_type: item.storage_type,
+            updated_at: item.updated_at,
+          }));
+
+          setSearchResults(transformedResults);
+
+          if (transformedResults.length === 0) {
+            alert("No results found for the specified pattern.");
+          } else {
+            alert(
+              `Found ${transformedResults.length} results for pattern "${searchTerm}" in ${searchType} storage`
+            );
+          }
+        } else {
+          console.error("Pattern search failed:", result.message);
+          alert(`Search failed: ${result.message || "Unknown error"}`);
+        }
+      } catch (error) {
+        console.error("Error during pattern search:", error);
+        alert("An error occurred during the search. Please try again.");
+      } finally {
+        setIsLoading(false);
+      }
+      return; // Exit early for pattern mode
+    }
+
+    // Keyword search mode (existing logic)
     if (searchType === "Azure") {
       setIsLoading(true);
       setSearchResults([]);
@@ -528,6 +624,20 @@ function Search({
     localStorage.removeItem("searchResults");
   };
 
+  const handleSearchModeChange = (e) => {
+    setSearchMode(e.target.value);
+    setSearchTerm("");
+    setFilePath("");
+
+    setServerSearchResults([]);
+    setSearchResults([]);
+
+    localStorage.removeItem("searchTerm");
+    localStorage.removeItem("filePath");
+    localStorage.removeItem("serverSearchResults");
+    localStorage.removeItem("searchResults");
+  };
+
   const handleSearchChange = (value) => {
     setSearchTerm(value);
   };
@@ -568,6 +678,24 @@ function Search({
 
         <div className="search-content">
           <div className="sensitive-data-title">Sensitive data</div>
+          
+          {/* Search Mode Selection */}
+          <div className="search-mode-container">
+            <label htmlFor="search-mode-select" className="search-mode-label">
+              Search Mode:
+            </label>
+            <select
+              id="search-mode-select"
+              className="search-mode-select"
+              value={searchMode}
+              onChange={handleSearchModeChange}
+              disabled={isLoading}
+            >
+              <option value="keyword">Keyword Search</option>
+              <option value="pattern">Pattern Search</option>
+            </select>
+          </div>
+
           <div className="search-bar-row">
             <div className="main-search-bar">
               <div className="state-layer">
@@ -578,7 +706,6 @@ function Search({
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
-                    style={{ display: "block" }}
                   >
                     <circle
                       cx="11"
@@ -603,7 +730,9 @@ function Search({
                     type="text"
                     className="search-input-field"
                     placeholder={
-                      searchType === "AWS"
+                      searchMode === "pattern"
+                        ? `Enter pattern to search in ${searchType} (e.g., PT002, PT001)`
+                        : searchType === "AWS"
                         ? "Enter keyword to search in AWS (e.g., sensitive, credit card)"
                         : searchType === "Azure"
                         ? "Enter keyword to search in Azure (e.g., password, SSN)"
@@ -620,13 +749,6 @@ function Search({
                     <button
                       className="clear-search-button"
                       onClick={handleClearSearch}
-                      style={{
-                        background: "none",
-                        border: "none",
-                        cursor: "pointer",
-                        padding: "4px",
-                        color: "#999",
-                      }}
                     >
                       <svg
                         width="20"
@@ -653,21 +775,15 @@ function Search({
               </div>
             </div>
 
-            {searchType === "Server" && (
+            {searchType === "Server" && searchMode === "keyword" && (
               <input
                 type="text"
-                className="file-path-input"
+                className="file-path-input inline"
                 placeholder="Enter file path (e.g., C:\\pathto\\folder)"
                 value={filePath}
                 onChange={(e) => setFilePath(e.target.value)}
                 onKeyPress={handleSearchKeyPress}
                 disabled={isLoading}
-                style={{
-                  height: 44,
-                  borderRadius: 22,
-                  marginLeft: 8,
-                  padding: "0 12px",
-                }}
               />
             )}
 
@@ -695,38 +811,9 @@ function Search({
               onClick={handleSearchClick}
               disabled={
                 isLoading ||
-                (searchType === "AWS" && !searchTerm.trim()) ||
-                (searchType === "Azure" && !searchTerm.trim()) ||
-                (searchType === "Server" &&
-                  (!searchTerm.trim() || !filePath.trim()))
+                !searchTerm.trim() ||
+                (searchType === "Server" && searchMode === "keyword" && !filePath.trim())
               }
-              style={{
-                height: 44,
-                borderRadius: 22,
-                marginLeft: 8,
-                padding: "0 20px",
-                backgroundColor:
-                  isLoading ||
-                  (searchType === "AWS" && !searchTerm.trim()) ||
-                  (searchType === "Azure" && !searchTerm.trim()) ||
-                  (searchType === "Server" &&
-                    (!searchTerm.trim() || !filePath.trim()))
-                    ? "#ccc"
-                    : "#774aa4",
-                color: "white",
-                border: "none",
-                cursor:
-                  isLoading ||
-                  (searchType === "AWS" && !searchTerm.trim()) ||
-                  (searchType === "Azure" && !searchTerm.trim()) ||
-                  (searchType === "Server" &&
-                    (!searchTerm.trim() || !filePath.trim()))
-                    ? "not-allowed"
-                    : "pointer",
-                fontWeight: "500",
-                fontSize: "14px",
-                transition: "background-color 0.3s ease",
-              }}
             >
               {isLoading ? "Searching..." : "Search"}
             </button>
@@ -752,31 +839,13 @@ function Search({
 
           {/* Show search parameters */}
           {searchTerm && (
-            <div
-              className="search-parameters"
-              style={{
-                padding: "12px 16px",
-                backgroundColor: "#f5f5f5",
-                borderRadius: "8px",
-                marginBottom: "16px",
-                fontSize: "14px",
-                color: "#666",
-              }}
-            >
+            <div className="search-parameters">
               <strong>Search Parameters:</strong>
-              {searchType === "AWS" ? (
-                <>
-                  <div>• Keyword: "{searchTerm}"</div>
-                  <div>• Type: {searchType}</div>
-                </>
-              ) : (
-                <>
-                  <div>• Keyword: "{searchTerm}"</div>
-                  <div>• Type: {searchType}</div>
-                  {searchType === "Server" && filePath && (
-                    <div>• File Path: {filePath}</div>
-                  )}
-                </>
+              <div>• {searchMode === "pattern" ? "Pattern" : "Keyword"}: "{searchTerm}"</div>
+              <div>• Mode: {searchMode === "pattern" ? "Pattern Search" : "Keyword Search"}</div>
+              <div>• Type: {searchType}</div>
+              {searchType === "Server" && searchMode === "keyword" && filePath && (
+                <div>• File Path: {filePath}</div>
               )}
             </div>
           )}
@@ -827,15 +896,7 @@ function Search({
                   ))
                 ) : (
                   <div className="table-row">
-                    <div
-                      className="container-name-column"
-                      style={{
-                        gridColumn: "1 / -1",
-                        textAlign: "center",
-                        padding: "20px",
-                        color: "#999",
-                      }}
-                    >
+                    <div className="container-name-column no-containers-message">
                       No {searchType} containers available
                     </div>
                   </div>
@@ -847,30 +908,13 @@ function Search({
           {/* Script Status Section - Only for Server search */}
           {searchType === "Server" && (
             <div
-              className="script-status-section"
-              style={{
-                padding: "16px",
-                backgroundColor: scriptStatus.isReady ? "#e8f5e8" : "#f8d7da",
-                borderRadius: "8px",
-                marginBottom: "16px",
-                border: `1px solid ${
-                  scriptStatus.isReady ? "#28a745" : "#dc3545"
-                }`,
-              }}
+              className={`script-status-section ${
+                scriptStatus.isReady ? "ready" : "not-ready"
+              }`}
             >
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  marginBottom: "12px",
-                }}
-              >
+              <div className="script-status-header">
                 <h3
-                  style={{
-                    margin: 0,
-                    color: scriptStatus.isReady ? "#155724" : "#721c24",
-                  }}
+                  className={scriptStatus.isReady ? "ready" : "not-ready"}
                 >
                   Script Status:{" "}
                   {scriptStatus.loading
@@ -883,14 +927,8 @@ function Search({
 
               {/* Detailed status checks */}
               {!scriptStatus.isReady && (
-                <div style={{ fontSize: "14px", marginBottom: "12px" }}>
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "1fr 1fr",
-                      gap: "8px",
-                    }}
-                  >
+                <div className="script-status-checks">
+                  <div className="script-status-checks-grid">
                     <div>
                       <strong>Script File:</strong>{" "}
                       {scriptStatus.checks.scriptExists
@@ -932,11 +970,11 @@ function Search({
               {/* Recommendations */}
               {scriptStatus.recommendations &&
                 scriptStatus.recommendations.length > 0 && (
-                  <div style={{ fontSize: "13px", color: "#721c24" }}>
+                  <div className="script-status-recommendations">
                     <strong>Recommendations:</strong>
-                    <ul style={{ margin: "4px 0", paddingLeft: "20px" }}>
+                    <ul>
                       {scriptStatus.recommendations.map((rec, index) => (
-                        <li key={index} style={{ marginBottom: "2px" }}>
+                        <li key={index}>
                           {rec}
                         </li>
                       ))}
@@ -946,9 +984,7 @@ function Search({
 
               {/* Paths info */}
               {scriptStatus.paths && (
-                <div
-                  style={{ fontSize: "12px", color: "#666", marginTop: "8px" }}
-                >
+                <div className="script-status-paths">
                   <div>
                     <strong>Script Path:</strong>{" "}
                     {scriptStatus.paths.scriptPath}
@@ -956,23 +992,13 @@ function Search({
                 </div>
               )}
 
-              <div
-                style={{
-                  padding: "40px",
-                  textAlign: "center",
-                  backgroundColor: "#f8f9fa",
-                  borderRadius: "8px",
-                  color: "#666",
-                  fontSize: "16px",
-                }}
-              >
-                <div style={{ marginBottom: "12px" }}>
+              <div className="server-search-placeholder">
+                <div className="server-search-placeholder-icon">
                   <svg
                     width="48"
                     height="48"
                     viewBox="0 0 24 24"
                     fill="none"
-                    style={{ opacity: 0.5 }}
                   >
                     <rect
                       x="2"
@@ -989,7 +1015,7 @@ function Search({
                   </svg>
                 </div>
                 <strong>Server File Search</strong>
-                <div style={{ marginTop: "8px", fontSize: "14px" }}>
+                <div className="server-search-placeholder-subtitle">
                   Enter a file path and keyword to search for sensitive data in
                   server files
                 </div>
@@ -1000,17 +1026,10 @@ function Search({
           {searchType === "AWS" &&
             searchResults.length > 0 &&
             searchTerm.trim() && (
-              <div className="data-table-container" style={{ marginTop: 24 }}>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    marginBottom: "12px",
-                  }}
-                >
-                  <h3 style={{ margin: 0, color: "#155724" }}>
-                    🔍 AWS S3 Search Results ({searchResults.length} files
+              <div className="data-table-container mt-24">
+                <div className="search-results-header">
+                  <h3 className="search-results-title">
+                    🔍 AWS S3 {searchMode === "pattern" ? "Pattern" : "Keyword"} Search Results ({searchResults.length} files
                     found)
                   </h3>
                 </div>
@@ -1038,69 +1057,34 @@ function Search({
                         📄 {item.title}
                       </div>
                       <div className="container-column">{item.container}</div>
-                      <div
-                        className="index-column"
-                        style={{ fontSize: "12px", color: "#666" }}
-                      >
+                      <div className="index-column">
                         {item.index}
                       </div>
                       <div className="size-column">
-                        {item.size ? `${item.size} KB` : "N/A"}
+                        {item.size ? `${item.size} ${item.size_unit || 'KB'}` : "N/A"}
                       </div>
                       <div className="storage-type-column">
-                        <span
-                          style={{
-                            display: "inline-block",
-                            padding: "2px 8px",
-                            borderRadius: "12px",
-                            backgroundColor: "#ff9500", // Orange for AWS
-                            color: "white",
-                            fontWeight: "600",
-                            fontSize: "10px",
-                          }}
-                        >
+                        <span className="storage-type-badge s3">
                           {item.storage_type?.toUpperCase() || "S3"}
                         </span>
                       </div>
-                      <div
-                        className="updated-at-column"
-                        style={{ fontSize: "12px" }}
-                      >
+                      <div className="updated-at-column">
                         {item.updated_at || "N/A"}
                       </div>
                     </div>
                   ))}
                 </div>
 
-                <div
-                  style={{
-                    marginTop: "16px",
-                    padding: "12px",
-                    backgroundColor: "#f8f9fa",
-                    borderRadius: "8px",
-                    border: "1px solid #dee2e6",
-                  }}
-                >
-                  <h4
-                    style={{
-                      margin: "0 0 8px 0",
-                      color: "#495057",
-                      fontSize: "14px",
-                    }}
-                  >
+                <div className="search-results-summary">
+                  <h4 className="search-summary-title">
                     📊 AWS S3 Search Summary
                   </h4>
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns:
-                        "repeat(auto-fit, minmax(200px, 1fr))",
-                      gap: "12px",
-                      fontSize: "13px",
-                    }}
-                  >
+                  <div className="search-summary-grid">
                     <div>
-                      <strong>Search Keyword:</strong> "{searchTerm}"
+                      <strong>Search {searchMode === "pattern" ? "Pattern" : "Keyword"}:</strong> "{searchTerm}"
+                    </div>
+                    <div>
+                      <strong>Search Mode:</strong> {searchMode === "pattern" ? "Pattern Search" : "Keyword Search"}
                     </div>
                     <div>
                       <strong>Results Found:</strong> {searchResults.length}
@@ -1123,17 +1107,10 @@ function Search({
             )}
           {/* Azure Search Results Table */}
           {searchType === "Azure" && searchResults.length > 0 && (
-            <div className="data-table-container" style={{ marginTop: 24 }}>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  marginBottom: "12px",
-                }}
-              >
-                <h3 style={{ margin: 0, color: "#155724" }}>
-                  🔍 Azure Search Results ({searchResults.length} files found)
+            <div className="data-table-container mt-24">
+              <div className="search-results-header">
+                <h3 className="search-results-title">
+                  🔍 Azure {searchMode === "pattern" ? "Pattern" : "Keyword"} Search Results ({searchResults.length} files found)
                 </h3>
               </div>
 
@@ -1160,34 +1137,18 @@ function Search({
                       📄 {item.title}
                     </div>
                     <div className="container-column">{item.container}</div>
-                    <div
-                      className="index-column"
-                      style={{ fontSize: "12px", color: "#666" }}
-                    >
+                    <div className="index-column">
                       {item.index}
                     </div>
                     <div className="size-column">
-                      {item.size ? `${item.size} KB` : "N/A"}
+                      {item.size ? `${item.size} ${item.size_unit || 'KB'}` : "N/A"}
                     </div>
                     <div className="storage-type-column">
-                      <span
-                        style={{
-                          display: "inline-block",
-                          padding: "2px 8px",
-                          borderRadius: "12px",
-                          backgroundColor: "#007bff",
-                          color: "white",
-                          fontWeight: "600",
-                          fontSize: "10px",
-                        }}
-                      >
+                      <span className="storage-type-badge azure">
                         {item.storage_type?.toUpperCase() || "AZURE"}
                       </span>
                     </div>
-                    <div
-                      className="updated-at-column"
-                      style={{ fontSize: "12px" }}
-                    >
+                    <div className="updated-at-column">
                       {item.updated_at || "N/A"}
                     </div>
                   </div>
@@ -1195,34 +1156,16 @@ function Search({
               </div>
 
               {/* Search Summary */}
-              <div
-                style={{
-                  marginTop: "16px",
-                  padding: "12px",
-                  backgroundColor: "#f8f9fa",
-                  borderRadius: "8px",
-                  border: "1px solid #dee2e6",
-                }}
-              >
-                <h4
-                  style={{
-                    margin: "0 0 8px 0",
-                    color: "#495057",
-                    fontSize: "14px",
-                  }}
-                >
+              <div className="search-results-summary">
+                <h4 className="search-summary-title">
                   📊 Azure Search Summary
                 </h4>
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-                    gap: "12px",
-                    fontSize: "13px",
-                  }}
-                >
+                <div className="search-summary-grid">
                   <div>
-                    <strong>Search Keyword:</strong> "{searchTerm}"
+                    <strong>Search {searchMode === "pattern" ? "Pattern" : "Keyword"}:</strong> "{searchTerm}"
+                  </div>
+                  <div>
+                    <strong>Search Mode:</strong> {searchMode === "pattern" ? "Pattern Search" : "Keyword Search"}
                   </div>
                   <div>
                     <strong>Results Found:</strong> {searchResults.length}
@@ -1243,29 +1186,19 @@ function Search({
           )}
           {/* Server Search Results Table */}
           {searchType === "Server" && serverSearchResults.length > 0 && (
-            <div className="data-table-container" style={{ marginTop: 16 }}>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  marginBottom: "12px",
-                }}
-              >
+            <div className="data-table-container mt-16">
+              <div className="search-results-header">
                 <h3
-                  style={{
-                    margin: 0,
-                    color: serverSearchResults[0]?.isEmpty
-                      ? "#721c24"
-                      : "#155724",
-                  }}
+                  className={`search-results-title ${
+                    serverSearchResults[0]?.isEmpty ? "error" : ""
+                  }`}
                 >
                   📄 Server Search Results{" "}
                   {serverSearchResults[0]?.isEmpty
                     ? "(No matches)"
                     : `(${serverSearchResults.length} files found)`}
                 </h3>
-                <div style={{ fontSize: "14px", color: "#666" }}>
+                <div className="total-matches-info">
                   Total matches:{" "}
                   {serverSearchResults.reduce(
                     (sum, item) => sum + (item.matchCount || 0),
@@ -1292,12 +1225,8 @@ function Search({
                 </div>
                 {serverSearchResults.map((item, idx) => (
                   <div
-                    className="table-row"
+                    className={`table-row ${item.isEmpty ? "empty-result" : ""}`}
                     key={idx}
-                    style={{
-                      backgroundColor: item.isEmpty ? "#f8f9fa" : "inherit",
-                      opacity: item.isEmpty ? 0.7 : 1,
-                    }}
                   >
                     <div className="file-name-column" title={item.fileName}>
                       {item.isEmpty ? "❌" : "📄"} {item.fileName}
@@ -1307,62 +1236,33 @@ function Search({
                     </div>
                     <div className="match-count-column">
                       <span
-                        style={{
-                          display: "inline-block",
-                          minWidth: "30px",
-                          padding: "4px 8px",
-                          borderRadius: "12px",
-                          backgroundColor:
-                            item.matchCount > 0 ? "#ffa352" : "#e8f6ea",
-                          color: item.matchCount > 0 ? "#fff" : "#34af3e",
-                          fontWeight: "600",
-                          textAlign: "center",
-                          fontSize: "12px",
-                        }}
+                        className={`match-count-badge ${
+                          item.matchCount > 0 ? "has-matches" : "no-matches"
+                        }`}
                       >
                         {item.matchCount || 0}
                       </span>
                     </div>
                     <div className="line-numbers-column">
-                      <div
-                        style={{
-                          display: "flex",
-                          flexWrap: "wrap",
-                          gap: "4px",
-                        }}
-                      >
+                      <div className="line-numbers-display">
                         {item.lineNumbers && item.lineNumbers.length > 0 ? (
                           item.lineNumbers
                             .slice(0, 5)
                             .map((lineNum, lineIdx) => (
                               <span
                                 key={lineIdx}
-                                style={{
-                                  display: "inline-block",
-                                  padding: "2px 6px",
-                                  backgroundColor: "#e7f3ff",
-                                  color: "#0066cc",
-                                  borderRadius: "8px",
-                                  fontSize: "11px",
-                                  fontWeight: "500",
-                                }}
+                                className="line-number-item"
                               >
                                 {lineNum}
                               </span>
                             ))
                         ) : (
-                          <span style={{ color: "#999", fontSize: "12px" }}>
+                          <span className="line-numbers-na">
                             {item.isEmpty ? "No matches" : "N/A"}
                           </span>
                         )}
                         {item.lineNumbers && item.lineNumbers.length > 5 && (
-                          <span
-                            style={{
-                              color: "#666",
-                              fontSize: "11px",
-                              fontStyle: "italic",
-                            }}
-                          >
+                          <span className="line-numbers-more">
                             +{item.lineNumbers.length - 5} more
                           </span>
                         )}
@@ -1373,37 +1273,16 @@ function Search({
                 ))}
               </div>
 
-              {/* SỬA: Conditional Summary based on isEmpty */}
+              {/* Conditional Summary based on isEmpty */}
               <div
-                style={{
-                  marginTop: "16px",
-                  padding: "12px",
-                  backgroundColor: serverSearchResults[0]?.isEmpty
-                    ? "#f8d7da"
-                    : "#f8f9fa",
-                  borderRadius: "8px",
-                  border: `1px solid ${
-                    serverSearchResults[0]?.isEmpty ? "#f5c6cb" : "#dee2e6"
-                  }`,
-                }}
+                className={`search-results-summary ${
+                  serverSearchResults[0]?.isEmpty ? "error-summary" : ""
+                }`}
               >
-                <h4
-                  style={{
-                    margin: "0 0 8px 0",
-                    color: "#495057",
-                    fontSize: "14px",
-                  }}
-                >
+                <h4 className="search-summary-title">
                   📊 Search Summary
                 </h4>
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-                    gap: "12px",
-                    fontSize: "13px",
-                  }}
-                >
+                <div className="search-summary-grid">
                   <div>
                     <strong>Search Keyword:</strong> "{searchTerm}"
                   </div>
@@ -1425,102 +1304,43 @@ function Search({
                   </div>
                 </div>
 
-                {/* SỬA: Add status message for empty results */}
+                {/* Add status message for empty results */}
                 {serverSearchResults[0]?.isEmpty && (
-                  <div
-                    style={{
-                      marginTop: "12px",
-                      padding: "12px",
-                      backgroundColor: "#fff3cd",
-                      borderRadius: "8px",
-                      border: "1px solid #ffeaa7",
-                      color: "#856404",
-                    }}
-                  >
-                    <strong>ℹ️ Search Status:</strong> The search completed
+                  <div className="search-status-message">
+                    <strong>Search Status:</strong> The search completed
                     successfully but no files containing the keyword "
                     {searchTerm}" were found in the specified path.
                   </div>
                 )}
               </div>
 
-              {/* SỬA: Conditional File Details */}
+              {/* Conditional File Details */}
               {!serverSearchResults[0]?.isEmpty && (
-                <div style={{ marginTop: "16px" }}>
-                  <h4
-                    style={{
-                      margin: "0 0 8px 0",
-                      color: "#155724",
-                      fontSize: "14px",
-                    }}
-                  >
+                <div className="file-details-section">
+                  <h4 className="file-details-title">
                     📋 File Details
                   </h4>
-                  <div
-                    style={{
-                      maxHeight: "300px",
-                      overflowY: "auto",
-                      border: "1px solid #dee2e6",
-                      borderRadius: "8px",
-                      backgroundColor: "#fff",
-                    }}
-                  >
+                  <div className="file-details-container">
                     {serverSearchResults.map((item, idx) => (
                       <div
                         key={idx}
-                        style={{
-                          padding: "12px",
-                          borderBottom:
-                            idx < serverSearchResults.length - 1
-                              ? "1px solid #eee"
-                              : "none",
-                        }}
+                        className="file-detail-item"
                       >
-                        <div
-                          style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                            marginBottom: "8px",
-                          }}
-                        >
-                          <div
-                            style={{
-                              fontWeight: "600",
-                              color: "#155724",
-                              fontSize: "14px",
-                            }}
-                          >
+                        <div className="file-detail-header">
+                          <div className="file-detail-name">
                             📄 {item.fileName}
                           </div>
-                          <div
-                            style={{
-                              fontSize: "12px",
-                              color: "#666",
-                            }}
-                          >
+                          <div className="file-detail-match-count">
                             {item.matchCount} matches
                           </div>
                         </div>
 
-                        <div
-                          style={{
-                            fontSize: "12px",
-                            color: "#666",
-                            marginBottom: "8px",
-                            wordBreak: "break-all",
-                          }}
-                        >
+                        <div className="file-detail-path">
                           Path: {item.filePath}
                         </div>
 
                         {item.lineNumbers && item.lineNumbers.length > 0 && (
-                          <div
-                            style={{
-                              fontSize: "12px",
-                              color: "#495057",
-                            }}
-                          >
+                          <div className="file-detail-lines">
                             <strong>Found on lines:</strong>{" "}
                             {item.lineNumbers.join(", ")}
                           </div>
