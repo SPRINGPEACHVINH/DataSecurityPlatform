@@ -204,7 +204,7 @@ function Misconfig({
 
       <div className="main-content">
         <Header
-          pageTitle="Misconfig"
+          pageTitle="Cloud Security Misconfiguration Scanner"
           searchTerm=""
           onSearchChange={() => {}}
           onLogout={handleLogout}
@@ -212,7 +212,7 @@ function Misconfig({
         />
 
         <div className="misconfig-content">
-          <div className="misconfig-title">Cloud Security Configuration Scanner</div>
+          {/* <div className="misconfig-title">Cloud Security Configuration Scanner</div> */}
 
           {/* Configuration Area */}
           <div className="config-section">
@@ -226,7 +226,6 @@ function Misconfig({
                 }`}
                 onClick={() => handleCloudProviderChange("AWS")}
               >
-                <span className="provider-icon">☁️</span>
                 AWS
               </button>
               <button
@@ -235,7 +234,6 @@ function Misconfig({
                 }`}
                 onClick={() => handleCloudProviderChange("Azure")}
               >
-                <span className="provider-icon">⚡</span>
                 Azure
               </button>
             </div>

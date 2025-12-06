@@ -29,7 +29,7 @@ function App() {
         if (savedView && savedView !== "login") {
           setCurrentView(savedView);
         } else {
-          setCurrentView("DataSources");
+          setCurrentView("Overview");
         }
         return true;
       } else {
@@ -78,8 +78,8 @@ function App() {
     localStorage.setItem("isLoggedIn", "true");
     localStorage.setItem("sessionId", sessionId);
     localStorage.setItem("username", user.username);
-    localStorage.setItem("currentView", "DataSources");
-    setCurrentView("DataSources");
+    localStorage.setItem("currentView", "Overview");
+    setCurrentView("Overview");
   };
 
   const handleLogout = () => {
@@ -158,14 +158,6 @@ function App() {
     }
   };
 
-  // const handleNavigateToLogManager = async () => {
-  //   const isValid = await checkSession();
-  //   if (isValid) {
-  //     setCurrentView("LogManager");
-  //     localStorage.setItem("currentView", "LogManager");
-  //   }
-  // };
-
   const renderCurrentView = () => {
     switch (currentView) {
       case "login":
@@ -174,6 +166,7 @@ function App() {
         return (
           <DataSources
             onLogout={handleLogout}
+            onNavigateToOverview={handleNavigateToOverview}
             onNavigateToSearch={handleNavigateToSearch}
             onNavigateToMisconfig={handleNavigateToMisconfig}
             initialPage="data-sources"
@@ -185,6 +178,7 @@ function App() {
         return (
           <DataSources
             onLogout={handleLogout}
+            onNavigateToOverview={handleNavigateToOverview}
             onNavigateToSearch={handleNavigateToSearch}
             onNavigateToMisconfig={handleNavigateToMisconfig}
             initialPage="overview"
@@ -192,16 +186,6 @@ function App() {
             user={user}
           />
         );
-      // case "LogManager":
-      //   return (
-      //     <DataSources
-      //       onLogout={handleLogout}
-      //       onNavigateToSearch={handleNavigateToSearch}
-      //       initialPage="log-manager"
-      //       checkSession={checkSession}
-      //       user={user}
-      //     />
-      //   );
       case "Search":
         return (
           <Search
@@ -209,7 +193,6 @@ function App() {
             onNavigateToDataSources={handleNavigateToDataSources}
             onNavigateToOverview={handleNavigateToOverview}
             onNavigateToMisconfig={handleNavigateToMisconfig}
-            // onNavigateToLogManager={handleNavigateToLogManager}
             checkSession={checkSession}
           />
         );
@@ -220,7 +203,6 @@ function App() {
             onNavigateToDataSources={handleNavigateToDataSources}
             onNavigateToOverview={handleNavigateToOverview}
             onNavigateToSearch={handleNavigateToSearch}
-            // onNavigateToLogManager={handleNavigateToLogManager}
           />
         );
       case "Header":

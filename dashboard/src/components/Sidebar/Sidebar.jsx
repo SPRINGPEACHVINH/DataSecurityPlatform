@@ -1,10 +1,8 @@
-import React from "react";
 import "./Sidebar.css";
 
 function Sidebar({
   currentPage,
   onNavigateToOverview,
-  //onNavigateToLogManager,
   onNavigateToDataSources,
   onNavigateToSearch,
   onNavigateToMisconfig,
@@ -35,23 +33,6 @@ function Sidebar({
             />
             <div>Overview</div>
           </div>
-
-          {/* <div
-            className={
-              currentPage === "log-manager" ? "nav-item-active" : "nav-item"
-            }
-            onClick={onNavigateToLogManager}
-          >
-            {currentPage === "log-manager" && (
-              <div className="nav-active-indicator" />
-            )}
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/b73512fb2c8a58aa1d81d2fd47f78e1ae24073f0?placeholderIfAbsent=true"
-              className="nav-icon log-manager"
-              alt="Log Manager"
-            />
-            <div>Log Manager</div>
-          </div> */}
 
           <div
             className={

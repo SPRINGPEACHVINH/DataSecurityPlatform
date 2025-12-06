@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./DataSources.css";
 import Overview from "../Overview/Overview";
-import LogManager from "../LogManager/LogManager";
 import Sidebar from "../Sidebar/Sidebar";
 import Header from "../Header/Header";
 
