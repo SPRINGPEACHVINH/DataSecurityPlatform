@@ -51,4 +51,4 @@ Configure the following parameters for Azure Blob Storage integration:
 
 #### Assign Log Analytics Reader Role
 
-20. Repeat steps 17-21 for the **"Log Analytics Reader"** role
+20. Repeat steps 15-19 for the **"Log Analytics Reader"** role
