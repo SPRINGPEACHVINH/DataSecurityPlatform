@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import Login from "./components/Login";
-import DataSources from "./components/DataSources";
-import Search from "./components/Search";
-import Header from "./components/Header";
+import Login from "./components/Login/Login";
+import DataSources from "./components/DataSources/DataSources";
+import Search from "./components/Search/Search";
+import Misconfig from "./components/Misconfig/Misconfig";
+import Header from "./components/Header/Header";
 import { useSessionCheck } from "./hooks/useSessionCheck";
 import { clearSearchSession } from "./hooks/clearSearchSession";
 import "./App.css";
@@ -133,6 +134,14 @@ function App() {
     }
   };
 
+  const handleNavigateToMisconfig = async () => {
+    const isValid = await checkSession();
+    if (isValid) {
+      setCurrentView("Misconfig");
+      localStorage.setItem("currentView", "Misconfig");
+    }
+  };
+
   const handleNavigateToDataSources = async () => {
     const isValid = await checkSession();
     if (isValid) {
@@ -166,6 +175,7 @@ function App() {
           <DataSources
             onLogout={handleLogout}
             onNavigateToSearch={handleNavigateToSearch}
+            onNavigateToMisconfig={handleNavigateToMisconfig}
             initialPage="data-sources"
             checkSession={checkSession}
             user={user}
@@ -176,6 +186,7 @@ function App() {
           <DataSources
             onLogout={handleLogout}
             onNavigateToSearch={handleNavigateToSearch}
+            onNavigateToMisconfig={handleNavigateToMisconfig}
             initialPage="overview"
             checkSession={checkSession}
             user={user}
@@ -197,8 +208,19 @@ function App() {
             onLogout={handleLogout}
             onNavigateToDataSources={handleNavigateToDataSources}
             onNavigateToOverview={handleNavigateToOverview}
+            onNavigateToMisconfig={handleNavigateToMisconfig}
             // onNavigateToLogManager={handleNavigateToLogManager}
             checkSession={checkSession}
+          />
+        );
+      case "Misconfig":
+        return (
+          <Misconfig
+            onLogout={handleLogout}
+            onNavigateToDataSources={handleNavigateToDataSources}
+            onNavigateToOverview={handleNavigateToOverview}
+            onNavigateToSearch={handleNavigateToSearch}
+            // onNavigateToLogManager={handleNavigateToLogManager}
           />
         );
       case "Header":

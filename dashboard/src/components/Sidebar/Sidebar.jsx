@@ -7,6 +7,7 @@ function Sidebar({
   //onNavigateToLogManager,
   onNavigateToDataSources,
   onNavigateToSearch,
+  onNavigateToMisconfig,
 }) {
   return (
     <div className="sidebar-container">
@@ -84,6 +85,23 @@ function Sidebar({
               alt="Search"
             />
             <div>Search</div>
+          </div>
+
+          <div
+            className={
+              currentPage === "misconfig" ? "nav-item-active" : "nav-item"
+            }
+            onClick={onNavigateToMisconfig}
+          >
+            {currentPage === "misconfig" && (
+              <div className="nav-active-indicator" />
+            )}
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/b8d5045840a701da208dd57ad7d80615fc2c7fec?placeholderIfAbsent=true"
+              className="nav-icon"
+              alt="Misconfig"
+            />
+            <div>Misconfig</div>
           </div>
         </div>
       </div>

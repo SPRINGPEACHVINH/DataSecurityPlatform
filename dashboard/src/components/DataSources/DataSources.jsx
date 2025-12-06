@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./DataSources.css";
-import Overview from "./Overview";
-import LogManager from "./LogManager";
-import Sidebar from "./Sidebar";
-import Header from "./Header";
+import Overview from "../Overview/Overview";
+import LogManager from "../LogManager/LogManager";
+import Sidebar from "../Sidebar/Sidebar";
+import Header from "../Header/Header";
 
 function extractConnectionData(documents, connectionData) {
   const containers = [...new Set(documents.map((doc) => doc.container))];
@@ -65,6 +65,7 @@ function extractFileData(documents) {
 function DataSources({
   onLogout,
   onNavigateToSearch,
+  onNavigateToMisconfig,
   initialPage = "data-sources",
 }) {
   const [currentPage, setCurrentPage] = useState(initialPage);
@@ -232,6 +233,7 @@ function DataSources({
       onNavigateToLogManager={() => handleNavigation("log-manager")}
       onNavigateToDataSources={() => handleNavigation("data-sources")}
       onNavigateToSearch={onNavigateToSearch}
+      onNavigateToMisconfig={onNavigateToMisconfig}
     />
   );
 

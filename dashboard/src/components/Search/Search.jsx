@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./Search.css";
-import Sidebar from "./Sidebar";
-import Header from "./Header";
+import Sidebar from "../Sidebar/Sidebar";
+import Header from "../Header/Header";
 
 function Search({
   onLogout,
   onNavigateToDataSources,
   onNavigateToOverview,
   onNavigateToLogManager,
+  onNavigateToMisconfig,
 }) {
   const [scriptStatus, setScriptStatus] = useState({
     isReady: false,
@@ -669,6 +670,7 @@ function Search({
         onNavigateToLogManager={onNavigateToLogManager}
         onNavigateToDataSources={onNavigateToDataSources}
         onNavigateToSearch={() => console.log("Already on search")}
+        onNavigateToMisconfig={onNavigateToMisconfig}
       />
 
       <div className="main-content">
