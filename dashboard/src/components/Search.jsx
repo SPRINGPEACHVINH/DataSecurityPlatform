@@ -298,7 +298,7 @@ function Search({
 
       try {
         const response = await fetch(
-          "http://localhost:4000/api/dashboard/elasticsearch/search-pattern",
+          "http://localhost:4000/api/dashboard/search",
           {
             method: "POST",
             credentials: "include",
@@ -307,6 +307,7 @@ function Search({
               Cookie: localStorage.getItem("sessionId") || "",
             },
             body: JSON.stringify({
+              search_type: "pattern",
               pattern: searchTerm.trim(),
               index_name: selectedIndexName,
             }),
@@ -315,9 +316,11 @@ function Search({
 
         const result = await response.json();
 
-        if (response.ok && result.data) {
-          const results = result.data.results || [];
-
+        if (response.ok && result.data && result.data.data) {
+          const searchData = result.data.data;
+          const results = searchData.results || [];
+          console.log("Pattern search results:", results);
+          
           // Transform the results to match the expected format
           const transformedResults = results.map((item) => ({
             id: item.id,
@@ -325,9 +328,10 @@ function Search({
             container: item.container,
             title: item.title,
             size: item.size,
-            size_unit: item.size_unit,
+            size_unit: item.content_type ? "KB" : item.size_unit || "KB", // Default to KB if not specified
             storage_type: item.storage_type,
             updated_at: item.updated_at,
+            content_type: item.content_type,
           }));
 
           setSearchResults(transformedResults);
@@ -689,7 +693,7 @@ function Search({
               className="search-mode-select"
               value={searchMode}
               onChange={handleSearchModeChange}
-              disabled={isLoading}
+              disabled={isLoading || searchType === "Server"}
             >
               <option value="keyword">Keyword Search</option>
               <option value="pattern">Pattern Search</option>
@@ -697,83 +701,100 @@ function Search({
           </div>
 
           <div className="search-bar-row">
-            <div className="main-search-bar">
-              <div className="state-layer">
-                <div className="leading-icon">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <circle
-                      cx="11"
-                      cy="11"
-                      r="7"
-                      stroke="#774aa4"
-                      strokeWidth="2"
-                    />
-                    <line
-                      x1="16.018"
-                      y1="16.4853"
-                      x2="20"
-                      y2="20.4853"
-                      stroke="#774aa4"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                </div>
-                <div className="search-content-input">
-                  <input
-                    type="text"
-                    className="search-input-field"
-                    placeholder={
-                      searchMode === "pattern"
-                        ? `Enter pattern to search in ${searchType} (e.g., PT002, PT001)`
-                        : searchType === "AWS"
-                        ? "Enter keyword to search in AWS (e.g., sensitive, credit card)"
-                        : searchType === "Azure"
-                        ? "Enter keyword to search in Azure (e.g., password, SSN)"
-                        : "Enter keyword to search in Server files"
-                    }
-                    value={searchTerm}
-                    onChange={(e) => handleSearchChange(e.target.value)}
-                    onKeyPress={handleSearchKeyPress}
-                    disabled={isLoading}
-                  />
-                </div>
-                <div className="trailing-elements">
-                  {searchTerm && (
-                    <button
-                      className="clear-search-button"
-                      onClick={handleClearSearch}
+            {searchMode === "pattern" ? (
+              <div className="pattern-select-container">
+                <label htmlFor="pattern-select" className="pattern-select-label">
+                  Select Pattern:
+                </label>
+                <select
+                  id="pattern-select"
+                  className="pattern-select-dropdown"
+                  value={searchTerm}
+                  onChange={(e) => handleSearchChange(e.target.value)}
+                  disabled={isLoading}
+                >
+                  <option value="">-- Select a Pattern --</option>
+                  <option value="PT001">PT001</option>
+                  <option value="PT002">PT002</option>
+                </select>
+              </div>
+            ) : (
+              <div className="main-search-bar">
+                <div className="state-layer">
+                  <div className="leading-icon">
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
                     >
-                      <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
+                      <circle
+                        cx="11"
+                        cy="11"
+                        r="7"
+                        stroke="#774aa4"
+                        strokeWidth="2"
+                      />
+                      <line
+                        x1="16.018"
+                        y1="16.4853"
+                        x2="20"
+                        y2="20.4853"
+                        stroke="#774aa4"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  </div>
+                  <div className="search-content-input">
+                    <input
+                      type="text"
+                      className="search-input-field"
+                      placeholder={
+                        searchType === "AWS"
+                          ? "Enter keyword to search in AWS (e.g., sensitive, credit card)"
+                          : searchType === "Azure"
+                          ? "Enter keyword to search in Azure (e.g., password, SSN)"
+                          : "Enter keyword to search in Server files"
+                      }
+                      value={searchTerm}
+                      onChange={(e) => handleSearchChange(e.target.value)}
+                      onKeyPress={handleSearchKeyPress}
+                      disabled={isLoading}
+                    />
+                  </div>
+                  <div className="trailing-elements">
+                    {searchTerm && (
+                      <button
+                        className="clear-search-button"
+                        onClick={handleClearSearch}
                       >
-                        <path
-                          d="M18 6L6 18"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                        />
-                        <path
-                          d="M6 6L18 18"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                        />
-                      </svg>
-                    </button>
-                  )}
+                        <svg
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                        >
+                          <path
+                            d="M18 6L6 18"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                          />
+                          <path
+                            d="M6 6L18 18"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                          />
+                        </svg>
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
 
             {searchType === "Server" && searchMode === "keyword" && (
               <input

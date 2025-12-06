@@ -474,6 +474,8 @@
 .search-mode-label {
   margin-right: 8px;
   font-weight: 600;
+  color: #37234b;
+  font: 600 16px "Open Sans", sans-serif;
 }
 
 .search-mode-select {
@@ -483,11 +485,83 @@
   background-color: white;
   cursor: pointer;
   font-size: 14px;
+  color: #37234b;
+  font: 400 14px "Open Sans", sans-serif;
+  min-width: 160px;
 }
 
 .search-mode-select:disabled {
   cursor: not-allowed;
   opacity: 0.6;
+  background-color: #f5f5f5;
+}
+
+.search-mode-select:focus {
+  outline: none;
+  border-color: #774aa4;
+  box-shadow: 0 0 0 2px rgba(119, 74, 164, 0.1);
+}
+
+.search-mode-select:hover:not(:disabled) {
+  border-color: #774aa4;
+}
+
+/* Pattern Select Container */
+.pattern-select-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  background-color: #f6f1fa;
+  border-radius: 8px;
+  border: 1px solid #e4dbed;
+}
+
+.pattern-select-label {
+  color: #37234b;
+  font-weight: 600;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.pattern-select-dropdown {
+  flex: 1;
+  padding: 10px 16px;
+  border: 1px solid #e4dbed;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #37234b;
+  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
+  cursor: pointer;
+  min-width: 250px;
+  transition: all 0.3s ease;
+}
+
+.pattern-select-dropdown:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  background-color: #f5f5f5;
+}
+
+.pattern-select-dropdown:focus {
+  outline: none;
+  border-color: #774aa4;
+  box-shadow: 0 0 0 3px rgba(119, 74, 164, 0.15);
+}
+
+.pattern-select-dropdown:hover:not(:disabled) {
+  border-color: #774aa4;
+  background-color: #fafafa;
+}
+
+.pattern-select-dropdown option {
+  padding: 10px;
+  font-size: 15px;
+}
+
+.pattern-select-dropdown option:first-child {
+  color: #999;
 }
 
 /* SVG Icons */

@@ -224,7 +224,7 @@ export const utilitySearchRegexPattern = async (pattern, index_name) => {
 
         const regexpattern = PATTERN_CODES[pattern];
 
-        console.log(`Using regex pattern: ${regexpattern}`);
+        console.log(`Using regex pattern: ${regexpattern} - Indexname: ${index_name}`);
         // Execute search query
         const response = await axios.post(
             `${ES_LOCAL_URL}/${index_name}/_search`,

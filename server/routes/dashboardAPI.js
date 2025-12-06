@@ -20,6 +20,7 @@ import {
 } from "../services/elasticsearchService/search.js";
 import { isAuthenticated } from "../middleware/isAuthenticated.js";
 import { getOverviewData } from "../controllers/overviewController.js";
+import { scanCloudMisconfig } from "../controllers/misconfigController.js"
 
 const router = express.Router();
 
@@ -37,7 +38,8 @@ router.post("/elasticsearch/sync-connectors", isAuthenticated, SyncConnectors);
 router.get("/elasticsearch/sync-status", isAuthenticated, getSyncStatus);
 router.post("/elasticsearch/delete-file-content", isAuthenticated, deleteFileContent);
 // router.post("/elasticsearch/search-keyword", isAuthenticated, SearchKeyword);
-// router.post("/elasticsearch/search-regex", isAuthenticated, SearchRegexPattern);
-router.get("/overview/data", getOverviewData);
+// router.post("/elasticsearch/search-pattern", isAuthenticated, SearchRegexPattern);
+router.get("/overview/data", isAuthenticated, getOverviewData);
+router.post("/misconfig/scan", isAuthenticated, scanCloudMisconfig);
 
 export default router;

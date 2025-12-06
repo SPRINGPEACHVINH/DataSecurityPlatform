@@ -1,4 +1,4 @@
-import { encryptedFunc, decryptedFunc } from '../utils/index.js';
+import { encryptedFunc } from '../utils/index.js';
 import crypto from 'crypto';
 import ecKeyUtils from 'eckey-utils';
 import fs from 'fs';
@@ -63,9 +63,8 @@ export const generateUserKeys = () => {
     }
 };
 
-export const scanCloudMisconfig = async (cloud) => {
+export const utilityscanCloudMisconfig = async (cloud) => {
     try {
-
         let credentials = {};
 
         if (cloud === 'aws') {
@@ -83,7 +82,17 @@ export const scanCloudMisconfig = async (cloud) => {
             console.log('AWS credentials loaded successfully');
         }
         else if (cloud === 'azure') {
-            return { status: 400, error: 'Azure scanning not implemented yet.' };
+            credentials = {
+                ApplicationID: process.env.AZURE_APPLICATION_ID,
+                KeyValue: process.env.AZURE_KEY_VALUE,
+                DirectoryID: process.env.AZURE_DIRECTORY_ID,
+                SubscriptionID: process.env.AZURE_SUBSCRIPTION_ID
+            };
+
+            // Validate credentials
+            if (!credentials.ApplicationID || !credentials.KeyValue || !credentials.DirectoryID || !credentials.SubscriptionID) {
+                throw new Error('Missing Azure credentials in .env file. Please check AZURE_APPLICATION_ID, AZURE_KEY_VALUE, AZURE_DIRECTORY_ID, and AZURE_SUBSCRIPTION_ID');
+            }
         }
         else {
             return { status: 400, error: 'Invalid cloud provider. Must be "aws" or "azure".' };
@@ -109,27 +118,30 @@ export const scanCloudMisconfig = async (cloud) => {
         if (ciphertext.length < 100) {
             throw new Error(`Ciphertext too short (${ciphertext.length} chars). Encryption failed.`);
         }
-
+        //console.log('Cipher text type', typeof ciphertext);
         const payload = {
             ciphertext: ciphertext,
             iv: iv,
             authTag: authTag,
-            userPublicKey: userPublicKeyPem
+            userPublicKey: userPublicKeyPem,
+            cloud: cloud
         };
+        //console.log('Payload:', payload);
 
         // Uncomment to send to CloudSploit
-        // const response = await axios.post('', payload);
-        // return { status: 200, message: 'Scan completed', data: response.data };
+        const response = await axios.post(`${process.env.CLOUDSPLOIT_ENDPOINT}/scan`, payload);
+        return { status: 200, message: 'Scan completed', data: response.data };
 
-        return {
-            status: 200,
-            message: 'Payload prepared and validated successfully',
-            payloadInfo: {
-                ciphertextLength: ciphertext.length,
-                ivLength: iv.length,
-                authTagLength: authTag.length
-            }
-        };
+        // return {
+        //     status: 200,
+        //     message: 'Payload prepared and validated successfully',
+        //     payloadInfo: {
+        //         ciphertextLength: ciphertext.length,
+        //         ivLength: iv.length,
+        //         authTagLength: authTag.length,
+        //         cloud: cloud
+        //     }
+        // };
     }
     catch (error) {
         return {
@@ -139,22 +151,47 @@ export const scanCloudMisconfig = async (cloud) => {
     }
 }
 
-// Test function
-(async () => {
+export const scanCloudMisconfig = async (req, res) => {
     try {
-        console.log('='.repeat(60));
-        console.log('🚀 Testing scanCloudMisconfig');
-        console.log('='.repeat(60));
+        const { cloud } = req.body;
+        if (!cloud) {
+            return res.status(400).json({ error: 'Missing "cloud" parameter in request body.' });
+        }
 
-        const result = await scanCloudMisconfig('aws');
+        const result = await utilityscanCloudMisconfig(cloud);
 
-        console.log('\n' + '='.repeat(60));
-        console.log('📊 RESULT:');
-        console.log('='.repeat(60));
-        console.log(JSON.stringify(result, null, 2));
-
-    } catch (error) {
-        console.error('\n❌ Test failed:', error);
-        process.exit(1);
+        if (result.status !== 200) {
+            return res.status(result.status).json({
+                message: "Failed to handle misconfiguration scan request.",
+                error: result.error || "Unknown error",
+            });
+        }
+        res.status(200).json(result.data);
     }
-})();
+    catch (error) {
+        res.status(500).json({
+            message: "Failed to handle misconfiguration scan request.",
+            error: error.message || "Unknown error",
+        });
+    }
+}
+
+// Test function
+// (async () => {
+//     try {
+//         console.log('='.repeat(60));
+//         console.log('🚀 Testing scanCloudMisconfig');
+//         console.log('='.repeat(60));
+
+//         const result = await scanCloudMisconfig('azure');
+
+//         console.log('\n' + '='.repeat(60));
+//         console.log('📊 RESULT:');
+//         console.log('='.repeat(60));
+//         console.log(JSON.stringify(result, null, 2));
+
+//     } catch (error) {
+//         console.error('\n❌ Test failed:', error);
+//         process.exit(1);
+//     }
+// })();

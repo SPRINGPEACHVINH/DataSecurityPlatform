@@ -28,7 +28,7 @@ export const handleDashboardSearch = async (req, res) => {
     }
 
     // Validate search parameters based on search type
-    if (search_type === "regex") {
+    if (search_type === "pattern") {
       if (!pattern) {
         return res.status(400).json({
           message:
@@ -94,7 +94,7 @@ export const handleDashboardSearch = async (req, res) => {
 
       // Perform the search
       let results;
-      if (search_type === "regex") {
+      if (search_type === "pattern") {
         console.log(`Performing regex search with pattern: ${pattern}`);
         results = await utilitySearchRegexPattern(
           pattern,
