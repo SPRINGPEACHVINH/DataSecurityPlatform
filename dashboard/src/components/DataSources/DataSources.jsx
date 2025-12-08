@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import "./DataSources.css";
 import Overview from "../Overview/Overview";
@@ -77,6 +78,7 @@ function DataSources({
   const [connectionData, setConnectionData] = useState([]);
   const [isUserProfileDropdownOpen, setIsUserProfileDropdownOpen] =
     useState(false);
+  const [showConfigGuide, setShowConfigGuide] = useState(false);
 
   useEffect(() => {
     async function fetchDocuments() {
@@ -91,6 +93,12 @@ function DataSources({
           "http://localhost:4000/api/dashboard/elasticsearch/documents",
           { credentials: "include" }
         );
+        
+        if (docResponse.status === 404) {
+          setShowConfigGuide(true);
+          return;
+        }
+
         const docData = await docResponse.json();
 
         let allFiles = [];
@@ -256,6 +264,34 @@ function DataSources({
   }
 
   // Default: Data Sources page
+  
+  // Show Configuration Guide if needed
+  if (showConfigGuide) {
+    return (
+      <div className="data-sources-container">
+        {sidebarComponent}
+        <div className="main-content">
+          {getHeaderForPage("Data Sources")}
+          <div className="config-guide-message">
+            <div className="message-card">
+              <h2>⚙️ Initial Setup Required</h2>
+              <p>
+                No data sources have been configured yet. Please complete the 
+                initial setup in the Overview page to create your first connector.
+              </p>
+              <button 
+                className="setup-button"
+                onClick={() => handleNavigation("overview")}
+              >
+                Go to Setup
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="data-sources-container">
       {sidebarComponent}
