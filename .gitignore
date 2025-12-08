@@ -29,3 +29,5 @@ dist-ssr
 *.sw?
 
 .config/
+venv311/
+__pycache__/
