@@ -18,6 +18,12 @@ export const utilitygetDocuments = async (connectorData) => {
       console.log("Request body is empty, fetching all connectors.");
       connectorData = await _connector();
       console.log("Fetched connector data:", connectorData);
+      if (!connectorData || connectorData.length === 0) {
+        return {
+          status: 404,
+          message: "No connectors found to retrieve documents."
+        }
+      }
 
       indexName =
         connectorData && connectorData.length > 0
