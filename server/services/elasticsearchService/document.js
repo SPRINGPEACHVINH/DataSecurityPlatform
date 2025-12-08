@@ -35,7 +35,6 @@ export const utilitygetDocuments = async (connectorData) => {
           : [];
     } else {
       console.log("Request body is present, fetching specific index.");
-      connectorData = req.body;
       indexName = connectorData.indexName;
       indexType = connectorData.indexType;
     }
@@ -71,10 +70,16 @@ export const utilitygetDocuments = async (connectorData) => {
             },
           }
         );
-        if (response.status !== 200) {
+        if (response.status !== 200 && response.status !== 404) {
           throw new Error(
             `Failed to retrieve documents. Status code: ${response.status}`
           );
+        }
+        else if (response.status === 404) {
+          return {
+            status: 404,
+            message: `Index ${indexName[i]} not found.`,
+          }
         }
 
         documents = response.data.hits.hits.map((hit) => ({
@@ -138,7 +143,7 @@ export const utilitygetDocuments = async (connectorData) => {
     }
   } catch (error) {
     return {
-      status: 500,
+      status: error.response ? error.response.status : 500,
       message: "Failed to retrieve documents.",
       error: error.response
         ? error.response.data

@@ -84,9 +84,7 @@ export const createConnector = async (req, res) => {
         auth: {
           username: ES_LOCAL_USERNAME,
           password: ES_LOCAL_PASSWORD,
-        }
-      },
-      {
+        },
         headers: {
           "Content-Type": "application/json",
         },
@@ -102,9 +100,9 @@ export const createConnector = async (req, res) => {
       message: "Elasticsearch connector created successfully.",
       data: {
         id: response.data.id,
-        name: response.data.name,
-        type: response.data.service_type,
-        index_name: response.data.index_name,
+        name: name,
+        type: service_type,
+        index_name: index_name,
         result: response.data.result,
       }
     });
@@ -112,6 +110,83 @@ export const createConnector = async (req, res) => {
   catch (error) {
     res.status(500).json({
       message: "Failed to create Elasticsearch connector.",
+      error: error.response
+        ? error.response.data
+        : error.message || "Unknown error",
+    });
+  }
+}
+
+export const updateConnectorConfig = async (req, res) => {
+  try {
+    const { connectorType, buckets, aws_access_key_id, aws_secret_access_key, containers, blob_endpoint, account_key, account_name } = req.body;
+    const { connector_id } = req.query;
+
+    if (!connector_id && !connectorType) {
+      return res.status(400).json({
+        message: "Connector ID and type are required to update configuration.",
+      });
+    }
+    else if (connectorType === "s3" && (!buckets || !aws_access_key_id || !aws_secret_access_key)) {
+      return res.status(400).json({
+        message: "Buckets, AWS access key ID, and AWS secret access key are required for S3 connector configuration.",
+      });
+    }
+    else if (connectorType === "azure_blob_storage" && (!containers || !blob_endpoint || !account_key || !account_name)) {
+      return res.status(400).json({
+        message: "Containers, blob endpoint, account key, and account name are required for Azure Blob Storage connector configuration.",
+      });
+    }
+    else {
+      const configPayload = {};
+      if (connectorType === "s3") {
+        configPayload.buckets = decodeURI(buckets);
+        configPayload.aws_access_key_id = decodeURI(aws_access_key_id);
+        configPayload.aws_secret_access_key = decodeURI(aws_secret_access_key);
+      }
+      else if (connectorType === "azure_blob_storage") {
+        configPayload.account_name = decodeURI(account_name);
+        configPayload.account_key = decodeURI(account_key);
+        configPayload.blob_endpoint = decodeURI(blob_endpoint);
+        configPayload.containers = decodeURI(containers);
+      }
+      configPayload.use_text_extraction_service = true;
+      console.log("Updating connector config for ID:", connector_id);
+      const response = await axios.put(
+        `${ES_LOCAL_URL}/_connector/${connector_id}/_configuration`,
+        {
+          values: configPayload
+        },
+        {
+          auth: {
+            username: ES_LOCAL_USERNAME,
+            password: ES_LOCAL_PASSWORD,
+          },
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.status !== 200 && response.status !== 201) {
+        console.log("Update connector config response:", response);
+        throw new Error(`Failed to update Elasticsearch connector configuration. Status code: ${response.status}`);
+      }
+
+      res.status(200).json({
+        message: "Elasticsearch connector configuration updated successfully.",
+        data: response.data,
+      });
+    }
+  }
+  catch (error) {
+    if (error.response) {
+      console.error("Elastic Error Detail:", JSON.stringify(error.response.data, null, 2));
+    } else {
+      console.error("Error:", error.message);
+    }
+    res.status(500).json({
+      message: "Failed to update Elasticsearch connector configuration.",
       error: error.response
         ? error.response.data
         : error.message || "Unknown error",

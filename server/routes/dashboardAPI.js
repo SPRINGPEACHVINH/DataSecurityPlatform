@@ -11,6 +11,7 @@ import {
 } from "../services/elasticsearchService/document.js";
 import {
   createConnector,
+  updateConnectorConfig,
   getConnector,
   SyncConnectors,
   getSyncStatus
@@ -33,15 +34,21 @@ router.post("/search", handleDashboardSearch);
 router.post("/script-execution", isAuthenticated, handleScriptExecution);
 router.get("/script-status", checkScriptStatus);
 router.post("/script-results", isAuthenticated, queryScriptResults);
+
+// Elasticsearch API
 router.post("/elasticsearch/createconnector", isAuthenticated, createConnector);
 router.get("/elasticsearch/connector", isAuthenticated, getConnector);
+router.post("/elasticsearch/connector_configuration", isAuthenticated, updateConnectorConfig);
 router.get("/elasticsearch/documents", isAuthenticated, getDocuments);
 router.post("/elasticsearch/sync-connectors", isAuthenticated, SyncConnectors);
 router.get("/elasticsearch/sync-status", isAuthenticated, getSyncStatus);
 router.post("/elasticsearch/delete-file-content", isAuthenticated, deleteFileContent);
 // router.post("/elasticsearch/search-keyword", isAuthenticated, SearchKeyword);
 // router.post("/elasticsearch/search-pattern", isAuthenticated, SearchRegexPattern);
+
+// Overview API
 router.get("/overview/data", isAuthenticated, getOverviewData);
+// Misconfiguration API
 router.post("/misconfig/scan", isAuthenticated, scanCloudMisconfig);
 
 export default router;
