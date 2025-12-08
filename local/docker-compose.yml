@@ -31,6 +31,8 @@ services:
       timeout: 5s
       retries: 10
 
+
+
   azure-blob-connector:
     depends_on:
       elasticsearch:

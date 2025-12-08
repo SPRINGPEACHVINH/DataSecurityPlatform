@@ -35,7 +35,7 @@ const connectorSchema = new mongoose.Schema(
     connector_type: { type: String, required: true },
     status: {
       type: String,
-      enum: ["connected", "disconnected"],
+      enum: ["connected", "disconnected", "created", "configured"],
       default: "connected",
     },
   },
