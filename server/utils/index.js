@@ -74,3 +74,22 @@ export function encryptedFunc(text, senderPrivateKey, receiverPublicKey) {
         throw new Error(`Encryption failed: ${error.message}`);
     }
 }
+
+export function generateConnectorID() {
+    return crypto.randomBytes(20).toString('hex');
+}
+
+export function generateConnectorIndexname(cloud) {
+    if (!cloud) {
+        throw new Error("Cloud provider is required to generate connector index name.");
+    }
+    else if (cloud === 's3') {
+        return "connector-aws-s3-" + crypto.randomBytes(4).toString('hex');
+    }
+    else if (cloud === 'azure_blob_storage') {
+        return "connector-azure-blob-" + crypto.randomBytes(4).toString('hex');
+    }
+    else {
+        throw new Error("Unsupported cloud provider. Only 's3' and 'azure_blob_storage' are supported.");
+    }
+}

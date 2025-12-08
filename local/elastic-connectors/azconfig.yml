@@ -4,14 +4,14 @@ connectors:
   service_type: "azure_blob_storage"
 
 extraction_service:
-  host: http://host.docker.internal:${ES_LOCAL_EXTRACTION_PORT} #8090
+  host: http://host.docker.internal:${ES_LOCAL_EXTRACTION_PORT}
   timeout: 30
   use_file_pointers: false
   stream_chunk_size: 65536
   shared_volume_dir: '/app/files'
 
 elasticsearch:
-  host: "http://host.docker.internal:${ES_LOCAL_PORT}" #9200
+  host: "http://host.docker.internal:${ES_LOCAL_PORT}"
   username: "${ES_LOCAL_USERNAME}"
   password: "${ES_LOCAL_PASSWORD}"
   log_level: INFO

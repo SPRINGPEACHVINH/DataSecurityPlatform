@@ -5,6 +5,8 @@ import dotenv from "dotenv";
 import Models from "../../models/userModel.js";
 const { Connector } = Models;
 
+import { generateConnectorIndexname, generateConnectorID } from "../../utils/index.js";
+
 dotenv.config();
 
 const { ES_LOCAL_USERNAME, ES_LOCAL_PASSWORD, ES_LOCAL_URL } = process.env;
@@ -49,6 +51,71 @@ export async function _connector() {
         ? error.response.data
         : error.message || "Unknown error while getting connectors"
     );
+  }
+}
+
+export const createConnector = async (req, res) => {
+  try {
+    let connector_id, index_name, service_type;
+    const { name } = req.body;
+
+    if (name !== "Azure" && name !== "AWS") {
+      return res.status(400).json({
+        message: "Unsupported cloud provider. Only 'Azure' and 'AWS' are supported.",
+      });
+    }
+    if (name === "Azure") {
+      service_type = "azure_blob_storage";
+    }
+    else if (name === "AWS") {
+      service_type = "s3";
+    }
+    connector_id = generateConnectorID();
+    index_name = generateConnectorIndexname(service_type);
+
+    const response = await axios.put(
+      `${ES_LOCAL_URL}/_connector/${connector_id}`,
+      {
+        index_name: index_name,
+        name: name,
+        service_type: service_type,
+      },
+      {
+        auth: {
+          username: ES_LOCAL_USERNAME,
+          password: ES_LOCAL_PASSWORD,
+        }
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+
+    if (response.status !== 200 && response.status !== 201) {
+      console.log("Create connector response:", response);
+      throw new Error(`Failed to create Elasticsearch connector. Status code: ${response.status}`);
+    }
+
+    res.status(201).json({
+      message: "Elasticsearch connector created successfully.",
+      data: {
+        id: response.data.id,
+        name: response.data.name,
+        type: response.data.service_type,
+        index_name: response.data.index_name,
+        result: response.data.result,
+      }
+    });
+  }
+  catch (error) {
+    res.status(500).json({
+      message: "Failed to create Elasticsearch connector.",
+      error: error.response
+        ? error.response.data
+        : error.message || "Unknown error",
+    });
   }
 }
 
@@ -193,7 +260,7 @@ export const utilitySyncConnectors = async (connector_id, job_type = "full") => 
     );
 
     if (response.status !== 200 && response.status !== 201) {
-      console.log("Sync connectors response:", response); 
+      console.log("Sync connectors response:", response);
       throw new Error(`Failed to synchronize Elasticsearch connectors. Status code: ${response.status}`);
     }
 

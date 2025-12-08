@@ -10,6 +10,7 @@ import {
   deleteFileContent
 } from "../services/elasticsearchService/document.js";
 import {
+  createConnector,
   getConnector,
   SyncConnectors,
   getSyncStatus
@@ -32,6 +33,7 @@ router.post("/search", handleDashboardSearch);
 router.post("/script-execution", isAuthenticated, handleScriptExecution);
 router.get("/script-status", checkScriptStatus);
 router.post("/script-results", isAuthenticated, queryScriptResults);
+router.post("/elasticsearch/createconnector", isAuthenticated, createConnector);
 router.get("/elasticsearch/connector", isAuthenticated, getConnector);
 router.get("/elasticsearch/documents", isAuthenticated, getDocuments);
 router.post("/elasticsearch/sync-connectors", isAuthenticated, SyncConnectors);

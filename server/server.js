@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import session from "express-session";
 import dotenv from "dotenv";
 import apiRoutes from "./routes/index.js";
+import { CreateUser, findUserByUsername } from "./models/userModel.js"
 
 dotenv.config(); // Configure dotenv to load .env variables
 
@@ -49,10 +50,35 @@ app.get("/", (req, res) => {
   res.send("DSP Server is running!");
 });
 
+// Function to create default admin user if not exists
+const initializeAdminUser = async () => {
+  try {
+    const adminUsername = process.env.ADMIN_USERNAME || "admin";
+    const adminPassword = process.env.ADMIN_PASSWORD || "admin";
+
+    // Check if admin user already exists
+    const existingAdmin = await findUserByUsername(adminUsername);
+
+    if (!existingAdmin) {
+      // Create admin user
+      await CreateUser({
+        UserName: adminUsername,
+        Password: adminPassword,
+      });
+      console.log(`Admin user '${adminUsername}' created successfully`);
+    } else {
+      console.log(`Admin user '${adminUsername}' already exists`);
+    }
+  } catch (error) {
+    console.error("Error initializing admin user:", error.message);
+  }
+};
+
 mongoose
   .connect(`${process.env.MONGODB}`)
-  .then(() => {
+  .then(async () => {
     console.log("Connected to MongoDB");
+    await initializeAdminUser();
   })
   .catch((error) => {
     console.log("Error: ", error);
