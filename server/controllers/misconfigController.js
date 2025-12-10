@@ -37,7 +37,18 @@ const getCloudsploitKey = async () => {
     }
 }
 
-export const generateUserKeys = () => {
+export const checkKeysExist = (req, res) => {
+    console.log('Someone is checking keys');
+    const privateKeyPath = path.join(KEY_DIR, 'user_private.pem');
+    const publicKeyPath = path.join(KEY_DIR, 'user_public.pem');
+    const isExists = fs.existsSync(privateKeyPath) && fs.existsSync(publicKeyPath);
+    console.log('Keys exist:', isExists);
+    res.status(200).json({
+        isExists: isExists
+    });
+}
+
+export const utilitygenerateUserKeys = () => {
     try {
         const ecdh = crypto.createECDH('secp256k1');
         ecdh.generateKeys();
@@ -63,10 +74,22 @@ export const generateUserKeys = () => {
     }
 };
 
+export const generateUserKeys = (req, res) => {
+    try {
+        const result = utilitygenerateUserKeys();
+        if (result.error) {
+            res.status(500).json({ error: result.error });
+        }
+        res.status(200).json({ message: result.message });
+    }
+    catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
 export const utilityscanCloudMisconfig = async (cloud) => {
     try {
         let credentials = {};
-
         if (cloud === 'aws') {
             credentials = {
                 aws_access_key_id: process.env.AWS_ACCESS_KEY_ID,
@@ -107,6 +130,10 @@ export const utilityscanCloudMisconfig = async (cloud) => {
 
         const cloudsploitPublicPem = (await getCloudsploitKey()).publicKey;
 
+        if (!cloudsploitPublicPem) {
+            throw new Error('Failed to retrieve CloudSploit public key.');
+        }
+        console.log('CloudSploit Public Key fetched successfully');
         // Pass PEM strings, NOT parsed Buffers
         const { ciphertext, iv, authTag } = encryptedFunc(
             credentialsJson,

@@ -23,7 +23,11 @@ import {
 } from "../services/elasticsearchService/search.js";
 import { isAuthenticated } from "../middleware/isAuthenticated.js";
 import { getOverviewData } from "../controllers/overviewController.js";
-import { scanCloudMisconfig } from "../controllers/misconfigController.js"
+import {
+  scanCloudMisconfig,
+  checkKeysExist,
+  generateUserKeys
+} from "../controllers/misconfigController.js"
 
 const router = express.Router();
 
@@ -52,5 +56,7 @@ router.post("/elasticsearch/delete-file-content", isAuthenticated, deleteFileCon
 router.get("/overview/data", isAuthenticated, getOverviewData);
 // Misconfiguration API
 router.post("/misconfig/scan", isAuthenticated, scanCloudMisconfig);
+router.get("/misconfig/check_keys", isAuthenticated, checkKeysExist);
+router.post("/misconfig/generate_keys", isAuthenticated, generateUserKeys);
 
 export default router;
