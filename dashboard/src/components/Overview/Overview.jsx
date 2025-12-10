@@ -55,7 +55,9 @@ function Overview({ headerComponent }) {
     setLoading(false);
 
     if (!success) {
-      setError("Setup completed but failed to load dashboard data. Please refresh the page.");
+      setError(
+        "Setup completed but failed to load dashboard data. Please refresh the page."
+      );
     }
   };
 
@@ -137,6 +139,34 @@ function Overview({ headerComponent }) {
       </div>
     );
   }
+
+  // Show Configuration Guide if needed
+  // if (showConfigGuide) {
+  //   return (
+  //     <div className="data-sources-container">
+  //       {sidebarComponent}
+  //       <div className="main-content">
+  //         {getHeaderForPage("Overview")}
+  //         <div className="config-guide-message">
+  //           <div className="message-card">
+  //             <h2>⚙️ Initial Setup Required</h2>
+  //             <p>
+  //               No data sources have been configured yet. Please complete the
+  //               initial setup in the Overview page to create your first
+  //               connector.
+  //             </p>
+  //             <button
+  //               className="setup-button"
+  //               onClick={() => handleNavigation("ConnectorSetup")}
+  //             >
+  //               Go to Setup
+  //             </button>
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="main-content">

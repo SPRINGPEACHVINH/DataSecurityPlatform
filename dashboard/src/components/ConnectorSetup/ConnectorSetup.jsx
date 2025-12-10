@@ -19,6 +19,10 @@ function ConnectorSetup({ onSetupComplete }) {
   const [existingConnector, setExistingConnector] = useState(null);
   const [isTypeDisabled, setIsTypeDisabled] = useState(false);
   
+  // Case 7 states
+  const [showFullConfiguration, setShowFullConfiguration] = useState(false);
+  const [connectorList, setConnectorList] = useState([]);
+  
   // Configuration states
   const [isConfiguringConnector, setIsConfiguringConnector] = useState(false);
   const [configurationSuccess, setConfigurationSuccess] = useState(false);
@@ -43,25 +47,88 @@ function ConnectorSetup({ onSetupComplete }) {
   useEffect(() => {
     async function initializeSetup() {
       try {
-        // Check connector status to determine which step to display
-        const connectorResponse = await fetch(
-          "http://localhost:4000/api/dashboard/elasticsearch/connector",
-          { credentials: "include" }
+        // 1. Parallel Data Fetching
+        const [dashboardResponse, connectorResponse] = await Promise.all([
+          fetch("http://localhost:4000/api/dashboard/overview/data", {
+            credentials: "include",
+          }),
+          fetch("http://localhost:4000/api/dashboard/elasticsearch/connector", {
+            credentials: "include",
+          }),
+        ]);
+
+        const connectors = connectorResponse.ok
+          ? (await connectorResponse.json()).data || []
+          : [];
+
+        console.log("Fetched connectors:", connectors);
+        console.log("Dashboard status:", dashboardResponse.status);
+
+        // 2. Priority Check 1: Pending Connectors (Status != 'connected')
+        const pendingConnector = connectors.find(
+          (conn) => conn.status !== "connected"
         );
 
-        if (connectorResponse.ok) {
-          const connectorResult = await connectorResponse.json();
-          const connectors = connectorResult.data || [];
+        if (pendingConnector) {
+          const connectorData = {
+            id: pendingConnector.id,
+            type: pendingConnector.type,
+            name: pendingConnector.name,
+            status: pendingConnector.status,
+          };
 
-          console.log("Fetched connectors:", connectors);
+          // Resume at specific step based on status
+          switch (pendingConnector.status) {
+            case "created": // Step 2 (Deploy)
+              setCreationSuccess(connectorData);
+              setShowStep2(true);
+              break;
 
-          // Case 1: No connector exists - show Step 1
+            case "needs_configuration": // Step 3 (Config)
+              setCreationSuccess(connectorData);
+              setShowStep2(true);
+              setShowStep3(true);
+              break;
+
+            case "error": // Error
+            case "configured":
+              setCreationSuccess(connectorData);
+              setShowConnectorError(true);
+              break;
+
+            default:
+              console.warn("Unknown connector status:", pendingConnector.status);
+              break;
+          }
+          return;
+        }
+
+        // 3. Priority Check 2: Dashboard Status (404 vs 200)
+        if (dashboardResponse.status === 404) {
+          // Dashboard Data Not Found
           if (connectors.length === 0) {
+            // Brand New - Step 1
+            return;
+          } else {
+            // Connectors exist and are 'connected' - Step 4 (Initial Sync)
+            const connector = connectors[0];
+            setCreationSuccess({
+              id: connector.id,
+              type: connector.type,
+              name: connector.name,
+              status: connector.status,
+            });
+            setConfigurationSuccess(true);
+            setShowStep4(true);
             return;
           }
+        }
 
-          // Case 6: Exactly 1 connector with "connected" status
-          if (connectors.length === 1 && connectors[0].status === "connected") {
+        // 4. Priority Check 3: Expansion & Full (Dashboard Data is 200 OK)
+        if (dashboardResponse.ok) {
+          // All connectors are 'connected' (passed Check 1)
+          if (connectors.length === 1) {
+            // Case 6: Expansion
             const connector = connectors[0];
             setExistingConnector({
               id: connector.id,
@@ -71,45 +138,16 @@ function ConnectorSetup({ onSetupComplete }) {
             });
             setShowExistingConnector(true);
             return;
-          }
-
-          // Get first connector (singleton logic)
-          const connector = connectors[0];
-          const connectorData = {
-            id: connector.id,
-            type: connector.type,
-            name: connector.name,
-            status: connector.status,
-          };
-
-          // Switch case based on status
-          switch (connector.status) {
-            case "created": // Case 2 -> Step 2 (Deploy)
-              setCreationSuccess(connectorData);
-              setShowStep2(true);
-              break;
-
-            case "needs_configuration": // Case 3 -> Step 3 (Config)
-              setCreationSuccess(connectorData);
-              setShowStep2(true);
-              setShowStep3(true);
-              break;
-
-            case "connected": // Case 4 -> Step 4 (Sync)
-              setCreationSuccess(connectorData);
-              setConfigurationSuccess(true);
-              setShowStep4(true);
-              break;
-
-            case "error": // Case 5 -> Error
-            case "configured":
-              setCreationSuccess(connectorData);
-              setShowConnectorError(true);
-              break;
-
-            default:
-              console.warn("Unknown connector status:", connector.status);
-              break;
+          } else if (connectors.length === 2) {
+            // Case 7: Full
+            setConnectorList(connectors.map(conn => ({
+              id: conn.id,
+              type: conn.type,
+              name: conn.name,
+              status: conn.status,
+            })));
+            setShowFullConfiguration(true);
+            return;
           }
         }
       } catch (err) {
@@ -173,6 +211,12 @@ function ConnectorSetup({ onSetupComplete }) {
     setSelectedConnectorType(missingType);
     setIsTypeDisabled(true);
     setShowExistingConnector(false);
+  };
+
+  const handleGoToDashboard = () => {
+    if (onSetupComplete) {
+      onSetupComplete();
+    }
   };
 
   const handleContainerStarted = () => {
@@ -337,8 +381,48 @@ function ConnectorSetup({ onSetupComplete }) {
         </div>
       )}
 
+      {/* Case 7: Full Configuration - All Connectors Active */}
+      {showFullConfiguration && (
+        <div className="config-step-card">
+          <div className="full-config-header">
+            <h2>System Fully Configured</h2>
+            <p className="step-description">
+              All supported connectors are active.
+            </p>
+          </div>
+
+          <div className="connector-list">
+            {connectorList.map((connector) => (
+              <div key={connector.id} className="connector-card readonly">
+                <div className="connector-card-header">
+                  <h3 className="connector-name">{connector.name}</h3>
+                  <span className="status-badge connected">Connected</span>
+                </div>
+                <div className="connector-details">
+                  <div className="detail-item">
+                    <span className="detail-label">Type:</span>
+                    <span className="detail-value">
+                      {connector.type === "s3" ? "AWS S3" : "Azure Blob Storage"}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="action-buttons" style={{ marginTop: "24px" }}>
+            <button
+              className="create-connector-button"
+              onClick={handleGoToDashboard}
+            >
+              Go to Dashboard
+            </button>
+          </div>
+        </div>
+      )}
+
       { }
-      {!showStep2 && !showConnectorError && !showExistingConnector && (
+      {!showStep2 && !showConnectorError && !showExistingConnector && !showFullConfiguration && (
         <div className="config-step-card">
           <div className="step-header">
             <div className="step-number">Step 1</div>
@@ -408,12 +492,6 @@ function ConnectorSetup({ onSetupComplete }) {
                     <div className="detail-item">
                       <span className="detail-label">Type:</span>
                       <span className="detail-value">{creationSuccess.type}</span>
-                    </div>
-                    <div className="detail-item">
-                      <span className="detail-label">Index Name:</span>
-                      <span className="detail-value">
-                        {creationSuccess.index_name}
-                      </span>
                     </div>
                     <div className="detail-item full-width">
                       <span className="detail-label">Result:</span>

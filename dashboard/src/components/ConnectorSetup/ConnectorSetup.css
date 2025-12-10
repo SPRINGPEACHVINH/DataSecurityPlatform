@@ -347,3 +347,95 @@
     align-self: stretch;
   }
 }
+
+/* Case 7: Full Configuration Styles */
+.full-config-header {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.full-config-header h2 {
+  color: #37234b;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  font-family: Open Sans, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.connector-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.connector-card {
+  background-color: #ffffff;
+  border: 1px solid #e4dbed;
+  border-radius: 8px;
+  padding: 20px;
+  transition: box-shadow 0.2s ease;
+}
+
+.connector-card.readonly {
+  background-color: #fafafa;
+  border: 1px solid #e0e0e0;
+}
+
+.connector-card.readonly:hover {
+  box-shadow: 0px 2px 8px rgba(119, 74, 164, 0.1);
+}
+
+.connector-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.connector-name {
+  color: #37234b;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  font-family: Open Sans, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-family: Open Sans, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.status-badge.connected {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.connector-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.connector-details .detail-item {
+  display: flex;
+  gap: 8px;
+}
+
+.connector-details .detail-label {
+  color: #7b7b7b;
+  font-weight: 600;
+  min-width: 120px;
+}
+
+.connector-details .detail-value {
+  color: #37234b;
+  font-weight: 400;
+}
+
