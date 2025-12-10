@@ -9,6 +9,7 @@ function Search({
   onNavigateToOverview,
   onNavigateToLogManager,
   onNavigateToMisconfig,
+  onNavigateToConnectorSetup,
 }) {
   const [scriptStatus, setScriptStatus] = useState({
     isReady: false,
@@ -671,6 +672,7 @@ function Search({
         onNavigateToDataSources={onNavigateToDataSources}
         onNavigateToSearch={() => console.log("Already on search")}
         onNavigateToMisconfig={onNavigateToMisconfig}
+        onNavigateToConnectorSetup={onNavigateToConnectorSetup}
       />
 
       <div className="main-content">

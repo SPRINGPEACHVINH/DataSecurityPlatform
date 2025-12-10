@@ -1,0 +1,349 @@
+.config-guide-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.config-guide-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.config-guide-header h1 {
+  color: #774aa4;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  font-family: Open Sans, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.config-guide-header p {
+  color: #7b7b7b;
+  font-size: 16px;
+  font-family: Open Sans, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.config-step-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 32px;
+  border: 1px solid rgba(228, 219, 237, 1);
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.step-header {
+  margin-bottom: 24px;
+}
+
+.step-number {
+  display: inline-block;
+  background-color: #774aa4;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.step-header h2 {
+  color: #37234b;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+  font-family: Open Sans, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.step-content {
+  padding-top: 8px;
+}
+
+.step-description {
+  color: #7b7b7b;
+  font-size: 14px;
+  margin-bottom: 24px;
+  line-height: 1.6;
+  font-family: Open Sans, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.connector-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  color: #37234b;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: Open Sans, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.connector-select {
+  padding: 10px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid rgba(228, 219, 237, 1);
+  background-color: white;
+  color: #37234b;
+  font-family: Open Sans, -apple-system, Roboto, Helvetica, sans-serif;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.connector-select:hover:not(:disabled) {
+  border-color: #774aa4;
+}
+
+.connector-select:focus {
+  outline: none;
+  border-color: #774aa4;
+  box-shadow: 0 0 0 3px rgba(119, 74, 164, 0.1);
+}
+
+.connector-select:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}
+
+.create-connector-button {
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  border: none;
+  background-color: #774aa4;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: Open Sans, -apple-system, Roboto, Helvetica, sans-serif;
+  align-self: flex-start;
+}
+
+.create-connector-button:hover:not(:disabled) {
+  background-color: #5f3a85;
+}
+
+.create-connector-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.notification {
+  padding: 12px 16px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-family: Open Sans, -apple-system, Roboto, Helvetica, sans-serif;
+  margin-bottom: 20px;
+}
+
+.notification-icon {
+  font-size: 18px;
+}
+
+.error-notification {
+  background-color: #fff1f0;
+  border: 1px solid #ffccc7;
+  color: #cf1322;
+}
+
+.success-notification {
+  background-color: #f6ffed;
+  border: 1px solid #b7eb8f;
+  color: #389e0d;
+}
+
+.success-section {
+  margin-top: 24px;
+}
+
+.connector-details {
+  background-color: #fcfaff;
+  border-radius: 6px;
+  padding: 20px;
+  margin-top: 16px;
+}
+
+.connector-details h3 {
+  color: #37234b;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  font-family: Open Sans, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-item.full-width {
+  grid-column: 1 / -1;
+}
+
+.detail-label {
+  color: #7b7b7b;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: Open Sans, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.detail-value {
+  color: #37234b;
+  font-size: 14px;
+  font-weight: 500;
+  word-break: break-all;
+  font-family: Open Sans, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+/* Credentials Form Styles (from Misconfig) */
+.credentials-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 15px;
+  background-color: #fff;
+  border: 1px solid #e4dbed;
+  border-radius: 6px;
+  color: #49454f;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  font-family: Open Sans, -apple-system, Roboto, Helvetica, sans-serif;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #774aa4;
+  box-shadow: 0 0 0 2px rgba(119, 74, 164, 0.1);
+}
+
+.form-input::placeholder {
+  color: #afa9b6;
+}
+
+.form-input:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}
+
+/* Step 2: Deploy Container Styles */
+.connector-id-section {
+  margin-bottom: 24px;
+  padding: 20px;
+}
+
+.connector-id-section .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.copy-button {
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  border: 1px solid #774aa4;
+  background-color: white;
+  color: #774aa4;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: Open Sans, -apple-system, Roboto, Helvetica, sans-serif;
+  white-space: nowrap;
+  align-self: flex-start;
+  margin-top: 40px;
+}
+
+.copy-button:hover {
+  background-color: #774aa4;
+  color: white;
+}
+
+.instructions-section {
+  background-color: #fcfaff;
+  border-radius: 6px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.instructions-section h3 {
+  color: #37234b;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  font-family: Open Sans, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.instruction-list {
+  margin: 0;
+  padding-left: 24px;
+  color: #37234b;
+  font-size: 14px;
+  line-height: 1.8;
+  font-family: Open Sans, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.instruction-list li {
+  margin-bottom: 8px;
+}
+
+.instruction-list code {
+  background-color: #e4dbed;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  color: #5f3a85;
+}
+
+@media (max-width: 768px) {
+  .config-guide-container {
+    padding: 12px;
+  }
+
+  .config-step-card {
+    padding: 20px;
+  }
+
+  .config-guide-header h1 {
+    font-size: 24px;
+  }
+
+  .step-header h2 {
+    font-size: 20px;
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .copy-button {
+    width: 100%;
+    align-self: stretch;
+  }
+}

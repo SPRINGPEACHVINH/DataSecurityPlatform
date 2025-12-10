@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./Misconfig.css";
 import Sidebar from "../Sidebar/Sidebar";
 import Header from "../Header/Header";
@@ -9,6 +9,7 @@ function Misconfig({
   onNavigateToOverview,
   onNavigateToSearch,
   onNavigateToLogManager,
+  onNavigateToConnectorSetup,
 }) {
   const [cloudProvider, setCloudProvider] = useState("AWS");
   const [inputMethod, setInputMethod] = useState("quick");
@@ -200,6 +201,8 @@ function Misconfig({
         onNavigateToDataSources={onNavigateToDataSources}
         onNavigateToSearch={onNavigateToSearch}
         onNavigateToLogManager={onNavigateToLogManager}
+        onNavigateToMisconfig={() => console.log("Already on misconfig")}
+        onNavigateToConnectorSetup={onNavigateToConnectorSetup}
       />
 
       <div className="main-content">
