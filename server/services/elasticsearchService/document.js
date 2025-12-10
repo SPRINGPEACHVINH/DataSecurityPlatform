@@ -24,7 +24,7 @@ export const utilitygetDocuments = async (connectorData) => {
           message: "No connectors found to retrieve documents."
         }
       }
-
+      
       indexName =
         connectorData && connectorData.length > 0
           ? connectorData.map((connector) => connector.name)

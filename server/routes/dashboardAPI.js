@@ -14,6 +14,7 @@ import {
   updateConnectorConfig,
   getConnector,
   SyncConnectors,
+  syncConnectorData,
   getSyncStatus
 } from "../services/elasticsearchService/connector.js";
 import {
@@ -40,6 +41,7 @@ router.post("/elasticsearch/createconnector", isAuthenticated, createConnector);
 router.get("/elasticsearch/connector", isAuthenticated, getConnector);
 router.post("/elasticsearch/connector_configuration", isAuthenticated, updateConnectorConfig);
 router.get("/elasticsearch/documents", isAuthenticated, getDocuments);
+router.get("/elasticsearch/connector/sync", isAuthenticated, syncConnectorData);
 router.post("/elasticsearch/sync-connectors", isAuthenticated, SyncConnectors);
 router.get("/elasticsearch/sync-status", isAuthenticated, getSyncStatus);
 router.post("/elasticsearch/delete-file-content", isAuthenticated, deleteFileContent);

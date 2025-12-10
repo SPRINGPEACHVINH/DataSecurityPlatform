@@ -122,7 +122,6 @@ function DataSources({
   }, []);
 
   const handleNavigation = (section) => {
-    console.log(`Navigating to: ${section}`);
     setCurrentPage(section);
     // Reset states when changing pages
     setSelectedContainer(null);

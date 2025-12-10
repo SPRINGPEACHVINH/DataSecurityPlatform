@@ -18,6 +18,14 @@ function App() {
       const response = await fetch("http://localhost:4000/api/auth/session", {
         credentials: "include",
       });
+
+      // Check for 401 Unauthorized or other error status codes
+      if (response.status === 401 || !response.ok) {
+        console.log("Session expired or unauthorized, logging out...");
+        handleLogout();
+        return false;
+      }
+
       const data = await response.json();
 
       if (data.isAuthenticated) {
@@ -33,12 +41,13 @@ function App() {
         }
         return true;
       } else {
-        handleSessionExpired();
+        console.log("User not authenticated, logging out...");
+        handleLogout();
         return false;
       }
     } catch (error) {
       console.error("Session check failed:", error);
-      handleSessionExpired();
+      handleLogout();
       return false;
     }
     finally {
@@ -48,22 +57,9 @@ function App() {
 
   useSessionCheck(checkSession);
 
-  const handleSessionExpired = (showAlert = true) => {
-    if (showAlert && localStorage.getItem("isLoggedIn")) {
-      alert("Your session has expired. Please log in again.");
-    }
-    setUser(null);
-    setCurrentView("login");
-    localStorage.removeItem("isLoggedIn");
-    localStorage.removeItem("sessionId");
-    localStorage.removeItem("currentView");
-    localStorage.removeItem("username");
-
-    clearSearchSession();
-  };
-
   useEffect(() => {
     checkSession();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleLogin = ({ user, sessionId }) => {
