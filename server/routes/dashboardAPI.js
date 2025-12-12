@@ -14,6 +14,7 @@ import {
   updateConnectorConfig,
   getConnector,
   SyncConnectors,
+  syncConnectorData,
   getSyncStatus
 } from "../services/elasticsearchService/connector.js";
 import {
@@ -22,7 +23,11 @@ import {
 } from "../services/elasticsearchService/search.js";
 import { isAuthenticated } from "../middleware/isAuthenticated.js";
 import { getOverviewData } from "../controllers/overviewController.js";
-import { scanCloudMisconfig } from "../controllers/misconfigController.js"
+import {
+  scanCloudMisconfig,
+  checkKeysExist,
+  generateUserKeys
+} from "../controllers/misconfigController.js"
 
 const router = express.Router();
 
@@ -40,6 +45,7 @@ router.post("/elasticsearch/createconnector", isAuthenticated, createConnector);
 router.get("/elasticsearch/connector", isAuthenticated, getConnector);
 router.post("/elasticsearch/connector_configuration", isAuthenticated, updateConnectorConfig);
 router.get("/elasticsearch/documents", isAuthenticated, getDocuments);
+router.get("/elasticsearch/connector/sync", isAuthenticated, syncConnectorData);
 router.post("/elasticsearch/sync-connectors", isAuthenticated, SyncConnectors);
 router.get("/elasticsearch/sync-status", isAuthenticated, getSyncStatus);
 router.post("/elasticsearch/delete-file-content", isAuthenticated, deleteFileContent);
@@ -50,5 +56,7 @@ router.post("/elasticsearch/delete-file-content", isAuthenticated, deleteFileCon
 router.get("/overview/data", isAuthenticated, getOverviewData);
 // Misconfiguration API
 router.post("/misconfig/scan", isAuthenticated, scanCloudMisconfig);
+router.get("/misconfig/check_keys", isAuthenticated, checkKeysExist);
+router.post("/misconfig/generate_keys", isAuthenticated, generateUserKeys);
 
 export default router;

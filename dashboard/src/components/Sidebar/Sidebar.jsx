@@ -6,6 +6,7 @@ function Sidebar({
   onNavigateToDataSources,
   onNavigateToSearch,
   onNavigateToMisconfig,
+  onNavigateToConnectorSetup,
 }) {
   return (
     <div className="sidebar-container">
@@ -83,6 +84,23 @@ function Sidebar({
               alt="Misconfig"
             />
             <div>Misconfig</div>
+          </div>
+
+          <div
+            className={
+              currentPage === "connector-setup" ? "nav-item-active" : "nav-item"
+            }
+            onClick={onNavigateToConnectorSetup}
+          >
+            {currentPage === "connector-setup" && (
+              <div className="nav-active-indicator" />
+            )}
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/b8d5045840a701da208dd57ad7d80615fc2c7fec?placeholderIfAbsent=true"
+              className="nav-icon"
+              alt="Connector Setup"
+            />
+            <div>Connector Setup</div>
           </div>
         </div>
       </div>

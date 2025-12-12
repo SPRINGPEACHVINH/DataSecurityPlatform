@@ -194,6 +194,63 @@ export const updateConnectorConfig = async (req, res) => {
   }
 }
 
+export const syncConnectorData = async (req, res) => {
+  try {
+    const { connector_id } = req.query;
+
+    // Sync file content
+    const syncResponse = await utilitySyncConnectors(connector_id);
+    console.log("Sync response:", syncResponse);
+
+    if (!syncResponse || !syncResponse.sync_id) {
+      return res.status(500).json({
+        message: "Failed to initiate sync.",
+        data: syncResponse,
+      });
+    }
+
+    // Wait for sync to complete (polling)
+    let syncStatus = "pending";
+    const maxRetries = 10;
+    let attempts = 0;
+
+    while (syncStatus !== "completed" && attempts < maxRetries) {
+      await new Promise((r) => setTimeout(r, 30000)); // Wait 30 seconds
+
+      const syncStatusResponse = await utilitygetSyncStatus(
+        syncResponse.sync_id
+      );
+      console.log("Sync status response:", syncStatusResponse);
+
+      syncStatus = syncStatusResponse?.sync_status || "pending";
+      attempts++;
+    }
+    if (syncStatus === "completed") {
+      console.log("Sync completed successfully.");
+      res.status(200).json({
+        message: "Elasticsearch connector data synced successfully.",
+        syncstatus: syncStatus,
+      });
+
+    } else {
+      console.log("Sync did not complete in time.");
+      return res.status(500).json({
+        message: "Sync did not complete in time.",
+        syncstatus: syncStatus,
+        attempts: attempts,
+      });
+    }
+  }
+  catch (error) {
+    res.status(error.status || 500).json({
+      message: "Failed to sync Elasticsearch connector data.",
+      error: error.response
+        ? error.response.data
+        : error.message || "Unknown error",
+    });
+  }
+}
+
 // Retrieves Elasticsearch connectors and syncs with the database
 export const getConnector = async (req, res) => {
   try {

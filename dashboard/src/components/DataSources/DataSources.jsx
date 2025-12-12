@@ -66,6 +66,7 @@ function DataSources({
   onLogout,
   onNavigateToSearch,
   onNavigateToMisconfig,
+  onNavigateToConnectorSetup,
   initialPage = "data-sources",
 }) {
   const [currentPage, setCurrentPage] = useState(initialPage);
@@ -122,7 +123,6 @@ function DataSources({
   }, []);
 
   const handleNavigation = (section) => {
-    console.log(`Navigating to: ${section}`);
     setCurrentPage(section);
     // Reset states when changing pages
     setSelectedContainer(null);
@@ -237,10 +237,10 @@ function DataSources({
     <Sidebar
       currentPage={currentPage}
       onNavigateToOverview={() => handleNavigation("overview")}
-      onNavigateToLogManager={() => handleNavigation("log-manager")}
       onNavigateToDataSources={() => handleNavigation("data-sources")}
       onNavigateToSearch={onNavigateToSearch}
       onNavigateToMisconfig={onNavigateToMisconfig}
+      onNavigateToConnectorSetup={onNavigateToConnectorSetup}
     />
   );
 

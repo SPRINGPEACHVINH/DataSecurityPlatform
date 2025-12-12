@@ -4,6 +4,8 @@ import DataSources from "./components/DataSources/DataSources";
 import Search from "./components/Search/Search";
 import Misconfig from "./components/Misconfig/Misconfig";
 import Header from "./components/Header/Header";
+import Sidebar from "./components/Sidebar/Sidebar";
+import ConnectorSetup from "./components/ConnectorSetup/ConnectorSetup";
 import { useSessionCheck } from "./hooks/useSessionCheck";
 import { clearSearchSession } from "./hooks/clearSearchSession";
 import "./App.css";
@@ -18,12 +20,20 @@ function App() {
       const response = await fetch("http://localhost:4000/api/auth/session", {
         credentials: "include",
       });
+
+      // Check for 401 Unauthorized or other error status codes
+      if (response.status === 401 || !response.ok) {
+        console.log("Session expired or unauthorized, logging out...");
+        handleLogout();
+        return false;
+      }
+
       const data = await response.json();
 
       if (data.isAuthenticated) {
         setUser({
           ...data.user,
-          username: data.user.username
+          username: data.user.username,
         });
         const savedView = localStorage.getItem("currentView");
         if (savedView && savedView !== "login") {
@@ -33,37 +43,24 @@ function App() {
         }
         return true;
       } else {
-        handleSessionExpired();
+        console.log("User not authenticated, logging out...");
+        handleLogout();
         return false;
       }
     } catch (error) {
       console.error("Session check failed:", error);
-      handleSessionExpired();
+      handleLogout();
       return false;
-    }
-    finally {
+    } finally {
       setIsLoading(false);
     }
   };
 
   useSessionCheck(checkSession);
 
-  const handleSessionExpired = (showAlert = true) => {
-    if (showAlert && localStorage.getItem("isLoggedIn")) {
-      alert("Your session has expired. Please log in again.");
-    }
-    setUser(null);
-    setCurrentView("login");
-    localStorage.removeItem("isLoggedIn");
-    localStorage.removeItem("sessionId");
-    localStorage.removeItem("currentView");
-    localStorage.removeItem("username");
-
-    clearSearchSession();
-  };
-
   useEffect(() => {
     checkSession();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleLogin = ({ user, sessionId }) => {
@@ -71,7 +68,7 @@ function App() {
 
     const userData = {
       ...user,
-      username: user.username
+      username: user.username,
     };
 
     setUser(userData);
@@ -99,28 +96,35 @@ function App() {
 
   if (isLoading) {
     return (
-      <div className="App" style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-        backgroundColor: '#f5f5f5'
-      }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '16px'
-        }}>
-          <div style={{
-            width: '40px',
-            height: '40px',
-            border: '4px solid #e0e0e0',
-            borderTop: '4px solid #774aa4',
-            borderRadius: '50%',
-            animation: 'spin 1s linear infinite'
-          }}></div>
-          <div style={{ color: '#666', fontSize: '16px' }}>Loading...</div>
+      <div
+        className="App"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          backgroundColor: "#f5f5f5",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "16px",
+          }}
+        >
+          <div
+            style={{
+              width: "40px",
+              height: "40px",
+              border: "4px solid #e0e0e0",
+              borderTop: "4px solid #774aa4",
+              borderRadius: "50%",
+              animation: "spin 1s linear infinite",
+            }}
+          ></div>
+          <div style={{ color: "#666", fontSize: "16px" }}>Loading...</div>
         </div>
       </div>
     );
@@ -131,6 +135,14 @@ function App() {
     if (isValid) {
       setCurrentView("Search");
       localStorage.setItem("currentView", "Search");
+    }
+  };
+
+  const handleNavigateToConnectorSetup = async () => {
+    const isValid = await checkSession();
+    if (isValid) {
+      setCurrentView("ConnectorSetup");
+      localStorage.setItem("currentView", "ConnectorSetup");
     }
   };
 
@@ -169,6 +181,7 @@ function App() {
             onNavigateToOverview={handleNavigateToOverview}
             onNavigateToSearch={handleNavigateToSearch}
             onNavigateToMisconfig={handleNavigateToMisconfig}
+            onNavigateToConnectorSetup={handleNavigateToConnectorSetup}
             initialPage="data-sources"
             checkSession={checkSession}
             user={user}
@@ -181,6 +194,7 @@ function App() {
             onNavigateToOverview={handleNavigateToOverview}
             onNavigateToSearch={handleNavigateToSearch}
             onNavigateToMisconfig={handleNavigateToMisconfig}
+            onNavigateToConnectorSetup={handleNavigateToConnectorSetup}
             initialPage="overview"
             checkSession={checkSession}
             user={user}
@@ -193,6 +207,7 @@ function App() {
             onNavigateToDataSources={handleNavigateToDataSources}
             onNavigateToOverview={handleNavigateToOverview}
             onNavigateToMisconfig={handleNavigateToMisconfig}
+            onNavigateToConnectorSetup={handleNavigateToConnectorSetup}
             checkSession={checkSession}
           />
         );
@@ -203,6 +218,8 @@ function App() {
             onNavigateToDataSources={handleNavigateToDataSources}
             onNavigateToOverview={handleNavigateToOverview}
             onNavigateToSearch={handleNavigateToSearch}
+            onNavigateToConnectorSetup={handleNavigateToConnectorSetup}
+            checkSession={checkSession}
           />
         );
       case "Header":
@@ -210,10 +227,35 @@ function App() {
           <Header
             pageTitle="Data Security Platform"
             searchTerm=""
-            onSearchChange={() => { }}
+            onSearchChange={() => {}}
             onLogout={handleLogout}
             showSearch={true}
           />
+        );
+      case "ConnectorSetup":
+        return (
+          <div className="data-sources-container">
+            <Sidebar
+              currentPage="connector-setup"
+              onNavigateToOverview={handleNavigateToOverview}
+              onNavigateToDataSources={handleNavigateToDataSources}
+              onNavigateToSearch={handleNavigateToSearch}
+              onNavigateToMisconfig={handleNavigateToMisconfig}
+              onNavigateToConnectorSetup={() => console.log("Already on connector setup")}
+            />
+            <div className="main-content">
+              <Header
+                pageTitle="Connector Setup"
+                searchTerm=""
+                onSearchChange={() => {}}
+                onLogout={handleLogout}
+                showSearch={false}
+              />
+              <ConnectorSetup
+                onSetupComplete={handleNavigateToOverview}
+              />
+            </div>
+          </div>
         );
       default:
         return <Login onLogin={handleLogin} />;

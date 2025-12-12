@@ -31,8 +31,6 @@ services:
       timeout: 5s
       retries: 10
 
-
-
   azure-blob-connector:
     depends_on:
       elasticsearch:
@@ -44,7 +42,7 @@ services:
     volumes:
       - ./elastic-connectors:/azconfig
     command: ["/app/bin/elastic-ingest", "-c", "/azconfig/azconfig.yml"]
-    restart: unless-stopped
+    restart: always
   s3-connector:
     depends_on:
       elasticsearch:
@@ -56,7 +54,7 @@ services:
     volumes:
       - ./elastic-connectors:/s3config
     command: ["/app/bin/elastic-ingest", "-c", "/s3config/s3config.yml"]
-    restart: unless-stopped
+    restart: always
 
   extraction-service:
     depends_on:
@@ -74,7 +72,7 @@ services:
       timeout: 5s
       retries: 5
       start_period: 30s
-    restart: unless-stopped
+    restart: always
 
   mongodb:
     container_name: mongodb
