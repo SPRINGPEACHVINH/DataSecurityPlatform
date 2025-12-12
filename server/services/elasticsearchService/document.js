@@ -305,5 +305,147 @@ export const deleteFileContent = async (req, res) => {
   }
 };
 
+// /**
+//  * Get single document content by ID
+//  * @param {string} indexName - Elasticsearch index name
+//  * @param {string} documentId - Document ID
+//  * @returns {Promise<Object>} Document with content
+//  */
+// export const utilityGetDocumentContent = async (indexName, documentId) => {
+//   try {
+//     if (!indexName || !documentId) {
+//       throw new Error("Index name and document ID are required");
+//     }
+
+//     console.log(`[ES] Fetching document ${documentId} from index ${indexName}`);
+
+//     const response = await axios.get(
+//       `${ES_LOCAL_URL}/${indexName}/_doc/${documentId}`,
+//       {
+//         auth: {
+//           username: ES_LOCAL_USERNAME,
+//           password: ES_LOCAL_PASSWORD,
+//         },
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//       }
+//     );
+
+//     if (response.status !== 200 || !response.data.found) {
+//       throw new Error(`Document ${documentId} not found in index ${indexName}`);
+//     }
+
+//     console.log(`[ES] Successfully fetched document ${documentId}`);
+//     return response.data._source;
+//   } catch (error) {
+//     console.error(`[ES] Error fetching document:`, error.message);
+//     throw error;
+//   }
+// };
+
+// /**
+//  * Get multiple documents content by IDs
+//  * @param {string} indexName - Elasticsearch index name
+//  * @param {Array<string>} documentIds - Array of document IDs
+//  * @returns {Promise<Array>} Array of documents with content
+//  */
+// export const utilityGetMultipleDocumentsContent = async (indexName, documentIds) => {
+//   try {
+//     if (!indexName || !documentIds || documentIds.length === 0) {
+//       throw new Error("Index name and document IDs array are required");
+//     }
+
+//     console.log(`[ES] Fetching ${documentIds.length} documents from index ${indexName}`);
+
+//     const response = await axios.post(
+//       `${ES_LOCAL_URL}/${indexName}/_mget`,
+//       {
+//         ids: documentIds,
+//       },
+//       {
+//         auth: {
+//           username: ES_LOCAL_USERNAME,
+//           password: ES_LOCAL_PASSWORD,
+//         },
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//       }
+//     );
+
+//     if (response.status !== 200) {
+//       throw new Error(`Failed to fetch documents from index ${indexName}`);
+//     }
+
+//     const documents = response.data.docs
+//       .filter((doc) => doc.found)
+//       .map((doc) => ({
+//         _id: doc._id,
+//         _source: doc._source,
+//       }));
+
+//     console.log(`[ES] Successfully fetched ${documents.length} documents`);
+//     return documents;
+//   } catch (error) {
+//     console.error(`[ES] Error fetching multiple documents:`, error.message);
+//     throw error;
+//   }
+// };
+
+// /**
+//  * Get all documents from index (with pagination)
+//  * @param {string} indexName - Elasticsearch index name
+//  * @param {number} size - Number of documents to return (default 100)
+//  * @param {number} from - Starting position (default 0)
+//  * @returns {Promise<Object>} Documents and total count
+//  */
+// export const utilityGetAllDocumentsFromIndex = async (indexName, size = 100, from = 0) => {
+//   try {
+//     if (!indexName) {
+//       throw new Error("Index name is required");
+//     }
+
+//     console.log(`[ES] Fetching documents from index ${indexName} (size: ${size}, from: ${from})`);
+
+//     const response = await axios.get(
+//       `${ES_LOCAL_URL}/${indexName}/_search`,
+//       {
+//         params: {
+//           size,
+//           from,
+//         },
+//         auth: {
+//           username: ES_LOCAL_USERNAME,
+//           password: ES_LOCAL_PASSWORD,
+//         },
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//       }
+//     );
+
+//     if (response.status !== 200) {
+//       throw new Error(`Failed to fetch documents from index ${indexName}`);
+//     }
+
+//     const documents = response.data.hits.hits.map((hit) => ({
+//       _id: hit._id,
+//       _source: hit._source,
+//       _score: hit._score,
+//     }));
+
+//     console.log(`[ES] Successfully fetched ${documents.length} documents from ${response.data.hits.total.value} total`);
+    
+//     return {
+//       total: response.data.hits.total.value,
+//       documents,
+//     };
+//   } catch (error) {
+//     console.error(`[ES] Error fetching documents from index:`, error.message);
+//     throw error;
+//   }
+// };
+
 
 

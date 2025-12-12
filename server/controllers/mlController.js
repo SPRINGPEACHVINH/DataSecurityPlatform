@@ -4,6 +4,11 @@ import {
   esClassify,
   esClassifyByStandard,
 } from "../services/pythonModelService.js";
+// import {
+//   utilityGetDocumentContent,
+//   utilityGetMultipleDocumentsContent,
+//   utilityGetAllDocumentsFromIndex,
+// } from "../services/elasticsearchService/document.js";
 
 /**
  * POST /api/ml/classify
@@ -108,9 +113,299 @@ export const esClassifyByStandardController = async (req, res) => {
       updateIndex,
     });
 
+
     return res.json(result);
   } catch (error) {
     console.error("ES classify by standard error:", error);
     return res.status(500).json({ error: error.message });
   }
 };
+
+// /**
+//  * POST /api/ml/classify-document
+//  * Classify single document by ID from Elasticsearch
+//  */
+// export const classifyDocumentById = async (req, res) => {
+//   try {
+//     const { index_name, document_id, standard = null } = req.body;
+
+//     // Validate
+//     if (!index_name || !document_id) {
+//       return res.status(400).json({
+//         error: "Missing required parameters: index_name and document_id are required",
+//       });
+//     }
+
+//     console.log(`[ML] Classifying document ${document_id} from index ${index_name}`);
+
+//     // Get document content
+//     const docContent = await utilityGetDocumentContent(index_name, document_id);
+
+//     if (!docContent || !docContent.content) {
+//       return res.status(404).json({
+//         error: `Document ${document_id} not found or has no content`,
+//       });
+//     }
+
+//     console.log(`[ML] Document content length: ${docContent.content.length}`);
+
+//     // Classify
+//     let classificationResult;
+//     if (standard) {
+//       console.log(`[ML] Classifying by standard: ${standard}`);
+//       classificationResult = await classifyByStandard(docContent.content, standard);
+//     } else {
+//       console.log(`[ML] Classifying without standard`);
+//       classificationResult = await classifyText(docContent.content);
+//     }
+
+//     const labels = extractLabelsFromClassification(classificationResult);
+
+//     return res.json({
+//       message: "Document classified successfully",
+//       data: {
+//         document_id,
+//         index_name,
+//         content_length: docContent.content.length,
+//         source_file: docContent.file_name || docContent.name || "unknown",
+//         classification: classificationResult,
+//         labels,
+//       },
+//     });
+//   } catch (error) {
+//     console.error("[ML] Error in classifyDocumentById:", error);
+//     return res.status(500).json({
+//       error: error.message || "Failed to classify document",
+//     });
+//   }
+// };
+
+// /**
+//  * POST /api/ml/classify-documents-batch
+//  * Classify multiple documents by IDs from Elasticsearch
+//  */
+// export const classifyDocumentsBatch = async (req, res) => {
+//   try {
+//     const { index_name, document_ids, standard = null } = req.body;
+
+//     // Validate
+//     if (!index_name || !document_ids || !Array.isArray(document_ids)) {
+//       return res.status(400).json({
+//         error: "Missing required parameters: index_name and document_ids (array) are required",
+//       });
+//     }
+
+//     if (document_ids.length === 0) {
+//       return res.status(400).json({
+//         error: "document_ids array cannot be empty",
+//       });
+//     }
+
+//     console.log(`[ML] Batch classifying ${document_ids.length} documents from index ${index_name}`);
+
+//     const classificationResults = [];
+//     let successCount = 0;
+//     let failureCount = 0;
+
+//     // Get all documents
+//     const documents = await utilityGetMultipleDocumentsContent(index_name, document_ids);
+
+//     // Process each document
+//     for (const doc of documents) {
+//       try {
+//         const docId = doc._id;
+//         const docContent = doc._source;
+
+//         if (!docContent || !docContent.content) {
+//           console.warn(`[ML] Document ${docId} has no content, skipping...`);
+//           classificationResults.push({
+//             document_id: docId,
+//             status: "skipped",
+//             error: "No content found",
+//           });
+//           failureCount++;
+//           continue;
+//         }
+
+//         console.log(`[ML] Classifying document ${docId}...`);
+//         let classifyResponse;
+
+//         if (standard) {
+//           classifyResponse = await classifyByStandard(docContent.content, standard);
+//         } else {
+//           classifyResponse = await classifyText(docContent.content);
+//         }
+
+//         const labels = extractLabelsFromClassification(classifyResponse);
+
+//         classificationResults.push({
+//           document_id: docId,
+//           status: "success",
+//           content_length: docContent.content.length,
+//           source_file: docContent.file_name || docContent.name || "unknown",
+//           classification: classifyResponse,
+//           labels,
+//         });
+
+//         successCount++;
+//         console.log(`[ML] Document ${docId} classified successfully`);
+//       } catch (error) {
+//         console.error(`[ML] Failed to classify document:`, error.message);
+//         classificationResults.push({
+//           document_id: doc._id,
+//           status: "failed",
+//           error: error.message,
+//         });
+//         failureCount++;
+//       }
+//     }
+
+//     return res.json({
+//       message: "Batch classification completed",
+//       data: {
+//         summary: {
+//           total_requested: document_ids.length,
+//           successful: successCount,
+//           failed: failureCount,
+//           index_name,
+//           standard: standard || "none",
+//         },
+//         results: classificationResults,
+//       },
+//     });
+//   } catch (error) {
+//     console.error("[ML] Error in classifyDocumentsBatch:", error);
+//     return res.status(500).json({
+//       error: error.message || "Failed to process batch classification",
+//     });
+//   }
+// };
+
+// /**
+//  * POST /api/ml/classify-all-documents
+//  * Classify all documents in an index
+//  */
+// export const classifyAllDocuments = async (req, res) => {
+//   try {
+//     const { index_name, standard = null, size = 100 } = req.body;
+
+//     // Validate
+//     if (!index_name) {
+//       return res.status(400).json({
+//         error: "Missing required parameter: index_name is required",
+//       });
+//     }
+
+//     console.log(`[ML] Classifying all documents from index ${index_name}`);
+
+//     // Get all documents from index
+//     const { total, documents } = await utilityGetAllDocumentsFromIndex(index_name, size);
+
+//     console.log(`[ML] Found ${documents.length} documents to classify`);
+
+//     const classificationResults = [];
+//     let successCount = 0;
+//     let failureCount = 0;
+
+//     // Process each document
+//     for (const doc of documents) {
+//       try {
+//         const docId = doc._id;
+//         const docContent = doc._source;
+
+//         if (!docContent || !docContent.content) {
+//           console.warn(`[ML] Document ${docId} has no content, skipping...`);
+//           failureCount++;
+//           continue;
+//         }
+
+//         console.log(`[ML] Classifying document ${docId}...`);
+//         let classifyResponse;
+
+//         if (standard) {
+//           classifyResponse = await classifyByStandard(docContent.content, standard);
+//         } else {
+//           classifyResponse = await classifyText(docContent.content);
+//         }
+
+//         const labels = extractLabelsFromClassification(classifyResponse);
+
+//         classificationResults.push({
+//           document_id: docId,
+//           status: "success",
+//           content_length: docContent.content.length,
+//           source_file: docContent.file_name || docContent.name || "unknown",
+//           classification: classifyResponse,
+//           labels,
+//         });
+
+//         successCount++;
+//       } catch (error) {
+//         console.error(`[ML] Failed to classify document ${doc._id}:`, error.message);
+//         failureCount++;
+//       }
+//     }
+
+//     return res.json({
+//       message: "All documents classified",
+//       data: {
+//         summary: {
+//           total_in_index: total,
+//           total_processed: documents.length,
+//           successful: successCount,
+//           failed: failureCount,
+//           index_name,
+//           standard: standard || "none",
+//         },
+//         results: classificationResults,
+//       },
+//     });
+//   } catch (error) {
+//     console.error("[ML] Error in classifyAllDocuments:", error);
+//     return res.status(500).json({
+//       error: error.message || "Failed to classify all documents",
+//     });
+//   }
+// };
+
+// /**
+//  * Helper: Extract labels từ classification response
+//  */
+// const extractLabelsFromClassification = (classification) => {
+//   const labels = [];
+
+//   if (!classification) return [{ label: "unclassified" }];
+
+//   // Format 1: { "predictions": [...] }
+//   if (classification.predictions && Array.isArray(classification.predictions)) {
+//     classification.predictions.forEach((pred) => {
+//       if (pred.label) {
+//         labels.push({
+//           label: pred.label,
+//           score: pred.score || 0,
+//           confidence: `${Math.round((pred.score || 0) * 100)}%`,
+//         });
+//       }
+//     });
+//   }
+//   // Format 2: { "labels": [...] }
+//   else if (classification.labels && Array.isArray(classification.labels)) {
+//     classification.labels.forEach((label) => {
+//       labels.push({
+//         label,
+//         score: 1.0,
+//         confidence: "100%",
+//       });
+//     });
+//   }
+//   // Format 3: { "result": {...} }
+//   else if (classification.result && classification.result.label) {
+//     labels.push({
+//       label: classification.result.label,
+//       score: classification.result.score || 0,
+//       confidence: `${Math.round((classification.result.score || 0) * 100)}%`,
+//     });
+//   }
+
+//   return labels.length > 0 ? labels : [{ label: "unclassified" }];
+// };

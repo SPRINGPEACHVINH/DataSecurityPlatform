@@ -1,0 +1,174 @@
+{
+  "info": {
+    "name": "Data Security Platform - ML API v2",
+    "description": "ML API for classifying sensitive documents",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Classify Documents from Elasticsearch",
+      "item": [
+        {
+          "name": "Classify Single Document by ID",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"index_name\": \"files_connector\",\n  \"document_id\": \"123abc\",\n  \"standard\": \"GDPR\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/ml/classify-document",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["api", "ml", "classify-document"]
+            },
+            "description": "Classify single document by ID from Elasticsearch. Optional standard: HIPAA, GDPR, PCI_DSS"
+          }
+        },
+        {
+          "name": "Classify Multiple Documents (Batch)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"index_name\": \"files_connector\",\n  \"document_ids\": [\"123abc\", \"456def\", \"789ghi\"],\n  \"standard\": \"HIPAA\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/ml/classify-documents-batch",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["api", "ml", "classify-documents-batch"]
+            },
+            "description": "Classify multiple documents by their IDs in batch. Optional standard: HIPAA, GDPR, PCI_DSS"
+          }
+        },
+        {
+          "name": "Classify All Documents in Index",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"index_name\": \"files_connector\",\n  \"standard\": \"GDPR\",\n  \"size\": 100\n}"
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/ml/classify-all-documents",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["api", "ml", "classify-all-documents"]
+            },
+            "description": "Classify all documents in an index. Optional standard: HIPAA, GDPR, PCI_DSS. Size: max documents per request (default 100)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Direct Text Classification",
+      "item": [
+        {
+          "name": "Classify Text",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"Customer email: john@example.com and phone: 555-1234\",\n  \"labels\": [\"Contact-Info\", \"Financial-Info\"]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/ml/classify",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["api", "ml", "classify"]
+            },
+            "description": "Classify text directly"
+          }
+        },
+        {
+          "name": "Classify Text by Standard",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"Patient ID: 12345, SSN: 123-45-6789\",\n  \"standard\": \"HIPAA\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/ml/classify-by-standard",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["api", "ml", "classify-by-standard"]
+            },
+            "description": "Classify text by standard: HIPAA, GDPR, PCI_DSS"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Health Checks",
+      "item": [
+        {
+          "name": "Node.js Server Health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/api/health",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["api", "health"]
+            },
+            "description": "Check if Node.js server is running"
+          }
+        },
+        {
+          "name": "Python Model Docs",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/docs",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8000",
+              "path": ["docs"]
+            },
+            "description": "Access Python model Swagger documentation"
+          }
+        }
+      ]
+    }
+  ]
+}
