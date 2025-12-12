@@ -33,7 +33,7 @@ This project focuses on developing a **Data Security Posture Management (DSPM)**
 |----------------------|---------------|----------|
 | Data Collection & Detection        | Completed | 100%      |
 | Sensitive Data Classification | In-progress | 70%      |
-| Risk Detection & Remediation      | In-progress   | 90%     |
+| Risk Detection & Remediation      | Completed   | 100%     |
 | Dashboard             | In-progress | 90%  |
 ---
 ### Notes / Challenges
