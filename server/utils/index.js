@@ -1,5 +1,6 @@
 import crypto from 'crypto';
 import eckey from 'eckey-utils'
+import fs from 'fs';
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -91,5 +92,14 @@ export function generateConnectorIndexname(cloud) {
     }
     else {
         throw new Error("Unsupported cloud provider. Only 's3' and 'azure_blob_storage' are supported.");
+    }
+}
+
+export function updateEnvironmentVariable(key, value) {
+    try {
+
+    }
+    catch (error) {
+        throw new Error(`Failed to update environment variable: ${error.message}`);
     }
 }
