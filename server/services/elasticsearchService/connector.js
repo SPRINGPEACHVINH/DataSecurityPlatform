@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 
 import Models from "../../models/userModel.js";
 const { Connector } = Models;
+import {deleteConnectorById, deleteSyncByConnectorId} from "../../models/userModel.js";
 
 import { generateConnectorIndexname, generateConnectorID } from "../../utils/index.js";
 
@@ -117,10 +118,58 @@ export const createConnector = async (req, res) => {
   }
 }
 
+export const deleteConnector = async (req, res) => {
+  try {
+    let { connector_id } = req.query;
+    connector_id = decodeURIComponent(connector_id);
+
+    if (!connector_id) {
+      return res.status(400).json({
+        message: "Connector ID is required to delete connector.",
+      });
+    }
+
+    const response = await axios.delete(
+      `${ES_LOCAL_URL}/_connector/${connector_id}`,
+      {
+        auth: {
+          username: ES_LOCAL_USERNAME,
+          password: ES_LOCAL_PASSWORD,
+        },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+
+    if (response.status !== 200 || response.data.acknowledged !== true) {
+      throw new Error(`Failed to delete Elasticsearch connector. Status code: ${response.status}`);
+    }
+    // Delete from database
+    await deleteConnectorById(connector_id);
+    await deleteSyncByConnectorId(connector_id);
+
+    res.status(200).json({
+      message: "Elasticsearch connector deleted successfully.",
+      acknowledged: response.data.acknowledged,
+    });
+  }
+  catch (error) {
+    console.error("Error deleting Elasticsearch connector:", error);
+    res.status(500).json({
+      message: "Failed to delete Elasticsearch connector.",
+      error: error.response
+        ? error.response.data
+        : error.message || "Unknown error",
+    });
+  }
+}
+
 export const updateConnectorConfig = async (req, res) => {
   try {
     const { connectorType, buckets, aws_access_key_id, aws_secret_access_key, containers, blob_endpoint, account_key, account_name } = req.body;
-    const { connector_id } = req.query;
+    let { connector_id } = req.query;
+    connector_id = decodeURIComponent(connector_id);
 
     if (!connector_id && !connectorType) {
       return res.status(400).json({
@@ -196,7 +245,14 @@ export const updateConnectorConfig = async (req, res) => {
 
 export const syncConnectorData = async (req, res) => {
   try {
-    const { connector_id } = req.query;
+    let { connector_id } = req.query;
+    connector_id = decodeURIComponent(connector_id);
+
+    if (!connector_id) {
+      return res.status(400).json({
+        message: "Connector ID is required to sync data.",
+      });
+    }
 
     // Sync file content
     const syncResponse = await utilitySyncConnectors(connector_id);
