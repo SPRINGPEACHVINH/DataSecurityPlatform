@@ -23,7 +23,7 @@ import {
   SearchRegexPattern
 } from "../services/elasticsearchService/search.js";
 import { isAuthenticated } from "../middleware/isAuthenticated.js";
-import { getOverviewData } from "../controllers/overviewController.js";
+import { getOverviewData, getLabelStatistics } from "../controllers/overviewController.js";
 import {
   scanCloudMisconfig,
   checkKeysExist,
@@ -58,6 +58,7 @@ router.post("/elasticsearch/delete-file-content", isAuthenticated, deleteFileCon
 
 // Overview API
 router.get("/overview/data", isAuthenticated, getOverviewData);
+router.get("/overview/label-statistics", isAuthenticated, getLabelStatistics);
 // Misconfiguration API
 router.post("/misconfig/scan", isAuthenticated, scanCloudMisconfig);
 router.get("/misconfig/check_keys", isAuthenticated, checkKeysExist);

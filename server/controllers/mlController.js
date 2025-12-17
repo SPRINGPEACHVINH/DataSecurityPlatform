@@ -4,6 +4,7 @@ import {
   esClassify,
   esClassifyByStandard,
 } from "../services/pythonModelService.js";
+
 import {
   utilityGetDocumentContent,
   utilityGetMultipleDocumentsContent,
@@ -208,7 +209,7 @@ export const classifyDocumentById = async (req, res) => {
  */
 export const classifyDocumentsBatch = async (req, res) => {
   try {
-    const { index_name, document_ids, standard = null } = req.body;
+    const { index_name, document_ids, standard = null, tag = true } = req.body;
 
     // Validate
     if (!index_name || !document_ids || !Array.isArray(document_ids)) {
@@ -228,6 +229,7 @@ export const classifyDocumentsBatch = async (req, res) => {
     const classificationResults = [];
     let successCount = 0;
     let failureCount = 0;
+    let taggedCount = 0;
 
     // Process each document
     for (const docId of document_ids) {
@@ -259,6 +261,24 @@ export const classifyDocumentsBatch = async (req, res) => {
 
         const predictions = extractPredictionsFromClassification(classifyResponse);
 
+        let taggingResult = null;
+
+        // Tag document if requested
+        if (tag) {
+          try {
+            taggingResult = await utilityTagDocumentWithLabels(
+              index_name,
+              docId,
+              predictions
+            );
+            if (taggingResult.status === "success") {
+              taggedCount++;
+            }
+          } catch (tagError) {
+            console.warn(`[ML] Failed to tag document ${docId}:`, tagError.message);
+          }
+        }
+
         classificationResults.push({
           document_id: docId,
           status: "success",
@@ -266,6 +286,7 @@ export const classifyDocumentsBatch = async (req, res) => {
           source_file: docData.file_name || docData.name || "unknown",
           classification: classifyResponse,
           labels: predictions,
+          tagging: taggingResult,
         });
 
         successCount++;
@@ -288,6 +309,7 @@ export const classifyDocumentsBatch = async (req, res) => {
           total_requested: document_ids.length,
           successful: successCount,
           failed: failureCount,
+          tagged: tag ? taggedCount : 0,
           index_name,
           standard: standard || "none",
         },
@@ -308,12 +330,15 @@ export const classifyDocumentsBatch = async (req, res) => {
  */
 export const classifyAllDocuments = async (req, res) => {
   try {
-    const { index_name, standard = null, size = 100 } = req.body;
+    const { index_name, standard = null, size = 100, tag = true } = req.body;
+
+    console.log("[ML] classifyAllDocuments request:", { index_name, standard, size, tag });
 
     // Validate
-    if (!index_name) {
+    if (!index_name || typeof index_name !== "string") {
       return res.status(400).json({
-        error: "Missing required parameter: index_name is required",
+        error: "Missing required parameter: index_name is required and must be a string",
+        received: { index_name },
       });
     }
 
@@ -327,6 +352,7 @@ export const classifyAllDocuments = async (req, res) => {
     const classificationResults = [];
     let successCount = 0;
     let failureCount = 0;
+    let taggedCount = 0;
 
     // Process each document
     for (const doc of documents) {
@@ -361,6 +387,24 @@ export const classifyAllDocuments = async (req, res) => {
 
         const predictions = extractPredictionsFromClassification(classifyResponse);
 
+        let taggingResult = null;
+
+        // Tag document if requested
+        if (tag) {
+          try {
+            taggingResult = await utilityTagDocumentWithLabels(
+              index_name,
+              docId,
+              predictions
+            );
+            if (taggingResult.status === "success") {
+              taggedCount++;
+            }
+          } catch (tagError) {
+            console.warn(`[ML] Failed to tag document ${docId}:`, tagError.message);
+          }
+        }
+
         classificationResults.push({
           document_id: docId,
           status: "success",
@@ -368,6 +412,7 @@ export const classifyAllDocuments = async (req, res) => {
           source_file: docSource.file_name || docSource.name || "unknown",
           classification: classifyResponse,
           labels: predictions,
+          tagging: taggingResult,
         });
 
         successCount++;
@@ -385,6 +430,7 @@ export const classifyAllDocuments = async (req, res) => {
           total_processed: documents.length,
           successful: successCount,
           failed: failureCount,
+          tagged: tag ? taggedCount : 0,
           index_name,
           standard: standard || "none",
         },
