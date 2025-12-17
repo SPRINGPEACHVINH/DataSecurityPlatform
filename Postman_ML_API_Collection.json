@@ -1,12 +1,157 @@
 {
   "info": {
-    "name": "Data Security Platform - ML API v2",
-    "description": "ML API for classifying sensitive documents",
+    "name": "Data Security Platform - ML API",
+    "description": "Complete ML API testing collection for classifying sensitive documents",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
-      "name": "Classify Documents from Elasticsearch",
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Sign In",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"admin123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/auth/signin",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["api", "auth", "signin"]
+            },
+            "description": "Sign in with admin credentials"
+          }
+        },
+        {
+          "name": "Sign Out",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/api/auth/signout",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["api", "auth", "signout"]
+            },
+            "description": "Sign out from the system"
+          }
+        }
+      ]
+    },
+    {
+      "name": "ML - Direct Text Classification",
+      "item": [
+        {
+          "name": "Classify Text (All Labels)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"My email is john.doe@example.com and my phone number is +1-555-123-4567. My credit card is 4532-1234-5678-9012.\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/ml/classify",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["api", "ml", "classify"]
+            },
+            "description": "Classify text directly - detects all sensitive data types"
+          }
+        },
+        {
+          "name": "Classify by HIPAA Standard",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"Patient ID: 123456, SSN: 123-45-6789, Medical diagnosis: Type 2 Diabetes, Prescription: Metformin 500mg daily\",\n  \"standard\": \"HIPAA\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/ml/classify-by-standard",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["api", "ml", "classify-by-standard"]
+            },
+            "description": "Classify text by HIPAA compliance standard"
+          }
+        },
+        {
+          "name": "Classify by GDPR Standard",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"Name: John Smith, Email: john@example.com, Phone: +1-555-123-4567, Address: 123 Main Street, London\",\n  \"standard\": \"GDPR\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/ml/classify-by-standard",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["api", "ml", "classify-by-standard"]
+            },
+            "description": "Classify text by GDPR compliance standard"
+          }
+        },
+        {
+          "name": "Classify by PCI-DSS Standard",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"Credit Card: 4532-1234-5678-9012, CVV: 123, Expiry: 12/25\",\n  \"standard\": \"PCI_DSS\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/ml/classify-by-standard",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["api", "ml", "classify-by-standard"]
+            },
+            "description": "Classify text by PCI-DSS compliance standard"
+          }
+        }
+      ]
+    },
+    {
+      "name": "ML - Classify from Elasticsearch",
       "item": [
         {
           "name": "Classify Single Document by ID",
@@ -20,7 +165,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"index_name\": \"files_connector\",\n  \"document_id\": \"123abc\",\n  \"standard\": \"GDPR\"\n}"
+              "raw": "{\n  \"index_name\": \"files_connector\",\n  \"document_id\": \"your-document-id-here\",\n  \"standard\": \"GDPR\",\n  \"tag\": true\n}"
             },
             "url": {
               "raw": "http://localhost:4000/api/ml/classify-document",
@@ -29,11 +174,11 @@
               "port": "4000",
               "path": ["api", "ml", "classify-document"]
             },
-            "description": "Classify single document by ID from Elasticsearch. Optional standard: HIPAA, GDPR, PCI_DSS"
+            "description": "Classify a single document from Elasticsearch by document ID"
           }
         },
         {
-          "name": "Classify Multiple Documents (Batch)",
+          "name": "Classify Single Document (No Standard)",
           "request": {
             "method": "POST",
             "header": [
@@ -44,7 +189,31 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"index_name\": \"files_connector\",\n  \"document_ids\": [\"123abc\", \"456def\", \"789ghi\"],\n  \"standard\": \"HIPAA\"\n}"
+              "raw": "{\n  \"index_name\": \"files_connector\",\n  \"document_id\": \"your-document-id-here\",\n  \"tag\": true\n}"
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/ml/classify-document",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["api", "ml", "classify-document"]
+            },
+            "description": "Classify a single document without compliance standard"
+          }
+        },
+        {
+          "name": "Classify Batch Documents",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"index_name\": \"files_connector\",\n  \"document_ids\": [\"doc-id-1\", \"doc-id-2\", \"doc-id-3\"],\n  \"standard\": \"HIPAA\",\n  \"tag\": true\n}"
             },
             "url": {
               "raw": "http://localhost:4000/api/ml/classify-documents-batch",
@@ -53,7 +222,7 @@
               "port": "4000",
               "path": ["api", "ml", "classify-documents-batch"]
             },
-            "description": "Classify multiple documents by their IDs in batch. Optional standard: HIPAA, GDPR, PCI_DSS"
+            "description": "Classify multiple documents in batch by their IDs"
           }
         },
         {
@@ -68,7 +237,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"index_name\": \"files_connector\",\n  \"standard\": \"GDPR\",\n  \"size\": 100\n}"
+              "raw": "{\n  \"index_name\": \"files_connector\",\n  \"standard\": \"GDPR\",\n  \"size\": 50,\n  \"tag\": true\n}"
             },
             "url": {
               "raw": "http://localhost:4000/api/ml/classify-all-documents",
@@ -77,16 +246,16 @@
               "port": "4000",
               "path": ["api", "ml", "classify-all-documents"]
             },
-            "description": "Classify all documents in an index. Optional standard: HIPAA, GDPR, PCI_DSS. Size: max documents per request (default 100)"
+            "description": "Classify all documents in an Elasticsearch index"
           }
         }
       ]
     },
     {
-      "name": "Direct Text Classification",
+      "name": "Dashboard - Search",
       "item": [
         {
-          "name": "Classify Text",
+          "name": "Search by Keyword",
           "request": {
             "method": "POST",
             "header": [
@@ -97,20 +266,20 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"text\": \"Customer email: john@example.com and phone: 555-1234\",\n  \"labels\": [\"Contact-Info\", \"Financial-Info\"]\n}"
+              "raw": "{\n  \"search_type\": \"keyword\",\n  \"keyword\": \"email\",\n  \"index_name\": \"files_connector\"\n}"
             },
             "url": {
-              "raw": "http://localhost:4000/api/ml/classify",
+              "raw": "http://localhost:4000/api/dashboard/search",
               "protocol": "http",
               "host": ["localhost"],
               "port": "4000",
-              "path": ["api", "ml", "classify"]
+              "path": ["api", "dashboard", "search"]
             },
-            "description": "Classify text directly"
+            "description": "Search documents by keyword in Elasticsearch"
           }
         },
         {
-          "name": "Classify Text by Standard",
+          "name": "Search by Regex Pattern",
           "request": {
             "method": "POST",
             "header": [
@@ -121,25 +290,25 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"text\": \"Patient ID: 12345, SSN: 123-45-6789\",\n  \"standard\": \"HIPAA\"\n}"
+              "raw": "{\n  \"search_type\": \"pattern\",\n  \"pattern\": \"\\\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\\\.[A-Z|a-z]{2,}\\\\b\",\n  \"index_name\": \"files_connector\"\n}"
             },
             "url": {
-              "raw": "http://localhost:4000/api/ml/classify-by-standard",
+              "raw": "http://localhost:4000/api/dashboard/search",
               "protocol": "http",
               "host": ["localhost"],
               "port": "4000",
-              "path": ["api", "ml", "classify-by-standard"]
+              "path": ["api", "dashboard", "search"]
             },
-            "description": "Classify text by standard: HIPAA, GDPR, PCI_DSS"
+            "description": "Search documents by regex pattern (email pattern example)"
           }
         }
       ]
     },
     {
-      "name": "Health Checks",
+      "name": "Health & Status",
       "item": [
         {
-          "name": "Node.js Server Health",
+          "name": "Server Health Check",
           "request": {
             "method": "GET",
             "header": [],
@@ -150,11 +319,11 @@
               "port": "4000",
               "path": ["api", "health"]
             },
-            "description": "Check if Node.js server is running"
+            "description": "Check if Node.js server is running and healthy"
           }
         },
         {
-          "name": "Python Model Docs",
+          "name": "Python Model API Docs",
           "request": {
             "method": "GET",
             "header": [],
@@ -165,7 +334,69 @@
               "port": "8000",
               "path": ["docs"]
             },
-            "description": "Access Python model Swagger documentation"
+            "description": "Access FastAPI Python model Swagger UI"
+          }
+        },
+        {
+          "name": "Elasticsearch Health",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic ZWxhc3RpYzo5R2c3QVgxSw==",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:9200/_cluster/health",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "9200",
+              "path": ["_cluster", "health"]
+            },
+            "description": "Check Elasticsearch cluster health"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get Indexed Document",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Basic ZWxhc3RpYzo5R2c3QVgxSw==",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:9200/azure-f846cd81/_doc/data%2Fpattern.txt",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9200",
+          "path": ["azure-f846cd81", "_doc", "data%2Fpattern.txt"]
+        },
+        "description": "Get document from Elasticsearch to verify tags were applied. Change document ID and index name as needed."
+      }
+    },
+    {
+      "name": "Reference - Sensitive Data Labels",
+      "item": [
+        {
+          "name": "Available Classification Labels",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/api/health",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["api", "health"]
+            },
+            "description": "Reference of all supported sensitive data classification labels:\n\n**Data Classification Labels:**\n\n1. **Personal-Identity** - Full name, national ID, passport, CCCD/CMND\n\n2. **Contact-Info** - Phone number, email address, home address\n\n3. **Financial-Info** - Bank account, credit card number, transactions\n\n4. **Health-Info** - Medical records, diseases, prescriptions, treatment info\n\n5. **Credentials** - Passwords, OTP codes, API keys, login tokens\n\n6. **Location-Info** - GPS coordinates, real-time location, movement history\n\n7. **Biometric-Info** - Fingerprints, facial data, retina scan, voice patterns\n\n8. **Non-sensitive** - No sensitive information detected\n\n**Compliance Standards:**\n- **HIPAA** - Healthcare data protection\n- **GDPR** - EU personal data protection\n- **PCI_DSS** - Payment card data security\n\n**How to use:**\n1. For direct text: POST to `/api/ml/classify` or `/api/ml/classify-by-standard`\n2. For Elasticsearch documents: POST to `/api/ml/classify-document` or `/api/ml/classify-documents-batch`\n3. To classify all documents in index: POST to `/api/ml/classify-all-documents`"
           }
         }
       ]
