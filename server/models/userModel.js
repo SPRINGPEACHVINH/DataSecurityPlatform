@@ -70,6 +70,14 @@ export const findSyncByConnectorName = async (connector_name) => {
   return Sync.findOne({ connector_name: connector_name });
 };
 
+export const deleteConnectorById = async (connector_id) => {
+  return Connector.deleteOne({ connector_id: connector_id });
+}
+
+export const deleteSyncByConnectorId = async (connector_id) => {
+  return Sync.deleteMany({ connector_id: connector_id });
+}
+
 export const CreateUser = async (newUser) => {
   const { UserName, Password } = newUser;
   const saltRounds = parseInt(process.env.BCRYPT_SALT, 10) || 12;
