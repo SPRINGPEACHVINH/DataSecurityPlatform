@@ -718,8 +718,8 @@ function Search({
                   disabled={isLoading}
                 >
                   <option value="">-- Select a Pattern --</option>
-                  <option value="PT001">PT001</option>
-                  <option value="PT002">PT002</option>
+                  <option value="PT001">CCCD</option>
+                  <option value="PT002">PCI-DSS</option>
                 </select>
               </div>
             ) : (
@@ -1054,7 +1054,7 @@ function Search({
               <div className="data-table-container mt-24">
                 <div className="search-results-header">
                   <h3 className="search-results-title">
-                    🔍 AWS S3 {searchMode === "pattern" ? "Pattern" : "Keyword"} Search Results ({searchResults.length} files
+                    AWS S3 {searchMode === "pattern" ? "Pattern" : "Keyword"} Search Results ({searchResults.length} files
                     found)
                   </h3>
                 </div>
@@ -1102,7 +1102,7 @@ function Search({
 
                 <div className="search-results-summary">
                   <h4 className="search-summary-title">
-                    📊 AWS S3 Search Summary
+                    AWS S3 Search Summary
                   </h4>
                   <div className="search-summary-grid">
                     <div>
@@ -1135,7 +1135,7 @@ function Search({
             <div className="data-table-container mt-24">
               <div className="search-results-header">
                 <h3 className="search-results-title">
-                  🔍 Azure {searchMode === "pattern" ? "Pattern" : "Keyword"} Search Results ({searchResults.length} files found)
+                  Azure {searchMode === "pattern" ? "Pattern" : "Keyword"} Search Results ({searchResults.length} files found)
                 </h3>
               </div>
 

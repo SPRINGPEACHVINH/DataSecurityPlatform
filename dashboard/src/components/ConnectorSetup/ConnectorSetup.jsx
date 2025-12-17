@@ -21,6 +21,7 @@ function ConnectorSetup({ onSetupComplete }) {
   // Case 7 states
   const [showFullConfiguration, setShowFullConfiguration] = useState(false);
   const [connectorList, setConnectorList] = useState([]);
+  const [isEditing, setIsEditing] = useState(false);
   
   // Configuration states
   const [isConfiguringConnector, setIsConfiguringConnector] = useState(false);
@@ -218,6 +219,120 @@ function ConnectorSetup({ onSetupComplete }) {
     }
   };
 
+  const handleEditConnector = (connector) => {
+    // Set editing mode to true
+    setIsEditing(true);
+    
+    // Set the connector as if it was just created
+    setCreationSuccess({
+      id: connector.id,
+      type: connector.type,
+      name: connector.name,
+      status: connector.status,
+    });
+    
+    // Hide Case 7 view and show Step 3 (Configuration)
+    setShowFullConfiguration(false);
+    setShowStep2(true);
+    setShowStep3(true);
+  };
+
+  const handleCancelEdit = () => {
+    // Reset editing mode
+    setIsEditing(false);
+    
+    // Reset temporary form data
+    setCreationSuccess(null);
+    setConfigurationError(null);
+    setConfigFormData({
+      buckets: "",
+      aws_access_key_id: "",
+      aws_secret_access_key: "",
+      account_name: "",
+      account_key: "",
+      blob_endpoint: "",
+      containers: "",
+    });
+    
+    // Navigate back to Step 7 (System Fully Configured)
+    setShowStep2(false);
+    setShowStep3(false);
+    setShowFullConfiguration(true);
+  };
+
+  const handleDeleteConnector = async (connectorId) => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this connector? This action cannot be undone."
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `http://localhost:4000/api/dashboard/elasticsearch/delete_connector?connector_id=${encodeURIComponent(connectorId)}`,
+        {
+          method: "DELETE",
+          credentials: "include",
+        }
+      );
+
+      const result = await response.json();
+
+      if (response.status === 200 && result.acknowledged === true) {
+        alert("Connector deleted successfully!");
+        
+        // Refresh by resetting all states and re-fetching data
+        setShowFullConfiguration(false);
+        setConnectorList([]);
+        setCreationSuccess(null);
+        setShowStep2(false);
+        setShowStep3(false);
+        setShowStep4(false);
+        setIsEditing(false);
+        
+        // Re-fetch and reinitialize
+        const connectorResponse = await fetch(
+          "http://localhost:4000/api/dashboard/elasticsearch/connector",
+          { credentials: "include" }
+        );
+        const dashboardResponse = await fetch(
+          "http://localhost:4000/api/dashboard/overview/data",
+          { credentials: "include" }
+        );
+        
+        const connectors = connectorResponse.ok
+          ? (await connectorResponse.json()).data || []
+          : [];
+        
+        if (dashboardResponse.ok && connectors.length === 2) {
+          setConnectorList(connectors.map(conn => ({
+            id: conn.id,
+            type: conn.type,
+            name: conn.name,
+            status: conn.status,
+          })));
+          setShowFullConfiguration(true);
+        } else if (connectors.length === 1) {
+          const connector = connectors[0];
+          setExistingConnector({
+            id: connector.id,
+            type: connector.type,
+            name: connector.name,
+            status: connector.status,
+          });
+          setShowExistingConnector(true);
+        }
+      } else {
+        alert(result.message || "Failed to delete connector.");
+      }
+    } catch (err) {
+      console.error("Error deleting connector:", err);
+      alert("Failed to delete connector. Please try again.");
+    }
+  };
+
   const handleContainerStarted = () => {
     setShowStep3(true);
   };
@@ -252,7 +367,7 @@ function ConnectorSetup({ onSetupComplete }) {
       }
 
       const response = await fetch(
-        `http://localhost:4000/api/dashboard/elasticsearch/connector_configuration?connector_id=${creationSuccess.id}`,
+        `http://localhost:4000/api/dashboard/elasticsearch/connector_configuration?connector_id=${encodeURIComponent(creationSuccess.id)}`,
         {
           method: "POST",
           headers: {
@@ -268,6 +383,7 @@ function ConnectorSetup({ onSetupComplete }) {
       if (response.ok && result.data.result === "updated") {
         setConfigurationSuccess(true);
         setShowStep4(true);
+        setIsEditing(false);
       } else {
         setConfigurationError(result.message || "Failed to configure connector");
       }
@@ -285,7 +401,7 @@ function ConnectorSetup({ onSetupComplete }) {
 
     try {
       const response = await fetch(
-        `http://localhost:4000/api/dashboard/elasticsearch/connector/sync?connector_id=${creationSuccess.id}`,
+        `http://localhost:4000/api/dashboard/elasticsearch/connector/sync?connector_id=${encodeURIComponent(creationSuccess.id)}`,
         {
           method: "GET",
           credentials: "include",
@@ -325,7 +441,7 @@ function ConnectorSetup({ onSetupComplete }) {
           </div>
 
           <div className="step-content">
-            <div className="notification success-notification" style={{ marginBottom: "20px" }}>
+            <div className="notification success-notification" style={{  }}>
               <span className="notification-icon">✅</span>
               <span>You have an active connector configured!</span>
             </div>
@@ -404,6 +520,20 @@ function ConnectorSetup({ onSetupComplete }) {
                       {connector.type === "s3" ? "AWS S3" : "Azure Blob Storage"}
                     </span>
                   </div>
+                </div>
+                <div className="connector-actions">
+                  <button
+                    className="btn-edit"
+                    onClick={() => handleEditConnector(connector)}
+                  >
+                    Edit Config
+                  </button>
+                  <button
+                    className="btn-danger"
+                    onClick={() => handleDeleteConnector(connector.id)}
+                  >
+                    Delete
+                  </button>
                 </div>
               </div>
             ))}
@@ -703,13 +833,24 @@ function ConnectorSetup({ onSetupComplete }) {
               )}
             </div>
 
-            <button
-              className="create-connector-button"
-              onClick={handleConfigureConnector}
-              disabled={isConfiguringConnector}
-            >
-              {isConfiguringConnector ? "Configuring..." : "Configure Connector"}
-            </button>
+            <div className="form-actions">
+              <button
+                className="create-connector-button"
+                onClick={handleConfigureConnector}
+                disabled={isConfiguringConnector}
+              >
+                {isConfiguringConnector ? "Configuring..." : "Configure Connector"}
+              </button>
+              {isEditing && (
+                <button
+                  className="cancel-button"
+                  onClick={handleCancelEdit}
+                  disabled={isConfiguringConnector}
+                >
+                  Cancel
+                </button>
+              )}
+            </div>
           </div>
         </div>
       )}

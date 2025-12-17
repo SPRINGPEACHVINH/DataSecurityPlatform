@@ -15,7 +15,8 @@ function Misconfig({
   const [isScanning, setIsScanning] = useState(false);
   const [scanResults, setScanResults] = useState(null);
   const [showSuccessNotification, setShowSuccessNotification] = useState(false);
-  
+  const [selectedResource, setSelectedResource] = useState(null);
+
   // Key Management states
   const [keyExists, setKeyExists] = useState(false);
   const [isCheckingKey, setIsCheckingKey] = useState(true);
@@ -53,7 +54,7 @@ function Misconfig({
 
   const handleGenerateKey = async () => {
     setIsGeneratingKey(true);
-    
+
     try {
       const response = await fetch(
         "http://localhost:4000/api/dashboard/misconfig/generate_keys",
@@ -62,9 +63,9 @@ function Misconfig({
           credentials: "include",
         }
       );
-      
+
       const result = await response.json();
-      
+
       if (response.ok) {
         setKeyExists(true);
         alert("Encryption key generated successfully!");
@@ -82,6 +83,7 @@ function Misconfig({
   const handleStartScan = async () => {
     setIsScanning(true);
     setScanResults(null);
+    setSelectedResource(null);
 
     try {
       console.log("Starting scan for provider:", cloudProvider);
@@ -102,7 +104,7 @@ function Misconfig({
       if (response.ok) {
         setScanResults(result);
         setShowSuccessNotification(true);
-        
+
         // Auto-hide notification after 5 seconds
         setTimeout(() => {
           setShowSuccessNotification(false);
@@ -158,9 +160,12 @@ function Misconfig({
                 <span className="notification-icon">✓</span>
                 <div className="notification-text">
                   <strong>Scan Completed Successfully!</strong>
-                  <p>Found {scanResults?.data?.failedResources?.length || 0} misconfiguration(s). Review the results below.</p>
+                  <p>
+                    Found {scanResults?.data?.failedResources?.length || 0}{" "}
+                    misconfiguration(s). Review the results below.
+                  </p>
                 </div>
-                <button 
+                <button
                   className="notification-close"
                   onClick={() => setShowSuccessNotification(false)}
                   aria-label="Close notification"
@@ -179,7 +184,11 @@ function Misconfig({
               <div className="results-header">
                 <div className="scan-timestamp">
                   Scan completed at:{" "}
-                  {new Date(scanResults.data.timestamp).toLocaleString()}
+                  {new Date(scanResults.data.timestamp).toLocaleString("vi", {
+                    dateStyle: "short",
+                    timeStyle: "medium",
+                    timeZone: "Asia/Ho_Chi_Minh",
+                  })}
                 </div>
                 <div className="results-summary">
                   <span className="failed-count">
@@ -198,12 +207,18 @@ function Misconfig({
                       <th>Resource</th>
                       <th>Region</th>
                       <th>Status</th>
-                      <th>Message</th>
                     </tr>
                   </thead>
                   <tbody>
                     {scanResults.data.failedResources.map((resource, index) => (
-                      <tr key={index}>
+                      <tr
+                        key={index}
+                        className={
+                          selectedResource === resource ? "selected" : ""
+                        }
+                        onClick={() => setSelectedResource(resource)}
+                        style={{ cursor: "pointer" }}
+                      >
                         <td className="plugin-cell">{resource.plugin}</td>
                         <td className="category-cell">{resource.category}</td>
                         <td className="title-cell">{resource.title}</td>
@@ -216,11 +231,58 @@ function Misconfig({
                             {resource.status}
                           </span>
                         </td>
-                        <td className="message-cell">{resource.message}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
+              </div>
+
+              {/* Recommended Action Section */}
+              <div className="recommended-action-section">
+                <h3 className="action-title">Recommended Action</h3>
+                {selectedResource ? (
+                  <div className="action-content">
+                    <div className="action-header">
+                      <div className="action-resource-info">
+                        <span className="action-label">Resource:</span>
+                        <span className="action-value">
+                          {selectedResource.resource}
+                        </span>
+                      </div>
+                      <div className="action-resource-info">
+                        <span className="action-label">Plugin:</span>
+                        <span className="action-value">
+                          {selectedResource.plugin}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="action-details">
+                      <div className="detail-block">
+                        <h4>Remediation Steps</h4>
+                        <p>{selectedResource.message}</p>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="action-placeholder">
+                    <svg
+                      width="64"
+                      height="64"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                    >
+                      <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                      <path d="M9 12h6m-6 4h6" />
+                    </svg>
+                    <p>
+                      Select a resource from the table above to view remediation
+                      steps.
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           )}
@@ -234,8 +296,9 @@ function Misconfig({
               <div className="key-management-header">
                 <h3>Encryption Key Management</h3>
                 <p>
-                  This key is required to encrypt your cloud credentials before 
-                  sending them to the CloudSploit server for misconfiguration scanning.
+                  This key is required to encrypt your cloud credentials before
+                  sending them to the CloudSploit server for misconfiguration
+                  scanning.
                 </p>
               </div>
 
@@ -243,17 +306,23 @@ function Misconfig({
                 {isCheckingKey ? (
                   <div className="key-status checking">
                     <span className="status-icon">⏳</span>
-                    <span className="status-text">Checking encryption key status...</span>
+                    <span className="status-text">
+                      Checking encryption key status...
+                    </span>
                   </div>
                 ) : keyExists ? (
                   <div className="key-status success">
-                    <span className="status-text">Encryption Key exists. Ready to scan.</span>
+                    <span className="status-text">
+                      Encryption Key exists. Ready to scan.
+                    </span>
                   </div>
                 ) : (
                   <div className="key-status-actions">
                     <div className="key-status warning">
                       <span className="status-icon">⚠</span>
-                      <span className="status-text">No encryption key found. Generate one to proceed.</span>
+                      <span className="status-text">
+                        No encryption key found. Generate one to proceed.
+                      </span>
                     </div>
                     <button
                       className="generate-key-btn"

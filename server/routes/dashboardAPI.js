@@ -15,7 +15,8 @@ import {
   getConnector,
   SyncConnectors,
   syncConnectorData,
-  getSyncStatus
+  getSyncStatus,
+  deleteConnector
 } from "../services/elasticsearchService/connector.js";
 import {
   SearchKeyword,
@@ -41,12 +42,15 @@ router.get("/script-status", checkScriptStatus);
 router.post("/script-results", isAuthenticated, queryScriptResults);
 
 // Elasticsearch API
+// Elasticsearch Connector APIs
 router.post("/elasticsearch/createconnector", isAuthenticated, createConnector);
 router.get("/elasticsearch/connector", isAuthenticated, getConnector);
 router.post("/elasticsearch/connector_configuration", isAuthenticated, updateConnectorConfig);
-router.get("/elasticsearch/documents", isAuthenticated, getDocuments);
 router.get("/elasticsearch/connector/sync", isAuthenticated, syncConnectorData);
 router.post("/elasticsearch/sync-connectors", isAuthenticated, SyncConnectors);
+router.delete("/elasticsearch/delete_connector", isAuthenticated, deleteConnector);
+// Elasticsearch Document APIs
+router.get("/elasticsearch/documents", isAuthenticated, getDocuments);
 router.get("/elasticsearch/sync-status", isAuthenticated, getSyncStatus);
 router.post("/elasticsearch/delete-file-content", isAuthenticated, deleteFileContent);
 // router.post("/elasticsearch/search-keyword", isAuthenticated, SearchKeyword);
