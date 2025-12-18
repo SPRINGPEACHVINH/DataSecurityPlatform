@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 
 import Models from "../../models/userModel.js";
 const { Connector } = Models;
-import {deleteConnectorById, deleteSyncByConnectorId} from "../../models/userModel.js";
+import { deleteConnectorById, deleteSyncByConnectorId } from "../../models/userModel.js";
 
 import { generateConnectorIndexname, generateConnectorID } from "../../utils/index.js";
 
@@ -145,9 +145,15 @@ export const deleteConnector = async (req, res) => {
     if (response.status !== 200 || response.data.acknowledged !== true) {
       throw new Error(`Failed to delete Elasticsearch connector. Status code: ${response.status}`);
     }
-    // Delete from database
-    await deleteConnectorById(connector_id);
-    await deleteSyncByConnectorId(connector_id);
+    try {
+      // Delete from database
+      await deleteConnectorById(connector_id);
+      await deleteSyncByConnectorId(connector_id);
+    }
+    catch (dbError) {
+      console.error("Error deleting connector from database:", dbError);
+      throw new Error("Connector deleted from Elasticsearch but failed to delete from database.");
+    }
 
     res.status(200).json({
       message: "Elasticsearch connector deleted successfully.",

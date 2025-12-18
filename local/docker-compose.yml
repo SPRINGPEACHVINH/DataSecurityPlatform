@@ -60,7 +60,7 @@ services:
     depends_on:
       elasticsearch:
         condition: service_healthy
-    image: docker.elastic.co/integrations/data-extraction-service:0.3.5
+    image: springpeachvinh/extraction-service:0.3.6
     container_name: extraction-service
     ports:
       - 8090:8090
