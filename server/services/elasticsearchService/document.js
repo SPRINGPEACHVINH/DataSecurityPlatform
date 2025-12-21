@@ -305,5 +305,312 @@ export const deleteFileContent = async (req, res) => {
   }
 };
 
+/**
+ * Get single document content by ID
+ * @param {string} indexName - Elasticsearch index name
+ * @param {string} documentId - Document ID
+ * @returns {Promise<Object>} Document with content
+ */
+export const utilityGetDocumentContent = async (indexName, documentId) => {
+  try {
+    if (!indexName || !documentId) {
+      throw new Error("Index name and document ID are required");
+    }
+
+    console.log(`[ES] Fetching document ${documentId} from index ${indexName}`);
+
+    // Encode document ID to handle special characters like "/"
+    const encodedDocId = encodeURIComponent(documentId);
+
+    const response = await axios.get(
+      `${ES_LOCAL_URL}/${indexName}/_doc/${encodedDocId}`,
+      {
+        auth: {
+          username: ES_LOCAL_USERNAME,
+          password: ES_LOCAL_PASSWORD,
+        },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (response.status !== 200 || !response.data.found) {
+      throw new Error(`Document ${documentId} not found in index ${indexName}`);
+    }
+
+    const source = response.data._source;
+    
+    // If no content field, try alternative field names
+    let content = source.content;
+    if (!content) {
+      // Try common alternative field names
+      content = source.file_content || 
+                source.text || 
+                source.data || 
+                source.body ||
+                source.message;
+    }
+
+    // If still no content, stringify the entire source (for debugging)
+    if (!content) {
+      console.warn(`[ES] Document ${documentId} has no recognizable content field. Using full source.`);
+      content = JSON.stringify(source);
+    }
+
+    console.log(`[ES] Successfully fetched document ${documentId}`);
+    return {
+      ...source,
+      content // Ensure content field is present
+    };
+  } catch (error) {
+    console.error(`[ES] Error fetching document:`, error.message);
+    throw error;
+  }
+};
+
+/**
+ * Get multiple documents content by IDs
+ * @param {string} indexName - Elasticsearch index name
+ * @param {Array<string>} documentIds - Array of document IDs
+ * @returns {Promise<Array>} Array of documents with content
+ */
+export const utilityGetMultipleDocumentsContent = async (indexName, documentIds) => {
+  try {
+    if (!indexName || !documentIds || documentIds.length === 0) {
+      throw new Error("Index name and document IDs array are required");
+    }
+
+    console.log(`[ES] Fetching ${documentIds.length} documents from index ${indexName}`);
+
+    const response = await axios.post(
+      `${ES_LOCAL_URL}/${indexName}/_mget`,
+      {
+        ids: documentIds,
+      },
+      {
+        auth: {
+          username: ES_LOCAL_USERNAME,
+          password: ES_LOCAL_PASSWORD,
+        },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (response.status !== 200) {
+      throw new Error(`Failed to fetch documents from index ${indexName}`);
+    }
+
+    const documents = response.data.docs
+      .filter((doc) => doc.found)
+      .map((doc) => ({
+        _id: doc._id,
+        _source: doc._source,
+      }));
+
+    console.log(`[ES] Successfully fetched ${documents.length} documents`);
+    return documents;
+  } catch (error) {
+    console.error(`[ES] Error fetching multiple documents:`, error.message);
+    throw error;
+  }
+};
+
+/**
+ * Get all documents from index (with pagination)
+ * @param {string} indexName - Elasticsearch index name
+ * @param {number} size - Number of documents to return (default 100)
+ * @param {number} from - Starting position (default 0)
+ * @returns {Promise<Object>} Documents and total count
+ */
+export const utilityGetAllDocumentsFromIndex = async (indexName, size = 100, from = 0) => {
+  try {
+    if (!indexName) {
+      throw new Error("Index name is required");
+    }
+
+    console.log(`[ES] Fetching documents from index ${indexName} (size: ${size}, from: ${from})`);
+
+    const response = await axios.get(
+      `${ES_LOCAL_URL}/${indexName}/_search`,
+      {
+        params: {
+          size,
+          from,
+        },
+        auth: {
+          username: ES_LOCAL_USERNAME,
+          password: ES_LOCAL_PASSWORD,
+        },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (response.status !== 200) {
+      throw new Error(`Failed to fetch documents from index ${indexName}`);
+    }
+
+    const documents = response.data.hits.hits.map((hit) => ({
+      _id: hit._id,
+      _source: hit._source,
+      _score: hit._score,
+    }));
+
+    console.log(`[ES] Successfully fetched ${documents.length} documents from ${response.data.hits.total.value} total`);
+    
+    return {
+      total: response.data.hits.total.value,
+      documents,
+    };
+  } catch (error) {
+    console.error(`[ES] Error fetching documents from index:`, error.message);
+    throw error;
+  }
+};
+
+/**
+ * Tag document with classification labels (score > 0.9)
+ * @param {string} indexName - Elasticsearch index name
+ * @param {string} documentId - Document ID
+ * @param {Array} predictions - Array of predictions with label and score
+ * @returns {Promise<Object>} Update response
+ */
+export const utilityTagDocumentWithLabels = async (indexName, documentId, predictions) => {
+  try {
+    if (!indexName || !documentId || !predictions) {
+      throw new Error("Index name, document ID, and predictions are required");
+    }
+
+    // Filter predictions with score > 0.9
+    const highConfidenceLabels = predictions
+      .filter((pred) => pred.score > 0.9)
+      .map((pred) => ({
+        label: pred.label,
+        score: pred.score,
+        confidence: `${Math.round(pred.score * 100)}%`,
+      }));
+
+    if (highConfidenceLabels.length === 0) {
+      console.log(`[ES] No high-confidence labels for document ${documentId} (threshold: 0.9)`);
+      return {
+        status: "skipped",
+        reason: "No labels with score > 0.9",
+      };
+    }
+
+    console.log(`[ES] Tagging document ${documentId} with ${highConfidenceLabels.length} labels`);
+
+    // Encode document ID
+    const encodedDocId = encodeURIComponent(documentId);
+
+    // Update document with labels
+    const response = await axios.post(
+      `${ES_LOCAL_URL}/${indexName}/_update/${encodedDocId}`,
+      {
+        doc: {
+          ml_labels: highConfidenceLabels,
+          ml_classification_date: new Date().toISOString(),
+          ml_high_confidence: true,
+        },
+        doc_as_upsert: true, // Create document if doesn't exist
+      },
+      {
+        auth: {
+          username: ES_LOCAL_USERNAME,
+          password: ES_LOCAL_PASSWORD,
+        },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (response.status !== 200 && response.status !== 201) {
+      throw new Error(`Failed to tag document ${documentId}`);
+    }
+
+    console.log(`[ES] Successfully tagged document ${documentId} with labels:`, 
+      highConfidenceLabels.map(l => l.label).join(", ")
+    );
+
+    return {
+      status: "success",
+      document_id: documentId,
+      labels_applied: highConfidenceLabels,
+      message: `Document tagged with ${highConfidenceLabels.length} high-confidence label(s)`,
+    };
+  } catch (error) {
+    console.error(`[ES] Error tagging document:`, error.message);
+    throw error;
+  }
+};
+
+/**
+ * Tag multiple documents with classification labels
+ * @param {string} indexName - Elasticsearch index name
+ * @param {Array} classificationResults - Array of {documentId, predictions}
+ * @returns {Promise<Array>} Array of tagging results
+ */
+export const utilityTagDocumentsWithLabels = async (indexName, classificationResults) => {
+  try {
+    if (!indexName || !classificationResults || classificationResults.length === 0) {
+      throw new Error("Index name and classification results are required");
+    }
+
+    console.log(`[ES] Tagging ${classificationResults.length} documents in index ${indexName}`);
+
+    const tagResults = [];
+    let successCount = 0;
+    let skippedCount = 0;
+    let failureCount = 0;
+
+    // Tag each document
+    for (const result of classificationResults) {
+      try {
+        const tagResult = await utilityTagDocumentWithLabels(
+          indexName,
+          result.documentId || result._id,
+          result.predictions
+        );
+
+        tagResults.push(tagResult);
+
+        if (tagResult.status === "success") {
+          successCount++;
+        } else if (tagResult.status === "skipped") {
+          skippedCount++;
+        }
+      } catch (error) {
+        console.error(`[ES] Failed to tag document ${result.documentId}:`, error.message);
+        tagResults.push({
+          status: "failed",
+          document_id: result.documentId || result._id,
+          error: error.message,
+        });
+        failureCount++;
+      }
+    }
+
+    console.log(`[ES] Tagging complete - Success: ${successCount}, Skipped: ${skippedCount}, Failed: ${failureCount}`);
+
+    return {
+      summary: {
+        total: classificationResults.length,
+        success: successCount,
+        skipped: skippedCount,
+        failed: failureCount,
+      },
+      results: tagResults,
+    };
+  } catch (error) {
+    console.error(`[ES] Error in utilityTagDocumentsWithLabels:`, error.message);
+    throw error;
+  }
+};
+
 
 

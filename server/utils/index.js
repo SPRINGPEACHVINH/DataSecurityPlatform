@@ -1,6 +1,5 @@
 import crypto from 'crypto';
 import eckey from 'eckey-utils'
-import fs from 'fs';
 
 import dotenv from 'dotenv';
 dotenv.config();
