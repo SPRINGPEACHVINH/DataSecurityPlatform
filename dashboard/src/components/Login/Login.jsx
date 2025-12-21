@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Login.css";
+
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 function Login({ onLogin }) {
   const [username, setUsername] = useState("");
@@ -19,7 +21,7 @@ function Login({ onLogin }) {
     }
 
     try {
-      const res = await fetch("http://localhost:4000/api/auth/signin", {
+      const res = await fetch(`${BACKEND_URL}/api/auth/signin`, {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },

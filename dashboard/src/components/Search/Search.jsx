@@ -3,11 +3,12 @@ import "./Search.css";
 import Sidebar from "../Sidebar/Sidebar";
 import Header from "../Header/Header";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 function Search({
   onLogout,
   onNavigateToDataSources,
   onNavigateToOverview,
-  onNavigateToLogManager,
   onNavigateToMisconfig,
   onNavigateToConnectorSetup,
 }) {
@@ -77,7 +78,7 @@ function Search({
   const checkScriptStatus = async () => {
     try {
       const response = await fetch(
-        "http://localhost:4000/api/dashboard/script-status",
+        `${BACKEND_URL}/api/dashboard/script-status`,
         {
           method: "GET",
           credentials: "include",
@@ -134,7 +135,7 @@ function Search({
       }
 
       const response = await fetch(
-        "http://localhost:4000/api/dashboard/script-results",
+        `${BACKEND_URL}/api/dashboard/script-results`,
         {
           method: "POST",
           credentials: "include",
@@ -198,7 +199,7 @@ function Search({
     async function fetchDocuments() {
       try {
         const response = await fetch(
-          "http://localhost:4000/api/dashboard/elasticsearch/connector",
+          `${BACKEND_URL}/api/dashboard/elasticsearch/connector`,
           {
             credentials: "include",
             headers: {
@@ -209,7 +210,7 @@ function Search({
         const data = await response.json();
 
         const docResponse = await fetch(
-          "http://localhost:4000/api/dashboard/elasticsearch/documents",
+          `${BACKEND_URL}/api/dashboard/elasticsearch/documents`,
           {
             credentials: "include",
             headers: {
@@ -300,7 +301,7 @@ function Search({
 
       try {
         const response = await fetch(
-          "http://localhost:4000/api/dashboard/search",
+          `${BACKEND_URL}/api/dashboard/search`,
           {
             method: "POST",
             credentials: "include",
@@ -384,7 +385,7 @@ function Search({
             };
 
             const response = await fetch(
-              "http://localhost:4000/api/dashboard/search",
+              `${BACKEND_URL}/api/dashboard/search`,
               {
                 method: "POST",
                 credentials: "include",
@@ -467,7 +468,7 @@ function Search({
         };
 
         const response = await fetch(
-          "http://localhost:4000/api/dashboard/script-execution",
+          `${BACKEND_URL}/api/dashboard/script-execution`,
           {
             method: "POST",
             credentials: "include",
@@ -527,7 +528,7 @@ function Search({
             };
 
             const response = await fetch(
-              "http://localhost:4000/api/dashboard/search",
+              `${BACKEND_URL}/api/dashboard/search`,
               {
                 method: "POST",
                 credentials: "include",
@@ -668,7 +669,6 @@ function Search({
       <Sidebar
         currentPage="search"
         onNavigateToOverview={onNavigateToOverview}
-        onNavigateToLogManager={onNavigateToLogManager}
         onNavigateToDataSources={onNavigateToDataSources}
         onNavigateToSearch={() => console.log("Already on search")}
         onNavigateToMisconfig={onNavigateToMisconfig}
