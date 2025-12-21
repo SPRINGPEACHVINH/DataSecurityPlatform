@@ -1,40 +1,43 @@
 # standards_labels.py
-# Mapping: label_key -> descriptive hypothesis for zero-shot classification
+# Optimized label hypotheses for zero-shot classification (XNLI)
 
 SENSITIVE_LABELS_BY_STANDARD = {
 
     "Personal-Identity":
-        "Personal identity information such as full name, date of birth, gender, national ID number, CCCD/CMND, or passport number.",
+        "This text contains personal identity information such as a person's full name, date of birth, gender, national identification number (CCCD/CMND), or passport number.",
 
     "Contact-Info":
-        "Contact information such as phone number, email address, home address, or social media account.",
+        "This text contains personal contact information such as phone numbers, email addresses, home addresses, mailing addresses, or social media account details.",
 
     "Financial-Info":
-        "Financial or payment information such as bank account number, credit card number, transaction details, or billing records.",
+        "This text contains financial or payment-related information such as bank account numbers, credit or debit card numbers, transaction histories, invoices, or billing details.",
 
     "Health-Info":
-        "Medical or health-related information such as diseases, diagnoses, medical test results, prescriptions, or treatment history.",
+        "This text contains medical or health-related information including diseases, medical conditions, diagnoses, laboratory test results, prescriptions, or treatment records.",
 
     "Credentials":
-        "Authentication or security credentials such as passwords, OTP codes, private keys, API keys, or access tokens.",
+        "This text contains authentication or security credentials such as passwords, one-time passwords (OTP), private keys, API keys, access tokens, or secret credentials.",
 
     "Location-Info":
-        "Location or tracking information such as GPS coordinates, IP-based location, real-time position, or movement history.",
+        "This text contains precise or historical location information such as GPS coordinates, IP-based location data, real-time location, or movement and travel history.",
 
     "Biometric-Info":
-        "Biometric identifiers such as fingerprints, facial recognition data, iris or retina scans, or voiceprints.",
+        "This text contains biometric identifiers such as fingerprints, facial recognition data, iris scans, retina scans, or voice recognition information.",
 
     "Employment-Info":
-        "Employment or education information such as job title, company name, salary, employee ID, student ID, or academic records.",
+        "This text contains employment or education-related information such as job titles, employer names, salary details, employee identifiers, student IDs, or academic records.",
 
     "Legal-Info":
-        "Legal or contractual information such as contracts, agreements, lawsuits, court records, or legal disputes.",
+        "This text contains legal or contractual information such as contracts, agreements, legal documents, court records, lawsuits, or compliance-related materials.",
 
     "Device-System-Info":
-        "Device or system identifiers such as IP address, MAC address, device ID, system logs, or hardware fingerprints.",
+        "This text contains device or system-related identifiers such as IP addresses, MAC addresses, device IDs, system logs, authentication logs, or hardware fingerprints.",
+        
+    "Technical-Content":
+        "This text contains technical content such as source code, shell commands, configuration scripts, software installation instructions, or system administration commands.",
 
     "Non-sensitive":
-        "The text does not contain any personal, confidential, or sensitive information."
+        "This text contains only general, technical, or informational content and does not include any personal, financial, health, or confidential data."
 }
 
 DEFAULT_LABEL_KEYS = list(SENSITIVE_LABELS_BY_STANDARD.keys())

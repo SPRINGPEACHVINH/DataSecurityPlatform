@@ -2,7 +2,7 @@ from transformers import pipeline
 from standards_labels import SENSITIVE_LABELS_BY_STANDARD, DEFAULT_LABEL_KEYS
 import langdetect
 import torch
-
+import re
 
 MODEL_MULTI = "joeddav/xlm-roberta-large-xnli"
 
@@ -24,6 +24,24 @@ class ZeroShotClassifier:
         return label_keys, candidates
 
     def classify_text(self, text, label_keys=None):
+
+        if self._is_technical_narrative(text):
+            return {
+                "sequence": text[:2000],
+                "labels": ["Technical-Content"],
+                "scores": [0.95],
+                "chunks": 1,
+                "source": "rule-based-narrative"
+            }
+
+        if self._is_technical_content(text):
+            return {
+                "sequence": text[:2000],
+                "labels": ["Technical-Content"],
+                "scores": [1.0],
+                "chunks": 1,
+                "source": "rule-based-code"
+            }
 
         try:
             lang = langdetect.detect(text)
@@ -96,4 +114,49 @@ class ZeroShotClassifier:
             chunk = " ".join(words[i:i + max_words])
             chunks.append(chunk)
         return chunks
+
+    def _is_technical_content(self, text: str) -> bool:
+        patterns = [
+            r"^sudo\s+",                       
+            r"\bapt\s+(install|update|upgrade)\b",
+            r"\byum\s+install\b",
+            r"\bpip(\d*)\s+install\b",
+            r"\bnpm\s+(install|run)\b",
+            r"\byarn\s+(add|install)\b",
+            r"\bdocker\s+(run|build|pull|push)\b",
+            r"\bkubectl\b",
+            r"\bpython\d*\b",
+            r"\bnode\b",
+            r"\bjava\b",
+            r"#!/bin/(bash|sh)",
+            r"\.sh\b",
+            r"\.py\b",
+            r"\.js\b",
+            r"\.yml\b|\.(yaml)",
+            r"&&|\|\|",                        
+            r"https?://\S+",                   
+        ]
+
+        for pattern in patterns:
+            if re.search(pattern, text, re.IGNORECASE | re.MULTILINE):
+                return True
+        return False
+    
+    def _is_technical_narrative(self, text: str) -> bool:
+        patterns = [
+            r"\blệnh\s+sudo\b",
+            r"\blệnh\s+apt\b",
+            r"\blệnh\s+pip\b",
+            r"\blệnh\s+docker\b",
+            r"\blệnh\s+git\b",
+            r"\bcâu\s+lệnh\b",
+            r"\bchạy\s+lệnh\b",
+            r"\bcài\s+đặt\b.*\b(phần mềm|python|pip)\b",
+        ]
+
+        for pattern in patterns:
+            if re.search(pattern, text, re.IGNORECASE):
+                return True
+        return False
+
 
