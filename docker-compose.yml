@@ -16,3 +16,14 @@ services:
     env_file:
       - .env
     restart: always
+
+  mongodb:
+    container_name: mongodb
+    image: mongodb/mongodb-atlas-local
+    environment:
+      - MONGODB_INITDB_ROOT_USERNAME=${MONGODB_INITDB_ROOT_USERNAME}
+      - MONGODB_INITDB_ROOT_PASSWORD=${MONGODB_INITDB_ROOT_PASSWORD}
+      - RUNNER_LOG_FILE=/dev/stderr
+    ports:
+      - 27017:27017
+    restart: always
