@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import "./ConnectorSetup.css";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 function ConnectorSetup({ onSetupComplete }) {
   const [selectedConnectorType, setSelectedConnectorType] = useState("Azure");
   const [isCreating, setIsCreating] = useState(false);
@@ -49,10 +51,10 @@ function ConnectorSetup({ onSetupComplete }) {
       try {
         // 1. Parallel Data Fetching
         const [dashboardResponse, connectorResponse] = await Promise.all([
-          fetch("http://localhost:4000/api/dashboard/overview/data", {
+          fetch(`${BACKEND_URL}/api/dashboard/overview/data`, {
             credentials: "include",
           }),
-          fetch("http://localhost:4000/api/dashboard/elasticsearch/connector", {
+          fetch(`${BACKEND_URL}/api/dashboard/elasticsearch/connector`, {
             credentials: "include",
           }),
         ]);
@@ -165,7 +167,7 @@ function ConnectorSetup({ onSetupComplete }) {
 
     try {
       const response = await fetch(
-        "http://localhost:4000/api/dashboard/elasticsearch/createconnector",
+        `${BACKEND_URL}/api/dashboard/elasticsearch/createconnector`,
         {
           method: "POST",
           headers: {
@@ -271,7 +273,7 @@ function ConnectorSetup({ onSetupComplete }) {
 
     try {
       const response = await fetch(
-        `http://localhost:4000/api/dashboard/elasticsearch/delete_connector?connector_id=${encodeURIComponent(connectorId)}`,
+        `${BACKEND_URL}/api/dashboard/elasticsearch/delete_connector?connector_id=${encodeURIComponent(connectorId)}`,
         {
           method: "DELETE",
           credentials: "include",
@@ -294,11 +296,11 @@ function ConnectorSetup({ onSetupComplete }) {
         
         // Re-fetch and reinitialize
         const connectorResponse = await fetch(
-          "http://localhost:4000/api/dashboard/elasticsearch/connector",
+          `${BACKEND_URL}/api/dashboard/elasticsearch/connector`,
           { credentials: "include" }
         );
         const dashboardResponse = await fetch(
-          "http://localhost:4000/api/dashboard/overview/data",
+          `${BACKEND_URL}/api/dashboard/overview/data`,
           { credentials: "include" }
         );
         
@@ -367,7 +369,7 @@ function ConnectorSetup({ onSetupComplete }) {
       }
 
       const response = await fetch(
-        `http://localhost:4000/api/dashboard/elasticsearch/connector_configuration?connector_id=${encodeURIComponent(creationSuccess.id)}`,
+        `${BACKEND_URL}/api/dashboard/elasticsearch/connector_configuration?connector_id=${encodeURIComponent(creationSuccess.id)}`,
         {
           method: "POST",
           headers: {
@@ -401,7 +403,7 @@ function ConnectorSetup({ onSetupComplete }) {
 
     try {
       const response = await fetch(
-        `http://localhost:4000/api/dashboard/elasticsearch/connector/sync?connector_id=${encodeURIComponent(creationSuccess.id)}`,
+        `${BACKEND_URL}/api/dashboard/elasticsearch/connector/sync?connector_id=${encodeURIComponent(creationSuccess.id)}`,
         {
           method: "GET",
           credentials: "include",

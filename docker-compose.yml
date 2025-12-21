@@ -1,0 +1,18 @@
+services:
+  dsp-server:
+    image: dsp-server:latest
+    container_name: dsp-server
+    ports:
+      - 4000:4000
+    env_file:
+      - .env
+    restart: always
+
+  dsp-dashboard:
+    image: dsp-dashboard:latest
+    container_name: dsp-dashboard
+    ports:
+      - 5173:5173
+    env_file:
+      - .env
+    restart: always

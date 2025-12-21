@@ -5,6 +5,8 @@ import Overview from "../Overview/Overview";
 import Sidebar from "../Sidebar/Sidebar";
 import Header from "../Header/Header";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 function extractConnectionData(documents, connectionData) {
   const containers = [...new Set(documents.map((doc) => doc.container))];
 
@@ -85,13 +87,13 @@ function DataSources({
     async function fetchDocuments() {
       try {
         const response = await fetch(
-          "http://localhost:4000/api/dashboard/elasticsearch/connector",
+          `${BACKEND_URL}/api/dashboard/elasticsearch/connector`,
           { credentials: "include" }
         );
         const data = await response.json();
 
         const docResponse = await fetch(
-          "http://localhost:4000/api/dashboard/elasticsearch/documents",
+          `${BACKEND_URL}/api/dashboard/elasticsearch/documents`,
           { credentials: "include" }
         );
         
@@ -253,17 +255,6 @@ function DataSources({
       </div>
     );
   }
-
-  if (currentPage === "log-manager") {
-    return (
-      <div className="data-sources-container">
-        {sidebarComponent}
-        <LogManager headerComponent={getHeaderForPage("Log Manager")} />
-      </div>
-    );
-  }
-
-  // Default: Data Sources page
   
   // Show Configuration Guide if needed
   if (showConfigGuide) {
