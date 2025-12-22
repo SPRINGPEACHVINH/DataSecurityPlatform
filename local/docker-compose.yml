@@ -42,7 +42,7 @@ services:
     volumes:
       - ./elastic-connectors:/azconfig
     command: ["/app/bin/elastic-ingest", "-c", "/azconfig/azconfig.yml"]
-    restart: always
+    restart: unless-stopped
   s3-connector:
     depends_on:
       elasticsearch:
@@ -54,7 +54,7 @@ services:
     volumes:
       - ./elastic-connectors:/s3config
     command: ["/app/bin/elastic-ingest", "-c", "/s3config/s3config.yml"]
-    restart: always
+    restart: unless-stopped
 
   extraction-service:
     depends_on:
@@ -72,9 +72,7 @@ services:
       timeout: 5s
       retries: 5
       start_period: 30s
-    restart: always
+    restart: unless-stopped
 
 volumes:
   dev-elasticsearch:
-  dev-mongodb:
-  dev-mongodb-config:

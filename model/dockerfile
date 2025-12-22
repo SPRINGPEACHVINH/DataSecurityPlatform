@@ -1,13 +1,65 @@
-FROM python:3.10-slim
+# ===============================
+# Stage 1: Builder
+# ===============================
+FROM nvidia/cuda:12.1.0-base-ubi8 AS builder
 
 WORKDIR /app
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN dnf install -y --nodocs \
+    python3.11 python3.11-devel python3-pip \
+    gcc \
+    gcc-c++ \
+    make \
+    ca-certificates \
+    && dnf clean all
 
-# Copy code
-COPY . .
+RUN python3.11 -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
+# Cài PyTorch CUDA trước (Tận dụng cache mount)
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip install --upgrade pip && \
+    pip install \
+      torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 \
+      --index-url https://download.pytorch.org/whl/cu121
+
+# Pin pip < 24.1 để tương thích với metadata cũ của omegaconf 2.0.6 và các lib AI đời cũ
+RUN pip install "pip<24.1"
+COPY requirements.txt .
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip install -r requirements.txt
+
+# ===============================
+# Stage 2: Runtime
+# ===============================
+FROM nvidia/cuda:12.1.0-base-ubi8
+
+WORKDIR /app
+
+RUN dnf install -y --nodocs \
+    python3.11 \
+    libgomp \
+    curl \
+    shadow-utils \
+    && dnf clean all
+
+# Tạo user phi quản trị (Security Best Practice)
+RUN useradd -m dspuser
+COPY --from=builder /opt/venv /opt/venv
+
+ENV PATH="/opt/venv/bin:$PATH" \
+    PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1
+
+# Copy code và phân quyền cho dspuser
+COPY --chown=dspuser:dspuser . .
+
+USER dspuser
 
 EXPOSE 8000
+
+# Healthcheck: Đảm bảo container sẵn sàng phục vụ
+HEALTHCHECK --interval=30s --timeout=30s --start-period=30s --retries=3 \
+  CMD curl -f http://127.0.0.1:8000/docs || exit 1
 
 CMD ["uvicorn", "service:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1"]

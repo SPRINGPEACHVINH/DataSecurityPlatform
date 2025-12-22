@@ -6,7 +6,7 @@ services:
       - 4000:4000
     env_file:
       - .env
-    restart: always
+    restart: unless-stopped
 
   dsp-dashboard:
     image: dsp-dashboard:latest
@@ -15,15 +15,22 @@ services:
       - 5173:5173
     env_file:
       - .env
-    restart: always
+    restart: unless-stopped
+
+  dsp-model:
+    image: dsp-model:12.1.0-base-ubi8
+    container_name: dsp-model
+    ports:
+      - 8000:8000
+    restart: unless-stopped
 
   mongodb:
-    container_name: mongodb
     image: mongodb/mongodb-atlas-local
+    container_name: dsp-database-mongodb
     environment:
       - MONGODB_INITDB_ROOT_USERNAME=${MONGODB_INITDB_ROOT_USERNAME}
       - MONGODB_INITDB_ROOT_PASSWORD=${MONGODB_INITDB_ROOT_PASSWORD}
       - RUNNER_LOG_FILE=/dev/stderr
     ports:
       - 27017:27017
-    restart: always
+    restart: unless-stopped
