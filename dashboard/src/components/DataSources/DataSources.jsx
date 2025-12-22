@@ -96,7 +96,7 @@ function DataSources({
           `${BACKEND_URL}/api/dashboard/elasticsearch/documents`,
           { credentials: "include" }
         );
-        
+
         if (docResponse.status === 404) {
           setShowConfigGuide(true);
           return;
@@ -251,11 +251,14 @@ function DataSources({
     return (
       <div className="data-sources-container">
         {sidebarComponent}
-        <Overview headerComponent={getHeaderForPage("Overview")} />
+        <Overview
+          headerComponent={getHeaderForPage("Overview")}
+          onNavigateToConnectorSetup={onNavigateToConnectorSetup}
+        />
       </div>
     );
   }
-  
+
   // Show Configuration Guide if needed
   if (showConfigGuide) {
     return (
@@ -267,12 +270,13 @@ function DataSources({
             <div className="message-card">
               <h2>⚙️ Initial Setup Required</h2>
               <p>
-                No data sources have been configured yet. Please complete the 
-                initial setup in the Overview page to create your first connector.
+                No data sources have been configured yet. Please complete the
+                initial setup in the Connector Setup page to create your first
+                connector.
               </p>
-              <button 
+              <button
                 className="setup-button"
-                onClick={() => handleNavigation("overview")}
+                onClick={onNavigateToConnectorSetup}
               >
                 Go to Setup
               </button>
