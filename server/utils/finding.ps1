@@ -20,7 +20,7 @@ Param(
 		
 	[Parameter(Mandatory = $false)]
 	[String]
-	$BaseDirectory = 'D:\DSPM\elastic-start-local\Result',
+	$BaseDirectory = '/app/utils/Result',
 
 	[Parameter(Mandatory = $false)]
 	[String[]]
@@ -89,7 +89,7 @@ function Get-FilePaths {
 	}
 
 	# Assign file structures
-	$BaseOutputFile = $BaseDirectory + '\FilePaths-ALL-' + '-' + $CurrentUser + '.csv'	
+	$BaseOutputFile = $BaseDirectory + '/FilePaths-ALL-' + '-' + $CurrentUser + '.csv'	
 
 	# If using -Force then delete previous CSV files
 	if ($Force) {
@@ -150,7 +150,12 @@ function Find-SensitiveData {
 	)
 	
 	$CurrentUser = $env:USERNAME
-	$BaseDirectory = $Script:BASE_DIRECTORY
+	$BaseDirectory = if ($Script:BASE_DIRECTORY -and (Test-Path $Script:BASE_DIRECTORY)) {
+						$Script:BASE_DIRECTORY
+					} 
+					else {
+					    Join-Path $PSScriptRoot "Result"
+					}
 	$DefaultOutputFile = Join-Path -Path $BaseDirectory -ChildPath "FilePaths--$($env:USERNAME).csv"
 
 	# If $BaseDirectory doesn't exist, then try to create it
@@ -189,7 +194,13 @@ function Find-SensitiveData {
 			}
 
 			[void][runspacefactory]::CreateRunspacePool()
-			$RunspacePool = [runspacefactory]::CreateRunspacePool(1, [Int]$env:NUMBER_OF_PROCESSORS)
+			$CpuCount = [Environment]::ProcessorCount
+			$MaxThreads = if ($CpuCount -gt 1) {
+    			$CpuCount - 1
+			} else {
+    			1
+			}
+			$RunspacePool = [runspacefactory]::CreateRunspacePool(1, $MaxThreads)
 			$RunspacePool.Open()
 
 			$Method = $Null

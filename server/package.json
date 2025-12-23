@@ -30,8 +30,8 @@
     "nodemailer": "^7.0.5",
     "nodemon": "^3.1.10",
     "pg": "^8.16.3",
-    "powershell": "^2.3.3",
-    "sequelize": "^6.37.7"
+    "sequelize": "^6.37.7",
+    "util": "^0.12.5"
   },
   "devDependencies": {
     "sequelize-cli": "^6.6.3"

@@ -460,8 +460,8 @@ function Search({
       setIsLoading(true);
 
       try {
-        const normalizedPath = filePath.trim().replace(/\//g, "\\");
-
+        const normalizedPath = filePath.trim().replace(/\\/g, "/");
+        console.log("Normalized Path:", normalizedPath);
         const searchData = {
           sharePath: normalizedPath,
           keyword: searchTerm.trim(),

@@ -28,7 +28,6 @@ app.use(
   })
 );
 
-console.log("session secure: ", process.env.SERVER_SESSION_USE_HTTPS === 'true');
 // Session Configuration
 app.use(
   session({

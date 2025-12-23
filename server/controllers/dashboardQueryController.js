@@ -10,11 +10,14 @@ import {
 import { utilityDeleteFileContent } from "../services/elasticsearchService/document.js";
 import Models from "../models/userModel.js";
 const { Sync, Connector } = Models;
-import powershell from "powershell";
+import { exec } from "child_process";
+import { promisify } from "util";
 import fs from "fs";
 import path from "path";
 import dotenv from "dotenv";
 dotenv.config();
+
+const execFile = promisify(exec)
 
 export const handleDashboardSearch = async (req, res) => {
   try {
@@ -166,59 +169,27 @@ export const handleScriptExecution = async (req, res) => {
   }
 
   try {
-    // Create a promise to handle the asynchronous PowerShell execution
-    const scriptExecution = new Promise((resolve, reject) => {
-      const results = [];
-      const errors = [];
+    const scriptPath = path.join(process.cwd(), "utils", "finding.ps1");
 
-      const ps = new powershell(
-        `powershell.exe -File .\\utils\\finding.ps1 -Function Find-SensitiveData -SharePath "${sharePath}" -keyword "${keyword}"`
-      );
+    const command = `pwsh -File "${scriptPath}" -Function Find-SensitiveData -SharePath "${sharePath}" -keyword "${keyword}"`;
 
-      ps.on("output", (data) => {
-        console.log("PowerShell output:", data);
-        results.push(data);
-      });
-
-      ps.on("error-output", (data) => {
-        console.error("PowerShell error:", data);
-        errors.push(data);
-      });
-
-      ps.on("end", (code) => {
-        const allOutput = results.concat(errors).join("\n");
-        if (
-          code !== 0 ||
-          allOutput.includes("not found") ||
-          allOutput.match(/SharePath '.*' not found/i)
-        ) {
-          reject({ message: allOutput, code });
-        } else {
-          resolve({ results, code });
-        }
-      });
-
-      ps.on("error", (err) => {
-        reject({ error: err, code: -1 });
-      });
+    const { stdout, stderr } = await execFile(command, {
+      windowsHide: true,
+      maxBuffer: 10 * 1024 * 1024,
     });
 
-    // Wait for the PowerShell script to complete
-    const { results, code } = await scriptExecution;
+    if (stderr) {
+      console.error("PowerShell stderr:", stderr);
+    }
 
-    const resultsString = results.join("\n");
+    const resultsString = stdout.toString();
 
-    const baseOutputFile = resultsString.match(
-      /adding to (.*FilePaths-ALL--.*\.csv)/
-    )?.[1];
-    const defaultOutputFile = resultsString.match(
-      /to the results to (.*FilePaths--.*\.csv)/
-    )?.[1];
-    const searchStarted = resultsString.match(
-      /Search started for pattern '.*'/
-    )?.[0];
-    const searchComplete = resultsString.match(/Search complete/)?.[0];
-    const outputFile = resultsString.match(/Wrote to (.*\.txt)/)?.[1];
+    const searchStarted =
+      resultsString.match(/Search started for pattern '.*'/)?.[0] || null;
+    const searchComplete =
+      resultsString.match(/Search complete/)?.[0] || null;
+    const outputFile =
+      resultsString.match(/Wrote to (.*\.txt)/)?.[1] || null;
 
     // Return the results to the client
     res.status(200).json({
@@ -245,12 +216,11 @@ export const queryScriptResults = async (req, res) => {
     const { outputFile } = req.body;
     let filePath = null;
 
-    filePath =
-      outputFile ||
-      path.join(
-        __dirname,
-        "../utils/Result/PotentialData-CustomKeyword--daoxu.txt"
-      );
+    const defaultFilePath = path.join(baseDir, "Result", "PotentialData-CustomKeyword--daoxu.txt");
+
+    filePath = outputFile || defaultFilePath;
+
+    console.log("Searching for result file at:", filePath);
 
     if (!fs.existsSync(filePath)) {
       return res.status(404).json({
@@ -284,7 +254,7 @@ export const queryScriptResults = async (req, res) => {
         fileRowsMap[fileName].push(row);
       });
 
-    if (!fileRowsMap) {
+    if (Object.keys(fileRowsMap).length === 0) {
       return res.status(404).json({
         message: "No file names found in the result file.",
       });
@@ -307,7 +277,8 @@ export const checkScriptStatus = async (req, res) => {
   try {
     const scriptPath = path.join(process.cwd(), "utils", "finding.ps1");
     const baseDirectory = process.env.BASE_DIRECTORY;
-
+    console.log("Base Directory:", baseDirectory);
+    console.log("Script Path:", scriptPath);
     const checks = {
       scriptExists: false,
       scriptReadable: false,
@@ -351,28 +322,24 @@ export const checkScriptStatus = async (req, res) => {
     }
 
     // 3. Check PowerShell
-    const powershellCheck = new Promise((resolve) => {
-      const ps = new powershell("Get-Host");
-
-      ps.on("output", (data) => {
-        if (data) {
+    const powershellCheck = new Promise(async (resolve) => {
+      try {
+        const { stdout, stderr } = await execFile(
+          "pwsh -Command Get-Host",
+          { windowsHide: true }
+        );
+        if (stderr) {
+          console.error("PowerShell stderr:", stderr);
+        }
+        else if (stdout && stdout.includes("ConsoleHost")) {
           checks.powershellAvailable = true;
         }
-      });
-
-      ps.on("end", () => {
         resolve();
-      });
-
-      ps.on("error", () => {
+      } catch (err) {
+        console.error("PowerShell check failed:", err.message);
         checks.powershellAvailable = false;
         resolve();
-      });
-
-      setTimeout(() => {
-        checks.powershellAvailable = false;
-        resolve();
-      }, 5000);
+      }
     });
 
     await powershellCheck;
@@ -384,6 +351,8 @@ export const checkScriptStatus = async (req, res) => {
       checks.baseDirectoryExists &&
       checks.baseDirectoryWritable &&
       checks.powershellAvailable;
+
+    console.log("Script status checks:", checks);
 
     res.status(200).json({
       message: "Script status check completed",

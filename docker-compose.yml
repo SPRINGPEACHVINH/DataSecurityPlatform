@@ -4,6 +4,10 @@ services:
     container_name: dsp-server
     ports:
       - 4000:4000
+    volumes:
+      - ./local/utils/secure_keys:/app/utils/secure_keys
+      - ./local/utils/Result:/app/utils/Result
+      - D:/:/data
     env_file:
       - .env
     restart: unless-stopped
