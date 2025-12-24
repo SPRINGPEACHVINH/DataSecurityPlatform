@@ -1,9 +1,6 @@
 import express from "express";
 import {
-  handleDashboardSearch,
-  handleScriptExecution,
-  queryScriptResults,
-  checkScriptStatus,
+  handleDashboardSearch
 } from "../controllers/dashboardQueryController.js";
 import {
   getDocuments,
@@ -18,10 +15,7 @@ import {
   getSyncStatus,
   deleteConnector
 } from "../services/elasticsearchService/connector.js";
-import {
-  SearchKeyword,
-  SearchRegexPattern
-} from "../services/elasticsearchService/search.js";
+
 import { isAuthenticated } from "../middleware/isAuthenticated.js";
 import { getOverviewData, getLabelStatistics } from "../controllers/overviewController.js";
 import {
@@ -37,9 +31,6 @@ router.get("/public", isAuthenticated, (req, res) => {
   res.json({ message: "This is a public API response with authentication." });
 });
 router.post("/search", handleDashboardSearch);
-router.post("/script-execution", isAuthenticated, handleScriptExecution);
-router.get("/script-status", checkScriptStatus);
-router.post("/script-results", isAuthenticated, queryScriptResults);
 
 // Elasticsearch API
 // Elasticsearch Connector APIs
