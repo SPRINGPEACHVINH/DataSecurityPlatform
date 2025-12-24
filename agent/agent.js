@@ -19,14 +19,13 @@ const currentDir = isPkg ? path.dirname(process.execPath) : __dirname;
 
 // Define paths
 const scriptPath = path.join(currentDir, "finding.ps1");
-const defaultResultDir = path.join(currentDir, "Result");
+const BASE_DIRECTORY = path.join(currentDir);
 
 // Log configuration details
 console.log("--- DSPM AGENT CONFIG ---");
 console.log("Mode:", isPkg ? "Production (PKG)" : "Development");
 console.log("Root Path:", currentDir);
 console.log("Script Path:", scriptPath);
-console.log("Result Dir:", defaultResultDir);
 console.log("-------------------------");
 // Debug info
 console.log("Environment:", isPkg ? "PKG (Production)" : "Node (Development)");
@@ -67,20 +66,13 @@ const generateRecommendations = (checks) => {
         );
     }
 
-    if (!checks.environmentVariables.BASE_DIRECTORY) {
-        recommendations.push(
-            "BASE_DIRECTORY environment variable is not set. Please check your .env file."
-        );
-    }
-
     return recommendations;
 };
 
 app.get("/", async (req, res) => {
     try {
-        const baseDirectory = process.env.BASE_DIRECTORY;
+        const baseDirectory = BASE_DIRECTORY;
 
-        console.log("Base Directory from ENV:", process.env.BASE_DIRECTORY);
         console.log("Base Directory to use:", baseDirectory);
 
         const checks = {
@@ -90,7 +82,7 @@ app.get("/", async (req, res) => {
             baseDirectoryWritable: false,
             powershellAvailable: false,
             environmentVariables: {
-                BASE_DIRECTORY: !!process.env.BASE_DIRECTORY,
+                BASE_DIRECTORY,
             },
         };
 
@@ -201,16 +193,6 @@ app.post("/scan", async (req, res) => {
         });
     }
 
-    if (!fs.existsSync(defaultResultDir)) {
-        try {
-            fs.mkdirSync(defaultResultDir, { recursive: true });
-            console.log(`Created result directory: ${defaultResultDir}`);
-        } catch (err) {
-            console.error("Cannot create result directory:", err);
-            return res.status(500).json({ message: "Cannot create output directory" });
-        }
-    }
-
     console.log(`Executing scan on ${sharePath} for keyword "${keyword}" in script ${scriptPath}`);
 
     const cmd = `powershell.exe -File "${scriptPath}" -Function Find-SensitiveData -SharePath "${sharePath}" -keyword "${keyword}"`;
@@ -265,10 +247,10 @@ app.get("/query-script-result", (req, res) => {
             if (path.isAbsolute(outputFile)) {
                 filePath = outputFile;
             } else {
-                filePath = path.join(defaultResultDir, outputFile);
+                filePath = path.join(currentDir, outputFile);
             }
         } else {
-            filePath = path.join(defaultResultDir, "PotentialData-CustomKeyword--daoxu.txt");
+            filePath = path.join(currentDir, "PotentialData-CustomKeyword--daoxu.txt");
         }
 
         if (!fs.existsSync(filePath)) {

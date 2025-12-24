@@ -3,8 +3,14 @@ APIResponse.js
 server/utils/Result/*
 server/utils/secure_keys/*
 local/utils/*
-agent/Result/*
+
+agent/FilePaths*.csv
+agent/PotentialData*.txt
 agent/dspm-agent.exe
+
+agent/FilePaths*
+agent/PotentialData*
+agent/*.exe
 
 # Logs
 logs
