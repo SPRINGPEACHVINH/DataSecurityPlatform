@@ -3,6 +3,7 @@ APIResponse.js
 server/utils/Result/*
 server/utils/secure_keys/*
 local/utils/*
+agent/Result/*
 
 # Logs
 logs

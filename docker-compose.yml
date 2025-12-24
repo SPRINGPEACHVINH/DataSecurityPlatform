@@ -1,18 +1,22 @@
 services:
   dsp-server:
+    depends_on:
+      mongodb:
+        condition: service_healthy
     image: dsp-server:latest
     container_name: dsp-server
     ports:
       - 4000:4000
     volumes:
       - ./local/utils/secure_keys:/app/utils/secure_keys
-      - ./local/utils/Result:/app/utils/Result
-      - D:/:/data
     env_file:
       - .env
     restart: unless-stopped
 
   dsp-dashboard:
+    depends_on:
+      mongodb:
+        condition: service_healthy
     image: dsp-dashboard:latest
     container_name: dsp-dashboard
     ports:

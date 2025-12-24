@@ -1,0 +1,19 @@
+{
+  "name": "windows-dspm-agent",
+  "version": "1.0.0",
+  "bin": "agent.js",
+  "scripts": {
+    "dev": "nodemon agent.js",
+    "build": "pkg -t node18-win-x64 agent.js --output dspm-agent.exe"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^17.2.3",
+    "express": "^4.19.2",
+    "nodemon": "^3.1.11",
+    "pkg": "^5.8.1"
+  },
+  "pkg": {
+    "assets": []
+  }
+}
