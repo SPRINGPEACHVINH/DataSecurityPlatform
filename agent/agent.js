@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const { exec } = require("child_process");
 const bodyParser = require("body-parser");
 const path = require("path");
@@ -9,6 +10,7 @@ dotenv.config();
 const app = express();
 const PORT = 5005;
 
+app.use(cors());
 app.use(bodyParser.json());
 
 // Determine if running in PKG (production) or Node (development)
@@ -217,7 +219,7 @@ app.post("/scan", async (req, res) => {
 
     try {
         const { stdout, stderr } = await new Promise((resolve, reject) => {
-            exec(cmd, { 
+            exec(cmd, {
                 windowsHide: true,
             }, (err, stdout, stderr) => {
                 if (err) {
@@ -320,6 +322,6 @@ app.get("/query-script-result", (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`DSPM Agent running on port ${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`DSPM Agent running on port ${PORT} (Accessible from network)`);
 });

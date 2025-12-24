@@ -4,6 +4,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import Header from "../Header/Header";
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+const AGENT_URL = import.meta.env.VITE_AGENT_URL;
 
 function Search({
   onLogout,
@@ -78,10 +79,9 @@ function Search({
   const checkScriptStatus = async () => {
     try {
       const response = await fetch(
-        `${BACKEND_URL}/api/dashboard/script-status`,
+        `${AGENT_URL}/`,
         {
           method: "GET",
-          credentials: "include",
           headers: {
             Cookie: localStorage.getItem("sessionId") || "",
           },
@@ -135,17 +135,16 @@ function Search({
       }
 
       const response = await fetch(
-        `${BACKEND_URL}/api/dashboard/script-results`,
+        `${AGENT_URL}/query-script-result`,
         {
-          method: "POST",
-          credentials: "include",
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
             Cookie: localStorage.getItem("sessionId") || "",
           },
-          body: JSON.stringify({
-            outputFile: outputFile,
-          }),
+          // body: JSON.stringify({
+          //   outputFile: outputFile,
+          // }),
         }
       );
 
@@ -300,22 +299,19 @@ function Search({
       setSearchResults([]);
 
       try {
-        const response = await fetch(
-          `${BACKEND_URL}/api/dashboard/search`,
-          {
-            method: "POST",
-            credentials: "include",
-            headers: {
-              "Content-Type": "application/json",
-              Cookie: localStorage.getItem("sessionId") || "",
-            },
-            body: JSON.stringify({
-              search_type: "pattern",
-              pattern: searchTerm.trim(),
-              index_name: selectedIndexName,
-            }),
-          }
-        );
+        const response = await fetch(`${BACKEND_URL}/api/dashboard/search`, {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+            Cookie: localStorage.getItem("sessionId") || "",
+          },
+          body: JSON.stringify({
+            search_type: "pattern",
+            pattern: searchTerm.trim(),
+            index_name: selectedIndexName,
+          }),
+        });
 
         const result = await response.json();
 
@@ -323,7 +319,7 @@ function Search({
           const searchData = result.data.data;
           const results = searchData.results || [];
           console.log("Pattern search results:", results);
-          
+
           // Transform the results to match the expected format
           const transformedResults = results.map((item) => ({
             id: item.id,
@@ -460,18 +456,17 @@ function Search({
       setIsLoading(true);
 
       try {
-        const normalizedPath = filePath.trim().replace(/\\/g, "/");
-        console.log("Normalized Path:", normalizedPath);
+        const normalizedPath = filePath.trim().replace(/\//g, "\\");
+
         const searchData = {
           sharePath: normalizedPath,
           keyword: searchTerm.trim(),
         };
 
         const response = await fetch(
-          `${BACKEND_URL}/api/dashboard/script-execution`,
+          `${AGENT_URL}/scan`,
           {
             method: "POST",
-            credentials: "include",
             headers: {
               "Content-Type": "application/json",
               Cookie: localStorage.getItem("sessionId") || "",
@@ -686,7 +681,7 @@ function Search({
 
         <div className="search-content">
           <div className="sensitive-data-title">Sensitive data</div>
-          
+
           {/* Search Mode Selection */}
           <div className="search-mode-container">
             <label htmlFor="search-mode-select" className="search-mode-label">
@@ -707,7 +702,10 @@ function Search({
           <div className="search-bar-row">
             {searchMode === "pattern" ? (
               <div className="pattern-select-container">
-                <label htmlFor="pattern-select" className="pattern-select-label">
+                <label
+                  htmlFor="pattern-select"
+                  className="pattern-select-label"
+                >
                   Select Pattern:
                 </label>
                 <select
@@ -837,7 +835,9 @@ function Search({
               disabled={
                 isLoading ||
                 !searchTerm.trim() ||
-                (searchType === "Server" && searchMode === "keyword" && !filePath.trim())
+                (searchType === "Server" &&
+                  searchMode === "keyword" &&
+                  !filePath.trim())
               }
             >
               {isLoading ? "Searching..." : "Search"}
@@ -866,12 +866,18 @@ function Search({
           {searchTerm && (
             <div className="search-parameters">
               <strong>Search Parameters:</strong>
-              <div>• {searchMode === "pattern" ? "Pattern" : "Keyword"}: "{searchTerm}"</div>
-              <div>• Mode: {searchMode === "pattern" ? "Pattern Search" : "Keyword Search"}</div>
+              <div>
+                • {searchMode === "pattern" ? "Pattern" : "Keyword"}: "
+                {searchTerm}"
+              </div>
+              <div>
+                • Mode:{" "}
+                {searchMode === "pattern" ? "Pattern Search" : "Keyword Search"}
+              </div>
               <div>• Type: {searchType}</div>
-              {searchType === "Server" && searchMode === "keyword" && filePath && (
-                <div>• File Path: {filePath}</div>
-              )}
+              {searchType === "Server" &&
+                searchMode === "keyword" &&
+                filePath && <div>• File Path: {filePath}</div>}
             </div>
           )}
 
@@ -938,9 +944,7 @@ function Search({
               }`}
             >
               <div className="script-status-header">
-                <h3
-                  className={scriptStatus.isReady ? "ready" : "not-ready"}
-                >
+                <h3 className={scriptStatus.isReady ? "ready" : "not-ready"}>
                   Script Status:{" "}
                   {scriptStatus.loading
                     ? "Checking..."
@@ -999,9 +1003,7 @@ function Search({
                     <strong>Recommendations:</strong>
                     <ul>
                       {scriptStatus.recommendations.map((rec, index) => (
-                        <li key={index}>
-                          {rec}
-                        </li>
+                        <li key={index}>{rec}</li>
                       ))}
                     </ul>
                   </div>
@@ -1019,12 +1021,7 @@ function Search({
 
               <div className="server-search-placeholder">
                 <div className="server-search-placeholder-icon">
-                  <svg
-                    width="48"
-                    height="48"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                  >
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
                     <rect
                       x="2"
                       y="4"
@@ -1054,8 +1051,8 @@ function Search({
               <div className="data-table-container mt-24">
                 <div className="search-results-header">
                   <h3 className="search-results-title">
-                    AWS S3 {searchMode === "pattern" ? "Pattern" : "Keyword"} Search Results ({searchResults.length} files
-                    found)
+                    AWS S3 {searchMode === "pattern" ? "Pattern" : "Keyword"}{" "}
+                    Search Results ({searchResults.length} files found)
                   </h3>
                 </div>
 
@@ -1082,11 +1079,11 @@ function Search({
                         📄 {item.title}
                       </div>
                       <div className="container-column">{item.container}</div>
-                      <div className="index-column">
-                        {item.index}
-                      </div>
+                      <div className="index-column">{item.index}</div>
                       <div className="size-column">
-                        {item.size ? `${item.size} ${item.size_unit || 'KB'}` : "N/A"}
+                        {item.size
+                          ? `${item.size} ${item.size_unit || "KB"}`
+                          : "N/A"}
                       </div>
                       <div className="storage-type-column">
                         <span className="storage-type-badge s3">
@@ -1106,10 +1103,17 @@ function Search({
                   </h4>
                   <div className="search-summary-grid">
                     <div>
-                      <strong>Search {searchMode === "pattern" ? "Pattern" : "Keyword"}:</strong> "{searchTerm}"
+                      <strong>
+                        Search{" "}
+                        {searchMode === "pattern" ? "Pattern" : "Keyword"}:
+                      </strong>{" "}
+                      "{searchTerm}"
                     </div>
                     <div>
-                      <strong>Search Mode:</strong> {searchMode === "pattern" ? "Pattern Search" : "Keyword Search"}
+                      <strong>Search Mode:</strong>{" "}
+                      {searchMode === "pattern"
+                        ? "Pattern Search"
+                        : "Keyword Search"}
                     </div>
                     <div>
                       <strong>Results Found:</strong> {searchResults.length}
@@ -1135,7 +1139,8 @@ function Search({
             <div className="data-table-container mt-24">
               <div className="search-results-header">
                 <h3 className="search-results-title">
-                  Azure {searchMode === "pattern" ? "Pattern" : "Keyword"} Search Results ({searchResults.length} files found)
+                  Azure {searchMode === "pattern" ? "Pattern" : "Keyword"}{" "}
+                  Search Results ({searchResults.length} files found)
                 </h3>
               </div>
 
@@ -1162,11 +1167,11 @@ function Search({
                       📄 {item.title}
                     </div>
                     <div className="container-column">{item.container}</div>
-                    <div className="index-column">
-                      {item.index}
-                    </div>
+                    <div className="index-column">{item.index}</div>
                     <div className="size-column">
-                      {item.size ? `${item.size} ${item.size_unit || 'KB'}` : "N/A"}
+                      {item.size
+                        ? `${item.size} ${item.size_unit || "KB"}`
+                        : "N/A"}
                     </div>
                     <div className="storage-type-column">
                       <span className="storage-type-badge azure">
@@ -1187,10 +1192,16 @@ function Search({
                 </h4>
                 <div className="search-summary-grid">
                   <div>
-                    <strong>Search {searchMode === "pattern" ? "Pattern" : "Keyword"}:</strong> "{searchTerm}"
+                    <strong>
+                      Search {searchMode === "pattern" ? "Pattern" : "Keyword"}:
+                    </strong>{" "}
+                    "{searchTerm}"
                   </div>
                   <div>
-                    <strong>Search Mode:</strong> {searchMode === "pattern" ? "Pattern Search" : "Keyword Search"}
+                    <strong>Search Mode:</strong>{" "}
+                    {searchMode === "pattern"
+                      ? "Pattern Search"
+                      : "Keyword Search"}
                   </div>
                   <div>
                     <strong>Results Found:</strong> {searchResults.length}
@@ -1250,7 +1261,9 @@ function Search({
                 </div>
                 {serverSearchResults.map((item, idx) => (
                   <div
-                    className={`table-row ${item.isEmpty ? "empty-result" : ""}`}
+                    className={`table-row ${
+                      item.isEmpty ? "empty-result" : ""
+                    }`}
                     key={idx}
                   >
                     <div className="file-name-column" title={item.fileName}>
@@ -1274,10 +1287,7 @@ function Search({
                           item.lineNumbers
                             .slice(0, 5)
                             .map((lineNum, lineIdx) => (
-                              <span
-                                key={lineIdx}
-                                className="line-number-item"
-                              >
+                              <span key={lineIdx} className="line-number-item">
                                 {lineNum}
                               </span>
                             ))
@@ -1304,9 +1314,7 @@ function Search({
                   serverSearchResults[0]?.isEmpty ? "error-summary" : ""
                 }`}
               >
-                <h4 className="search-summary-title">
-                  📊 Search Summary
-                </h4>
+                <h4 className="search-summary-title">📊 Search Summary</h4>
                 <div className="search-summary-grid">
                   <div>
                     <strong>Search Keyword:</strong> "{searchTerm}"
@@ -1342,15 +1350,10 @@ function Search({
               {/* Conditional File Details */}
               {!serverSearchResults[0]?.isEmpty && (
                 <div className="file-details-section">
-                  <h4 className="file-details-title">
-                    📋 File Details
-                  </h4>
+                  <h4 className="file-details-title">📋 File Details</h4>
                   <div className="file-details-container">
                     {serverSearchResults.map((item, idx) => (
-                      <div
-                        key={idx}
-                        className="file-detail-item"
-                      >
+                      <div key={idx} className="file-detail-item">
                         <div className="file-detail-header">
                           <div className="file-detail-name">
                             📄 {item.fileName}
