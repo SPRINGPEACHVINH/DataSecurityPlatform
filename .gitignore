@@ -4,6 +4,7 @@ server/utils/Result/*
 server/utils/secure_keys/*
 local/utils/*
 agent/Result/*
+agent/dspm-agent.exe
 
 # Logs
 logs
