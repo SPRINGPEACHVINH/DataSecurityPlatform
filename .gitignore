@@ -4,10 +4,6 @@ server/utils/Result/*
 server/utils/secure_keys/*
 local/utils/*
 
-agent/FilePaths*.csv
-agent/PotentialData*.txt
-agent/dspm-agent.exe
-
 agent/FilePaths*
 agent/PotentialData*
 agent/*.exe
