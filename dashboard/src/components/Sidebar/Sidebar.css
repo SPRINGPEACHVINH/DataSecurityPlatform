@@ -41,11 +41,12 @@
 .logo-image {
   aspect-ratio: 7.41;
   object-fit: contain;
-  object-position: center;
+  object-position: left center;
   width: 193px;
-  align-self: start;
   max-width: 100%;
+  align-self: flex-start;
 }
+
 
 .nav-item,
 .nav-item-active {
