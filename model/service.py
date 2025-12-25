@@ -7,14 +7,13 @@ from standards_labels import SENSITIVE_LABELS_BY_STANDARD
 app = FastAPI(title="Zero-shot DSPM service")
 clf = ZeroShotClassifier()
 
-# ===== Models =====
 class TextRequest(BaseModel):
     text: str
     labels: Optional[List[str]] = None
 
 class StandardRequest(BaseModel):
     text: str
-    standard: Optional[str] = None  # PCI_DSS / HIPAA / GDPR / ...
+    standard: Optional[str] = None 
 
 class ESClassifyRequest(BaseModel):
     index: str
@@ -31,8 +30,6 @@ class ESStandardRequest(BaseModel):
     text_field: Optional[str] = "content"
     standard: Optional[str] = None
     update_index: Optional[bool] = False
-
-# ===== APIs =====
 
 @app.post("/classify")
 async def classify(req: TextRequest):

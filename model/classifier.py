@@ -24,7 +24,6 @@ class ZeroShotClassifier:
         return label_keys, candidates
 
     def classify_text(self, text, label_keys=None):
-
         if self._is_technical_narrative(text):
             return {
                 "sequence": text[:2000],
@@ -136,7 +135,6 @@ class ZeroShotClassifier:
             r"&&|\|\|",                        
             r"https?://\S+",                   
         ]
-
         for pattern in patterns:
             if re.search(pattern, text, re.IGNORECASE | re.MULTILINE):
                 return True
@@ -153,7 +151,6 @@ class ZeroShotClassifier:
             r"\bchạy\s+lệnh\b",
             r"\bcài\s+đặt\b.*\b(phần mềm|python|pip)\b",
         ]
-
         for pattern in patterns:
             if re.search(pattern, text, re.IGNORECASE):
                 return True
