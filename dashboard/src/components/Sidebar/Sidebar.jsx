@@ -16,6 +16,7 @@ function Sidebar({
             src="https://res.cloudinary.com/dxcbyypga/image/upload/v1766676849/logo_e84qvl.png"
             className="logo-image"
             alt="Logo"
+            style={{ width: "350px", height: "auto" }}
           />
 
           <div
