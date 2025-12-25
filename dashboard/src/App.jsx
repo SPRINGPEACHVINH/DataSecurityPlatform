@@ -10,6 +10,8 @@ import { useSessionCheck } from "./hooks/useSessionCheck";
 import { clearSearchSession } from "./hooks/clearSearchSession";
 import "./App.css";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 function App() {
   const [currentView, setCurrentView] = useState("login");
   const [user, setUser] = useState(null);
@@ -17,7 +19,7 @@ function App() {
 
   const checkSession = async () => {
     try {
-      const response = await fetch("http://localhost:4000/api/auth/session", {
+      const response = await fetch(`${BACKEND_URL}/api/auth/session`, {
         credentials: "include",
       });
 
@@ -82,7 +84,7 @@ function App() {
   const handleLogout = () => {
     clearSearchSession();
 
-    fetch("http://localhost:4000/api/auth/logout", {
+    fetch(`${BACKEND_URL}/api/auth/logout`, {
       method: "POST",
       credentials: "include",
     }).then(() => {

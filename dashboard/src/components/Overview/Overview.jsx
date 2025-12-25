@@ -2,7 +2,9 @@
 import { useEffect, useState } from "react";
 import "./Overview.css";
 
-function Overview({ headerComponent }) {
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
+function Overview({ headerComponent, onNavigateToConnectorSetup }) {
   const [metrics, setMetrics] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -17,7 +19,7 @@ function Overview({ headerComponent }) {
   const fetchDashboardData = async () => {
     try {
       const response = await fetch(
-        "http://localhost:4000/api/dashboard/overview/data",
+        `${BACKEND_URL}/api/dashboard/overview/data`,
         { credentials: "include" }
       );
 
@@ -60,7 +62,7 @@ function Overview({ headerComponent }) {
       console.log("🔄 Fetching classification details...");
       
       const response = await fetch(
-        "http://localhost:4000/api/dashboard/overview/label-statistics",
+        `${BACKEND_URL}/api/dashboard/overview/label-statistics`,
         { credentials: "include" }
       );
 
@@ -131,7 +133,7 @@ function Overview({ headerComponent }) {
 
       // Get all indices first
       const indicesResponse = await fetch(
-        "http://localhost:4000/api/dashboard/elasticsearch/documents",
+        `${BACKEND_URL}/api/dashboard/elasticsearch/documents`,
         { credentials: "include" }
       );
 
@@ -166,7 +168,7 @@ function Overview({ headerComponent }) {
           console.log(`🔍 Classifying index: ${indexName}`);
           
           const response = await fetch(
-            "http://localhost:4000/api/ml/classify-all-documents",
+            `${BACKEND_URL}/api/ml/classify-all-documents`,
             {
               method: "POST",
               headers: {
@@ -241,7 +243,7 @@ function Overview({ headerComponent }) {
 
         // Try to fetch dashboard data
         const dashboardResponse = await fetch(
-          "http://localhost:4000/api/dashboard/overview/data",
+          `${BACKEND_URL}/api/dashboard/overview/data`,
           { credentials: "include" }
         );
 
@@ -313,38 +315,34 @@ function Overview({ headerComponent }) {
     return (
       <div className="main-content">
         {headerComponent}
-        <p>❌ {error}</p>
+        <p>{error}</p>
       </div>
     );
   }
 
-  // Show Configuration Guide if needed
-  // if (showConfigGuide) {
-  //   return (
-  //     <div className="data-sources-container">
-  //       {sidebarComponent}
-  //       <div className="main-content">
-  //         {getHeaderForPage("Overview")}
-  //         <div className="config-guide-message">
-  //           <div className="message-card">
-  //             <h2>⚙️ Initial Setup Required</h2>
-  //             <p>
-  //               No data sources have been configured yet. Please complete the
-  //               initial setup in the Overview page to create your first
-  //               connector.
-  //             </p>
-  //             <button
-  //               className="setup-button"
-  //               onClick={() => handleNavigation("ConnectorSetup")}
-  //             >
-  //               Go to Setup
-  //             </button>
-  //           </div>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   );
-  // }
+  if (showConfigGuide) {
+    return (
+      <div className="main-content">
+        {headerComponent}
+        <div className="config-guide-message">
+          <div className="message-card">
+            <h2>Initial Setup Required</h2>
+            <p>
+              No data sources have been configured yet. Please complete the
+              initial setup in the Connector Setup page to create your first
+              connector.
+            </p>
+            <button
+              className="setup-button"
+              onClick={onNavigateToConnectorSetup}
+            >
+              Go to Setup
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="main-content">

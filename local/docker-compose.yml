@@ -42,7 +42,7 @@ services:
     volumes:
       - ./elastic-connectors:/azconfig
     command: ["/app/bin/elastic-ingest", "-c", "/azconfig/azconfig.yml"]
-    restart: no
+    restart: always
   s3-connector:
     depends_on:
       elasticsearch:
@@ -54,13 +54,13 @@ services:
     volumes:
       - ./elastic-connectors:/s3config
     command: ["/app/bin/elastic-ingest", "-c", "/s3config/s3config.yml"]
-    restart: no
+    restart: always
 
   extraction-service:
     depends_on:
       elasticsearch:
         condition: service_healthy
-    image: docker.elastic.co/integrations/data-extraction-service:0.3.5
+    image: docker.elastic.co/integrations/data-extraction-service:0.3.6
     container_name: extraction-service
     ports:
       - 8090:8090
@@ -74,21 +74,5 @@ services:
       start_period: 30s
     restart: always
 
-  mongodb:
-    container_name: mongodb
-    image: mongodb/mongodb-atlas-local
-    environment:
-      - MONGODB_INITDB_ROOT_USERNAME=${MONGODB_INITDB_ROOT_USERNAME}
-      - MONGODB_INITDB_ROOT_PASSWORD=${MONGODB_INITDB_ROOT_PASSWORD}
-      - RUNNER_LOG_FILE=/dev/stderr
-    ports:
-      - 27017:27017
-    volumes:
-      - dev-mongodb:/data/db 
-      - dev-mongodb-config:/data/configdb
-      - ./init:/docker-entrypoint-initdb.d
-
 volumes:
   dev-elasticsearch:
-  dev-mongodb:
-  dev-mongodb-config:

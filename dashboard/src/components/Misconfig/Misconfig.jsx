@@ -3,12 +3,13 @@ import "./Misconfig.css";
 import Sidebar from "../Sidebar/Sidebar";
 import Header from "../Header/Header";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 function Misconfig({
   onLogout,
   onNavigateToDataSources,
   onNavigateToOverview,
   onNavigateToSearch,
-  onNavigateToLogManager,
   onNavigateToConnectorSetup,
 }) {
   const [cloudProvider, setCloudProvider] = useState("aws");
@@ -27,7 +28,7 @@ function Misconfig({
     const checkKeyStatus = async () => {
       try {
         const response = await fetch(
-          "http://localhost:4000/api/dashboard/misconfig/check_keys",
+          `${BACKEND_URL}/api/dashboard/misconfig/check_keys`,
           {
             credentials: "include",
           }
@@ -57,7 +58,7 @@ function Misconfig({
 
     try {
       const response = await fetch(
-        "http://localhost:4000/api/dashboard/misconfig/generate_keys",
+        `${BACKEND_URL}/api/dashboard/misconfig/generate_keys`,
         {
           method: "POST",
           credentials: "include",
@@ -88,7 +89,7 @@ function Misconfig({
     try {
       console.log("Starting scan for provider:", cloudProvider);
       const response = await fetch(
-        `http://localhost:4000/api/dashboard/misconfig/scan`,
+        `${BACKEND_URL}/api/dashboard/misconfig/scan`,
         {
           method: "POST",
           credentials: "include",
@@ -136,7 +137,6 @@ function Misconfig({
         onNavigateToOverview={onNavigateToOverview}
         onNavigateToDataSources={onNavigateToDataSources}
         onNavigateToSearch={onNavigateToSearch}
-        onNavigateToLogManager={onNavigateToLogManager}
         onNavigateToMisconfig={() => console.log("Already on misconfig")}
         onNavigateToConnectorSetup={onNavigateToConnectorSetup}
       />

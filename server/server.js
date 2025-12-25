@@ -9,7 +9,7 @@ import { CreateUser, findUserByUsername } from "./models/userModel.js"
 
 dotenv.config(); // Configure dotenv to load .env variables
 
-const PORT = process.env.server_local_port;
+const PORT = process.env.SERVER_LOCAL_PORT;
 
 const app = express();
 app.disable("x-powered-by"); // Disable 'X-Powered-By' header for security reasons
@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: true })); // Parse URL-encoded request bo
 // Enable CORS for all routes
 app.use(
   cors({
-    origin: process.env.frontend_url,
+    origin: process.env.FRONTEND_URL,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
@@ -35,7 +35,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: process.env.NODE_ENV === "production",
+      secure: process.env.SERVER_SESSION_USE_HTTPS === 'true',
       httpOnly: true,
       maxAge: 1000 * 60 * 180, // 3 hours
     },

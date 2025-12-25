@@ -1,11 +1,10 @@
 import crypto from 'crypto';
 import eckey from 'eckey-utils'
-import fs from 'fs';
 
 import dotenv from 'dotenv';
 dotenv.config();
 
-const algorithm = process.env.algorithm || 'aes-256-gcm';
+const algorithm = process.env.ALGORITHM || 'aes-256-gcm';
 
 export function generateTimeBasedRunScanID() {
     const vietnamTimeOffset = 7 * 60 * 60 * 1000;
