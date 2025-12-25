@@ -2,12 +2,6 @@ import axios from "axios";
 
 const PYTHON_MODEL_URL = process.env.PYTHON_MODEL_URL || "http://localhost:8000";
 
-/**
- * Gọi endpoint classify của Python model
- * @param {string} text - Text cần classify
- * @param {Array<string>} labels - Labels để classify
- * @returns {Promise<Object>} Kết quả classify
- */
 export const classifyText = async (text, labels = null) => {
   try {
     const response = await axios.post(`${PYTHON_MODEL_URL}/classify`, {
@@ -21,12 +15,6 @@ export const classifyText = async (text, labels = null) => {
   }
 };
 
-/**
- * Gọi endpoint classify_by_standard của Python model
- * @param {string} text - Text cần classify
- * @param {string} standard - Standard (PCI_DSS, HIPAA, GDPR, ...)
- * @returns {Promise<Object>} Kết quả classify
- */
 export const classifyByStandard = async (text, standard) => {
   try {
     const response = await axios.post(
@@ -43,11 +31,6 @@ export const classifyByStandard = async (text, standard) => {
   }
 };
 
-/**
- * Gọi endpoint es_classify của Python model
- * @param {Object} params - Tham số
- * @returns {Promise<Object>} Kết quả classify
- */
 export const esClassify = async (params) => {
   try {
     const {
@@ -74,11 +57,6 @@ export const esClassify = async (params) => {
   }
 };
 
-/**
- * Gọi endpoint es_classify_by_standard của Python model
- * @param {Object} params - Tham số
- * @returns {Promise<Object>} Kết quả classify
- */
 export const esClassifyByStandard = async (params) => {
   try {
     const {
@@ -108,10 +86,6 @@ export const esClassifyByStandard = async (params) => {
   }
 };
 
-/**
- * Health check - Kiểm tra Python model có chạy không
- * @returns {Promise<boolean>}
- */
 export const healthCheck = async () => {
   try {
     const response = await axios.get(`${PYTHON_MODEL_URL}/docs`);

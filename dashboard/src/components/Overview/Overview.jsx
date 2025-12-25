@@ -193,7 +193,7 @@ function Overview({ headerComponent, onNavigateToConnectorSetup }) {
             console.log(`✅ Index ${indexName} classified:`, result.data.summary);
             
             setClassifyMessage(
-              `📊 Processed ${totalProcessed} documents (${totalSuccess} classified, ${totalTagged} tagged)`
+              `Processed ${totalProcessed} documents (${totalSuccess} classified, ${totalTagged} tagged)`
             );
           } else {
             const errorData = await response.json();
