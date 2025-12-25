@@ -305,12 +305,6 @@ export const deleteFileContent = async (req, res) => {
   }
 };
 
-/**
- * Get single document content by ID
- * @param {string} indexName - Elasticsearch index name
- * @param {string} documentId - Document ID
- * @returns {Promise<Object>} Document with content
- */
 export const utilityGetDocumentContent = async (indexName, documentId) => {
   try {
     if (!indexName || !documentId) {
@@ -369,12 +363,6 @@ export const utilityGetDocumentContent = async (indexName, documentId) => {
   }
 };
 
-/**
- * Get multiple documents content by IDs
- * @param {string} indexName - Elasticsearch index name
- * @param {Array<string>} documentIds - Array of document IDs
- * @returns {Promise<Array>} Array of documents with content
- */
 export const utilityGetMultipleDocumentsContent = async (indexName, documentIds) => {
   try {
     if (!indexName || !documentIds || documentIds.length === 0) {
@@ -418,13 +406,6 @@ export const utilityGetMultipleDocumentsContent = async (indexName, documentIds)
   }
 };
 
-/**
- * Get all documents from index (with pagination)
- * @param {string} indexName - Elasticsearch index name
- * @param {number} size - Number of documents to return (default 100)
- * @param {number} from - Starting position (default 0)
- * @returns {Promise<Object>} Documents and total count
- */
 export const utilityGetAllDocumentsFromIndex = async (indexName, size = 100, from = 0) => {
   try {
     if (!indexName) {
@@ -472,13 +453,6 @@ export const utilityGetAllDocumentsFromIndex = async (indexName, size = 100, fro
   }
 };
 
-/**
- * Tag document with classification labels (score > 0.9)
- * @param {string} indexName - Elasticsearch index name
- * @param {string} documentId - Document ID
- * @param {Array} predictions - Array of predictions with label and score
- * @returns {Promise<Object>} Update response
- */
 export const utilityTagDocumentWithLabels = async (indexName, documentId, predictions) => {
   try {
     if (!indexName || !documentId || !predictions) {
@@ -549,12 +523,6 @@ export const utilityTagDocumentWithLabels = async (indexName, documentId, predic
   }
 };
 
-/**
- * Tag multiple documents with classification labels
- * @param {string} indexName - Elasticsearch index name
- * @param {Array} classificationResults - Array of {documentId, predictions}
- * @returns {Promise<Array>} Array of tagging results
- */
 export const utilityTagDocumentsWithLabels = async (indexName, classificationResults) => {
   try {
     if (!indexName || !classificationResults || classificationResults.length === 0) {
