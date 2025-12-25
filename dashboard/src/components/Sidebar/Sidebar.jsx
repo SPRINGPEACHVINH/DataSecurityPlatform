@@ -13,7 +13,7 @@ function Sidebar({
       <div className="sidebar-content">
         <div className="sidebar-nav-content">
           <img
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/d4849b383616c2f4103824996486230e4a3ef64d?placeholderIfAbsent=true"
+            src="https://res.cloudinary.com/dxcbyypga/image/upload/v1766676849/logo_e84qvl.png"
             className="logo-image"
             alt="Logo"
           />

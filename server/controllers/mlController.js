@@ -13,10 +13,6 @@ import {
   utilityTagDocumentsWithLabels,
 } from "../services/elasticsearchService/document.js";
 
-/**
- * POST /api/ml/classify
- * Classify text với labels
- */
 export const classifyTextController = async (req, res) => {
   try {
     const { text, labels } = req.body;
@@ -33,10 +29,6 @@ export const classifyTextController = async (req, res) => {
   }
 };
 
-/**
- * POST /api/ml/classify-by-standard
- * Classify text theo standard (PCI_DSS, HIPAA, GDPR, ...)
- */
 export const classifyByStandardController = async (req, res) => {
   try {
     const { text, standard } = req.body;
@@ -53,10 +45,6 @@ export const classifyByStandardController = async (req, res) => {
   }
 };
 
-/**
- * POST /api/ml/es-classify
- * Classify documents từ Elasticsearch
- */
 export const esClassifyController = async (req, res) => {
   try {
     const {
@@ -88,10 +76,6 @@ export const esClassifyController = async (req, res) => {
   }
 };
 
-/**
- * POST /api/ml/es-classify-by-standard
- * Classify documents từ Elasticsearch theo standard
- */
 export const esClassifyByStandardController = async (req, res) => {
   try {
     const {
@@ -124,15 +108,11 @@ export const esClassifyByStandardController = async (req, res) => {
   }
 };
 
-/**
- * POST /api/ml/classify-document
- * Classify single document by ID from Elasticsearch
- */
 export const classifyDocumentById = async (req, res) => {
   try {
     const { index_name, document_id, standard = null, tag = true } = req.body;
 
-    // Validate
+
     if (!index_name || !document_id) {
       return res.status(400).json({
         error: "Missing required parameters: index_name and document_id are required",
@@ -203,10 +183,6 @@ export const classifyDocumentById = async (req, res) => {
   }
 };
 
-/**
- * POST /api/ml/classify-documents-batch
- * Classify multiple documents by IDs from Elasticsearch
- */
 export const classifyDocumentsBatch = async (req, res) => {
   try {
     const { index_name, document_ids, standard = null, tag = true } = req.body;
