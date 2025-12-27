@@ -233,8 +233,9 @@ function ConnectorSetup({ onSetupComplete }) {
       status: connector.status,
     });
     
-    // Hide Case 7 view and show Step 3 (Configuration)
+    // Hide Case 7 view and Case 4 error view, then show Step 3 (Configuration)
     setShowFullConfiguration(false);
+    setShowConnectorError(false);
     setShowStep2(true);
     setShowStep3(true);
   };
@@ -487,13 +488,48 @@ function ConnectorSetup({ onSetupComplete }) {
       )}
 
       {/* Case 4: Show error view for "error" or "configured" status */}
-      {showConnectorError && (
+      {showConnectorError && creationSuccess && (
         <div className="config-step-card">
-          <div className="notification error-notification">
-            <span className="notification-icon">❌</span>
-            <span>
-              Connector is not configured correctly, please review instructions.
-            </span>
+          <div className="full-config-header">
+            <h2>Connector Configuration Error</h2>
+            <p className="step-description">
+              The connector is not configured correctly. Please review the settings below and take corrective action.
+            </p>
+          </div>
+
+          <div className="connector-list">
+            <div className="connector-card readonly">
+              <div className="connector-card-header">
+                <h3 className="connector-name">{creationSuccess.name}</h3>
+                <span className="status-badge error">Error</span>
+              </div>
+              <div className="connector-details">
+                <div className="detail-item">
+                  <span className="detail-label">Type:</span>
+                  <span className="detail-value">
+                    {creationSuccess.type === "s3" ? "AWS S3" : "Azure Blob Storage"}
+                  </span>
+                </div>
+                <div className="detail-item">
+                  <span className="detail-label">Status:</span>
+                  <span className="detail-value">{creationSuccess.status}</span>
+                </div>
+              </div>
+              <div className="connector-actions">
+                <button
+                  className="btn-edit"
+                  onClick={() => handleEditConnector(creationSuccess)}
+                >
+                  Edit Config
+                </button>
+                <button
+                  className="btn-danger"
+                  onClick={() => handleDeleteConnector(creationSuccess.id)}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}
