@@ -712,7 +712,7 @@ function ConnectorSetup({ onSetupComplete }) {
                   elastic docker-compose.
                 </li>
                 <li>
-                  Find variable <code>{creationSuccess?.name}_CONNECTOR_ID</code>{" "}
+                  Find variable <code>{creationSuccess?.type === "azure_blob_storage" ? "AZCONFIG" : "S3CONFIG"}_CONNECTOR_ID</code>{" "}
                   and paste the connector ID.
                 </li>
                 <li>
