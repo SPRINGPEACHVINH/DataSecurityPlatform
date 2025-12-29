@@ -10,12 +10,8 @@ import {
 import { utilityDeleteFileContent } from "../services/elasticsearchService/document.js";
 import Models from "../models/userModel.js";
 const { Connector } = Models;
-import { exec } from "child_process";
-import { promisify } from "util";
 import dotenv from "dotenv";
 dotenv.config();
-
-const execFile = promisify(exec)
 
 export const handleDashboardSearch = async (req, res) => {
   try {
