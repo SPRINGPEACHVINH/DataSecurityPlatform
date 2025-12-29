@@ -74,7 +74,7 @@ export const handleDashboardSearch = async (req, res) => {
     let attempts = 0;
 
     while (syncStatus !== "completed" && attempts < maxRetries) {
-      await new Promise((r) => setTimeout(r, 30000)); // Wait 30 seconds
+      await new Promise((r) => setTimeout(r, 10000)); // Wait 10 seconds
 
       const syncStatusResponse = await utilitygetSyncStatus(
         syncResponse.sync_id
