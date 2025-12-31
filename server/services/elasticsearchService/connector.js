@@ -276,7 +276,7 @@ export const syncConnectorData = async (req, res) => {
     const maxRetries = 10;
     let attempts = 0;
 
-    while (syncStatus !== "completed" && attempts < maxRetries) {
+    while (syncStatus !== "completed" && syncStatus !== "error" && attempts < maxRetries) {
       await new Promise((r) => setTimeout(r, 30000)); // Wait 30 seconds
 
       const syncStatusResponse = await utilitygetSyncStatus(
@@ -293,7 +293,13 @@ export const syncConnectorData = async (req, res) => {
         message: "Elasticsearch connector data synced successfully.",
         syncstatus: syncStatus,
       });
-
+    } else if (syncStatus === "error") {
+      console.log("Sync encountered an error.");
+      return res.status(500).json({
+        message: "Sync encountered an error.",
+        syncstatus: syncStatus,
+        attempts: attempts,
+      });
     } else {
       console.log("Sync did not complete in time.");
       return res.status(500).json({

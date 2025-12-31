@@ -14,26 +14,26 @@ function ConnectorSetup({ onSetupComplete }) {
   const [showStep3, setShowStep3] = useState(false);
   const [showStep4, setShowStep4] = useState(false);
   const [showConnectorError, setShowConnectorError] = useState(false);
-  
+
   // Case 6 states
   const [showExistingConnector, setShowExistingConnector] = useState(false);
   const [existingConnector, setExistingConnector] = useState(null);
   const [isTypeDisabled, setIsTypeDisabled] = useState(false);
-  
+
   // Case 7 states
   const [showFullConfiguration, setShowFullConfiguration] = useState(false);
   const [connectorList, setConnectorList] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
-  
+
   // Configuration states
   const [isConfiguringConnector, setIsConfiguringConnector] = useState(false);
   const [configurationSuccess, setConfigurationSuccess] = useState(false);
   const [configurationError, setConfigurationError] = useState(null);
-  
+
   // Sync states
   const [isSyncing, setIsSyncing] = useState(false);
   const [syncError, setSyncError] = useState(null);
-  
+
   const [configFormData, setConfigFormData] = useState({
     // AWS fields
     buckets: "",
@@ -99,7 +99,10 @@ function ConnectorSetup({ onSetupComplete }) {
               break;
 
             default:
-              console.warn("Unknown connector status:", pendingConnector.status);
+              console.warn(
+                "Unknown connector status:",
+                pendingConnector.status
+              );
               break;
           }
           return;
@@ -142,12 +145,14 @@ function ConnectorSetup({ onSetupComplete }) {
             return;
           } else if (connectors.length === 2) {
             // Case 7: Full
-            setConnectorList(connectors.map(conn => ({
-              id: conn.id,
-              type: conn.type,
-              name: conn.name,
-              status: conn.status,
-            })));
+            setConnectorList(
+              connectors.map((conn) => ({
+                id: conn.id,
+                type: conn.type,
+                name: conn.name,
+                status: conn.status,
+              }))
+            );
             setShowFullConfiguration(true);
             return;
           }
@@ -224,7 +229,7 @@ function ConnectorSetup({ onSetupComplete }) {
   const handleEditConnector = (connector) => {
     // Set editing mode to true
     setIsEditing(true);
-    
+
     // Set the connector as if it was just created
     setCreationSuccess({
       id: connector.id,
@@ -232,9 +237,10 @@ function ConnectorSetup({ onSetupComplete }) {
       name: connector.name,
       status: connector.status,
     });
-    
-    // Hide Case 7 view and show Step 3 (Configuration)
+
+    // Hide Case 7 view and Case 4 error view, then show Step 3 (Configuration)
     setShowFullConfiguration(false);
+    setShowConnectorError(false);
     setShowStep2(true);
     setShowStep3(true);
   };
@@ -242,7 +248,7 @@ function ConnectorSetup({ onSetupComplete }) {
   const handleCancelEdit = () => {
     // Reset editing mode
     setIsEditing(false);
-    
+
     // Reset temporary form data
     setCreationSuccess(null);
     setConfigurationError(null);
@@ -255,7 +261,7 @@ function ConnectorSetup({ onSetupComplete }) {
       blob_endpoint: "",
       containers: "",
     });
-    
+
     // Navigate back to Step 7 (System Fully Configured)
     setShowStep2(false);
     setShowStep3(false);
@@ -273,7 +279,9 @@ function ConnectorSetup({ onSetupComplete }) {
 
     try {
       const response = await fetch(
-        `${BACKEND_URL}/api/dashboard/elasticsearch/delete_connector?connector_id=${encodeURIComponent(connectorId)}`,
+        `${BACKEND_URL}/api/dashboard/elasticsearch/delete_connector?connector_id=${encodeURIComponent(
+          connectorId
+        )}`,
         {
           method: "DELETE",
           credentials: "include",
@@ -284,7 +292,7 @@ function ConnectorSetup({ onSetupComplete }) {
 
       if (response.status === 200 && result.acknowledged === true) {
         alert("Connector deleted successfully!");
-        
+
         // Refresh by resetting all states and re-fetching data
         setShowFullConfiguration(false);
         setConnectorList([]);
@@ -293,7 +301,7 @@ function ConnectorSetup({ onSetupComplete }) {
         setShowStep3(false);
         setShowStep4(false);
         setIsEditing(false);
-        
+
         // Re-fetch and reinitialize
         const connectorResponse = await fetch(
           `${BACKEND_URL}/api/dashboard/elasticsearch/connector`,
@@ -303,18 +311,20 @@ function ConnectorSetup({ onSetupComplete }) {
           `${BACKEND_URL}/api/dashboard/overview/data`,
           { credentials: "include" }
         );
-        
+
         const connectors = connectorResponse.ok
           ? (await connectorResponse.json()).data || []
           : [];
-        
+
         if (dashboardResponse.ok && connectors.length === 2) {
-          setConnectorList(connectors.map(conn => ({
-            id: conn.id,
-            type: conn.type,
-            name: conn.name,
-            status: conn.status,
-          })));
+          setConnectorList(
+            connectors.map((conn) => ({
+              id: conn.id,
+              type: conn.type,
+              name: conn.name,
+              status: conn.status,
+            }))
+          );
           setShowFullConfiguration(true);
         } else if (connectors.length === 1) {
           const connector = connectors[0];
@@ -355,7 +365,9 @@ function ConnectorSetup({ onSetupComplete }) {
           connectorType: "s3",
           buckets: encodeURI(configFormData.buckets),
           aws_access_key_id: encodeURI(configFormData.aws_access_key_id),
-          aws_secret_access_key: encodeURI(configFormData.aws_secret_access_key),
+          aws_secret_access_key: encodeURI(
+            configFormData.aws_secret_access_key
+          ),
         };
       } else if (connectorType === "azure_blob_storage") {
         configBody = {
@@ -369,7 +381,9 @@ function ConnectorSetup({ onSetupComplete }) {
       }
 
       const response = await fetch(
-        `${BACKEND_URL}/api/dashboard/elasticsearch/connector_configuration?connector_id=${encodeURIComponent(creationSuccess.id)}`,
+        `${BACKEND_URL}/api/dashboard/elasticsearch/connector_configuration?connector_id=${encodeURIComponent(
+          creationSuccess.id
+        )}`,
         {
           method: "POST",
           headers: {
@@ -387,7 +401,9 @@ function ConnectorSetup({ onSetupComplete }) {
         setShowStep4(true);
         setIsEditing(false);
       } else {
-        setConfigurationError(result.message || "Failed to configure connector");
+        setConfigurationError(
+          result.message || "Failed to configure connector"
+        );
       }
     } catch (err) {
       console.error("Error configuring connector:", err);
@@ -397,13 +413,16 @@ function ConnectorSetup({ onSetupComplete }) {
     }
   };
 
-  const handleSyncNow = async () => {
+  const handleSyncNow = async (connectorId) => {
     setIsSyncing(true);
     setSyncError(null);
 
     try {
+      const targetConnectorId = connectorId || creationSuccess.id;
       const response = await fetch(
-        `${BACKEND_URL}/api/dashboard/elasticsearch/connector/sync?connector_id=${encodeURIComponent(creationSuccess.id)}`,
+        `${BACKEND_URL}/api/dashboard/elasticsearch/connector/sync?connector_id=${encodeURIComponent(
+          targetConnectorId
+        )}`,
         {
           method: "GET",
           credentials: "include",
@@ -443,7 +462,7 @@ function ConnectorSetup({ onSetupComplete }) {
           </div>
 
           <div className="step-content">
-            <div className="notification success-notification" style={{  }}>
+            <div className="notification success-notification" style={{}}>
               <span className="notification-icon">✅</span>
               <span>You have an active connector configured!</span>
             </div>
@@ -465,21 +484,42 @@ function ConnectorSetup({ onSetupComplete }) {
                 </div>
                 <div className="detail-item">
                   <span className="detail-label">Status:</span>
-                  <span className="detail-value">{existingConnector.status}</span>
+                  <span className="detail-value">
+                    {existingConnector.status}
+                  </span>
                 </div>
               </div>
             </div>
 
-            <div style={{ marginTop: "24px", padding: "20px", backgroundColor: "#fcfaff", borderRadius: "6px" }}>
+            <div
+              style={{
+                marginTop: "24px",
+                padding: "20px",
+                backgroundColor: "#fcfaff",
+                borderRadius: "6px",
+              }}
+            >
               <p className="step-description" style={{ marginBottom: "16px" }}>
-                You currently have a <strong>{existingConnector.type === "s3" ? "AWS S3" : "Azure Blob Storage"}</strong> connector. 
-                Would you like to set up a <strong>{existingConnector.type === "s3" ? "Azure Blob Storage" : "AWS S3"}</strong> connector?
+                You currently have a{" "}
+                <strong>
+                  {existingConnector.type === "s3"
+                    ? "AWS S3"
+                    : "Azure Blob Storage"}
+                </strong>{" "}
+                connector. Would you like to set up a{" "}
+                <strong>
+                  {existingConnector.type === "s3"
+                    ? "Azure Blob Storage"
+                    : "AWS S3"}
+                </strong>{" "}
+                connector?
               </p>
               <button
                 className="create-connector-button"
                 onClick={handleSetupMissingType}
               >
-                Setup {existingConnector.type === "s3" ? "Azure" : "AWS"} Connector
+                Setup {existingConnector.type === "s3" ? "Azure" : "AWS"}{" "}
+                Connector
               </button>
             </div>
           </div>
@@ -487,13 +527,51 @@ function ConnectorSetup({ onSetupComplete }) {
       )}
 
       {/* Case 4: Show error view for "error" or "configured" status */}
-      {showConnectorError && (
+      {showConnectorError && creationSuccess && (
         <div className="config-step-card">
-          <div className="notification error-notification">
-            <span className="notification-icon">❌</span>
-            <span>
-              Connector is not configured correctly, please review instructions.
-            </span>
+          <div className="full-config-header">
+            <h2>Connector Configuration Error</h2>
+            <p className="step-description">
+              The connector is not configured correctly. Please review the
+              settings below and take corrective action.
+            </p>
+          </div>
+
+          <div className="connector-list">
+            <div className="connector-card readonly">
+              <div className="connector-card-header">
+                <h3 className="connector-name">{creationSuccess.name}</h3>
+                <span className="status-badge error">Error</span>
+              </div>
+              <div className="connector-details">
+                <div className="detail-item">
+                  <span className="detail-label">Type:</span>
+                  <span className="detail-value">
+                    {creationSuccess.type === "s3"
+                      ? "AWS S3"
+                      : "Azure Blob Storage"}
+                  </span>
+                </div>
+                <div className="detail-item">
+                  <span className="detail-label">Status:</span>
+                  <span className="detail-value">{creationSuccess.status}</span>
+                </div>
+              </div>
+              <div className="connector-actions">
+                <button
+                  className="btn-edit"
+                  onClick={() => handleEditConnector(creationSuccess)}
+                >
+                  Edit Config
+                </button>
+                <button
+                  className="btn-danger"
+                  onClick={() => handleDeleteConnector(creationSuccess.id)}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}
@@ -519,11 +597,20 @@ function ConnectorSetup({ onSetupComplete }) {
                   <div className="detail-item">
                     <span className="detail-label">Type:</span>
                     <span className="detail-value">
-                      {connector.type === "s3" ? "AWS S3" : "Azure Blob Storage"}
+                      {connector.type === "s3"
+                        ? "AWS S3"
+                        : "Azure Blob Storage"}
                     </span>
                   </div>
                 </div>
                 <div className="connector-actions">
+                  <button
+                    className="btn-sync"
+                    onClick={() => handleSyncNow(connector.id)}
+                    disabled={isSyncing}
+                  >
+                    Sync
+                  </button>
                   <button
                     className="btn-edit"
                     onClick={() => handleEditConnector(connector)}
@@ -552,150 +639,177 @@ function ConnectorSetup({ onSetupComplete }) {
         </div>
       )}
 
-      { }
-      {!showStep2 && !showConnectorError && !showExistingConnector && !showFullConfiguration && (
-        <div className="config-step-card">
-          <div className="step-header">
-            <div className="step-number">Step 1</div>
-            <h2>Run API Connector</h2>
-          </div>
+      {}
+      {!showStep2 &&
+        !showConnectorError &&
+        !showExistingConnector &&
+        !showFullConfiguration && (
+          <div className="config-step-card">
+            <div className="step-header">
+              <div className="step-number">Step 1</div>
+              <h2>Run API Connector</h2>
+            </div>
 
-          <div className="step-content">
-            <p className="step-description">
-              Select your cloud platform and create a connector to start syncing
-              your data sources.
-            </p>
+            <div className="step-content">
+              <p className="step-description">
+                Select your cloud platform and create a connector to start
+                syncing your data sources.
+              </p>
 
-            <div className="connector-form">
-              <div className="form-group">
-                <label htmlFor="connector-type">Connector Type</label>
-                <select
-                  id="connector-type"
-                  className="connector-select"
-                  value={selectedConnectorType}
-                  onChange={(e) => setSelectedConnectorType(e.target.value)}
-                  disabled={isCreating || isTypeDisabled}
+              <div className="connector-form">
+                <div className="form-group">
+                  <label htmlFor="connector-type">Connector Type</label>
+                  <select
+                    id="connector-type"
+                    className="connector-select"
+                    value={selectedConnectorType}
+                    onChange={(e) => setSelectedConnectorType(e.target.value)}
+                    disabled={isCreating || isTypeDisabled}
+                  >
+                    <option value="Azure">Azure</option>
+                    <option value="AWS">AWS</option>
+                  </select>
+                  {isTypeDisabled && (
+                    <p
+                      style={{
+                        fontSize: "12px",
+                        color: "#7b7b7b",
+                        marginTop: "8px",
+                      }}
+                    >
+                      Type pre-selected to avoid duplicate connector types.
+                    </p>
+                  )}
+                </div>
+
+                <button
+                  className="create-connector-button"
+                  onClick={handleCreateConnector}
+                  disabled={isCreating}
                 >
-                  <option value="Azure">Azure</option>
-                  <option value="AWS">AWS</option>
-                </select>
-                {isTypeDisabled && (
-                  <p style={{ fontSize: "12px", color: "#7b7b7b", marginTop: "8px" }}>
-                    Type pre-selected to avoid duplicate connector types.
-                  </p>
-                )}
+                  {isCreating ? "Creating Connector..." : "Create Connector"}
+                </button>
+              </div>
+
+              {creationError && (
+                <div className="notification error-notification">
+                  <span className="notification-icon">❌</span>
+                  <span>{creationError}</span>
+                </div>
+              )}
+
+              {creationSuccess && (
+                <div className="success-section">
+                  <div className="notification success-notification">
+                    <span className="notification-icon">✅</span>
+                    <span>Connector created successfully!</span>
+                  </div>
+
+                  <div className="connector-details">
+                    <h3>Connector Information</h3>
+                    <div className="detail-grid">
+                      <div className="detail-item">
+                        <span className="detail-label">ID:</span>
+                        <span className="detail-value">
+                          {creationSuccess.id}
+                        </span>
+                      </div>
+                      <div className="detail-item">
+                        <span className="detail-label">Name:</span>
+                        <span className="detail-value">
+                          {creationSuccess.name}
+                        </span>
+                      </div>
+                      <div className="detail-item">
+                        <span className="detail-label">Type:</span>
+                        <span className="detail-value">
+                          {creationSuccess.type}
+                        </span>
+                      </div>
+                      <div className="detail-item full-width">
+                        <span className="detail-label">Result:</span>
+                        <span className="detail-value">
+                          {creationSuccess.result}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+      {/* Step 2: Deploy Container */}
+      {showStep2 &&
+        !showStep3 &&
+        !configurationSuccess &&
+        !showConnectorError && (
+          <div className="config-step-card" style={{ marginTop: "24px" }}>
+            <div className="step-header">
+              <div className="step-number">Step 2</div>
+              <h2>Deploy Container</h2>
+            </div>
+
+            <div className="step-content">
+              <p className="step-description">
+                Configure the Docker environment and start the connector
+                container.
+              </p>
+
+              <div className="connector-id-section">
+                <div className="form-group">
+                  <label>Connector ID</label>
+                  <input
+                    type="text"
+                    className="form-input"
+                    value={creationSuccess?.id || ""}
+                    readOnly
+                  />
+                  <button
+                    className="copy-button"
+                    onClick={handleCopyConnectorId}
+                    title="Copy to clipboard"
+                  >
+                    📋 Copy
+                  </button>
+                </div>
+              </div>
+
+              <div className="instructions-section">
+                <h3>Instructions:</h3>
+                <ol className="instruction-list">
+                  <li>
+                    Open <code>.env</code> in the <code>local/</code> folder for
+                    elastic docker-compose.
+                  </li>
+                  <li>
+                    Find variable{" "}
+                    <code>
+                      {creationSuccess?.type === "azure_blob_storage"
+                        ? "AZCONFIG"
+                        : "S3CONFIG"}
+                      _CONNECTOR_ID
+                    </code>{" "}
+                    and paste the connector ID.
+                  </li>
+                  <li>
+                    Rerun docker-compose or recreate the corresponding connector
+                    container.
+                  </li>
+                </ol>
               </div>
 
               <button
                 className="create-connector-button"
-                onClick={handleCreateConnector}
-                disabled={isCreating}
+                onClick={handleContainerStarted}
+                style={{ marginTop: "20px" }}
               >
-                {isCreating ? "Creating Connector..." : "Create Connector"}
+                I have updated .env & started container
               </button>
             </div>
-
-            {creationError && (
-              <div className="notification error-notification">
-                <span className="notification-icon">❌</span>
-                <span>{creationError}</span>
-              </div>
-            )}
-
-            {creationSuccess && (
-              <div className="success-section">
-                <div className="notification success-notification">
-                  <span className="notification-icon">✅</span>
-                  <span>Connector created successfully!</span>
-                </div>
-
-                <div className="connector-details">
-                  <h3>Connector Information</h3>
-                  <div className="detail-grid">
-                    <div className="detail-item">
-                      <span className="detail-label">ID:</span>
-                      <span className="detail-value">{creationSuccess.id}</span>
-                    </div>
-                    <div className="detail-item">
-                      <span className="detail-label">Name:</span>
-                      <span className="detail-value">{creationSuccess.name}</span>
-                    </div>
-                    <div className="detail-item">
-                      <span className="detail-label">Type:</span>
-                      <span className="detail-value">{creationSuccess.type}</span>
-                    </div>
-                    <div className="detail-item full-width">
-                      <span className="detail-label">Result:</span>
-                      <span className="detail-value">{creationSuccess.result}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
           </div>
-        </div>
-      )}
-
-      {/* Step 2: Deploy Container */}
-      {showStep2 && !showStep3 && !configurationSuccess && !showConnectorError && (
-        <div className="config-step-card" style={{ marginTop: "24px" }}>
-          <div className="step-header">
-            <div className="step-number">Step 2</div>
-            <h2>Deploy Container</h2>
-          </div>
-
-          <div className="step-content">
-            <p className="step-description">
-              Configure the Docker environment and start the connector container.
-            </p>
-
-            <div className="connector-id-section">
-              <div className="form-group">
-                <label>Connector ID</label>
-                <input
-                  type="text"
-                  className="form-input"
-                  value={creationSuccess?.id || ""}
-                  readOnly
-                />
-                <button
-                  className="copy-button"
-                  onClick={handleCopyConnectorId}
-                  title="Copy to clipboard"
-                >
-                  📋 Copy
-                </button>
-              </div>
-            </div>
-
-            <div className="instructions-section">
-              <h3>Instructions:</h3>
-              <ol className="instruction-list">
-                <li>
-                  Open <code>.env</code> in the <code>local/</code> folder for
-                  elastic docker-compose.
-                </li>
-                <li>
-                  Find variable <code>{creationSuccess?.name}_CONNECTOR_ID</code>{" "}
-                  and paste the connector ID.
-                </li>
-                <li>
-                  Rerun docker-compose or recreate the corresponding connector
-                  container.
-                </li>
-              </ol>
-            </div>
-
-            <button
-              className="create-connector-button"
-              onClick={handleContainerStarted}
-              style={{ marginTop: "20px" }}
-            >
-              I have updated .env & started container
-            </button>
-          </div>
-        </div>
-      )}
+        )}
 
       {/* Step 3: Update Connector Configuration */}
       {showStep3 && !configurationSuccess && !showConnectorError && (
@@ -841,7 +955,9 @@ function ConnectorSetup({ onSetupComplete }) {
                 onClick={handleConfigureConnector}
                 disabled={isConfiguringConnector}
               >
-                {isConfiguringConnector ? "Configuring..." : "Configure Connector"}
+                {isConfiguringConnector
+                  ? "Configuring..."
+                  : "Configure Connector"}
               </button>
               {isEditing && (
                 <button
@@ -877,8 +993,8 @@ function ConnectorSetup({ onSetupComplete }) {
             )}
 
             <p className="step-description">
-              Start the initial data synchronization to import your files and data
-              sources into the platform.
+              Start the initial data synchronization to import your files and
+              data sources into the platform.
             </p>
 
             {syncError && (

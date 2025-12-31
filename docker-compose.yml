@@ -12,10 +12,9 @@ services:
     env_file:
       - .env
     restart: unless-stopped
-
   dsp-dashboard:
     depends_on:
-      mongodb:
+      dsp-server:
         condition: service_healthy
     image: dsp-dashboard:latest
     container_name: dsp-dashboard
@@ -24,14 +23,12 @@ services:
     env_file:
       - .env
     restart: unless-stopped
-
   dsp-model:
     image: dsp-model:12.1.0-base-ubi8
     container_name: dsp-model
     ports:
       - 8000:8000
     restart: unless-stopped
-
   mongodb:
     image: mongodb/mongodb-atlas-local
     container_name: dsp-database-mongodb

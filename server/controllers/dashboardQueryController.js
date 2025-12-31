@@ -10,12 +10,8 @@ import {
 import { utilityDeleteFileContent } from "../services/elasticsearchService/document.js";
 import Models from "../models/userModel.js";
 const { Connector } = Models;
-import { exec } from "child_process";
-import { promisify } from "util";
 import dotenv from "dotenv";
 dotenv.config();
-
-const execFile = promisify(exec)
 
 export const handleDashboardSearch = async (req, res) => {
   try {
@@ -74,7 +70,7 @@ export const handleDashboardSearch = async (req, res) => {
     let attempts = 0;
 
     while (syncStatus !== "completed" && attempts < maxRetries) {
-      await new Promise((r) => setTimeout(r, 30000)); // Wait 30 seconds
+      await new Promise((r) => setTimeout(r, 10000)); // Wait 10 seconds
 
       const syncStatusResponse = await utilitygetSyncStatus(
         syncResponse.sync_id
