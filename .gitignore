@@ -34,5 +34,20 @@ dist-ssr
 *.sw?
 
 .config/
-venv311/
+
+# Model & Data
+*.pkl
+*.joblib
+training_dataset.json
+
+# Python
 __pycache__/
+*.pyc
+*.pyo
+venv/
+venv311/
+
+# IDE
+.vscode/
+.idea/
+*.swp

@@ -3,41 +3,42 @@
 
 SENSITIVE_LABELS_BY_STANDARD = {
 
-    "Personal-Identity":
-        "This text contains personal identity information such as a person's full name, date of birth, gender, national identification number (CCCD/CMND), or passport number.",
-
-    "Contact-Info":
-        "This text contains personal contact information such as phone numbers, email addresses, home addresses, mailing addresses, or social media account details.",
+    "Personal-Info":
+        (
+            "This text contains personal identity information such as a person's full name, date of birth, gender, "
+            "national identification number (CCCD/CMND), passport number, social security number, or driver's license number."
+        ),
 
     "Financial-Info":
-        "This text contains financial or payment-related information such as bank account numbers, credit or debit card numbers, transaction histories, invoices, or billing details.",
+        (
+            "This text contains financial or payment-related information such as bank account numbers, credit or debit card numbers, "
+            "transaction histories, invoices, billing details, SWIFT codes, or IBAN numbers."
+        ),
 
     "Health-Info":
-        "This text contains medical or health-related information including diseases, medical conditions, diagnoses, laboratory test results, prescriptions, or treatment records.",
+        (
+            "This text contains medical or health-related information including diseases, medical conditions, diagnoses, "
+            "laboratory test results, prescriptions, medications, treatment records, or healthcare provider information."
+        ),
 
     "Credentials":
-        "This text contains authentication or security credentials such as passwords, one-time passwords (OTP), private keys, API keys, access tokens, or secret credentials.",
+        (
+            "This text contains authentication or security credentials such as passwords, one-time passwords (OTP), private keys, "
+            "API keys, access tokens, secret credentials, SSH keys, or SSL certificates."
+        ),
 
-    "Location-Info":
-        "This text contains precise or historical location information such as GPS coordinates, IP-based location data, real-time location, or movement and travel history.",
-
-    "Biometric-Info":
-        "This text contains biometric identifiers such as fingerprints, facial recognition data, iris scans, retina scans, or voice recognition information.",
-
-    "Employment-Info":
-        "This text contains employment or education-related information such as job titles, employer names, salary details, employee identifiers, student IDs, or academic records.",
-
-    "Legal-Info":
-        "This text contains legal or contractual information such as contracts, agreements, legal documents, court records, lawsuits, or compliance-related materials.",
-
-    "Device-System-Info":
-        "This text contains device or system-related identifiers such as IP addresses, MAC addresses, device IDs, system logs, authentication logs, or hardware fingerprints.",
-        
-    "Technical-Content":
-        "This text contains technical content such as source code, shell commands, configuration scripts, software installation instructions, or system administration commands.",
+    "System-Info":
+        (
+            "This text contains device or system-related identifiers such as IP addresses, MAC addresses, device IDs, IMEI numbers, "
+            "system logs, authentication logs, GPS coordinates, or hardware fingerprints."
+        ),
 
     "Non-sensitive":
-        "This text contains only general, technical, or informational content and does not include any personal, financial, health, or confidential data."
+        (
+            "This text contains only publicly available, general information, news, documentation, or instructions "
+            "that does not reveal or expose any personal identities, financial details, health conditions, "
+            "biometric data, authentication credentials, system identifiers, or any other confidential information."
+        )
 }
 
 DEFAULT_LABEL_KEYS = list(SENSITIVE_LABELS_BY_STANDARD.keys())
