@@ -1,0 +1,6883 @@
+[
+  {
+    "index": 0,
+    "text": "Số điện thoại liên hệ là 0901234567",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9904864430427551
+  },
+  {
+    "index": 1,
+    "text": "Email của người dùng là example@gmail.com",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.990326464176178
+  },
+  {
+    "index": 2,
+    "text": "Địa chỉ nhà tại số 12 Nguyễn Trãi, Hà Nội",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9920586943626404
+  },
+  {
+    "index": 3,
+    "text": "Liên hệ qua số hotline 19001234",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9911729097366333
+  },
+  {
+    "index": 4,
+    "text": "Địa chỉ email công việc user@company.com",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9942381978034973
+  },
+  {
+    "index": 5,
+    "text": "Số di động dùng để liên lạc",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9904910326004028
+  },
+  {
+    "index": 6,
+    "text": "Địa chỉ nhận thư là Quận 1, TP.HCM",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9942847490310669
+  },
+  {
+    "index": 7,
+    "text": "Email cá nhân được sử dụng để đăng ký",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9930641651153564
+  },
+  {
+    "index": 8,
+    "text": "Số điện thoại bàn văn phòng",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9892584681510925
+  },
+  {
+    "index": 9,
+    "text": "Địa chỉ thường trú tại phường Bến Nghé",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9928312301635742
+  },
+  {
+    "index": 10,
+    "text": "Số điện thoại khẩn cấp",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9919412136077881
+  },
+  {
+    "index": 11,
+    "text": "Địa chỉ giao hàng được cung cấp",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9926988482475281
+  },
+  {
+    "index": 12,
+    "text": "Email xác nhận tài khoản",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9887362718582153
+  },
+  {
+    "index": 13,
+    "text": "Số điện thoại dùng cho xác thực",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9923508763313293
+  },
+  {
+    "index": 14,
+    "text": "Địa chỉ cư trú hiện tại",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9933878779411316
+  },
+  {
+    "index": 15,
+    "text": "Email đăng nhập hệ thống",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9889615774154663
+  },
+  {
+    "index": 16,
+    "text": "Số điện thoại liên hệ khách hàng",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.991569995880127
+  },
+  {
+    "index": 17,
+    "text": "Địa chỉ nhận thông báo",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9910260438919067
+  },
+  {
+    "index": 18,
+    "text": "Email liên lạc chính",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9891613721847534
+  },
+  {
+    "index": 19,
+    "text": "Số điện thoại cá nhân",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9910954833030701
+  },
+  {
+    "index": 20,
+    "text": "Email người dùng đã đăng ký",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9899175763130188
+  },
+  {
+    "index": 21,
+    "text": "Địa chỉ gửi thư tín",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9913919568061829
+  },
+  {
+    "index": 22,
+    "text": "Liên hệ qua số di động",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9904868006706238
+  },
+  {
+    "index": 23,
+    "text": "Email dùng để nhận thông báo",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9877059459686279
+  },
+  {
+    "index": 24,
+    "text": "Địa chỉ nhà riêng",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9895317554473877
+  },
+  {
+    "index": 25,
+    "text": "Số điện thoại được cung cấp khi đăng ký",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9925454258918762
+  },
+  {
+    "index": 26,
+    "text": "Email liên hệ khẩn cấp",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9931331276893616
+  },
+  {
+    "index": 27,
+    "text": "Địa chỉ nơi ở hiện nay",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.993314802646637
+  },
+  {
+    "index": 28,
+    "text": "Số điện thoại người nhận",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9893362522125244
+  },
+  {
+    "index": 29,
+    "text": "Email công ty",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9814544916152954
+  },
+  {
+    "index": 30,
+    "text": "Địa chỉ văn phòng làm việc",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.991428792476654
+  },
+  {
+    "index": 31,
+    "text": "Liên hệ qua email nội bộ",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9928232431411743
+  },
+  {
+    "index": 32,
+    "text": "Số điện thoại chăm sóc khách hàng",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9916276335716248
+  },
+  {
+    "index": 33,
+    "text": "Địa chỉ chuyển phát",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9883289337158203
+  },
+  {
+    "index": 34,
+    "text": "Email dùng cho liên lạc",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.989260196685791
+  },
+  {
+    "index": 35,
+    "text": "Số điện thoại phụ",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9850209355354309
+  },
+  {
+    "index": 36,
+    "text": "Địa chỉ liên hệ chính",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.989356517791748
+  },
+  {
+    "index": 37,
+    "text": "Email hỗ trợ kỹ thuật",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.988632082939148
+  },
+  {
+    "index": 38,
+    "text": "Số điện thoại được lưu trong hồ sơ",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9885104298591614
+  },
+  {
+    "index": 39,
+    "text": "Địa chỉ email xác minh",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.991436243057251
+  },
+  {
+    "index": 40,
+    "text": "Số điện thoại để liên hệ lại",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9920752644538879
+  },
+  {
+    "index": 41,
+    "text": "Địa chỉ nhận bưu kiện",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9934616088867188
+  },
+  {
+    "index": 42,
+    "text": "Email người gửi",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9863708019256592
+  },
+  {
+    "index": 43,
+    "text": "Số điện thoại người nhận hàng",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9913315176963806
+  },
+  {
+    "index": 44,
+    "text": "Địa chỉ giao dịch",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9894307255744934
+  },
+  {
+    "index": 45,
+    "text": "Email dùng cho thông báo hệ thống",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9911498427391052
+  },
+  {
+    "index": 46,
+    "text": "Số điện thoại được ghi nhận",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9898792505264282
+  },
+  {
+    "index": 47,
+    "text": "Địa chỉ nơi làm việc",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9915518760681152
+  },
+  {
+    "index": 48,
+    "text": "Email dùng cho liên hệ công việc",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9920456409454346
+  },
+  {
+    "index": 49,
+    "text": "Số điện thoại người liên hệ",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9912999868392944
+  },
+  {
+    "index": 50,
+    "text": "Địa chỉ nhà được cung cấp",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9906410574913025
+  },
+  {
+    "index": 51,
+    "text": "Email cá nhân của người dùng",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9914326667785645
+  },
+  {
+    "index": 52,
+    "text": "Số điện thoại đăng ký dịch vụ",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.993415355682373
+  },
+  {
+    "index": 53,
+    "text": "Địa chỉ gửi hàng",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.991136372089386
+  },
+  {
+    "index": 54,
+    "text": "Email dùng để phản hồi",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9891577959060669
+  },
+  {
+    "index": 55,
+    "text": "Số điện thoại hỗ trợ",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9893923401832581
+  },
+  {
+    "index": 56,
+    "text": "Địa chỉ nhận thư",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9913379549980164
+  },
+  {
+    "index": 57,
+    "text": "Email dùng để liên hệ khách hàng",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9910244941711426
+  },
+  {
+    "index": 58,
+    "text": "Số điện thoại liên hệ chính thức",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9921689629554749
+  },
+  {
+    "index": 59,
+    "text": "Địa chỉ email dùng để đăng nhập",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9925877451896667
+  },
+  {
+    "index": 60,
+    "text": "Số điện thoại xác nhận OTP",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9878324270248413
+  },
+  {
+    "index": 61,
+    "text": "Địa chỉ cư trú được cung cấp",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.993836522102356
+  },
+  {
+    "index": 62,
+    "text": "Email liên hệ phụ",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9891027212142944
+  },
+  {
+    "index": 63,
+    "text": "Số điện thoại người dùng hệ thống",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9920316934585571
+  },
+  {
+    "index": 64,
+    "text": "Địa chỉ nhận hàng hóa",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9918192625045776
+  },
+  {
+    "index": 65,
+    "text": "Email liên hệ khách hàng",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9894574880599976
+  },
+  {
+    "index": 66,
+    "text": "Số điện thoại nội bộ",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9897629022598267
+  },
+  {
+    "index": 67,
+    "text": "Địa chỉ email đăng ký tài khoản",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9942395687103271
+  },
+  {
+    "index": 68,
+    "text": "Số điện thoại để liên lạc",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9879063367843628
+  },
+  {
+    "index": 69,
+    "text": "Địa chỉ nơi nhận thông tin",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9892420172691345
+  },
+  {
+    "index": 70,
+    "text": "Email dùng cho hỗ trợ",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9883827567100525
+  },
+  {
+    "index": 71,
+    "text": "Số điện thoại liên hệ dịch vụ",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9924226999282837
+  },
+  {
+    "index": 72,
+    "text": "Địa chỉ email công việc",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9921422004699707
+  },
+  {
+    "index": 73,
+    "text": "Số điện thoại cá nhân người dùng",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9925183057785034
+  },
+  {
+    "index": 74,
+    "text": "Địa chỉ liên hệ khi cần",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.992015540599823
+  },
+  {
+    "index": 75,
+    "text": "Email dùng để xác nhận",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9894909858703613
+  },
+  {
+    "index": 76,
+    "text": "Số điện thoại người nhận thông báo",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9924797415733337
+  },
+  {
+    "index": 77,
+    "text": "Địa chỉ email chính thức",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9928442239761353
+  },
+  {
+    "index": 78,
+    "text": "Số điện thoại liên hệ hệ thống",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9919184446334839
+  },
+  {
+    "index": 79,
+    "text": "Địa chỉ email của tài khoản",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9923967123031616
+  },
+  {
+    "index": 80,
+    "text": "Số điện thoại đăng ký ban đầu",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9911991953849792
+  },
+  {
+    "index": 81,
+    "text": "Địa chỉ nhận thư từ",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9904525876045227
+  },
+  {
+    "index": 82,
+    "text": "Email dùng cho giao tiếp",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9828348755836487
+  },
+  {
+    "index": 83,
+    "text": "Số điện thoại được dùng liên hệ",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9912907481193542
+  },
+  {
+    "index": 84,
+    "text": "Địa chỉ cư trú tạm thời",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.993504524230957
+  },
+  {
+    "index": 85,
+    "text": "Email liên hệ người dùng",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9899038672447205
+  },
+  {
+    "index": 86,
+    "text": "Số điện thoại được cập nhật",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9867642521858215
+  },
+  {
+    "index": 87,
+    "text": "Địa chỉ liên hệ trong hồ sơ",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9888691306114197
+  },
+  {
+    "index": 88,
+    "text": "Email dùng cho liên hệ chính",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9922270774841309
+  },
+  {
+    "index": 89,
+    "text": "Mật khẩu đăng nhập hệ thống",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.988825798034668
+  },
+  {
+    "index": 90,
+    "text": "Password của tài khoản quản trị",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.988720178604126
+  },
+  {
+    "index": 91,
+    "text": "Mã OTP dùng để xác thực",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9893004894256592
+  },
+  {
+    "index": 92,
+    "text": "Mã xác minh một lần gửi qua SMS",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.991791307926178
+  },
+  {
+    "index": 93,
+    "text": "Chuỗi token truy cập hệ thống",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9884542226791382
+  },
+  {
+    "index": 94,
+    "text": "Access token được cấp cho ứng dụng",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9906861186027527
+  },
+  {
+    "index": 95,
+    "text": "Refresh token để gia hạn phiên đăng nhập",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9914386868476868
+  },
+  {
+    "index": 96,
+    "text": "API key dùng để gọi dịch vụ",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9909982085227966
+  },
+  {
+    "index": 97,
+    "text": "Khóa bí mật của ứng dụng",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9923241138458252
+  },
+  {
+    "index": 98,
+    "text": "Secret key cho hệ thống xác thực",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9876827001571655
+  },
+  {
+    "index": 99,
+    "text": "Mật khẩu WiFi nội bộ",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9889513254165649
+  },
+  {
+    "index": 100,
+    "text": "Thông tin đăng nhập máy chủ",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9860163331031799
+  },
+  {
+    "index": 101,
+    "text": "Tài khoản và mật khẩu quản trị",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9913387298583984
+  },
+  {
+    "index": 102,
+    "text": "Username và password của hệ thống",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9923141598701477
+  },
+  {
+    "index": 103,
+    "text": "Mã PIN bảo mật",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9849053025245667
+  },
+  {
+    "index": 104,
+    "text": "Mã khóa bảo mật thiết bị",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9901995658874512
+  },
+  {
+    "index": 105,
+    "text": "Khóa truy cập nội bộ",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9856600761413574
+  },
+  {
+    "index": 106,
+    "text": "Token xác thực người dùng",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9882287979125977
+  },
+  {
+    "index": 107,
+    "text": "Mã bảo mật tạm thời",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9866695404052734
+  },
+  {
+    "index": 108,
+    "text": "Chuỗi xác thực đăng nhập",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9884793162345886
+  },
+  {
+    "index": 109,
+    "text": "Private key dùng cho mã hóa",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9917500019073486
+  },
+  {
+    "index": 110,
+    "text": "Khóa riêng của chứng chỉ số",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9944792985916138
+  },
+  {
+    "index": 111,
+    "text": "Certificate private key",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9905349612236023
+  },
+  {
+    "index": 112,
+    "text": "Mã bí mật dùng cho ký số",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9909800291061401
+  },
+  {
+    "index": 113,
+    "text": "Chuỗi xác thực JWT",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9869436025619507
+  },
+  {
+    "index": 114,
+    "text": "Bearer token cho API",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9874446988105774
+  },
+  {
+    "index": 115,
+    "text": "OAuth access token",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9884570837020874
+  },
+  {
+    "index": 116,
+    "text": "OAuth client secret",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9910604953765869
+  },
+  {
+    "index": 117,
+    "text": "Client ID và client secret",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9935339689254761
+  },
+  {
+    "index": 118,
+    "text": "Mã khóa ứng dụng",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.985694169998169
+  },
+  {
+    "index": 119,
+    "text": "Mật khẩu cơ sở dữ liệu",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9869115352630615
+  },
+  {
+    "index": 120,
+    "text": "Chuỗi kết nối có chứa mật khẩu",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.987797737121582
+  },
+  {
+    "index": 121,
+    "text": "Thông tin đăng nhập database",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.984209418296814
+  },
+  {
+    "index": 122,
+    "text": "Mật khẩu tài khoản root",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9883590340614319
+  },
+  {
+    "index": 123,
+    "text": "Root password của hệ thống",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9891039133071899
+  },
+  {
+    "index": 124,
+    "text": "Thông tin đăng nhập quản trị viên",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9885154366493225
+  },
+  {
+    "index": 125,
+    "text": "Mật khẩu tài khoản email",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9899889826774597
+  },
+  {
+    "index": 126,
+    "text": "Email account password",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9867494702339172
+  },
+  {
+    "index": 127,
+    "text": "Token xác thực webhook",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9867933988571167
+  },
+  {
+    "index": 128,
+    "text": "Mã khóa tích hợp hệ thống",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.989085853099823
+  },
+  {
+    "index": 129,
+    "text": "Integration secret key",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.978134274482727
+  },
+  {
+    "index": 130,
+    "text": "Mã xác thực dịch vụ nội bộ",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9904416799545288
+  },
+  {
+    "index": 131,
+    "text": "Khóa truy cập dịch vụ",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9873262643814087
+  },
+  {
+    "index": 132,
+    "text": "Access key nội bộ",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9883580207824707
+  },
+  {
+    "index": 133,
+    "text": "Secret access key",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.987679123878479
+  },
+  {
+    "index": 134,
+    "text": "Mật khẩu mã hóa dữ liệu",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9881266355514526
+  },
+  {
+    "index": 135,
+    "text": "Key mã hóa dữ liệu",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9886713624000549
+  },
+  {
+    "index": 136,
+    "text": "Data encryption key",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9902011752128601
+  },
+  {
+    "index": 137,
+    "text": "Master key hệ thống",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9817681312561035
+  },
+  {
+    "index": 138,
+    "text": "System master key",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.982837975025177
+  },
+  {
+    "index": 139,
+    "text": "Khóa bảo mật trung tâm",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9896664619445801
+  },
+  {
+    "index": 140,
+    "text": "Mã xác nhận đăng nhập",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9863966703414917
+  },
+  {
+    "index": 141,
+    "text": "Login verification code",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9828568696975708
+  },
+  {
+    "index": 142,
+    "text": "Mã xác thực hai yếu tố",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9829009175300598
+  },
+  {
+    "index": 143,
+    "text": "Two-factor authentication code",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9887630343437195
+  },
+  {
+    "index": 144,
+    "text": "2FA secret key",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.984337568283081
+  },
+  {
+    "index": 145,
+    "text": "Mã khôi phục tài khoản",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9893231987953186
+  },
+  {
+    "index": 146,
+    "text": "Account recovery code",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9865045547485352
+  },
+  {
+    "index": 147,
+    "text": "Backup authentication code",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9870787858963013
+  },
+  {
+    "index": 148,
+    "text": "Temporary access code",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9884603023529053
+  },
+  {
+    "index": 149,
+    "text": "Thông tin xác thực nội bộ",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9886376261711121
+  },
+  {
+    "index": 151,
+    "text": "Chuỗi bí mật cấu hình hệ thống",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9875435829162598
+  },
+  {
+    "index": 152,
+    "text": "System configuration secret",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9839969277381897
+  },
+  {
+    "index": 153,
+    "text": "Environment variable chứa secret",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9783738851547241
+  },
+  {
+    "index": 154,
+    "text": "Secret trong file cấu hình",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9862135052680969
+  },
+  {
+    "index": 155,
+    "text": "Hard-coded password trong mã nguồn",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9887439012527466
+  },
+  {
+    "index": 156,
+    "text": "Plain text password",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9841083884239197
+  },
+  {
+    "index": 159,
+    "text": "Chức danh công việc của nhân viên",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9930596947669983
+  },
+  {
+    "index": 160,
+    "text": "Vị trí làm việc hiện tại",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9909509420394897
+  },
+  {
+    "index": 161,
+    "text": "Thông tin công ty đang làm việc",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9877363443374634
+  },
+  {
+    "index": 162,
+    "text": "Tên phòng ban công tác",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9915193319320679
+  },
+  {
+    "index": 163,
+    "text": "Mã số nhân viên",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9884793162345886
+  },
+  {
+    "index": 164,
+    "text": "Thông tin hồ sơ nhân sự",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.989700198173523
+  },
+  {
+    "index": 165,
+    "text": "Lịch sử công tác",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9843752384185791
+  },
+  {
+    "index": 166,
+    "text": "Kinh nghiệm làm việc",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9792196154594421
+  },
+  {
+    "index": 167,
+    "text": "Vị trí chuyên môn",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9927453994750977
+  },
+  {
+    "index": 168,
+    "text": "Chức vụ quản lý",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9852598905563354
+  },
+  {
+    "index": 169,
+    "text": "Thông tin hợp đồng lao động",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.988507866859436
+  },
+  {
+    "index": 170,
+    "text": "Ngày bắt đầu làm việc",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9858055114746094
+  },
+  {
+    "index": 171,
+    "text": "Ngày kết thúc hợp đồng",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.989702582359314
+  },
+  {
+    "index": 172,
+    "text": "Trạng thái nhân viên",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.989857017993927
+  },
+  {
+    "index": 173,
+    "text": "Thông tin biên chế",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9848583936691284
+  },
+  {
+    "index": 174,
+    "text": "Mức lương theo thang bậc",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9894629120826721
+  },
+  {
+    "index": 175,
+    "text": "Chính sách đãi ngộ",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9853214025497437
+  },
+  {
+    "index": 176,
+    "text": "Thông tin đánh giá nhân sự",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9871849417686462
+  },
+  {
+    "index": 177,
+    "text": "Kết quả đánh giá hiệu suất",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9862725734710693
+  },
+  {
+    "index": 178,
+    "text": "Xếp loại nhân viên",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.991991400718689
+  },
+  {
+    "index": 179,
+    "text": "Thông tin thăng chức",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9784843325614929
+  },
+  {
+    "index": 180,
+    "text": "Quyết định bổ nhiệm",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9877380132675171
+  },
+  {
+    "index": 181,
+    "text": "Chức vụ được giao",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9912919402122498
+  },
+  {
+    "index": 182,
+    "text": "Lịch sử thăng tiến",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9826918244361877
+  },
+  {
+    "index": 183,
+    "text": "Thông tin điều chuyển công tác",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9846977591514587
+  },
+  {
+    "index": 184,
+    "text": "Thông tin đào tạo nội bộ",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.986646294593811
+  },
+  {
+    "index": 185,
+    "text": "Khóa đào tạo chuyên môn",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9885834455490112
+  },
+  {
+    "index": 186,
+    "text": "Chứng chỉ nghề nghiệp",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9776153564453125
+  },
+  {
+    "index": 187,
+    "text": "Kết quả đào tạo",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9861467480659485
+  },
+  {
+    "index": 188,
+    "text": "Lịch sử tham gia đào tạo",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9866146445274353
+  },
+  {
+    "index": 189,
+    "text": "Thông tin học tập của sinh viên",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9826039671897888
+  },
+  {
+    "index": 190,
+    "text": "Mã số sinh viên",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9852451682090759
+  },
+  {
+    "index": 191,
+    "text": "Chuyên ngành đào tạo",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9900996088981628
+  },
+  {
+    "index": 192,
+    "text": "Chương trình học",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.979617714881897
+  },
+  {
+    "index": 193,
+    "text": "Trình độ học vấn",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9799033403396606
+  },
+  {
+    "index": 194,
+    "text": "Kết quả học tập",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9864146113395691
+  },
+  {
+    "index": 195,
+    "text": "Bảng điểm học tập",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9835454821586609
+  },
+  {
+    "index": 196,
+    "text": "Thành tích học tập",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9862699508666992
+  },
+  {
+    "index": 197,
+    "text": "Thông tin tốt nghiệp",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9758388996124268
+  },
+  {
+    "index": 198,
+    "text": "Tình trạng học vụ",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9847747087478638
+  },
+  {
+    "index": 199,
+    "text": "Thông tin trường đang theo học",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9850440621376038
+  },
+  {
+    "index": 200,
+    "text": "Tên cơ sở đào tạo",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9881106019020081
+  },
+  {
+    "index": 201,
+    "text": "Ngành nghề đào tạo",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9875248670578003
+  },
+  {
+    "index": 202,
+    "text": "Lớp học đang tham gia",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9903961420059204
+  },
+  {
+    "index": 203,
+    "text": "Hồ sơ sinh viên",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9843942523002625
+  },
+  {
+    "index": 204,
+    "text": "Thông tin thực tập",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9843074083328247
+  },
+  {
+    "index": 205,
+    "text": "Đơn vị thực tập",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9861544966697693
+  },
+  {
+    "index": 206,
+    "text": "Thời gian thực tập",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9887651801109314
+  },
+  {
+    "index": 207,
+    "text": "Báo cáo thực tập",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9862735867500305
+  },
+  {
+    "index": 208,
+    "text": "Kết quả thực tập",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9864608645439148
+  },
+  {
+    "index": 209,
+    "text": "Thông tin tuyển dụng",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9790716171264648
+  },
+  {
+    "index": 210,
+    "text": "Vị trí ứng tuyển",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9880162477493286
+  },
+  {
+    "index": 211,
+    "text": "Hồ sơ ứng viên",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9881767630577087
+  },
+  {
+    "index": 212,
+    "text": "Quá trình phỏng vấn",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9872011542320251
+  },
+  {
+    "index": 213,
+    "text": "Kết quả tuyển dụng",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.98377925157547
+  },
+  {
+    "index": 214,
+    "text": "Thông tin nghỉ việc",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9821157455444336
+  },
+  {
+    "index": 215,
+    "text": "Ngày nghỉ việc",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9827110171318054
+  },
+  {
+    "index": 216,
+    "text": "Lý do nghỉ việc",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9856997728347778
+  },
+  {
+    "index": 217,
+    "text": "Trạng thái chấm dứt hợp đồng",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9888222813606262
+  },
+  {
+    "index": 218,
+    "text": "Thông tin bàn giao công việc",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9897758960723877
+  },
+  {
+    "index": 219,
+    "text": "Thông tin công việc bán thời gian",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9895055294036865
+  },
+  {
+    "index": 220,
+    "text": "Hợp đồng thời vụ",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9871594309806824
+  },
+  {
+    "index": 221,
+    "text": "Vị trí cộng tác viên",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9907332062721252
+  },
+  {
+    "index": 222,
+    "text": "Thông tin việc làm tạm thời",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9810354709625244
+  },
+  {
+    "index": 223,
+    "text": "Lịch làm việc",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9832658171653748
+  },
+  {
+    "index": 224,
+    "text": "Thông tin phân công nhiệm vụ",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9876977205276489
+  },
+  {
+    "index": 225,
+    "text": "Mô tả công việc",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9872859120368958
+  },
+  {
+    "index": 226,
+    "text": "Nhiệm vụ được giao",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9892287850379944
+  },
+  {
+    "index": 227,
+    "text": "Trách nhiệm công việc",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9902202486991882
+  },
+  {
+    "index": 228,
+    "text": "Vai trò trong tổ chức",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9807707667350769
+  },
+  {
+    "index": 229,
+    "text": "Số tài khoản ngân hàng dùng để nhận tiền",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9907233715057373
+  },
+  {
+    "index": 230,
+    "text": "Thông tin thẻ tín dụng được sử dụng để thanh toán",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9873141646385193
+  },
+  {
+    "index": 231,
+    "text": "Lịch sử giao dịch ngân hàng trong tháng",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9898404479026794
+  },
+  {
+    "index": 232,
+    "text": "Chi tiết hóa đơn thanh toán dịch vụ",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9926706552505493
+  },
+  {
+    "index": 233,
+    "text": "Số dư tài khoản hiện tại",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.989514946937561
+  },
+  {
+    "index": 234,
+    "text": "Thông tin chuyển khoản ngân hàng",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9865292310714722
+  },
+  {
+    "index": 235,
+    "text": "Tài khoản thanh toán đã được đăng ký",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9900538325309753
+  },
+  {
+    "index": 236,
+    "text": "Chi tiết giao dịch mua hàng",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9894031286239624
+  },
+  {
+    "index": 237,
+    "text": "Thông tin thẻ ghi nợ nội địa",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9872725009918213
+  },
+  {
+    "index": 238,
+    "text": "Hóa đơn điện tử của khách hàng",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9915444850921631
+  },
+  {
+    "index": 239,
+    "text": "Số tài khoản dùng cho giao dịch",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9923741817474365
+  },
+  {
+    "index": 240,
+    "text": "Thông tin thanh toán qua ngân hàng",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9889297485351562
+  },
+  {
+    "index": 241,
+    "text": "Lịch sử thanh toán hóa đơn",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9915913939476013
+  },
+  {
+    "index": 242,
+    "text": "Chi tiết giao dịch thẻ",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9883008003234863
+  },
+  {
+    "index": 243,
+    "text": "Thông tin ví điện tử",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9847502112388611
+  },
+  {
+    "index": 244,
+    "text": "Số dư ví điện tử hiện tại",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9912266135215759
+  },
+  {
+    "index": 245,
+    "text": "Tài khoản nhận lương hàng tháng",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9885976910591125
+  },
+  {
+    "index": 246,
+    "text": "Chi tiết bảng lương",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9884577989578247
+  },
+  {
+    "index": 247,
+    "text": "Thông tin thanh toán trực tuyến",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9876713156700134
+  },
+  {
+    "index": 248,
+    "text": "Hóa đơn thanh toán tiền điện",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9893855452537537
+  },
+  {
+    "index": 249,
+    "text": "Thông tin thanh toán tiền nước",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9853849411010742
+  },
+  {
+    "index": 250,
+    "text": "Số tài khoản thanh toán hóa đơn",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9926612377166748
+  },
+  {
+    "index": 251,
+    "text": "Lịch sử chuyển tiền",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9861288666725159
+  },
+  {
+    "index": 252,
+    "text": "Chi tiết giao dịch tài chính",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9889320731163025
+  },
+  {
+    "index": 253,
+    "text": "Thông tin thu nhập hàng tháng",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9867940545082092
+  },
+  {
+    "index": 254,
+    "text": "Mức lương được chi trả",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9907304048538208
+  },
+  {
+    "index": 255,
+    "text": "Thông tin tài khoản tiết kiệm",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.983272135257721
+  },
+  {
+    "index": 256,
+    "text": "Chi tiết sổ tiết kiệm",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9819896817207336
+  },
+  {
+    "index": 257,
+    "text": "Thông tin khoản vay ngân hàng",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9861293435096741
+  },
+  {
+    "index": 258,
+    "text": "Dư nợ khoản vay hiện tại",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9919724464416504
+  },
+  {
+    "index": 259,
+    "text": "Lịch sử trả nợ ngân hàng",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9888282418251038
+  },
+  {
+    "index": 260,
+    "text": "Thông tin thẻ ATM",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9824068546295166
+  },
+  {
+    "index": 261,
+    "text": "Số tài khoản dùng để rút tiền",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9918530583381653
+  },
+  {
+    "index": 262,
+    "text": "Chi tiết giao dịch rút tiền",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.986311137676239
+  },
+  {
+    "index": 263,
+    "text": "Thông tin thanh toán học phí",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9836541414260864
+  },
+  {
+    "index": 264,
+    "text": "Hóa đơn viện phí đã thanh toán",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9900708198547363
+  },
+  {
+    "index": 265,
+    "text": "Thông tin thanh toán bảo hiểm",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9851707816123962
+  },
+  {
+    "index": 266,
+    "text": "Chi tiết phí bảo hiểm",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9870860576629639
+  },
+  {
+    "index": 267,
+    "text": "Thông tin thuế thu nhập cá nhân",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9881719350814819
+  },
+  {
+    "index": 268,
+    "text": "Chi tiết nghĩa vụ tài chính",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.989020586013794
+  },
+  {
+    "index": 269,
+    "text": "Thông tin giao dịch tài khoản",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9881157279014587
+  },
+  {
+    "index": 270,
+    "text": "Số tài khoản nhận thanh toán",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9903814792633057
+  },
+  {
+    "index": 271,
+    "text": "Chi tiết giao dịch ngân hàng điện tử",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9897223114967346
+  },
+  {
+    "index": 272,
+    "text": "Thông tin thanh toán qua ứng dụng",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9895864129066467
+  },
+  {
+    "index": 273,
+    "text": "Hóa đơn mua sắm",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9854297637939453
+  },
+  {
+    "index": 274,
+    "text": "Chi tiết thanh toán mua hàng",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9898814558982849
+  },
+  {
+    "index": 275,
+    "text": "Thông tin chi tiêu cá nhân",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9893569946289062
+  },
+  {
+    "index": 276,
+    "text": "Lịch sử chi tiêu tài chính",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9890815019607544
+  },
+  {
+    "index": 277,
+    "text": "Thông tin tài khoản doanh nghiệp",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9869998097419739
+  },
+  {
+    "index": 278,
+    "text": "Chi tiết giao dịch doanh nghiệp",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9891566634178162
+  },
+  {
+    "index": 279,
+    "text": "Thông tin thanh toán hợp đồng",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.98850417137146
+  },
+  {
+    "index": 280,
+    "text": "Giá trị thanh toán hợp đồng",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9890035390853882
+  },
+  {
+    "index": 281,
+    "text": "Thông tin phí dịch vụ",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9851430058479309
+  },
+  {
+    "index": 282,
+    "text": "Chi tiết phí duy trì tài khoản",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9899361729621887
+  },
+  {
+    "index": 283,
+    "text": "Thông tin thanh toán định kỳ",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9843634963035583
+  },
+  {
+    "index": 284,
+    "text": "Lịch sử thanh toán định kỳ",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9894632697105408
+  },
+  {
+    "index": 285,
+    "text": "Thông tin khoản phí phát sinh",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9836674332618713
+  },
+  {
+    "index": 286,
+    "text": "Chi tiết phí giao dịch",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9892961978912354
+  },
+  {
+    "index": 287,
+    "text": "Thông tin thanh toán qua thẻ",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9859963059425354
+  },
+  {
+    "index": 288,
+    "text": "Hóa đơn thanh toán thẻ",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9885113835334778
+  },
+  {
+    "index": 289,
+    "text": "Thông tin tài khoản đầu tư",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9838286638259888
+  },
+  {
+    "index": 290,
+    "text": "Chi tiết danh mục đầu tư",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9878405332565308
+  },
+  {
+    "index": 291,
+    "text": "Thông tin cổ phiếu nắm giữ",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9830109477043152
+  },
+  {
+    "index": 292,
+    "text": "Giá trị tài sản tài chính",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9873124957084656
+  },
+  {
+    "index": 293,
+    "text": "Thông tin lợi nhuận đầu tư",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9814704656600952
+  },
+  {
+    "index": 294,
+    "text": "Chi tiết lãi suất ngân hàng",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9874091148376465
+  },
+  {
+    "index": 295,
+    "text": "Thông tin tiền gửi ngân hàng",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9867231845855713
+  },
+  {
+    "index": 296,
+    "text": "Số dư tiền gửi",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9871902465820312
+  },
+  {
+    "index": 297,
+    "text": "Thông tin thanh toán quốc tế",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.987509548664093
+  },
+  {
+    "index": 298,
+    "text": "Chi tiết giao dịch ngoại tệ",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9884924292564392
+  },
+  {
+    "index": 299,
+    "text": "Thông tin chuyển tiền quốc tế",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9871671199798584
+  },
+  {
+    "index": 300,
+    "text": "Chi tiết phí chuyển tiền",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9854172468185425
+  },
+  {
+    "index": 301,
+    "text": "Thông tin thanh toán thương mại",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9853019714355469
+  },
+  {
+    "index": 302,
+    "text": "Chi tiết công nợ",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9854700565338135
+  },
+  {
+    "index": 303,
+    "text": "Thông tin khoản phải thu",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9813254475593567
+  },
+  {
+    "index": 304,
+    "text": "Thông tin khoản phải trả",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9811966419219971
+  },
+  {
+    "index": 305,
+    "text": "Chi tiết báo cáo tài chính",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9902511835098267
+  },
+  {
+    "index": 306,
+    "text": "Thông tin dòng tiền",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.973048210144043
+  },
+  {
+    "index": 307,
+    "text": "Chi tiết ngân sách",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9856163859367371
+  },
+  {
+    "index": 308,
+    "text": "Thông tin kế toán nội bộ",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9884978532791138
+  },
+  {
+    "index": 389,
+    "text": "Hợp đồng pháp lý giữa các bên",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9898291230201721
+  },
+  {
+    "index": 390,
+    "text": "Thỏa thuận pháp lý được ký kết",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9901720881462097
+  },
+  {
+    "index": 391,
+    "text": "Điều khoản hợp đồng",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9887072443962097
+  },
+  {
+    "index": 392,
+    "text": "Văn bản pháp luật liên quan",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9833387136459351
+  },
+  {
+    "index": 393,
+    "text": "Tài liệu pháp lý chính thức",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.987173318862915
+  },
+  {
+    "index": 394,
+    "text": "Hồ sơ vụ kiện",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9881220459938049
+  },
+  {
+    "index": 395,
+    "text": "Tài liệu tố tụng",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.986976146697998
+  },
+  {
+    "index": 396,
+    "text": "Đơn khởi kiện",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9832857251167297
+  },
+  {
+    "index": 397,
+    "text": "Biên bản hòa giải",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9845811128616333
+  },
+  {
+    "index": 398,
+    "text": "Quyết định của tòa án",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.986585795879364
+  },
+  {
+    "index": 399,
+    "text": "Bản án đã tuyên",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.985003650188446
+  },
+  {
+    "index": 400,
+    "text": "Hồ sơ xét xử",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9855772256851196
+  },
+  {
+    "index": 401,
+    "text": "Thông tin phiên tòa",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9819155931472778
+  },
+  {
+    "index": 402,
+    "text": "Tài liệu vụ án",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9871330261230469
+  },
+  {
+    "index": 403,
+    "text": "Biên bản xét xử",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.984089732170105
+  },
+  {
+    "index": 404,
+    "text": "Tranh chấp pháp lý",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9862845540046692
+  },
+  {
+    "index": 405,
+    "text": "Hồ sơ tranh chấp",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9892842173576355
+  },
+  {
+    "index": 406,
+    "text": "Vụ việc pháp lý",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.981805145740509
+  },
+  {
+    "index": 407,
+    "text": "Thông tin tranh tụng",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9733297824859619
+  },
+  {
+    "index": 408,
+    "text": "Hồ sơ pháp chế",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9853564500808716
+  },
+  {
+    "index": 409,
+    "text": "Hợp đồng lao động",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9897722005844116
+  },
+  {
+    "index": 410,
+    "text": "Hợp đồng thương mại",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9863477945327759
+  },
+  {
+    "index": 411,
+    "text": "Hợp đồng mua bán",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9862484335899353
+  },
+  {
+    "index": 412,
+    "text": "Hợp đồng dịch vụ",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9871820211410522
+  },
+  {
+    "index": 413,
+    "text": "Hợp đồng hợp tác",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9903553128242493
+  },
+  {
+    "index": 414,
+    "text": "Thỏa thuận bảo mật",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9891564846038818
+  },
+  {
+    "index": 415,
+    "text": "Cam kết pháp lý",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9821150898933411
+  },
+  {
+    "index": 416,
+    "text": "Điều khoản sử dụng",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9852812886238098
+  },
+  {
+    "index": 417,
+    "text": "Chính sách pháp lý",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.980892539024353
+  },
+  {
+    "index": 418,
+    "text": "Quy định pháp luật",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9797492623329163
+  },
+  {
+    "index": 419,
+    "text": "Tài liệu tuân thủ pháp luật",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9878251552581787
+  },
+  {
+    "index": 420,
+    "text": "Hồ sơ tuân thủ",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9884593486785889
+  },
+  {
+    "index": 421,
+    "text": "Báo cáo tuân thủ",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9848383069038391
+  },
+  {
+    "index": 422,
+    "text": "Thông tin kiểm toán pháp lý",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9811810851097107
+  },
+  {
+    "index": 423,
+    "text": "Đánh giá tuân thủ",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9822045564651489
+  },
+  {
+    "index": 424,
+    "text": "Thông báo pháp lý",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9806677103042603
+  },
+  {
+    "index": 425,
+    "text": "Văn bản thông báo của cơ quan chức năng",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9884223937988281
+  },
+  {
+    "index": 426,
+    "text": "Quyết định xử phạt",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9859777092933655
+  },
+  {
+    "index": 427,
+    "text": "Biên bản vi phạm",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.987414538860321
+  },
+  {
+    "index": 428,
+    "text": "Thông tin xử lý pháp lý",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.980695366859436
+  },
+  {
+    "index": 429,
+    "text": "Giấy ủy quyền",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9815782904624939
+  },
+  {
+    "index": 430,
+    "text": "Văn bản ủy quyền",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9858080148696899
+  },
+  {
+    "index": 431,
+    "text": "Giấy chứng nhận pháp lý",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9831974506378174
+  },
+  {
+    "index": 432,
+    "text": "Giấy phép pháp lý",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9847610592842102
+  },
+  {
+    "index": 433,
+    "text": "Hồ sơ cấp phép",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9866310954093933
+  },
+  {
+    "index": 434,
+    "text": "Văn bản thỏa thuận",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9836953282356262
+  },
+  {
+    "index": 435,
+    "text": "Biên bản ghi nhớ pháp lý",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9843867421150208
+  },
+  {
+    "index": 436,
+    "text": "Thỏa thuận hợp tác",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9891478419303894
+  },
+  {
+    "index": 437,
+    "text": "Thỏa thuận giải quyết tranh chấp",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9889748692512512
+  },
+  {
+    "index": 438,
+    "text": "Hồ sơ đàm phán pháp lý",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9866362810134888
+  },
+  {
+    "index": 439,
+    "text": "Thông tin kiện tụng",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9831289649009705
+  },
+  {
+    "index": 440,
+    "text": "Hồ sơ khiếu nại",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9873900413513184
+  },
+  {
+    "index": 441,
+    "text": "Đơn tố cáo",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9838824272155762
+  },
+  {
+    "index": 442,
+    "text": "Văn bản giải quyết khiếu nại",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9868171811103821
+  },
+  {
+    "index": 443,
+    "text": "Tài liệu xử lý khiếu kiện",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9866451025009155
+  },
+  {
+    "index": 444,
+    "text": "Văn bản pháp luật hiện hành",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9850348234176636
+  },
+  {
+    "index": 445,
+    "text": "Tài liệu quy phạm pháp luật",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9843594431877136
+  },
+  {
+    "index": 446,
+    "text": "Thông tư hướng dẫn",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9806784391403198
+  },
+  {
+    "index": 447,
+    "text": "Nghị định pháp luật",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.981992781162262
+  },
+  {
+    "index": 448,
+    "text": "Quyết định hành chính",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9847712516784668
+  },
+  {
+    "index": 449,
+    "text": "Hồ sơ pháp lý doanh nghiệp",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9862151741981506
+  },
+  {
+    "index": 450,
+    "text": "Tài liệu pháp chế nội bộ",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9871329069137573
+  },
+  {
+    "index": 451,
+    "text": "Thông tin tư vấn pháp lý",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9747155904769897
+  },
+  {
+    "index": 452,
+    "text": "Ý kiến pháp lý",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9788090586662292
+  },
+  {
+    "index": 453,
+    "text": "Báo cáo pháp lý",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9830856323242188
+  },
+  {
+    "index": 454,
+    "text": "COPY . /app",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9798807501792908
+  },
+  {
+    "index": 455,
+    "text": "server started on port 4000",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9901896715164185
+  },
+  {
+    "index": 456,
+    "text": "application initialized successfully",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9872553944587708
+  },
+  {
+    "index": 457,
+    "text": "process exited with code 0",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9880436658859253
+  },
+  {
+    "index": 458,
+    "text": "error: failed to connect to server",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9936782717704773
+  },
+  {
+    "index": 459,
+    "text": "warning: deprecated function",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9873749613761902
+  },
+  {
+    "index": 460,
+    "text": "info: loading configuration",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9856880903244019
+  },
+  {
+    "index": 461,
+    "text": "debug: request received",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9894095063209534
+  },
+  {
+    "index": 462,
+    "text": "log file rotated",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9829807281494141
+  },
+  {
+    "index": 463,
+    "text": "index created successfully",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.98129802942276
+  },
+  {
+    "index": 464,
+    "text": "search query executed",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9888912439346313
+  },
+  {
+    "index": 465,
+    "text": "cluster health is green",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9550969004631042
+  },
+  {
+    "index": 466,
+    "text": "kubectl get pods",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9858002662658691
+  },
+  {
+    "index": 467,
+    "text": "kubectl describe pod",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9821028709411621
+  },
+  {
+    "index": 468,
+    "text": "kubectl logs pod-name",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.990164577960968
+  },
+  {
+    "index": 469,
+    "text": "kubectl delete pod",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9880939722061157
+  },
+  {
+    "index": 470,
+    "text": "kubectl apply -f deployment.yaml",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9895246624946594
+  },
+  {
+    "index": 471,
+    "text": "if __name__ == '__main__':",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9875858426094055
+  },
+  {
+    "index": 472,
+    "text": "Build job succeeded",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9780230522155762
+  },
+  {
+    "index": 473,
+    "text": "System health check passed",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9694494605064392
+  },
+  {
+    "index": 474,
+    "text": "CPU usage normal",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9774064421653748
+  },
+  {
+    "index": 475,
+    "text": "Memory usage stable",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9742395877838135
+  },
+  {
+    "index": 476,
+    "text": "Default settings applied",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9865052700042725
+  },
+  {
+    "index": 477,
+    "text": "Hệ thống sẽ được bảo trì vào cuối tuần.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9903992414474487
+  },
+  {
+    "index": 478,
+    "text": "Vui lòng đọc kỹ hướng dẫn trước khi sử dụng.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9914017915725708
+  },
+  {
+    "index": 479,
+    "text": "Đây là tài liệu giới thiệu về sản phẩm.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9253134727478027
+  },
+  {
+    "index": 480,
+    "text": "Báo cáo được cập nhật theo phiên bản mới.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.98391193151474
+  },
+  {
+    "index": 481,
+    "text": "Nội dung này chỉ mang tính chất tham khảo.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.8822213411331177
+  },
+  {
+    "index": 482,
+    "text": "Cuộc họp sẽ được tổ chức vào sáng thứ hai.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9907934069633484
+  },
+  {
+    "index": 483,
+    "text": "Thời gian làm việc từ thứ hai đến thứ sáu.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9908331036567688
+  },
+  {
+    "index": 484,
+    "text": "Mọi thắc mắc vui lòng liên hệ bộ phận hỗ trợ.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9831329584121704
+  },
+  {
+    "index": 485,
+    "text": "Chức năng này đang trong quá trình phát triển.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9550573825836182
+  },
+  {
+    "index": 486,
+    "text": "Phiên bản mới đã được phát hành.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9868066906929016
+  },
+  {
+    "index": 487,
+    "text": "This document describes the system architecture.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9707996845245361
+  },
+  {
+    "index": 488,
+    "text": "The project focuses on data classification.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9799936413764954
+  },
+  {
+    "index": 489,
+    "text": "The application is designed for scalability.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9841412305831909
+  },
+  {
+    "index": 490,
+    "text": "System performance has been improved.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9873761534690857
+  },
+  {
+    "index": 491,
+    "text": "The user interface has been updated.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9858344197273254
+  },
+  {
+    "index": 492,
+    "text": "Hướng dẫn cài đặt phần mềm cho người mới.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9925938248634338
+  },
+  {
+    "index": 493,
+    "text": "Quy trình xử lý dữ liệu được mô tả chi tiết.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9804495573043823
+  },
+  {
+    "index": 494,
+    "text": "Tài liệu này dùng cho mục đích đào tạo.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9780081510543823
+  },
+  {
+    "index": 495,
+    "text": "Nội dung mang tính học thuật.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9823088049888611
+  },
+  {
+    "index": 496,
+    "text": "Đây là ví dụ minh họa.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9870344996452332
+  },
+  {
+    "index": 497,
+    "text": "The meeting agenda includes system updates.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9763827323913574
+  },
+  {
+    "index": 498,
+    "text": "Please follow the instructions carefully.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9845337271690369
+  },
+  {
+    "index": 499,
+    "text": "This feature is optional.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9663056135177612
+  },
+  {
+    "index": 500,
+    "text": "The document is publicly available.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "System-Info",
+    "confidence_score": 0.8884958624839783
+  },
+  {
+    "index": 501,
+    "text": "Ứng dụng hỗ trợ nhiều ngôn ngữ.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9632410407066345
+  },
+  {
+    "index": 502,
+    "text": "Giao diện được thiết kế đơn giản.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9888837337493896
+  },
+  {
+    "index": 503,
+    "text": "Hệ thống đáp ứng các yêu cầu cơ bản.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9796116948127747
+  },
+  {
+    "index": 504,
+    "text": "Quy trình này giúp tối ưu hiệu suất.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9851208329200745
+  },
+  {
+    "index": 505,
+    "text": "Giải pháp được đề xuất mang tính tổng quát.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "System-Info",
+    "confidence_score": 0.8684579730033875
+  },
+  {
+    "index": 508,
+    "text": "Overview of the project objectives.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9764024615287781
+  },
+  {
+    "index": 509,
+    "text": "Summary of system features.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.977269172668457
+  },
+  {
+    "index": 510,
+    "text": "Introduction to data processing.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9539732336997986
+  },
+  {
+    "index": 512,
+    "text": "Nội dung được viết nhằm mục đích minh họa.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9477746486663818
+  },
+  {
+    "index": 514,
+    "text": "Thông tin được công bố công khai.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Financial-Info",
+    "confidence_score": 0.8975957632064819
+  },
+  {
+    "index": 515,
+    "text": "Hướng dẫn sử dụng cơ bản.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9841395020484924
+  },
+  {
+    "index": 516,
+    "text": "The system supports cloud deployment.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.988328754901886
+  },
+  {
+    "index": 518,
+    "text": "The content is informational only.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9957072734832764
+  },
+  {
+    "index": 519,
+    "text": "Documentation has been reviewed.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9790681600570679
+  },
+  {
+    "index": 520,
+    "text": "Nội dung mô tả quy trình làm việc.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9672249555587769
+  },
+  {
+    "index": 521,
+    "text": "Tổng quan về hệ thống phân loại dữ liệu.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "System-Info",
+    "confidence_score": 0.8654839992523193
+  },
+  {
+    "index": 522,
+    "text": "Giải pháp được đề xuất trong nghiên cứu.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9709720611572266
+  },
+  {
+    "index": 523,
+    "text": "Bài viết mang tính giới thiệu.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9523324966430664
+  },
+  {
+    "index": 525,
+    "text": "Nguyễn Văn A sinh ngày 12/03/1995.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9873090386390686
+  },
+  {
+    "index": 526,
+    "text": "Họ tên đầy đủ của tôi là Trần Thị B.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9886122941970825
+  },
+  {
+    "index": 527,
+    "text": "Số CMND của anh ấy là 123456789.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9930896162986755
+  },
+  {
+    "index": 528,
+    "text": "CCCD 012345678901 được cấp tại Hà Nội.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9854509234428406
+  },
+  {
+    "index": 529,
+    "text": "Ngày sinh ghi trên giấy tờ là 01-01-2000.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9900673031806946
+  },
+  {
+    "index": 530,
+    "text": "Họ và tên: Lê Hoàng Nam.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9899359941482544
+  },
+  {
+    "index": 531,
+    "text": "Tên đầy đủ của khách hàng là Phạm Minh Tuấn.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9893327355384827
+  },
+  {
+    "index": 532,
+    "text": "Người này có quốc tịch Việt Nam.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9858219027519226
+  },
+  {
+    "index": 533,
+    "text": "Số hộ chiếu B1234567 còn hiệu lực.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9863521456718445
+  },
+  {
+    "index": 534,
+    "text": "Passport number: C9876543.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.991683304309845
+  },
+  {
+    "index": 535,
+    "text": "Ngày tháng năm sinh: 22/08/1998.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9883237481117249
+  },
+  {
+    "index": 536,
+    "text": "Tên khai sinh là Nguyễn Thị Mai.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9881271123886108
+  },
+  {
+    "index": 537,
+    "text": "Giới tính: Nam.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9873518347740173
+  },
+  {
+    "index": 538,
+    "text": "Giới tính được ghi là Nữ.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.987180233001709
+  },
+  {
+    "index": 539,
+    "text": "Số định danh cá nhân 079203001234.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9936125874519348
+  },
+  {
+    "index": 540,
+    "text": "Căn cước công dân gắn chip số 038204567890.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9860151410102844
+  },
+  {
+    "index": 541,
+    "text": "Full name: John Michael Smith.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.988482654094696
+  },
+  {
+    "index": 542,
+    "text": "Date of birth: 1990-05-14.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9850254654884338
+  },
+  {
+    "index": 543,
+    "text": "National ID number: 9988776655.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9912652373313904
+  },
+  {
+    "index": 544,
+    "text": "Tên trên giấy tờ pháp lý là Võ Thành Long.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9892574548721313
+  },
+  {
+    "index": 545,
+    "text": "Anh Nguyễn Văn C sinh năm 1987.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.985880434513092
+  },
+  {
+    "index": 546,
+    "text": "Chị Trần Thị D sinh ngày 09/09/1999.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9879088401794434
+  },
+  {
+    "index": 547,
+    "text": "Họ tên người đăng ký là Lý Quốc Hưng.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9903485774993896
+  },
+  {
+    "index": 548,
+    "text": "Tên người dùng trùng với tên thật.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.988850474357605
+  },
+  {
+    "index": 549,
+    "text": "Tên trong hồ sơ cá nhân là Phan Anh Khoa.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9902525544166565
+  },
+  {
+    "index": 550,
+    "text": "Thông tin cá nhân gồm họ tên và ngày sinh.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9790598750114441
+  },
+  {
+    "index": 551,
+    "text": "Công dân mang tên Nguyễn Hoàng Phúc.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9903593063354492
+  },
+  {
+    "index": 552,
+    "text": "Tên chủ sở hữu tài khoản là Đặng Minh Đức.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9905796647071838
+  },
+  {
+    "index": 553,
+    "text": "Họ và tên cha là Nguyễn Văn E.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9881429076194763
+  },
+  {
+    "index": 554,
+    "text": "Họ và tên mẹ là Trần Thị F.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9882020950317383
+  },
+  {
+    "index": 555,
+    "text": "Tên người giám hộ hợp pháp là Lê Văn G.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.989631175994873
+  },
+  {
+    "index": 556,
+    "text": "Họ tên đầy đủ theo CCCD.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9918840527534485
+  },
+  {
+    "index": 557,
+    "text": "Tên pháp lý của cá nhân là Bùi Quốc Khánh.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.988772451877594
+  },
+  {
+    "index": 558,
+    "text": "Tên cá nhân trùng với thông tin hộ khẩu.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9841143488883972
+  },
+  {
+    "index": 559,
+    "text": "Họ tên người nộp đơn là Phạm Thị H.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9895088076591492
+  },
+  {
+    "index": 560,
+    "text": "Tên trên chứng minh nhân dân là Trần Quốc I.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9896387457847595
+  },
+  {
+    "index": 561,
+    "text": "Tên đầy đủ trong hồ sơ sinh viên.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9893746972084045
+  },
+  {
+    "index": 562,
+    "text": "Họ tên người lao động được ghi rõ.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9894050359725952
+  },
+  {
+    "index": 563,
+    "text": "Tên cá nhân xuất hiện trong giấy tờ.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9928308129310608
+  },
+  {
+    "index": 564,
+    "text": "Thông tin nhận dạng cá nhân cơ bản.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9878577589988708
+  },
+  {
+    "index": 565,
+    "text": "Full legal name as shown on ID card.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.990187406539917
+  },
+  {
+    "index": 566,
+    "text": "Tên thật của người dùng là Nguyễn Văn J.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9865100979804993
+  },
+  {
+    "index": 567,
+    "text": "Tên cá nhân được xác minh.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9908985495567322
+  },
+  {
+    "index": 568,
+    "text": "Tên trong dữ liệu định danh.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9870604276657104
+  },
+  {
+    "index": 569,
+    "text": "Tên cá nhân theo hồ sơ nhà nước.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9926672577857971
+  },
+  {
+    "index": 570,
+    "text": "Thông tin định danh gồm họ tên.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9719773530960083
+  },
+  {
+    "index": 571,
+    "text": "Họ và tên người đứng tên hợp đồng.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9912257790565491
+  },
+  {
+    "index": 572,
+    "text": "Tên cá nhân trùng khớp giấy tờ.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9930298924446106
+  },
+  {
+    "index": 573,
+    "text": "Tên được sử dụng để xác minh danh tính.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9845150113105774
+  },
+  {
+    "index": 574,
+    "text": "Tên cá nhân trên giấy khai sinh.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9930888414382935
+  },
+  {
+    "index": 575,
+    "text": "Legal identity name of the applicant.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.985094428062439
+  },
+  {
+    "index": 576,
+    "text": "Tên cá nhân xuất hiện trong hồ sơ pháp lý.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9923086762428284
+  },
+  {
+    "index": 577,
+    "text": "Tên người được xác thực danh tính.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9913350343704224
+  },
+  {
+    "index": 578,
+    "text": "Tên đầy đủ của cá nhân liên quan.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9908934235572815
+  },
+  {
+    "index": 579,
+    "text": "Tên người sở hữu giấy tờ tùy thân.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.991094172000885
+  },
+  {
+    "index": 580,
+    "text": "Tên cá nhân dùng cho định danh.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9922279119491577
+  },
+  {
+    "index": 581,
+    "text": "Tên thật theo giấy tờ nhà nước.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.98923659324646
+  },
+  {
+    "index": 582,
+    "text": "Tên cá nhân hợp lệ trong hệ thống.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9926214218139648
+  },
+  {
+    "index": 583,
+    "text": "Tên cá nhân phục vụ xác minh.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9897365570068359
+  },
+  {
+    "index": 584,
+    "text": "Tên người được định danh.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9873838424682617
+  },
+  {
+    "index": 585,
+    "text": "Tên cá nhân theo hồ sơ gốc.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9940083026885986
+  },
+  {
+    "index": 586,
+    "text": "Tên thật được ghi nhận.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9824912548065186
+  },
+  {
+    "index": 587,
+    "text": "Tên cá nhân xác định danh tính.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9911633133888245
+  },
+  {
+    "index": 588,
+    "text": "Tên pháp lý của người dùng.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9890633821487427
+  },
+  {
+    "index": 589,
+    "text": "Tên cá nhân hợp pháp.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9886960983276367
+  },
+  {
+    "index": 590,
+    "text": "Tên trên giấy tờ định danh.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9914474487304688
+  },
+  {
+    "index": 591,
+    "text": "Tên cá nhân được công nhận.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9890490770339966
+  },
+  {
+    "index": 592,
+    "text": "Tên dùng cho nhận dạng cá nhân.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.991635799407959
+  },
+  {
+    "index": 593,
+    "text": "Tên cá nhân xuất hiện trên CCCD.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9926385283470154
+  },
+  {
+    "index": 594,
+    "text": "Tên người đứng tên giấy tờ.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9897836446762085
+  },
+  {
+    "index": 595,
+    "text": "Tên cá nhân trong hồ sơ chính thức.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.992965042591095
+  },
+  {
+    "index": 596,
+    "text": "Tên thật trong dữ liệu cá nhân.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9871402382850647
+  },
+  {
+    "index": 597,
+    "text": "Tên cá nhân dùng cho định danh pháp lý.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9899864196777344
+  },
+  {
+    "index": 598,
+    "text": "Tên người được nhận dạng.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9862212538719177
+  },
+  {
+    "index": 599,
+    "text": "Tên cá nhân trong giấy tờ pháp lý.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9918347597122192
+  },
+  {
+    "index": 600,
+    "text": "Tên cá nhân xác nhận danh tính.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9911289215087891
+  },
+  {
+    "index": 601,
+    "text": "Tên đầy đủ của công dân.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9887985587120056
+  },
+  {
+    "index": 602,
+    "text": "Tên cá nhân được lưu trữ.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9879141449928284
+  },
+  {
+    "index": 603,
+    "text": "Tên thật của cá nhân liên quan.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9892244935035706
+  },
+  {
+    "index": 604,
+    "text": "Tên cá nhân trong hồ sơ cá nhân.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9928166270256042
+  },
+  {
+    "index": 605,
+    "text": "Tên cá nhân theo thông tin định danh.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9936158061027527
+  },
+  {
+    "index": 606,
+    "text": "Tên được dùng để xác minh nhân thân.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9881591200828552
+  },
+  {
+    "index": 607,
+    "text": "Tên cá nhân trong dữ liệu định danh cá nhân.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9929866790771484
+  },
+  {
+    "index": 608,
+    "text": "Tên thật của người đăng ký.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9893311858177185
+  },
+  {
+    "index": 609,
+    "text": "Mật khẩu đăng nhập của người dùng là Abc@1234.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9900181293487549
+  },
+  {
+    "index": 610,
+    "text": "Password mặc định của tài khoản admin cần được thay đổi.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9905650019645691
+  },
+  {
+    "index": 611,
+    "text": "Mã OTP gửi qua SMS là 482913.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9917867183685303
+  },
+  {
+    "index": 612,
+    "text": "One-time password để xác thực giao dịch là 930245.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9862945079803467
+  },
+  {
+    "index": 613,
+    "text": "API key dùng để truy cập dịch vụ là sk_test_51H8xyz.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9762284755706787
+  },
+  {
+    "index": 614,
+    "text": "Access token đã hết hạn và cần được làm mới.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.986433744430542
+  },
+  {
+    "index": 615,
+    "text": "Secret key của ứng dụng không được chia sẻ công khai.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9930076003074646
+  },
+  {
+    "index": 616,
+    "text": "Refresh token được lưu trong biến môi trường.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9871746301651001
+  },
+  {
+    "index": 617,
+    "text": "Private key được sử dụng để ký số dữ liệu.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9899358749389648
+  },
+  {
+    "index": 618,
+    "text": "SSH key của server production đã bị lộ.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9913437366485596
+  },
+  {
+    "index": 619,
+    "text": "Mật khẩu WiFi nội bộ là company@2024.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9886945486068726
+  },
+  {
+    "index": 620,
+    "text": "Mã xác thực hai lớp là 774201.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9883849024772644
+  },
+  {
+    "index": 621,
+    "text": "Token truy cập GitHub cần được bảo mật.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9899126291275024
+  },
+  {
+    "index": 622,
+    "text": "Client secret không nên commit lên repository.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9865153431892395
+  },
+  {
+    "index": 623,
+    "text": "Khóa API Google Maps đã bị thu hồi.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9934349060058594
+  },
+  {
+    "index": 624,
+    "text": "Password của tài khoản email công ty đã được thay đổi.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9923459887504578
+  },
+  {
+    "index": 625,
+    "text": "Mã OTP xác nhận đăng nhập là 661092.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9902295470237732
+  },
+  {
+    "index": 626,
+    "text": "JWT token được gửi kèm trong header Authorization.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.980266273021698
+  },
+  {
+    "index": 627,
+    "text": "Access key của AWS cần được xoay vòng định kỳ.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9904629588127136
+  },
+  {
+    "index": 628,
+    "text": "Secret access key không được lưu trực tiếp trong code.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.989267110824585
+  },
+  {
+    "index": 629,
+    "text": "Mật khẩu root của máy chủ đã bị vô hiệu hóa.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9880622029304504
+  },
+  {
+    "index": 630,
+    "text": "OTP dùng để reset mật khẩu là 558934.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9920608997344971
+  },
+  {
+    "index": 631,
+    "text": "API token của hệ thống đã bị rò rỉ.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9874139428138733
+  },
+  {
+    "index": 632,
+    "text": "Private key SSL được lưu trong thư mục bảo mật.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9892128109931946
+  },
+  {
+    "index": 633,
+    "text": "Client ID và client secret được sử dụng để xác thực OAuth.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9858494400978088
+  },
+  {
+    "index": 634,
+    "text": "Mật khẩu đăng nhập hệ thống ERP là confidential.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9917039275169373
+  },
+  {
+    "index": 635,
+    "text": "Mã xác minh tài khoản là 104982.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9913164973258972
+  },
+  {
+    "index": 636,
+    "text": "Bearer token được gửi trong mỗi request.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9894557595252991
+  },
+  {
+    "index": 637,
+    "text": "Khóa bí mật của webhook cần được bảo vệ.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9908987283706665
+  },
+  {
+    "index": 638,
+    "text": "Password không nên đặt trùng với tên người dùng.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9943289756774902
+  },
+  {
+    "index": 639,
+    "text": "Mã OTP xác nhận giao dịch ngân hàng là 775421.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9864091873168945
+  },
+  {
+    "index": 640,
+    "text": "API key nội bộ chỉ được cấp cho quản trị viên.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9909160137176514
+  },
+  {
+    "index": 641,
+    "text": "Access token Facebook đã hết hạn.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9934349656105042
+  },
+  {
+    "index": 642,
+    "text": "Secret token của bot Telegram cần được giữ kín.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9945741295814514
+  },
+  {
+    "index": 643,
+    "text": "Private SSH key không được gửi qua email.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9959284067153931
+  },
+  {
+    "index": 644,
+    "text": "Mật khẩu của người dùng phải có ít nhất 8 ký tự.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9886599779129028
+  },
+  {
+    "index": 645,
+    "text": "OTP xác nhận thanh toán là 302145.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9897110462188721
+  },
+  {
+    "index": 646,
+    "text": "API key Stripe được dùng để xử lý thanh toán.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9879941344261169
+  },
+  {
+    "index": 647,
+    "text": "Refresh token giúp duy trì phiên đăng nhập.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9907503128051758
+  },
+  {
+    "index": 648,
+    "text": "Secret key đã bị thu hồi do rủi ro bảo mật.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9875667691230774
+  },
+  {
+    "index": 649,
+    "text": "Mật khẩu quản trị viên không được chia sẻ.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9936826229095459
+  },
+  {
+    "index": 650,
+    "text": "Mã OTP gửi qua email là 918203.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9915611743927002
+  },
+  {
+    "index": 651,
+    "text": "Token xác thực của hệ thống SSO.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9883117079734802
+  },
+  {
+    "index": 652,
+    "text": "Khóa API dùng cho môi trường production.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9905487298965454
+  },
+  {
+    "index": 653,
+    "text": "Private key dùng cho ký số hóa đơn điện tử.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9932172894477844
+  },
+  {
+    "index": 654,
+    "text": "Password cần được mã hóa trước khi lưu trữ.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.989621639251709
+  },
+  {
+    "index": 655,
+    "text": "OTP dùng để xác minh danh tính người dùng.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9844800233840942
+  },
+  {
+    "index": 656,
+    "text": "Access token của ứng dụng mobile.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9882966876029968
+  },
+  {
+    "index": 657,
+    "text": "Client secret không được log ra console.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9925251603126526
+  },
+  {
+    "index": 658,
+    "text": "Khóa bí mật của hệ thống thanh toán.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9921305775642395
+  },
+  {
+    "index": 659,
+    "text": "Mật khẩu hệ thống nội bộ là nội dung nhạy cảm.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9945917129516602
+  },
+  {
+    "index": 660,
+    "text": "OTP xác thực tài khoản mới là 556901.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9892030358314514
+  },
+  {
+    "index": 661,
+    "text": "API token của dịch vụ bên thứ ba.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9836174249649048
+  },
+  {
+    "index": 662,
+    "text": "Private key dùng cho xác thực máy chủ.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9922472238540649
+  },
+  {
+    "index": 663,
+    "text": "Secret token không được chia sẻ công khai.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9968147873878479
+  },
+  {
+    "index": 664,
+    "text": "Mật khẩu tạm thời cho người dùng là Temp@2024.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9904534816741943
+  },
+  {
+    "index": 665,
+    "text": "OTP đăng nhập lần đầu là 889120.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9889172911643982
+  },
+  {
+    "index": 666,
+    "text": "Access key dùng để truy cập hệ thống cloud.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9907652139663696
+  },
+  {
+    "index": 667,
+    "text": "Client secret của ứng dụng web.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9897812604904175
+  },
+  {
+    "index": 668,
+    "text": "Private key dùng cho kết nối VPN.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9918412566184998
+  },
+  {
+    "index": 669,
+    "text": "Mật khẩu email cá nhân không được tiết lộ.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.994469165802002
+  },
+  {
+    "index": 670,
+    "text": "OTP xác nhận thay đổi mật khẩu là 334912.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9890439510345459
+  },
+  {
+    "index": 671,
+    "text": "Token xác thực của API nội bộ.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9900328516960144
+  },
+  {
+    "index": 672,
+    "text": "Khóa bí mật dùng cho mã hóa dữ liệu.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9919400811195374
+  },
+  {
+    "index": 673,
+    "text": "Secret key của dịch vụ thanh toán.",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9881629943847656
+  },
+  {
+    "index": 674,
+    "text": "Số tài khoản ngân hàng của khách hàng là 0123456789.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9858918786048889
+  },
+  {
+    "index": 675,
+    "text": "Thông tin thẻ tín dụng gồm số thẻ 4111 1111 1111 1111.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9750112295150757
+  },
+  {
+    "index": 676,
+    "text": "Giao dịch chuyển khoản trị giá 5.000.000 VNĐ đã hoàn tất.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9846135973930359
+  },
+  {
+    "index": 677,
+    "text": "Số dư tài khoản hiện tại là 12.450.000 đồng.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9893280863761902
+  },
+  {
+    "index": 678,
+    "text": "Hóa đơn thanh toán điện tháng này là 1.200.000 VNĐ.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9899198412895203
+  },
+  {
+    "index": 679,
+    "text": "Credit card number should never be shared publicly.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9955135583877563
+  },
+  {
+    "index": 680,
+    "text": "The bank account balance was updated after the transaction.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9880558252334595
+  },
+  {
+    "index": 681,
+    "text": "Invoice ID 2024-INV-3321 has been paid successfully.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.977336049079895
+  },
+  {
+    "index": 682,
+    "text": "Payment of $250 was processed via PayPal.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9877640604972839
+  },
+  {
+    "index": 683,
+    "text": "The customer provided debit card information.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9798488616943359
+  },
+  {
+    "index": 684,
+    "text": "Số thẻ ATM của người dùng đã bị khóa tạm thời.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9910654425621033
+  },
+  {
+    "index": 685,
+    "text": "Giao dịch rút tiền mặt tại ATM lúc 14:32.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9911852478981018
+  },
+  {
+    "index": 686,
+    "text": "Tài khoản ngân hàng nhận lương hàng tháng.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9905589818954468
+  },
+  {
+    "index": 687,
+    "text": "Lịch sử giao dịch tài chính được lưu trong hệ thống.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9842351675033569
+  },
+  {
+    "index": 688,
+    "text": "Thông tin thanh toán hóa đơn nước.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9893582463264465
+  },
+  {
+    "index": 689,
+    "text": "The invoice amount was $1,200 excluding tax.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9794094562530518
+  },
+  {
+    "index": 690,
+    "text": "Transaction reference number is TXN839201.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9877448678016663
+  },
+  {
+    "index": 691,
+    "text": "The billing address is associated with the credit card.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9887003898620605
+  },
+  {
+    "index": 692,
+    "text": "Payment confirmation email was sent to the customer.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.988845705986023
+  },
+  {
+    "index": 693,
+    "text": "The refund was issued back to the original payment method.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9849626421928406
+  },
+  {
+    "index": 694,
+    "text": "Số tài khoản nhận tiền là 9876543210.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.991759181022644
+  },
+  {
+    "index": 695,
+    "text": "Khách hàng thanh toán bằng ví điện tử MoMo.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9901558756828308
+  },
+  {
+    "index": 696,
+    "text": "Lệnh chuyển tiền liên ngân hàng đã được xử lý.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9879218935966492
+  },
+  {
+    "index": 697,
+    "text": "Hóa đơn VAT được xuất sau khi thanh toán.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9890257716178894
+  },
+  {
+    "index": 698,
+    "text": "Thông tin chi tiết giao dịch ngân hàng.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9890580177307129
+  },
+  {
+    "index": 699,
+    "text": "The bank statement shows multiple transactions.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9605368971824646
+  },
+  {
+    "index": 700,
+    "text": "Credit limit of the card is $5,000.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9859870076179504
+  },
+  {
+    "index": 701,
+    "text": "The customer paid using a virtual credit card.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.985491156578064
+  },
+  {
+    "index": 702,
+    "text": "Monthly subscription fee was charged automatically.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9894647598266602
+  },
+  {
+    "index": 703,
+    "text": "The payment gateway processed the transaction.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9884228110313416
+  },
+  {
+    "index": 704,
+    "text": "Số tiền giao dịch là 250.000 VNĐ.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.990109384059906
+  },
+  {
+    "index": 705,
+    "text": "Thông tin thẻ ghi nợ được lưu để thanh toán định kỳ.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9788022041320801
+  },
+  {
+    "index": 706,
+    "text": "Ngân hàng xác nhận giao dịch thành công.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.989573061466217
+  },
+  {
+    "index": 707,
+    "text": "Biên lai thanh toán đã được gửi qua email.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9911659359931946
+  },
+  {
+    "index": 708,
+    "text": "Sao kê tài khoản tháng này đã sẵn sàng.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9868197441101074
+  },
+  {
+    "index": 709,
+    "text": "The transaction fee was deducted automatically.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9842318892478943
+  },
+  {
+    "index": 710,
+    "text": "Customer entered their card details at checkout.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9878107309341431
+  },
+  {
+    "index": 711,
+    "text": "The invoice includes tax and service charges.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.977226734161377
+  },
+  {
+    "index": 712,
+    "text": "Bank transfer was completed within one business day.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9914619326591492
+  },
+  {
+    "index": 713,
+    "text": "The payment history is stored securely.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9862809777259827
+  },
+  {
+    "index": 714,
+    "text": "Khách hàng yêu cầu hoàn tiền giao dịch.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9896305799484253
+  },
+  {
+    "index": 715,
+    "text": "Thông tin thanh toán học phí.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9808300137519836
+  },
+  {
+    "index": 716,
+    "text": "Lịch sử chi tiêu được thống kê theo tháng.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9859593510627747
+  },
+  {
+    "index": 717,
+    "text": "Số thẻ tín dụng đã được mã hóa.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9877464771270752
+  },
+  {
+    "index": 718,
+    "text": "Thanh toán trực tuyến qua cổng VNPay.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9903932213783264
+  },
+  {
+    "index": 719,
+    "text": "The merchant received the settlement payment.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.989240825176239
+  },
+  {
+    "index": 720,
+    "text": "Transaction amount exceeded the daily limit.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9887505769729614
+  },
+  {
+    "index": 721,
+    "text": "The card expiration date is required.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9830632209777832
+  },
+  {
+    "index": 722,
+    "text": "Billing information must be accurate.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9802745580673218
+  },
+  {
+    "index": 723,
+    "text": "The user updated their payment method.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9864590764045715
+  },
+  {
+    "index": 724,
+    "text": "Số dư ví điện tử hiện tại là 3.200.000 VNĐ.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9864670038223267
+  },
+  {
+    "index": 725,
+    "text": "Giao dịch thanh toán không tiếp xúc.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9890189170837402
+  },
+  {
+    "index": 726,
+    "text": "Hóa đơn mua hàng đã được thanh toán.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9909943342208862
+  },
+  {
+    "index": 727,
+    "text": "Thông tin tài chính được bảo mật.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9840986728668213
+  },
+  {
+    "index": 728,
+    "text": "Lệnh thanh toán tự động hàng tháng.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.989855945110321
+  },
+  {
+    "index": 729,
+    "text": "The customer’s bank account was charged.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9878583550453186
+  },
+  {
+    "index": 730,
+    "text": "Payment receipt was generated successfully.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9908486008644104
+  },
+  {
+    "index": 731,
+    "text": "The invoice number is linked to the transaction.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9872385859489441
+  },
+  {
+    "index": 733,
+    "text": "The transaction was flagged for review.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9873191714286804
+  },
+  {
+    "index": 734,
+    "text": "Khách hàng nhập thông tin thẻ để thanh toán.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9853392839431763
+  },
+  {
+    "index": 735,
+    "text": "Giao dịch bị từ chối do vượt hạn mức.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9867342710494995
+  },
+  {
+    "index": 736,
+    "text": "Hóa đơn điện tử được lưu trữ trên hệ thống.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9861859679222107
+  },
+  {
+    "index": 737,
+    "text": "Thanh toán thành công qua Internet Banking.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9901286363601685
+  },
+  {
+    "index": 738,
+    "text": "Thông tin giao dịch được ghi nhận.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9828832149505615
+  },
+  {
+    "index": 804,
+    "text": "The medical findings support a diagnosis of arthritis.",
+    "true_label": "Health-Info",
+    "predicted_label": "Non-sensitive",
+    "confidence_score": 0.8200708627700806
+  },
+  {
+    "index": 919,
+    "text": "Hệ thống được thiết kế để xử lý dữ liệu ở quy mô lớn.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9689496755599976
+  },
+  {
+    "index": 920,
+    "text": "Phần mềm này hỗ trợ nhiều nền tảng khác nhau.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Financial-Info",
+    "confidence_score": 0.888496994972229
+  },
+  {
+    "index": 921,
+    "text": "Tài liệu hướng dẫn mô tả cách sử dụng ứng dụng.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9873343110084534
+  },
+  {
+    "index": 922,
+    "text": "Quy trình triển khai bao gồm nhiều bước.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9601618051528931
+  },
+  {
+    "index": 923,
+    "text": "Giao diện người dùng được thiết kế đơn giản.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9834886193275452
+  },
+  {
+    "index": 924,
+    "text": "The system architecture follows a modular design.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.982539713382721
+  },
+  {
+    "index": 925,
+    "text": "This document explains the overall workflow.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.8509171009063721
+  },
+  {
+    "index": 926,
+    "text": "The application supports multiple languages.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9521329402923584
+  },
+  {
+    "index": 927,
+    "text": "Users can access the dashboard through a web browser.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9823121428489685
+  },
+  {
+    "index": 928,
+    "text": "The software was developed using open-source libraries.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9755840301513672
+  },
+  {
+    "index": 929,
+    "text": "Hệ thống cho phép mở rộng khi số lượng người dùng tăng.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9735914468765259
+  },
+  {
+    "index": 930,
+    "text": "Quy trình xử lý dữ liệu được tự động hóa.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9860665798187256
+  },
+  {
+    "index": 931,
+    "text": "Tài liệu kỹ thuật mô tả cấu trúc tổng thể của hệ thống.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.8518840074539185
+  },
+  {
+    "index": 932,
+    "text": "Ứng dụng hỗ trợ xuất báo cáo thống kê.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9740675091743469
+  },
+  {
+    "index": 933,
+    "text": "Mô hình học máy được sử dụng để phân tích dữ liệu.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9748435020446777
+  },
+  {
+    "index": 934,
+    "text": "The platform provides real-time monitoring features.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9628189206123352
+  },
+  {
+    "index": 935,
+    "text": "This guide outlines best practices for deployment.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9757396578788757
+  },
+  {
+    "index": 936,
+    "text": "The dashboard displays summary statistics.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Financial-Info",
+    "confidence_score": 0.956654965877533
+  },
+  {
+    "index": 937,
+    "text": "System performance was evaluated under load testing.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9841117262840271
+  },
+  {
+    "index": 938,
+    "text": "The application follows standard security guidelines.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9794976711273193
+  },
+  {
+    "index": 939,
+    "text": "Hệ thống được xây dựng theo kiến trúc microservices.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.974553644657135
+  },
+  {
+    "index": 940,
+    "text": "Mỗi thành phần đảm nhận một chức năng riêng biệt.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9843185544013977
+  },
+  {
+    "index": 942,
+    "text": "Ứng dụng hỗ trợ tích hợp với các dịch vụ bên ngoài.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9571354389190674
+  },
+  {
+    "index": 943,
+    "text": "Quá trình kiểm thử được thực hiện tự động.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9759014844894409
+  },
+  {
+    "index": 944,
+    "text": "The system is designed for high availability.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9829663634300232
+  },
+  {
+    "index": 945,
+    "text": "Documentation includes setup and configuration steps.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9758657813072205
+  },
+  {
+    "index": 946,
+    "text": "The platform supports scalable data processing.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9717462658882141
+  },
+  {
+    "index": 947,
+    "text": "Users can visualize data through charts and graphs.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9106786847114563
+  },
+  {
+    "index": 948,
+    "text": "The software lifecycle includes continuous integration.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9869837760925293
+  },
+  {
+    "index": 949,
+    "text": "Hệ thống được tối ưu để giảm độ trễ.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9862760901451111
+  },
+  {
+    "index": 950,
+    "text": "Tài liệu này trình bày các khái niệm cơ bản.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9555056095123291
+  },
+  {
+    "index": 952,
+    "text": "Quy trình vận hành được chuẩn hóa.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9862497448921204
+  },
+  {
+    "index": 953,
+    "text": "Hệ thống có khả năng chịu lỗi cao.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9848223924636841
+  },
+  {
+    "index": 954,
+    "text": "The application provides logging and monitoring tools.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9614484310150146
+  },
+  {
+    "index": 955,
+    "text": "This tutorial explains the basic usage of the system.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9766775965690613
+  },
+  {
+    "index": 956,
+    "text": "The platform follows industry-standard design patterns.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9825695157051086
+  },
+  {
+    "index": 957,
+    "text": "The software supports automated testing.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9696975350379944
+  },
+  {
+    "index": 958,
+    "text": "System documentation is publicly available.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "System-Info",
+    "confidence_score": 0.9379081726074219
+  },
+  {
+    "index": 959,
+    "text": "Hệ thống được sử dụng cho mục đích nghiên cứu.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.979853093624115
+  },
+  {
+    "index": 960,
+    "text": "Tài liệu hướng dẫn dành cho người mới bắt đầu.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9851599335670471
+  },
+  {
+    "index": 961,
+    "text": "Ứng dụng cho phép cấu hình linh hoạt.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.982609212398529
+  },
+  {
+    "index": 962,
+    "text": "Quy trình phát triển phần mềm được mô tả chi tiết.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9883022308349609
+  },
+  {
+    "index": 963,
+    "text": "Hệ thống hỗ trợ cập nhật phiên bản.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9888076782226562
+  },
+  {
+    "index": 964,
+    "text": "The platform is intended for educational purposes.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9762327671051025
+  },
+  {
+    "index": 965,
+    "text": "This document provides an overview of system components.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9353377223014832
+  },
+  {
+    "index": 966,
+    "text": "The application offers data visualization features.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9441632628440857
+  },
+  {
+    "index": 967,
+    "text": "System scalability was tested under simulated conditions.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9833619594573975
+  },
+  {
+    "index": 968,
+    "text": "The software complies with general development standards.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.946761965751648
+  },
+  {
+    "index": 969,
+    "text": "Hệ thống cho phép quản lý dữ liệu hiệu quả.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9857345223426819
+  },
+  {
+    "index": 971,
+    "text": "Ứng dụng được thiết kế để dễ sử dụng.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9772592186927795
+  },
+  {
+    "index": 972,
+    "text": "Quy trình xử lý dữ liệu mang tính tổng quát.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "System-Info",
+    "confidence_score": 0.9391208291053772
+  },
+  {
+    "index": 973,
+    "text": "Hệ thống hỗ trợ phân tích dữ liệu cơ bản.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9822656512260437
+  },
+  {
+    "index": 975,
+    "text": "This content is intended for public documentation.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9622752666473389
+  },
+  {
+    "index": 976,
+    "text": "The application explains standard operational steps.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9754865169525146
+  },
+  {
+    "index": 977,
+    "text": "System behavior is described at a high level.",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9834408164024353
+  },
+  {
+    "index": 979,
+    "text": "Số tài khoản ngân hàng: 123456789 tại chi nhánh Hà Nội.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9877729415893555
+  },
+  {
+    "index": 980,
+    "text": "Thanh toán hóa đơn điện với mã giao dịch 987654.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9889684319496155
+  },
+  {
+    "index": 981,
+    "text": "Số thẻ tín dụng **** **** **** 4321 đã được sử dụng.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.981582760810852
+  },
+  {
+    "index": 982,
+    "text": "Lịch sử giao dịch cho thấy khoản thanh toán 5.000.000 VND.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9852734208106995
+  },
+  {
+    "index": 983,
+    "text": "Hóa đơn mua hàng có tổng giá trị 2.300.000 đồng.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9869113564491272
+  },
+  {
+    "index": 984,
+    "text": "Bank account number 987654321 was used for transfer.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.990919828414917
+  },
+  {
+    "index": 985,
+    "text": "Credit card ending in 1122 was charged successfully.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9854916334152222
+  },
+  {
+    "index": 986,
+    "text": "Invoice number INV-2024-001 has been generated.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9808410406112671
+  },
+  {
+    "index": 987,
+    "text": "The transaction history shows multiple debit entries.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9841529130935669
+  },
+  {
+    "index": 988,
+    "text": "Payment was processed via online banking.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9883995056152344
+  },
+  {
+    "index": 989,
+    "text": "Thông tin thanh toán bao gồm số tài khoản và số tiền.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9778199195861816
+  },
+  {
+    "index": 990,
+    "text": "Giao dịch chuyển khoản liên ngân hàng đã hoàn tất.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9910967350006104
+  },
+  {
+    "index": 991,
+    "text": "Hóa đơn VAT thể hiện chi tiết khoản thanh toán.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9885962605476379
+  },
+  {
+    "index": 992,
+    "text": "Báo cáo tài chính liệt kê các khoản thu chi.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9876386523246765
+  },
+  {
+    "index": 993,
+    "text": "Số dư tài khoản hiện tại là 15.000.000 đồng.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9921422600746155
+  },
+  {
+    "index": 994,
+    "text": "The billing statement includes monthly charges.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9790112972259521
+  },
+  {
+    "index": 995,
+    "text": "A payment receipt was issued after the transaction.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9886212944984436
+  },
+  {
+    "index": 996,
+    "text": "The bank transfer reference number is TXN889900.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9858925342559814
+  },
+  {
+    "index": 997,
+    "text": "Debit card information was used for payment.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9879735112190247
+  },
+  {
+    "index": 998,
+    "text": "Financial records show an outgoing transfer.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9894460439682007
+  },
+  {
+    "index": 999,
+    "text": "Số hóa đơn thanh toán là HD-556677.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9921064376831055
+  },
+  {
+    "index": 1000,
+    "text": "Chi tiết giao dịch bao gồm ngày và số tiền.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9859240055084229
+  },
+  {
+    "index": 1001,
+    "text": "Thanh toán được thực hiện qua cổng ngân hàng.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9891834259033203
+  },
+  {
+    "index": 1002,
+    "text": "Lịch sử thanh toán hiển thị các khoản chi phí.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9900804758071899
+  },
+  {
+    "index": 1003,
+    "text": "Tài khoản ngân hàng đã ghi nhận khoản tiền vào.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9897593259811401
+  },
+  {
+    "index": 1004,
+    "text": "The invoice contains billing and tax information.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.8681434988975525
+  },
+  {
+    "index": 1005,
+    "text": "Transaction amount was deducted from the account.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9902068972587585
+  },
+  {
+    "index": 1006,
+    "text": "SWIFT code was used for international transfer.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9902422428131104
+  },
+  {
+    "index": 1007,
+    "text": "IBAN number was provided for overseas payment.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9922237396240234
+  },
+  {
+    "index": 1008,
+    "text": "The financial statement summarizes expenses.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9811131358146667
+  },
+  {
+    "index": 1009,
+    "text": "Giao dịch thẻ ghi nợ đã được xác nhận.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9885907173156738
+  },
+  {
+    "index": 1010,
+    "text": "Hệ thống ghi nhận thanh toán định kỳ.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9857310056686401
+  },
+  {
+    "index": 1011,
+    "text": "Bảng sao kê tài khoản hiển thị nhiều giao dịch.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9864348769187927
+  },
+  {
+    "index": 1012,
+    "text": "Khoản thanh toán trực tuyến đã hoàn tất.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9895380139350891
+  },
+  {
+    "index": 1013,
+    "text": "Hóa đơn dịch vụ thể hiện chi phí sử dụng.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9857543706893921
+  },
+  {
+    "index": 1015,
+    "text": "Billing details were sent after payment.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9896234273910522
+  },
+  {
+    "index": 1016,
+    "text": "A bank statement was generated for review.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9880250692367554
+  },
+  {
+    "index": 1017,
+    "text": "Funds were transferred between accounts.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9900471568107605
+  },
+  {
+    "index": 1018,
+    "text": "Payment confirmation was received via email.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9904156923294067
+  },
+  {
+    "index": 1019,
+    "text": "Số tài khoản thụ hưởng đã được nhập.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9890128374099731
+  },
+  {
+    "index": 1020,
+    "text": "Khoản tiền được chuyển thành công.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9914939403533936
+  },
+  {
+    "index": 1021,
+    "text": "Chi tiết hóa đơn bao gồm thuế và phí.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9800832867622375
+  },
+  {
+    "index": 1022,
+    "text": "Thanh toán bằng thẻ tín dụng đã được xử lý.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9888079166412354
+  },
+  {
+    "index": 1023,
+    "text": "Lịch sử giao dịch cho thấy nhiều khoản thu.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9886797070503235
+  },
+  {
+    "index": 1024,
+    "text": "The payment record shows completed transactions.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9854205250740051
+  },
+  {
+    "index": 1025,
+    "text": "Invoice data includes billing amounts.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9696336388587952
+  },
+  {
+    "index": 1026,
+    "text": "Account balance was updated after transfer.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.988789439201355
+  },
+  {
+    "index": 1027,
+    "text": "The bank processed the financial transaction.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.983095645904541
+  },
+  {
+    "index": 1029,
+    "text": "Hóa đơn thanh toán điện tử đã được phát hành.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9897055625915527
+  },
+  {
+    "index": 1030,
+    "text": "Khoản chi phí được ghi nhận trong báo cáo.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9877228140830994
+  },
+  {
+    "index": 1031,
+    "text": "Thanh toán được xác nhận bởi ngân hàng.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9902760982513428
+  },
+  {
+    "index": 1032,
+    "text": "Thông tin chuyển khoản bao gồm số tiền.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9790277481079102
+  },
+  {
+    "index": 1033,
+    "text": "Báo cáo giao dịch tài chính được lưu trữ.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9889295697212219
+  },
+  {
+    "index": 1034,
+    "text": "The financial system logged a completed payment.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9895665645599365
+  },
+  {
+    "index": 1035,
+    "text": "Billing records include invoice identifiers.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9809615015983582
+  },
+  {
+    "index": 1036,
+    "text": "A transaction summary was generated.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9845017194747925
+  },
+  {
+    "index": 1037,
+    "text": "Payment data was processed securely.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9836533665657043
+  },
+  {
+    "index": 1038,
+    "text": "The account statement reflects recent payments.",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9838613867759705
+  },
+  {
+    "index": 1039,
+    "text": "Địa chỉ IP 192.168.1.10 đã được ghi nhận trong hệ thống.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9557784199714661
+  },
+  {
+    "index": 1040,
+    "text": "MAC address 00:1A:2B:3C:4D:5E được phát hiện.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9786237478256226
+  },
+  {
+    "index": 1041,
+    "text": "Thiết bị có device ID DEV-889977.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9910365343093872
+  },
+  {
+    "index": 1042,
+    "text": "IMEI 356789045612345 được hệ thống nhận diện.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.980801522731781
+  },
+  {
+    "index": 1043,
+    "text": "System log ghi nhận sự kiện khởi động.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9862629175186157
+  },
+  {
+    "index": 1044,
+    "text": "Authentication log cho thấy một lần đăng nhập.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9877514839172363
+  },
+  {
+    "index": 1045,
+    "text": "Địa chỉ IP nội bộ 10.0.0.5 đang hoạt động.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9849768877029419
+  },
+  {
+    "index": 1046,
+    "text": "Thiết bị mạng có MAC address AA:BB:CC:DD:EE:FF.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9824685454368591
+  },
+  {
+    "index": 1047,
+    "text": "Hệ thống lưu trữ hardware fingerprint của thiết bị.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9855135083198547
+  },
+  {
+    "index": 1048,
+    "text": "Log hệ thống ghi nhận lỗi kết nối.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9891518354415894
+  },
+  {
+    "index": 1049,
+    "text": "The system recorded IP address 172.16.0.1.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9821701645851135
+  },
+  {
+    "index": 1050,
+    "text": "Device ID SYS-445566 was registered.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9898132681846619
+  },
+  {
+    "index": 1051,
+    "text": "Authentication logs show multiple login attempts.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9884374737739563
+  },
+  {
+    "index": 1052,
+    "text": "MAC address detected during network scan.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9903306365013123
+  },
+  {
+    "index": 1053,
+    "text": "System logs captured hardware initialization.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9871913194656372
+  },
+  {
+    "index": 1054,
+    "text": "GPS coordinates 21.0285, 105.8542 được ghi nhận bởi hệ thống.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.977477490901947
+  },
+  {
+    "index": 1055,
+    "text": "Thiết bị có IMEI 867530912345678.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9911220073699951
+  },
+  {
+    "index": 1056,
+    "text": "Log xác thực cho thấy truy cập từ IP bên ngoài.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9866383671760559
+  },
+  {
+    "index": 1057,
+    "text": "Hệ thống ghi nhận fingerprint phần cứng.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9857542514801025
+  },
+  {
+    "index": 1059,
+    "text": "The server logged a connection from IP 203.113.5.9.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9824553728103638
+  },
+  {
+    "index": 1060,
+    "text": "Device identifier DEV-102938 was detected.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9860587120056152
+  },
+  {
+    "index": 1061,
+    "text": "System authentication logs were updated.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9859752058982849
+  },
+  {
+    "index": 1062,
+    "text": "MAC address table was refreshed.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9868553280830383
+  },
+  {
+    "index": 1063,
+    "text": "Hardware fingerprint was generated by the system.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9858195781707764
+  },
+  {
+    "index": 1064,
+    "text": "Hệ thống ghi nhận địa chỉ IP công cộng.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9692745804786682
+  },
+  {
+    "index": 1065,
+    "text": "Thiết bị đầu cuối có device ID T-556677.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9889466166496277
+  },
+  {
+    "index": 1066,
+    "text": "IMEI được lưu trong cơ sở dữ liệu hệ thống.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9793277978897095
+  },
+  {
+    "index": 1067,
+    "text": "Log hệ thống cho biết trạng thái thiết bị.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9824767112731934
+  },
+  {
+    "index": 1068,
+    "text": "Authentication log được cập nhật định kỳ.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9823983907699585
+  },
+  {
+    "index": 1069,
+    "text": "The system detected a new MAC address.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9926266670227051
+  },
+  {
+    "index": 1070,
+    "text": "IP address 8.8.8.8 was used for network routing.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9899436235427856
+  },
+  {
+    "index": 1071,
+    "text": "Device ID was stored in system registry.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9878819584846497
+  },
+  {
+    "index": 1072,
+    "text": "System logs include hardware status.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9610217213630676
+  },
+  {
+    "index": 1073,
+    "text": "Authentication logs record access attempts.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9881478548049927
+  },
+  {
+    "index": 1074,
+    "text": "Thiết bị có hardware fingerprint duy nhất.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9894470572471619
+  },
+  {
+    "index": 1075,
+    "text": "Log hệ thống ghi nhận kết nối mạng.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9877650737762451
+  },
+  {
+    "index": 1076,
+    "text": "Địa chỉ IP được cấp phát cho thiết bị.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.992121696472168
+  },
+  {
+    "index": 1077,
+    "text": "MAC address của card mạng được lưu.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9870879054069519
+  },
+  {
+    "index": 1078,
+    "text": "System log ghi nhận thay đổi cấu hình.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9836506843566895
+  },
+  {
+    "index": 1079,
+    "text": "The system stored IMEI information.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.976699948310852
+  },
+  {
+    "index": 1080,
+    "text": "Device identifier was logged for monitoring.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.987947940826416
+  },
+  {
+    "index": 1081,
+    "text": "Authentication events were written to logs.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9874991774559021
+  },
+  {
+    "index": 1082,
+    "text": "IP address allocation was recorded.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9900602102279663
+  },
+  {
+    "index": 1083,
+    "text": "Hardware fingerprint verification completed.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9856883883476257
+  },
+  {
+    "index": 1084,
+    "text": "Hệ thống lưu trữ log truy cập thiết bị.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9887987971305847
+  },
+  {
+    "index": 1085,
+    "text": "IMEI của thiết bị di động được ghi nhận.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.989626407623291
+  },
+  {
+    "index": 1086,
+    "text": "Địa chỉ IP được sử dụng trong phiên làm việc.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9900582432746887
+  },
+  {
+    "index": 1087,
+    "text": "MAC address được xác định trong mạng.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9913638234138489
+  },
+  {
+    "index": 1088,
+    "text": "System logs phản ánh trạng thái phần cứng.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9830406308174133
+  },
+  {
+    "index": 1089,
+    "text": "The server generated system logs.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.985032856464386
+  },
+  {
+    "index": 1090,
+    "text": "Device ID was associated with a session.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9889240264892578
+  },
+  {
+    "index": 1091,
+    "text": "Authentication logs were analyzed.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9867358207702637
+  },
+  {
+    "index": 1092,
+    "text": "IP address was logged for security auditing.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.989397406578064
+  },
+  {
+    "index": 1093,
+    "text": "Hardware fingerprint data was processed.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9758925437927246
+  },
+  {
+    "index": 1094,
+    "text": "Hệ thống ghi nhận tọa độ GPS của thiết bị.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9875237345695496
+  },
+  {
+    "index": 1095,
+    "text": "Thiết bị có mã định danh hệ thống.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9870907068252563
+  },
+  {
+    "index": 1096,
+    "text": "Log xác thực lưu thông tin đăng nhập.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9890068769454956
+  },
+  {
+    "index": 1097,
+    "text": "Địa chỉ IP được theo dõi trong hệ thống.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9877510666847229
+  },
+  {
+    "index": 1098,
+    "text": "MAC address xuất hiện trong log mạng.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9885956048965454
+  },
+  {
+    "index": 1099,
+    "text": "Địa chỉ IP 192.168.100.25 được hệ thống ghi nhận.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9576630592346191
+  },
+  {
+    "index": 1100,
+    "text": "MAC address 12:34:56:78:9A:BC xuất hiện trong log mạng.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9791901111602783
+  },
+  {
+    "index": 1101,
+    "text": "Device ID SYS-900112 đã được đăng ký.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9888777732849121
+  },
+  {
+    "index": 1102,
+    "text": "IMEI 490154203237518 được lưu trong hệ thống.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9753227829933167
+  },
+  {
+    "index": 1103,
+    "text": "System log ghi nhận trạng thái thiết bị.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9861012101173401
+  },
+  {
+    "index": 1104,
+    "text": "Authentication log cho thấy một phiên truy cập hợp lệ.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9837077856063843
+  },
+  {
+    "index": 1105,
+    "text": "Địa chỉ IP nội bộ 172.20.10.3 đang hoạt động.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9784178733825684
+  },
+  {
+    "index": 1106,
+    "text": "MAC address của thiết bị mạng đã được xác định.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9922972321510315
+  },
+  {
+    "index": 1107,
+    "text": "Hardware fingerprint được tạo trong quá trình khởi động.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9903115034103394
+  },
+  {
+    "index": 1108,
+    "text": "Log hệ thống phản ánh trạng thái phần cứng.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9867122769355774
+  },
+  {
+    "index": 1109,
+    "text": "The system logged a new IP address.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9916966557502747
+  },
+  {
+    "index": 1110,
+    "text": "Device identifier DEV-772299 was detected.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9855086207389832
+  },
+  {
+    "index": 1111,
+    "text": "Authentication logs were updated successfully.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9880897402763367
+  },
+  {
+    "index": 1112,
+    "text": "MAC address was recorded during device scan.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9909361600875854
+  },
+  {
+    "index": 1113,
+    "text": "System logs captured network activity.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9806220531463623
+  },
+  {
+    "index": 1114,
+    "text": "GPS coordinates were logged by the system module.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.986871600151062
+  },
+  {
+    "index": 1115,
+    "text": "Thiết bị có mã định danh phần cứng.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9896530508995056
+  },
+  {
+    "index": 1116,
+    "text": "IMEI được hệ thống sử dụng để nhận diện thiết bị.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9812389016151428
+  },
+  {
+    "index": 1117,
+    "text": "Log xác thực cho biết thiết bị đã kết nối.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9910919666290283
+  },
+  {
+    "index": 1118,
+    "text": "Hệ thống lưu thông tin địa chỉ IP.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9878630638122559
+  },
+  {
+    "index": 1120,
+    "text": "Device ID was logged for monitoring purposes.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.988006055355072
+  },
+  {
+    "index": 1121,
+    "text": "Authentication events were stored in system logs.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9789920449256897
+  },
+  {
+    "index": 1122,
+    "text": "IP address was used in a network session.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9909926652908325
+  },
+  {
+    "index": 1123,
+    "text": "Hardware fingerprint verification succeeded.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9863165020942688
+  },
+  {
+    "index": 1125,
+    "text": "IMEI xuất hiện trong bản ghi hệ thống.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9874318838119507
+  },
+  {
+    "index": 1126,
+    "text": "Địa chỉ IP được gán cho phiên kết nối.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9933032989501953
+  },
+  {
+    "index": 1127,
+    "text": "MAC address của thiết bị được lưu trữ.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9898906946182251
+  },
+  {
+    "index": 1128,
+    "text": "System log cập nhật trạng thái truy cập.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9874505996704102
+  },
+  {
+    "index": 1130,
+    "text": "Device identifier was included in system logs.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9867627620697021
+  },
+  {
+    "index": 1131,
+    "text": "Authentication logs were reviewed.",
+    "true_label": "System-Info",
+    "predicted_label": "Credentials",
+    "confidence_score": 0.9887394309043884
+  },
+  {
+    "index": 1132,
+    "text": "IP address tracking was enabled.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9890500903129578
+  },
+  {
+    "index": 1133,
+    "text": "Hardware fingerprint information was stored.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9763955473899841
+  },
+  {
+    "index": 1134,
+    "text": "Địa chỉ IP 10.0.0.15 được hệ thống ghi nhận.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9799951314926147
+  },
+  {
+    "index": 1135,
+    "text": "MAC address AA:BB:CC:DD:EE:01 xuất hiện trong log.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9790351390838623
+  },
+  {
+    "index": 1136,
+    "text": "Device ID DEV-10001 đã được khởi tạo.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9899701476097107
+  },
+  {
+    "index": 1137,
+    "text": "IMEI 356938035643809 được lưu trong hệ thống.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9800785779953003
+  },
+  {
+    "index": 1138,
+    "text": "Authentication log ghi lại một phiên truy cập.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9892273545265198
+  },
+  {
+    "index": 1139,
+    "text": "Địa chỉ IP nội bộ 172.16.1.20 đang hoạt động.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9784846901893616
+  },
+  {
+    "index": 1140,
+    "text": "MAC address của thiết bị mạng được phát hiện.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9912078976631165
+  },
+  {
+    "index": 1141,
+    "text": "Log hệ thống phản ánh hoạt động phần cứng.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9834831357002258
+  },
+  {
+    "index": 1142,
+    "text": "The system logged IP address 192.168.10.5.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9813318252563477
+  },
+  {
+    "index": 1143,
+    "text": "Device identifier SYS-20993 was detected.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9855802059173584
+  },
+  {
+    "index": 1144,
+    "text": "System logs captured network traffic.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9861457943916321
+  },
+  {
+    "index": 1145,
+    "text": "GPS coordinates were stored by the system module.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9851266145706177
+  },
+  {
+    "index": 1146,
+    "text": "Thiết bị có mã định danh phần cứng riêng.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9911530017852783
+  },
+  {
+    "index": 1147,
+    "text": "IMEI được sử dụng để nhận diện thiết bị.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9869650602340698
+  },
+  {
+    "index": 1148,
+    "text": "Log xác thực cho thấy thiết bị đã kết nối.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9922425746917725
+  },
+  {
+    "index": 1149,
+    "text": "Authentication events were stored in logs.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9817570447921753
+  },
+  {
+    "index": 1150,
+    "text": "IP address was assigned to a session.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9907788038253784
+  },
+  {
+    "index": 1151,
+    "text": "Hệ thống ghi nhận định danh thiết bị.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9835290312767029
+  },
+  {
+    "index": 1152,
+    "text": "Địa chỉ IP được gán cho kết nối mạng.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9935473799705505
+  },
+  {
+    "index": 1153,
+    "text": "Hệ thống ghi nhận MAC address mới.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9897024035453796
+  },
+  {
+    "index": 1154,
+    "text": "IP address được ghi nhận trong log truy cập.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9854365587234497
+  },
+  {
+    "index": 1155,
+    "text": "Device ID được sử dụng để quản lý thiết bị.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9906555414199829
+  },
+  {
+    "index": 1156,
+    "text": "IMEI được hệ thống kiểm tra.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9826393127441406
+  },
+  {
+    "index": 1157,
+    "text": "System log phản ánh tình trạng thiết bị.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9851433038711548
+  },
+  {
+    "index": 1158,
+    "text": "The network module stored IP information.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.975797712802887
+  },
+  {
+    "index": 1159,
+    "text": "MAC address was verified by the system.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9896003603935242
+  },
+  {
+    "index": 1160,
+    "text": "Device identifier matched system records.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9879890084266663
+  },
+  {
+    "index": 1161,
+    "text": "Authentication log confirmed device access.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9907218813896179
+  },
+  {
+    "index": 1162,
+    "text": "Hardware fingerprint was successfully generated.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9892465472221375
+  },
+  {
+    "index": 1163,
+    "text": "Hệ thống theo dõi địa chỉ IP của thiết bị.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.98973149061203
+  },
+  {
+    "index": 1164,
+    "text": "MAC address được sử dụng để định danh mạng.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9894202947616577
+  },
+  {
+    "index": 1165,
+    "text": "Device ID được lưu trong cơ sở dữ liệu hệ thống.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.979071855545044
+  },
+  {
+    "index": 1166,
+    "text": "IMEI được ghi nhận trong log kỹ thuật.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.981858491897583
+  },
+  {
+    "index": 1168,
+    "text": "The system captured GPS coordinates for monitoring.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.982430636882782
+  },
+  {
+    "index": 1169,
+    "text": "IP address was logged during connection setup.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9915058612823486
+  },
+  {
+    "index": 1170,
+    "text": "MAC address was associated with the device.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9901407957077026
+  },
+  {
+    "index": 1171,
+    "text": "Device identification process completed.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9865735173225403
+  },
+  {
+    "index": 1172,
+    "text": "Authentication logs recorded system events.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9863572716712952
+  },
+  {
+    "index": 1173,
+    "text": "Hệ thống lưu trữ thông tin phần cứng.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9873150587081909
+  },
+  {
+    "index": 1174,
+    "text": "IP address nội bộ được hệ thống cấp phát.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9889915585517883
+  },
+  {
+    "index": 1175,
+    "text": "MAC address được ghi nhận trong hệ thống.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9858130812644958
+  },
+  {
+    "index": 1176,
+    "text": "Device ID được xác thực thành công.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9919158220291138
+  },
+  {
+    "index": 1177,
+    "text": "System log phản ánh hoạt động xác thực.",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9843438863754272
+  },
+  {
+    "index": 1178,
+    "text": "Tên cá nhân được sử dụng cho nhận dạng.",
+    "true_label": "Personal-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9908652901649475
+  },
+  {
+    "index": 1194,
+    "text": "Địa chỉ IP máy chủ web là 192.168.1.50",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9891794919967651
+  },
+  {
+    "index": 1195,
+    "text": "MAC address thiết bị mạng: AA:BB:CC:DD:EE:FF",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9858564734458923
+  },
+  {
+    "index": 1196,
+    "text": "Số serial laptop Dell XPS 2024-12345",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9928417205810547
+  },
+  {
+    "index": 1197,
+    "text": "Log hệ thống ghi failed authentication attempts",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9855011105537415
+  },
+  {
+    "index": 1198,
+    "text": "Device ID của điện thoại Android: d4c8b3a9",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9906213283538818
+  },
+  {
+    "index": 1199,
+    "text": "IMEI số điện thoại iPhone: 123456789012345",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9903379678726196
+  },
+  {
+    "index": 1200,
+    "text": "Địa chỉ MAC router WiFi nhà: 00:1A:2B:3C:4D:5E",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9910197257995605
+  },
+  {
+    "index": 1201,
+    "text": "Serial number máy in Canon LBP6000: ABC123XYZ",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9901995658874512
+  },
+  {
+    "index": 1202,
+    "text": "IP internal của máy chủ database: 10.0.0.5",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9916149377822876
+  },
+  {
+    "index": 1203,
+    "text": "UUID máy tính Windows: {12345678-1234-1234}",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9918409585952759
+  },
+  {
+    "index": 1204,
+    "text": "Log lỗi hệ thống từ event viewer",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9899357557296753
+  },
+  {
+    "index": 1205,
+    "text": "Hardware fingerprint thiết bị: fe3d8e4c",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9899546504020691
+  },
+  {
+    "index": 1206,
+    "text": "Server hostname của máy chủ: prod-app-01",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9923398494720459
+  },
+  {
+    "index": 1207,
+    "text": "Thông tin SSD storage: Samsung 970 EVO",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9887990951538086
+  },
+  {
+    "index": 1208,
+    "text": "MAC address card mạng Ethernet: 52:54:00:AB:CD:EF",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.986408531665802
+  },
+  {
+    "index": 1209,
+    "text": "Process ID của ứng dụng đang chạy: 2847",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9910620450973511
+  },
+  {
+    "index": 1210,
+    "text": "Port number của service SSH: 22",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9917923808097839
+  },
+  {
+    "index": 1211,
+    "text": "System log ghi process killed by timeout",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9852637648582458
+  },
+  {
+    "index": 1212,
+    "text": "Device info nhà sản xuất: Intel Core i9",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9911724925041199
+  },
+  {
+    "index": 1213,
+    "text": "Kernel version hiện tại: 5.15.0-84",
+    "true_label": "System-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9890053272247314
+  },
+  {
+    "index": 1214,
+    "text": "Mật khẩu đăng nhập có ít nhất 12 ký tự hỗn hợp",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9716758131980896
+  },
+  {
+    "index": 1215,
+    "text": "Token xác thực JWT cho API endpoint",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.989170253276825
+  },
+  {
+    "index": 1216,
+    "text": "Mã OTP gửi qua SMS: 123456",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9910964965820312
+  },
+  {
+    "index": 1217,
+    "text": "API key dùng gọi dịch vụ cloud AWS",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9934958219528198
+  },
+  {
+    "index": 1218,
+    "text": "Private key SSH dùng authenticate server",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9917473196983337
+  },
+  {
+    "index": 1219,
+    "text": "Session token được tạo sau khi login thành công",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9903060793876648
+  },
+  {
+    "index": 1220,
+    "text": "Password reset link gửi qua email",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9918757081031799
+  },
+  {
+    "index": 1221,
+    "text": "Refresh token dùng lấy access token mới",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9916566014289856
+  },
+  {
+    "index": 1222,
+    "text": "API secret key cho payment gateway Stripe",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9914384484291077
+  },
+  {
+    "index": 1223,
+    "text": "Webhook secret signature để verify request",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9892838597297668
+  },
+  {
+    "index": 1224,
+    "text": "Database connection string với password",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9870744943618774
+  },
+  {
+    "index": 1225,
+    "text": "OAuth2 authorization code từ GitHub",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9919310808181763
+  },
+  {
+    "index": 1226,
+    "text": "Basic auth header với username:password",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9909164309501648
+  },
+  {
+    "index": 1227,
+    "text": "TOTP secret key cho two-factor authentication",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.985616147518158
+  },
+  {
+    "index": 1228,
+    "text": "Encryption key dùng mã hóa dữ liệu nhạy cảm",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9953078627586365
+  },
+  {
+    "index": 1229,
+    "text": "Master password quản lý tất cả password",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9927433729171753
+  },
+  {
+    "index": 1230,
+    "text": "API bearer token cho GraphQL endpoint",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9890363812446594
+  },
+  {
+    "index": 1231,
+    "text": "Kerberos ticket cho domain authentication",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9880646467208862
+  },
+  {
+    "index": 1232,
+    "text": "SSL certificate private key file",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9904863238334656
+  },
+  {
+    "index": 1233,
+    "text": "Admin password quản trị cơ sở dữ liệu",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9913787841796875
+  },
+  {
+    "index": 1234,
+    "text": "FTP login credentials cho server upload file",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9922725558280945
+  },
+  {
+    "index": 1235,
+    "text": "Slack API token cho bot notification",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9909802675247192
+  },
+  {
+    "index": 1236,
+    "text": "GitHub personal access token",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9894853234291077
+  },
+  {
+    "index": 1237,
+    "text": "Docker registry authentication token",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9892033338546753
+  },
+  {
+    "index": 1238,
+    "text": "Kubernetes secret token",
+    "true_label": "Credentials",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.984703779220581
+  },
+  {
+    "index": 1239,
+    "text": "Hướng dẫn sử dụng Microsoft Office 2024",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9884390830993652
+  },
+  {
+    "index": 1240,
+    "text": "Tài liệu về quy trình làm việc công ty",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9854082465171814
+  },
+  {
+    "index": 1241,
+    "text": "Tin tức công nghệ ngành IT mới nhất",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.991330623626709
+  },
+  {
+    "index": 1242,
+    "text": "Hỏi đáp về cách cấp phép phần mềm",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.993333101272583
+  },
+  {
+    "index": 1243,
+    "text": "Bài viết tổng quan về machine learning",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9696611762046814
+  },
+  {
+    "index": 1244,
+    "text": "FAQ về quy trình onboarding nhân viên mới",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9901657104492188
+  },
+  {
+    "index": 1245,
+    "text": "Thông báo về cuộc họp team đội phát triển",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.991982102394104
+  },
+  {
+    "index": 1246,
+    "text": "Hướng dẫn cài đặt Python trên Windows",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9933151006698608
+  },
+  {
+    "index": 1247,
+    "text": "Tài liệu về kiến trúc hệ thống microservices",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9866814613342285
+  },
+  {
+    "index": 1248,
+    "text": "Tin tức về release version mới của framework",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9914410710334778
+  },
+  {
+    "index": 1249,
+    "text": "Blog post về best practice code review",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.98597651720047
+  },
+  {
+    "index": 1250,
+    "text": "Công khai danh sách công ty hiring tuyển dụng",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9906575679779053
+  },
+  {
+    "index": 1251,
+    "text": "Thống kê về số lượng user đăng ký công khai",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9862677454948425
+  },
+  {
+    "index": 1252,
+    "text": "Bài blog chia sẻ kinh nghiệm làm việc remote",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9888401627540588
+  },
+  {
+    "index": 1253,
+    "text": "Tài liệu training về agile methodology",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9866976141929626
+  },
+  {
+    "index": 1254,
+    "text": "Hướng dẫn setup development environment",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9879419803619385
+  },
+  {
+    "index": 1255,
+    "text": "Thông báo event hội thảo công nghệ online",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.989838182926178
+  },
+  {
+    "index": 1256,
+    "text": "Tài liệu tiêu chuẩn viết code JavaScript",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9885350465774536
+  },
+  {
+    "index": 1257,
+    "text": "Bài tổng quan về kubernetes orchestration",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9565085768699646
+  },
+  {
+    "index": 1258,
+    "text": "FAQ về chính sách nghỉ phép công ty",
+    "true_label": "Non-sensitive",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9895790219306946
+  },
+  {
+    "index": 1259,
+    "text": "Chi tiết bảng lương tháng 12 năm 2024",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9923757314682007
+  },
+  {
+    "index": 1260,
+    "text": "Mức lương được chi trả hàng tháng là 50 triệu",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9914514422416687
+  },
+  {
+    "index": 1261,
+    "text": "Dư nợ khoản vay mua nhà hiện tại: 2 tỷ",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9897916913032532
+  },
+  {
+    "index": 1262,
+    "text": "Số dư tài khoản ngân hàng: 500 triệu đồng",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9909470677375793
+  },
+  {
+    "index": 1263,
+    "text": "Hóa đơn điện nước tháng này: 5 triệu",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9910526871681213
+  },
+  {
+    "index": 1264,
+    "text": "Báo cáo thu nhập năm tài chính 2024",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9918118715286255
+  },
+  {
+    "index": 1265,
+    "text": "Chứng chỉ tiết kiệm kỳ hạn 12 tháng",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9896854758262634
+  },
+  {
+    "index": 1266,
+    "text": "Giấy xác nhận nợ từ ngân hàng cho vay",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9883019924163818
+  },
+  {
+    "index": 1267,
+    "text": "Bảng thanh toán khóa học online: 10 triệu",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9892314076423645
+  },
+  {
+    "index": 1268,
+    "text": "Hóa đơn mua sắm tháng vừa rồi: 50 triệu",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9912350177764893
+  },
+  {
+    "index": 1269,
+    "text": "Chi phí y tế trong năm: 200 triệu đồng",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9816130995750427
+  },
+  {
+    "index": 1270,
+    "text": "Báo cáo tài chính công ty quý 4",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9898337125778198
+  },
+  {
+    "index": 1271,
+    "text": "Tờ khai thuế thu nhập cá nhân",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9884163737297058
+  },
+  {
+    "index": 1272,
+    "text": "Biên lai thanh toán bảo hiểm y tế",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9870831370353699
+  },
+  {
+    "index": 1273,
+    "text": "Hợp đồng thuê nhà với giá 10 triệu/tháng",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9914358854293823
+  },
+  {
+    "index": 1274,
+    "text": "Phiếu thanh toán học phí trường đại học",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9882449507713318
+  },
+  {
+    "index": 1275,
+    "text": "Báo cáo doanh thu bán hàng theo quý",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9890468120574951
+  },
+  {
+    "index": 1276,
+    "text": "Chứng thư lương do công ty cấp",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9915856122970581
+  },
+  {
+    "index": 1277,
+    "text": "Hóa đơn thẩm mỹ: 100 triệu đồng",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9892707467079163
+  },
+  {
+    "index": 1278,
+    "text": "Giấy tờ vay tiền cá nhân lãi suất 12%",
+    "true_label": "Financial-Info",
+    "predicted_label": "Health-Info",
+    "confidence_score": 0.9900696873664856
+  }
+]

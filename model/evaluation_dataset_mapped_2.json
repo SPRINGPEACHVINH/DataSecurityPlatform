@@ -1,0 +1,5162 @@
+[
+  {
+    "label": "Personal-Info",
+    "text": "Số điện thoại liên hệ là 0901234567"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Email của người dùng là example@gmail.com"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ nhà tại số 12 Nguyễn Trãi, Hà Nội"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Liên hệ qua số hotline 19001234"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ email công việc user@company.com"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số di động dùng để liên lạc"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ nhận thư là Quận 1, TP.HCM"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Email cá nhân được sử dụng để đăng ký"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số điện thoại bàn văn phòng"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ thường trú tại phường Bến Nghé"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số điện thoại khẩn cấp"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ giao hàng được cung cấp"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Email xác nhận tài khoản"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số điện thoại dùng cho xác thực"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ cư trú hiện tại"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Email đăng nhập hệ thống"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số điện thoại liên hệ khách hàng"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ nhận thông báo"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Email liên lạc chính"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số điện thoại cá nhân"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Email người dùng đã đăng ký"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ gửi thư tín"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Liên hệ qua số di động"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Email dùng để nhận thông báo"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ nhà riêng"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số điện thoại được cung cấp khi đăng ký"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Email liên hệ khẩn cấp"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ nơi ở hiện nay"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số điện thoại người nhận"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Email công ty"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ văn phòng làm việc"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Liên hệ qua email nội bộ"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số điện thoại chăm sóc khách hàng"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ chuyển phát"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Email dùng cho liên lạc"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số điện thoại phụ"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ liên hệ chính"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Email hỗ trợ kỹ thuật"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số điện thoại được lưu trong hồ sơ"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ email xác minh"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số điện thoại để liên hệ lại"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ nhận bưu kiện"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Email người gửi"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số điện thoại người nhận hàng"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ giao dịch"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Email dùng cho thông báo hệ thống"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số điện thoại được ghi nhận"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ nơi làm việc"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Email dùng cho liên hệ công việc"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số điện thoại người liên hệ"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ nhà được cung cấp"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Email cá nhân của người dùng"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số điện thoại đăng ký dịch vụ"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ gửi hàng"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Email dùng để phản hồi"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số điện thoại hỗ trợ"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ nhận thư"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Email dùng để liên hệ khách hàng"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số điện thoại liên hệ chính thức"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ email dùng để đăng nhập"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số điện thoại xác nhận OTP"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ cư trú được cung cấp"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Email liên hệ phụ"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số điện thoại người dùng hệ thống"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ nhận hàng hóa"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Email liên hệ khách hàng"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số điện thoại nội bộ"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ email đăng ký tài khoản"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số điện thoại để liên lạc"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ nơi nhận thông tin"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Email dùng cho hỗ trợ"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số điện thoại liên hệ dịch vụ"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ email công việc"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số điện thoại cá nhân người dùng"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ liên hệ khi cần"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Email dùng để xác nhận"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số điện thoại người nhận thông báo"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ email chính thức"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số điện thoại liên hệ hệ thống"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ email của tài khoản"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số điện thoại đăng ký ban đầu"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ nhận thư từ"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Email dùng cho giao tiếp"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số điện thoại được dùng liên hệ"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ cư trú tạm thời"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Email liên hệ người dùng"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số điện thoại được cập nhật"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Địa chỉ liên hệ trong hồ sơ"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Email dùng cho liên hệ chính"
+  },
+  {
+    "label": "Credentials",
+    "text": "Mật khẩu đăng nhập hệ thống"
+  },
+  {
+    "label": "Credentials",
+    "text": "Password của tài khoản quản trị"
+  },
+  {
+    "label": "Credentials",
+    "text": "Mã OTP dùng để xác thực"
+  },
+  {
+    "label": "Credentials",
+    "text": "Mã xác minh một lần gửi qua SMS"
+  },
+  {
+    "label": "Credentials",
+    "text": "Chuỗi token truy cập hệ thống"
+  },
+  {
+    "label": "Credentials",
+    "text": "Access token được cấp cho ứng dụng"
+  },
+  {
+    "label": "Credentials",
+    "text": "Refresh token để gia hạn phiên đăng nhập"
+  },
+  {
+    "label": "Credentials",
+    "text": "API key dùng để gọi dịch vụ"
+  },
+  {
+    "label": "Credentials",
+    "text": "Khóa bí mật của ứng dụng"
+  },
+  {
+    "label": "Credentials",
+    "text": "Secret key cho hệ thống xác thực"
+  },
+  {
+    "label": "Credentials",
+    "text": "Mật khẩu WiFi nội bộ"
+  },
+  {
+    "label": "Credentials",
+    "text": "Thông tin đăng nhập máy chủ"
+  },
+  {
+    "label": "Credentials",
+    "text": "Tài khoản và mật khẩu quản trị"
+  },
+  {
+    "label": "Credentials",
+    "text": "Username và password của hệ thống"
+  },
+  {
+    "label": "Credentials",
+    "text": "Mã PIN bảo mật"
+  },
+  {
+    "label": "Credentials",
+    "text": "Mã khóa bảo mật thiết bị"
+  },
+  {
+    "label": "Credentials",
+    "text": "Khóa truy cập nội bộ"
+  },
+  {
+    "label": "Credentials",
+    "text": "Token xác thực người dùng"
+  },
+  {
+    "label": "Credentials",
+    "text": "Mã bảo mật tạm thời"
+  },
+  {
+    "label": "Credentials",
+    "text": "Chuỗi xác thực đăng nhập"
+  },
+  {
+    "label": "Credentials",
+    "text": "Private key dùng cho mã hóa"
+  },
+  {
+    "label": "Credentials",
+    "text": "Khóa riêng của chứng chỉ số"
+  },
+  {
+    "label": "Credentials",
+    "text": "Certificate private key"
+  },
+  {
+    "label": "Credentials",
+    "text": "Mã bí mật dùng cho ký số"
+  },
+  {
+    "label": "Credentials",
+    "text": "Chuỗi xác thực JWT"
+  },
+  {
+    "label": "Credentials",
+    "text": "Bearer token cho API"
+  },
+  {
+    "label": "Credentials",
+    "text": "OAuth access token"
+  },
+  {
+    "label": "Credentials",
+    "text": "OAuth client secret"
+  },
+  {
+    "label": "Credentials",
+    "text": "Client ID và client secret"
+  },
+  {
+    "label": "Credentials",
+    "text": "Mã khóa ứng dụng"
+  },
+  {
+    "label": "Credentials",
+    "text": "Mật khẩu cơ sở dữ liệu"
+  },
+  {
+    "label": "Credentials",
+    "text": "Database password"
+  },
+  {
+    "label": "Credentials",
+    "text": "Chuỗi kết nối có chứa mật khẩu"
+  },
+  {
+    "label": "Credentials",
+    "text": "Thông tin đăng nhập database"
+  },
+  {
+    "label": "Credentials",
+    "text": "Mật khẩu tài khoản root"
+  },
+  {
+    "label": "Credentials",
+    "text": "Root password của hệ thống"
+  },
+  {
+    "label": "Credentials",
+    "text": "Admin password"
+  },
+  {
+    "label": "Credentials",
+    "text": "Thông tin đăng nhập quản trị viên"
+  },
+  {
+    "label": "Credentials",
+    "text": "Mật khẩu tài khoản email"
+  },
+  {
+    "label": "Credentials",
+    "text": "Email account password"
+  },
+  {
+    "label": "Credentials",
+    "text": "Token xác thực webhook"
+  },
+  {
+    "label": "Credentials",
+    "text": "Webhook secret"
+  },
+  {
+    "label": "Credentials",
+    "text": "Mã khóa tích hợp hệ thống"
+  },
+  {
+    "label": "Credentials",
+    "text": "Integration secret key"
+  },
+  {
+    "label": "Credentials",
+    "text": "Mã xác thực dịch vụ nội bộ"
+  },
+  {
+    "label": "Credentials",
+    "text": "Khóa truy cập dịch vụ"
+  },
+  {
+    "label": "Credentials",
+    "text": "Access key nội bộ"
+  },
+  {
+    "label": "Credentials",
+    "text": "Secret access key"
+  },
+  {
+    "label": "Credentials",
+    "text": "API secret"
+  },
+  {
+    "label": "Credentials",
+    "text": "Mật khẩu mã hóa dữ liệu"
+  },
+  {
+    "label": "Credentials",
+    "text": "Encryption password"
+  },
+  {
+    "label": "Credentials",
+    "text": "Key mã hóa dữ liệu"
+  },
+  {
+    "label": "Credentials",
+    "text": "Data encryption key"
+  },
+  {
+    "label": "Credentials",
+    "text": "Master key hệ thống"
+  },
+  {
+    "label": "Credentials",
+    "text": "System master key"
+  },
+  {
+    "label": "Credentials",
+    "text": "Khóa bảo mật trung tâm"
+  },
+  {
+    "label": "Credentials",
+    "text": "Security key"
+  },
+  {
+    "label": "Credentials",
+    "text": "Authentication secret"
+  },
+  {
+    "label": "Credentials",
+    "text": "Verification code"
+  },
+  {
+    "label": "Credentials",
+    "text": "Mã xác nhận đăng nhập"
+  },
+  {
+    "label": "Credentials",
+    "text": "Login verification code"
+  },
+  {
+    "label": "Credentials",
+    "text": "Mã xác thực hai yếu tố"
+  },
+  {
+    "label": "Credentials",
+    "text": "Two-factor authentication code"
+  },
+  {
+    "label": "Credentials",
+    "text": "2FA secret key"
+  },
+  {
+    "label": "Credentials",
+    "text": "Mã khôi phục tài khoản"
+  },
+  {
+    "label": "Credentials",
+    "text": "Account recovery code"
+  },
+  {
+    "label": "Credentials",
+    "text": "Backup authentication code"
+  },
+  {
+    "label": "Credentials",
+    "text": "Temporary access code"
+  },
+  {
+    "label": "Credentials",
+    "text": "One-time password"
+  },
+  {
+    "label": "Credentials",
+    "text": "Thông tin xác thực nội bộ"
+  },
+  {
+    "label": "Credentials",
+    "text": "Internal authentication credentials"
+  },
+  {
+    "label": "Credentials",
+    "text": "Chuỗi bí mật cấu hình hệ thống"
+  },
+  {
+    "label": "Credentials",
+    "text": "System configuration secret"
+  },
+  {
+    "label": "Credentials",
+    "text": "Environment variable chứa secret"
+  },
+  {
+    "label": "Credentials",
+    "text": "Secret trong file cấu hình"
+  },
+  {
+    "label": "Credentials",
+    "text": "Hard-coded password trong mã nguồn"
+  },
+  {
+    "label": "Credentials",
+    "text": "Plain text password"
+  },
+  {
+    "label": "Credentials",
+    "text": "Credentials được lưu trong file"
+  },
+  {
+    "label": "Credentials",
+    "text": "Sensitive authentication data"
+  },
+  {
+    "label": "System-Info",
+    "text": "Địa chỉ IP của máy chủ"
+  },
+  {
+    "label": "System-Info",
+    "text": "IP address 192.168.1.1"
+  },
+  {
+    "label": "System-Info",
+    "text": "MAC address của thiết bị"
+  },
+  {
+    "label": "System-Info",
+    "text": "Mã định danh thiết bị"
+  },
+  {
+    "label": "System-Info",
+    "text": "Device ID được hệ thống ghi nhận"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin hệ điều hành"
+  },
+  {
+    "label": "System-Info",
+    "text": "Phiên bản hệ điều hành đang sử dụng"
+  },
+  {
+    "label": "System-Info",
+    "text": "Kernel version của Linux"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin cấu hình hệ thống"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông số phần cứng máy chủ"
+  },
+  {
+    "label": "System-Info",
+    "text": "System log ghi nhận hoạt động"
+  },
+  {
+    "label": "System-Info",
+    "text": "Nhật ký hệ thống"
+  },
+  {
+    "label": "System-Info",
+    "text": "Log truy cập máy chủ"
+  },
+  {
+    "label": "System-Info",
+    "text": "Log ứng dụng backend"
+  },
+  {
+    "label": "System-Info",
+    "text": "Log lỗi hệ thống"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin CPU và RAM"
+  },
+  {
+    "label": "System-Info",
+    "text": "Dung lượng bộ nhớ hệ thống"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin ổ cứng"
+  },
+  {
+    "label": "System-Info",
+    "text": "Cấu hình phần cứng"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông số máy ảo"
+  },
+  {
+    "label": "System-Info",
+    "text": "Địa chỉ IP nội bộ"
+  },
+  {
+    "label": "System-Info",
+    "text": "Địa chỉ IP công cộng"
+  },
+  {
+    "label": "System-Info",
+    "text": "Network interface configuration"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin mạng hệ thống"
+  },
+  {
+    "label": "System-Info",
+    "text": "Cấu hình firewall"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin card mạng"
+  },
+  {
+    "label": "System-Info",
+    "text": "MAC address interface"
+  },
+  {
+    "label": "System-Info",
+    "text": "Cấu hình network"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông số kết nối mạng"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin thiết bị IoT"
+  },
+  {
+    "label": "System-Info",
+    "text": "ID cảm biến"
+  },
+  {
+    "label": "System-Info",
+    "text": "Mã thiết bị nhúng"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin phần cứng IoT"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thiết bị được kết nối"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin phiên đăng nhập hệ thống"
+  },
+  {
+    "label": "System-Info",
+    "text": "Session ID hệ thống"
+  },
+  {
+    "label": "System-Info",
+    "text": "Process ID đang chạy"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin tiến trình"
+  },
+  {
+    "label": "System-Info",
+    "text": "Danh sách tiến trình hệ thống"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin Kubernetes pod"
+  },
+  {
+    "label": "System-Info",
+    "text": "Pod ID"
+  },
+  {
+    "label": "System-Info",
+    "text": "Node ID trong cluster"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin cluster"
+  },
+  {
+    "label": "System-Info",
+    "text": "Cấu hình orchestration"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin hệ thống tệp"
+  },
+  {
+    "label": "System-Info",
+    "text": "Đường dẫn hệ thống"
+  },
+  {
+    "label": "System-Info",
+    "text": "Cấu trúc thư mục"
+  },
+  {
+    "label": "System-Info",
+    "text": "File cấu hình hệ thống"
+  },
+  {
+    "label": "System-Info",
+    "text": "System configuration file"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin phiên bản phần mềm"
+  },
+  {
+    "label": "System-Info",
+    "text": "Build version"
+  },
+  {
+    "label": "System-Info",
+    "text": "Runtime environment"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin thư viện cài đặt"
+  },
+  {
+    "label": "System-Info",
+    "text": "Danh sách package hệ thống"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin cài đặt ứng dụng"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin triển khai hệ thống"
+  },
+  {
+    "label": "System-Info",
+    "text": "Environment variables hệ thống"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin runtime"
+  },
+  {
+    "label": "System-Info",
+    "text": "System environment data"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin thiết bị đầu cuối"
+  },
+  {
+    "label": "System-Info",
+    "text": "Endpoint device information"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin máy trạm"
+  },
+  {
+    "label": "System-Info",
+    "text": "Cấu hình workstation"
+  },
+  {
+    "label": "System-Info",
+    "text": "Device hardware profile"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin giám sát hệ thống"
+  },
+  {
+    "label": "System-Info",
+    "text": "Dữ liệu monitoring"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin metric hệ thống"
+  },
+  {
+    "label": "System-Info",
+    "text": "CPU usage log"
+  },
+  {
+    "label": "System-Info",
+    "text": "Memory usage log"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin kết nối dịch vụ"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin hạ tầng hệ thống"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Chức danh công việc của nhân viên"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Vị trí làm việc hiện tại"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thông tin công ty đang làm việc"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên phòng ban công tác"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Mã số nhân viên"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thông tin hồ sơ nhân sự"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Lịch sử công tác"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Kinh nghiệm làm việc"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Vị trí chuyên môn"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Chức vụ quản lý"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thông tin hợp đồng lao động"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Ngày bắt đầu làm việc"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Ngày kết thúc hợp đồng"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Trạng thái nhân viên"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thông tin biên chế"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Mức lương theo thang bậc"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Chính sách đãi ngộ"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thông tin đánh giá nhân sự"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Kết quả đánh giá hiệu suất"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Xếp loại nhân viên"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thông tin thăng chức"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Quyết định bổ nhiệm"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Chức vụ được giao"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Lịch sử thăng tiến"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thông tin điều chuyển công tác"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thông tin đào tạo nội bộ"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Khóa đào tạo chuyên môn"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Chứng chỉ nghề nghiệp"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Kết quả đào tạo"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Lịch sử tham gia đào tạo"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thông tin học tập của sinh viên"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Mã số sinh viên"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Chuyên ngành đào tạo"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Chương trình học"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Trình độ học vấn"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Kết quả học tập"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Bảng điểm học tập"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thành tích học tập"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thông tin tốt nghiệp"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tình trạng học vụ"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thông tin trường đang theo học"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên cơ sở đào tạo"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Ngành nghề đào tạo"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Lớp học đang tham gia"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Hồ sơ sinh viên"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thông tin thực tập"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Đơn vị thực tập"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thời gian thực tập"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Báo cáo thực tập"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Kết quả thực tập"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thông tin tuyển dụng"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Vị trí ứng tuyển"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Hồ sơ ứng viên"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Quá trình phỏng vấn"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Kết quả tuyển dụng"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thông tin nghỉ việc"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Ngày nghỉ việc"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Lý do nghỉ việc"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Trạng thái chấm dứt hợp đồng"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thông tin bàn giao công việc"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thông tin công việc bán thời gian"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Hợp đồng thời vụ"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Vị trí cộng tác viên"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thông tin việc làm tạm thời"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Lịch làm việc"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thông tin phân công nhiệm vụ"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Mô tả công việc"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Nhiệm vụ được giao"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Trách nhiệm công việc"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Vai trò trong tổ chức"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Số tài khoản ngân hàng dùng để nhận tiền"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin thẻ tín dụng được sử dụng để thanh toán"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Lịch sử giao dịch ngân hàng trong tháng"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Chi tiết hóa đơn thanh toán dịch vụ"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Số dư tài khoản hiện tại"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin chuyển khoản ngân hàng"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Tài khoản thanh toán đã được đăng ký"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Chi tiết giao dịch mua hàng"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin thẻ ghi nợ nội địa"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Hóa đơn điện tử của khách hàng"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Số tài khoản dùng cho giao dịch"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin thanh toán qua ngân hàng"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Lịch sử thanh toán hóa đơn"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Chi tiết giao dịch thẻ"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin ví điện tử"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Số dư ví điện tử hiện tại"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Tài khoản nhận lương hàng tháng"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Chi tiết bảng lương"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin thanh toán trực tuyến"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Hóa đơn thanh toán tiền điện"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin thanh toán tiền nước"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Số tài khoản thanh toán hóa đơn"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Lịch sử chuyển tiền"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Chi tiết giao dịch tài chính"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin thu nhập hàng tháng"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Mức lương được chi trả"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin tài khoản tiết kiệm"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Chi tiết sổ tiết kiệm"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin khoản vay ngân hàng"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Dư nợ khoản vay hiện tại"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Lịch sử trả nợ ngân hàng"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin thẻ ATM"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Số tài khoản dùng để rút tiền"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Chi tiết giao dịch rút tiền"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin thanh toán học phí"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Hóa đơn viện phí đã thanh toán"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin thanh toán bảo hiểm"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Chi tiết phí bảo hiểm"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin thuế thu nhập cá nhân"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Chi tiết nghĩa vụ tài chính"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin giao dịch tài khoản"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Số tài khoản nhận thanh toán"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Chi tiết giao dịch ngân hàng điện tử"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin thanh toán qua ứng dụng"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Hóa đơn mua sắm"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Chi tiết thanh toán mua hàng"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin chi tiêu cá nhân"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Lịch sử chi tiêu tài chính"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin tài khoản doanh nghiệp"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Chi tiết giao dịch doanh nghiệp"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin thanh toán hợp đồng"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Giá trị thanh toán hợp đồng"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin phí dịch vụ"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Chi tiết phí duy trì tài khoản"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin thanh toán định kỳ"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Lịch sử thanh toán định kỳ"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin khoản phí phát sinh"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Chi tiết phí giao dịch"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin thanh toán qua thẻ"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Hóa đơn thanh toán thẻ"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin tài khoản đầu tư"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Chi tiết danh mục đầu tư"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin cổ phiếu nắm giữ"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Giá trị tài sản tài chính"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin lợi nhuận đầu tư"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Chi tiết lãi suất ngân hàng"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin tiền gửi ngân hàng"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Số dư tiền gửi"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin thanh toán quốc tế"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Chi tiết giao dịch ngoại tệ"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin chuyển tiền quốc tế"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Chi tiết phí chuyển tiền"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin thanh toán thương mại"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Chi tiết công nợ"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin khoản phải thu"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin khoản phải trả"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Chi tiết báo cáo tài chính"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin dòng tiền"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Chi tiết ngân sách"
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin kế toán nội bộ"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Bệnh nhân được chẩn đoán mắc tiểu đường"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Hồ sơ bệnh án của người bệnh"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Kết quả xét nghiệm máu"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chỉ số huyết áp của bệnh nhân"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Tiền sử bệnh lý tim mạch"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Kết quả chụp X-quang phổi"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chuẩn đoán viêm gan B"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Kết quả siêu âm ổ bụng"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Toa thuốc điều trị"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Đơn thuốc do bác sĩ kê"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Liều lượng thuốc sử dụng hàng ngày"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Lịch sử điều trị tại bệnh viện"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Thông tin phẫu thuật đã thực hiện"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Tình trạng sức khỏe hiện tại"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Kết quả xét nghiệm COVID-19"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chỉ số đường huyết lúc đói"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Kết quả kiểm tra sức khỏe định kỳ"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chuẩn đoán suy thận"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Hồ sơ khám bệnh"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Thông tin nhập viện"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Kết quả xét nghiệm sinh hóa"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chẩn đoán bệnh ung thư"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Phác đồ điều trị"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Tiến trình hồi phục sau điều trị"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Thông tin điều trị ngoại trú"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Tình trạng bệnh mãn tính"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Thông tin thuốc đang sử dụng"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Tác dụng phụ của thuốc"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Lịch tái khám"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Thông tin xuất viện"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Kết quả xét nghiệm nước tiểu"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chuẩn đoán bệnh truyền nhiễm"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Tình trạng nhiễm trùng"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Kết quả xét nghiệm PCR"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Thông tin tiêm chủng"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Lịch sử tiêm vaccine"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Thông tin dị ứng thuốc"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chẩn đoán bệnh hô hấp"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Tình trạng hen suyễn"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chỉ số nhịp tim"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Kết quả đo điện tâm đồ"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Thông tin theo dõi sức khỏe"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chuẩn đoán rối loạn tiêu hóa"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Thông tin điều trị nội trú"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Hồ sơ bệnh nhân"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Thông tin chăm sóc y tế"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Kết quả khám lâm sàng"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chẩn đoán bệnh thần kinh"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Tình trạng đau mãn tính"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Lịch sử dùng thuốc"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Thông tin phục hồi chức năng"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Kết quả xét nghiệm hormone"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chuẩn đoán bệnh nội tiết"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Tình trạng sức khỏe tinh thần"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chẩn đoán trầm cảm"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chẩn đoán rối loạn lo âu"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Hồ sơ tâm lý lâm sàng"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Thông tin điều trị tâm lý"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Kết quả đánh giá tâm thần"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Lịch hẹn khám bệnh"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Thông tin thai sản"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Hồ sơ khám thai"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Kết quả siêu âm thai"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Tình trạng sức khỏe bà mẹ"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Thông tin sinh nở"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Hồ sơ chăm sóc sau sinh"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Kết quả xét nghiệm trước sinh"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chuẩn đoán bệnh phụ khoa"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Thông tin điều trị sản khoa"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Lịch khám thai định kỳ"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Thông tin dinh dưỡng y tế"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chỉ số khối cơ thể BMI"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Đánh giá tình trạng thể chất"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Kết quả đo chức năng hô hấp"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chuẩn đoán suy hô hấp"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Thông tin chăm sóc sức khỏe"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Hồ sơ theo dõi bệnh"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Kết quả kiểm tra y khoa"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Báo cáo y tế"
+  },
+  {
+    "label": "Health-Info",
+    "text": "Thông tin điều trị bệnh lý"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Hợp đồng pháp lý giữa các bên"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thỏa thuận pháp lý được ký kết"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Điều khoản hợp đồng"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Văn bản pháp luật liên quan"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tài liệu pháp lý chính thức"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Hồ sơ vụ kiện"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tài liệu tố tụng"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Đơn khởi kiện"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Biên bản hòa giải"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Quyết định của tòa án"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Bản án đã tuyên"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Hồ sơ xét xử"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thông tin phiên tòa"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tài liệu vụ án"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Biên bản xét xử"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tranh chấp pháp lý"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Hồ sơ tranh chấp"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Vụ việc pháp lý"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thông tin tranh tụng"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Hồ sơ pháp chế"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Hợp đồng lao động"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Hợp đồng thương mại"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Hợp đồng mua bán"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Hợp đồng dịch vụ"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Hợp đồng hợp tác"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thỏa thuận bảo mật"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Cam kết pháp lý"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Điều khoản sử dụng"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Chính sách pháp lý"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Quy định pháp luật"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tài liệu tuân thủ pháp luật"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Hồ sơ tuân thủ"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Báo cáo tuân thủ"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thông tin kiểm toán pháp lý"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Đánh giá tuân thủ"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thông báo pháp lý"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Văn bản thông báo của cơ quan chức năng"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Quyết định xử phạt"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Biên bản vi phạm"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thông tin xử lý pháp lý"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Giấy ủy quyền"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Văn bản ủy quyền"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Giấy chứng nhận pháp lý"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Giấy phép pháp lý"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Hồ sơ cấp phép"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Văn bản thỏa thuận"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Biên bản ghi nhớ pháp lý"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thỏa thuận hợp tác"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thỏa thuận giải quyết tranh chấp"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Hồ sơ đàm phán pháp lý"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thông tin kiện tụng"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Hồ sơ khiếu nại"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Đơn tố cáo"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Văn bản giải quyết khiếu nại"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tài liệu xử lý khiếu kiện"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Văn bản pháp luật hiện hành"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tài liệu quy phạm pháp luật"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thông tư hướng dẫn"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Nghị định pháp luật"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Quyết định hành chính"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Hồ sơ pháp lý doanh nghiệp"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tài liệu pháp chế nội bộ"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thông tin tư vấn pháp lý"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Ý kiến pháp lý"
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Báo cáo pháp lý"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí hiện tại của người dùng"
+  },
+  {
+    "label": "System-Info",
+    "text": "Lịch sử di chuyển trong ngày"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin định vị thời gian thực"
+  },
+  {
+    "label": "System-Info",
+    "text": "Địa điểm người dùng đang đứng"
+  },
+  {
+    "label": "System-Info",
+    "text": "Tọa độ kinh độ và vĩ độ"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí theo bản đồ số"
+  },
+  {
+    "label": "System-Info",
+    "text": "Lịch sử vị trí trong ứng dụng"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin theo dõi vị trí"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí được ghi nhận bởi hệ thống"
+  },
+  {
+    "label": "System-Info",
+    "text": "Địa chỉ nơi xảy ra sự kiện"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí địa lý của đối tượng"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin vị trí trên bản đồ"
+  },
+  {
+    "label": "System-Info",
+    "text": "Dữ liệu theo dõi hành trình"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí truy cập gần nhất"
+  },
+  {
+    "label": "System-Info",
+    "text": "Khu vực địa lý đang hoạt động"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí thiết bị tại thời điểm ghi nhận"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí của phương tiện"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin hành trình di chuyển"
+  },
+  {
+    "label": "System-Info",
+    "text": "Địa điểm xuất phát"
+  },
+  {
+    "label": "System-Info",
+    "text": "Địa điểm đến"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin tuyến đường"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí điểm dừng"
+  },
+  {
+    "label": "System-Info",
+    "text": "Lộ trình di chuyển"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí được xác định bằng mạng"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin định vị qua vệ tinh"
+  },
+  {
+    "label": "System-Info",
+    "text": "Dữ liệu bản đồ vị trí"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí được ghi nhận tự động"
+  },
+  {
+    "label": "System-Info",
+    "text": "Địa chỉ địa lý của khu vực"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí hành chính"
+  },
+  {
+    "label": "System-Info",
+    "text": "Khu vực địa lý cụ thể"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin vị trí khu vực"
+  },
+  {
+    "label": "System-Info",
+    "text": "Địa điểm xác định trên bản đồ"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí theo thời gian thực"
+  },
+  {
+    "label": "System-Info",
+    "text": "Theo dõi vị trí trực tuyến"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin giám sát vị trí"
+  },
+  {
+    "label": "System-Info",
+    "text": "Lịch sử theo dõi vị trí"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí ghi nhận trong hệ thống"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí thiết bị di động"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí người dùng trong ứng dụng"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí đăng nhập gần đây"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin vị trí truy cập"
+  },
+  {
+    "label": "System-Info",
+    "text": "Dữ liệu định vị người dùng"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí được xác định từ IP"
+  },
+  {
+    "label": "System-Info",
+    "text": "Khu vực truy cập mạng"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí địa lý ước tính"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí vùng miền"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin vùng địa lý"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí của tài sản"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí kho bãi"
+  },
+  {
+    "label": "System-Info",
+    "text": "Địa điểm lưu trữ"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí công trình"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí cơ sở hạ tầng"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí sự cố"
+  },
+  {
+    "label": "System-Info",
+    "text": "Địa điểm tai nạn"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí báo cáo"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin địa điểm xảy ra"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí hiện trường"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí được ghi nhận trong log"
+  },
+  {
+    "label": "System-Info",
+    "text": "Dữ liệu vị trí lịch sử"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí theo thời gian"
+  },
+  {
+    "label": "System-Info",
+    "text": "Theo dõi chuyển động"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin giám sát hành trình"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí thiết bị IoT"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí cảm biến"
+  },
+  {
+    "label": "System-Info",
+    "text": "Thông tin định vị thiết bị"
+  },
+  {
+    "label": "System-Info",
+    "text": "Dữ liệu vị trí hệ thống"
+  },
+  {
+    "label": "System-Info",
+    "text": "Vị trí được xác định tự động"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "WORKDIR /app"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "COPY . /app"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "server started on port 4000"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "application initialized successfully"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "build completed"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "process exited with code 0"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "error: failed to connect to server"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "warning: deprecated function"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "info: loading configuration"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "debug: request received"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "log file rotated"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "index created successfully"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "search query executed"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "document indexed"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "cluster health is green"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "metadata:"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "spec:"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "kubectl get pods"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "kubectl describe pod"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "kubectl logs pod-name"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "kubectl delete pod"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "kubectl apply -f deployment.yaml"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "app.listen(4000)"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "router.post('/api/test')"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "console.log('Server running')"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "if __name__ == '__main__':"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "README.md"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Installation instructions"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Usage guide"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Project documentation"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Build job succeeded"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Deployment completed"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Artifacts uploaded"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Workflow finished"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "System health check passed"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Metrics collected"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "CPU usage normal"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Memory usage stable"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Default settings applied"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Environment initialized"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Shutdown completed"
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Hệ thống sẽ được bảo trì vào cuối tuần."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Vui lòng đọc kỹ hướng dẫn trước khi sử dụng."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Đây là tài liệu giới thiệu về sản phẩm."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Báo cáo được cập nhật theo phiên bản mới."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Nội dung này chỉ mang tính chất tham khảo."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Cuộc họp sẽ được tổ chức vào sáng thứ hai."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Thời gian làm việc từ thứ hai đến thứ sáu."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Mọi thắc mắc vui lòng liên hệ bộ phận hỗ trợ."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Chức năng này đang trong quá trình phát triển."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Phiên bản mới đã được phát hành."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "This document describes the system architecture."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "The project focuses on data classification."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "The application is designed for scalability."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "System performance has been improved."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "The user interface has been updated."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Hướng dẫn cài đặt phần mềm cho người mới."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Quy trình xử lý dữ liệu được mô tả chi tiết."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Tài liệu này dùng cho mục đích đào tạo."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Nội dung mang tính học thuật."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Đây là ví dụ minh họa."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "The meeting agenda includes system updates."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Please follow the instructions carefully."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "This feature is optional."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "The document is publicly available."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Ứng dụng hỗ trợ nhiều ngôn ngữ."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Giao diện được thiết kế đơn giản."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Hệ thống đáp ứng các yêu cầu cơ bản."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Quy trình này giúp tối ưu hiệu suất."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Giải pháp được đề xuất mang tính tổng quát."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "This text contains no sensitive information."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "General description of the workflow."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Overview of the project objectives."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Summary of system features."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Introduction to data processing."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Thông báo này áp dụng cho tất cả người dùng."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Nội dung được viết nhằm mục đích minh họa."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Tài liệu này không chứa dữ liệu cá nhân."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Thông tin được công bố công khai."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Hướng dẫn sử dụng cơ bản."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "The system supports cloud deployment."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "This is a general explanation."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "The content is informational only."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Documentation has been reviewed."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Nội dung mô tả quy trình làm việc."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Tổng quan về hệ thống phân loại dữ liệu."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Giải pháp được đề xuất trong nghiên cứu."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Bài viết mang tính giới thiệu."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Không có thông tin nhạy cảm trong nội dung này."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Nguyễn Văn A sinh ngày 12/03/1995."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Họ tên đầy đủ của tôi là Trần Thị B."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số CMND của anh ấy là 123456789."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "CCCD 012345678901 được cấp tại Hà Nội."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Ngày sinh ghi trên giấy tờ là 01-01-2000."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Họ và tên: Lê Hoàng Nam."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên đầy đủ của khách hàng là Phạm Minh Tuấn."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Người này có quốc tịch Việt Nam."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số hộ chiếu B1234567 còn hiệu lực."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Passport number: C9876543."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Ngày tháng năm sinh: 22/08/1998."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên khai sinh là Nguyễn Thị Mai."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Giới tính: Nam."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Giới tính được ghi là Nữ."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Số định danh cá nhân 079203001234."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Căn cước công dân gắn chip số 038204567890."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Full name: John Michael Smith."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Date of birth: 1990-05-14."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "National ID number: 9988776655."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên trên giấy tờ pháp lý là Võ Thành Long."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Anh Nguyễn Văn C sinh năm 1987."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Chị Trần Thị D sinh ngày 09/09/1999."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Họ tên người đăng ký là Lý Quốc Hưng."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên người dùng trùng với tên thật."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên trong hồ sơ cá nhân là Phan Anh Khoa."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thông tin cá nhân gồm họ tên và ngày sinh."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Công dân mang tên Nguyễn Hoàng Phúc."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên chủ sở hữu tài khoản là Đặng Minh Đức."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Họ và tên cha là Nguyễn Văn E."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Họ và tên mẹ là Trần Thị F."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên người giám hộ hợp pháp là Lê Văn G."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Họ tên đầy đủ theo CCCD."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên pháp lý của cá nhân là Bùi Quốc Khánh."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên cá nhân trùng với thông tin hộ khẩu."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Họ tên người nộp đơn là Phạm Thị H."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên trên chứng minh nhân dân là Trần Quốc I."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên đầy đủ trong hồ sơ sinh viên."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Họ tên người lao động được ghi rõ."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên cá nhân xuất hiện trong giấy tờ."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thông tin nhận dạng cá nhân cơ bản."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Full legal name as shown on ID card."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên thật của người dùng là Nguyễn Văn J."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên cá nhân được xác minh."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên trong dữ liệu định danh."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên cá nhân theo hồ sơ nhà nước."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Thông tin định danh gồm họ tên."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Họ và tên người đứng tên hợp đồng."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên cá nhân trùng khớp giấy tờ."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên được sử dụng để xác minh danh tính."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên cá nhân trên giấy khai sinh."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Legal identity name of the applicant."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên cá nhân xuất hiện trong hồ sơ pháp lý."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên người được xác thực danh tính."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên đầy đủ của cá nhân liên quan."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên người sở hữu giấy tờ tùy thân."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên cá nhân dùng cho định danh."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên thật theo giấy tờ nhà nước."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên cá nhân hợp lệ trong hệ thống."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên cá nhân phục vụ xác minh."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên người được định danh."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên cá nhân theo hồ sơ gốc."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên thật được ghi nhận."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên cá nhân xác định danh tính."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên pháp lý của người dùng."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên cá nhân hợp pháp."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên trên giấy tờ định danh."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên cá nhân được công nhận."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên dùng cho nhận dạng cá nhân."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên cá nhân xuất hiện trên CCCD."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên người đứng tên giấy tờ."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên cá nhân trong hồ sơ chính thức."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên thật trong dữ liệu cá nhân."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên cá nhân dùng cho định danh pháp lý."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên người được nhận dạng."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên cá nhân trong giấy tờ pháp lý."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên cá nhân xác nhận danh tính."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên đầy đủ của công dân."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên cá nhân được lưu trữ."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên thật của cá nhân liên quan."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên cá nhân trong hồ sơ cá nhân."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên cá nhân theo thông tin định danh."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên được dùng để xác minh nhân thân."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên cá nhân trong dữ liệu định danh cá nhân."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên thật của người đăng ký."
+  },
+  {
+    "label": "Credentials",
+    "text": "Mật khẩu đăng nhập của người dùng là Abc@1234."
+  },
+  {
+    "label": "Credentials",
+    "text": "Password mặc định của tài khoản admin cần được thay đổi."
+  },
+  {
+    "label": "Credentials",
+    "text": "Mã OTP gửi qua SMS là 482913."
+  },
+  {
+    "label": "Credentials",
+    "text": "One-time password để xác thực giao dịch là 930245."
+  },
+  {
+    "label": "Credentials",
+    "text": "API key dùng để truy cập dịch vụ là sk_test_51H8xyz."
+  },
+  {
+    "label": "Credentials",
+    "text": "Access token đã hết hạn và cần được làm mới."
+  },
+  {
+    "label": "Credentials",
+    "text": "Secret key của ứng dụng không được chia sẻ công khai."
+  },
+  {
+    "label": "Credentials",
+    "text": "Refresh token được lưu trong biến môi trường."
+  },
+  {
+    "label": "Credentials",
+    "text": "Private key được sử dụng để ký số dữ liệu."
+  },
+  {
+    "label": "Credentials",
+    "text": "SSH key của server production đã bị lộ."
+  },
+  {
+    "label": "Credentials",
+    "text": "Mật khẩu WiFi nội bộ là company@2024."
+  },
+  {
+    "label": "Credentials",
+    "text": "Mã xác thực hai lớp là 774201."
+  },
+  {
+    "label": "Credentials",
+    "text": "Token truy cập GitHub cần được bảo mật."
+  },
+  {
+    "label": "Credentials",
+    "text": "Client secret không nên commit lên repository."
+  },
+  {
+    "label": "Credentials",
+    "text": "Khóa API Google Maps đã bị thu hồi."
+  },
+  {
+    "label": "Credentials",
+    "text": "Password của tài khoản email công ty đã được thay đổi."
+  },
+  {
+    "label": "Credentials",
+    "text": "Mã OTP xác nhận đăng nhập là 661092."
+  },
+  {
+    "label": "Credentials",
+    "text": "JWT token được gửi kèm trong header Authorization."
+  },
+  {
+    "label": "Credentials",
+    "text": "Access key của AWS cần được xoay vòng định kỳ."
+  },
+  {
+    "label": "Credentials",
+    "text": "Secret access key không được lưu trực tiếp trong code."
+  },
+  {
+    "label": "Credentials",
+    "text": "Mật khẩu root của máy chủ đã bị vô hiệu hóa."
+  },
+  {
+    "label": "Credentials",
+    "text": "OTP dùng để reset mật khẩu là 558934."
+  },
+  {
+    "label": "Credentials",
+    "text": "API token của hệ thống đã bị rò rỉ."
+  },
+  {
+    "label": "Credentials",
+    "text": "Private key SSL được lưu trong thư mục bảo mật."
+  },
+  {
+    "label": "Credentials",
+    "text": "Client ID và client secret được sử dụng để xác thực OAuth."
+  },
+  {
+    "label": "Credentials",
+    "text": "Mật khẩu đăng nhập hệ thống ERP là confidential."
+  },
+  {
+    "label": "Credentials",
+    "text": "Mã xác minh tài khoản là 104982."
+  },
+  {
+    "label": "Credentials",
+    "text": "Bearer token được gửi trong mỗi request."
+  },
+  {
+    "label": "Credentials",
+    "text": "Khóa bí mật của webhook cần được bảo vệ."
+  },
+  {
+    "label": "Credentials",
+    "text": "Password không nên đặt trùng với tên người dùng."
+  },
+  {
+    "label": "Credentials",
+    "text": "Mã OTP xác nhận giao dịch ngân hàng là 775421."
+  },
+  {
+    "label": "Credentials",
+    "text": "API key nội bộ chỉ được cấp cho quản trị viên."
+  },
+  {
+    "label": "Credentials",
+    "text": "Access token Facebook đã hết hạn."
+  },
+  {
+    "label": "Credentials",
+    "text": "Secret token của bot Telegram cần được giữ kín."
+  },
+  {
+    "label": "Credentials",
+    "text": "Private SSH key không được gửi qua email."
+  },
+  {
+    "label": "Credentials",
+    "text": "Mật khẩu của người dùng phải có ít nhất 8 ký tự."
+  },
+  {
+    "label": "Credentials",
+    "text": "OTP xác nhận thanh toán là 302145."
+  },
+  {
+    "label": "Credentials",
+    "text": "API key Stripe được dùng để xử lý thanh toán."
+  },
+  {
+    "label": "Credentials",
+    "text": "Refresh token giúp duy trì phiên đăng nhập."
+  },
+  {
+    "label": "Credentials",
+    "text": "Secret key đã bị thu hồi do rủi ro bảo mật."
+  },
+  {
+    "label": "Credentials",
+    "text": "Mật khẩu quản trị viên không được chia sẻ."
+  },
+  {
+    "label": "Credentials",
+    "text": "Mã OTP gửi qua email là 918203."
+  },
+  {
+    "label": "Credentials",
+    "text": "Token xác thực của hệ thống SSO."
+  },
+  {
+    "label": "Credentials",
+    "text": "Khóa API dùng cho môi trường production."
+  },
+  {
+    "label": "Credentials",
+    "text": "Private key dùng cho ký số hóa đơn điện tử."
+  },
+  {
+    "label": "Credentials",
+    "text": "Password cần được mã hóa trước khi lưu trữ."
+  },
+  {
+    "label": "Credentials",
+    "text": "OTP dùng để xác minh danh tính người dùng."
+  },
+  {
+    "label": "Credentials",
+    "text": "Access token của ứng dụng mobile."
+  },
+  {
+    "label": "Credentials",
+    "text": "Client secret không được log ra console."
+  },
+  {
+    "label": "Credentials",
+    "text": "Khóa bí mật của hệ thống thanh toán."
+  },
+  {
+    "label": "Credentials",
+    "text": "Mật khẩu đăng nhập của người dùng là Abc@1234."
+  },
+  {
+    "label": "Credentials",
+    "text": "Password mặc định của tài khoản admin cần được thay đổi."
+  },
+  {
+    "label": "Credentials",
+    "text": "Mã OTP gửi qua SMS là 482913."
+  },
+  {
+    "label": "Credentials",
+    "text": "One-time password để xác thực giao dịch là 930245."
+  },
+  {
+    "label": "Credentials",
+    "text": "API key dùng để truy cập dịch vụ là sk_test_51H8xyz."
+  },
+  {
+    "label": "Credentials",
+    "text": "Access token đã hết hạn và cần được làm mới."
+  },
+  {
+    "label": "Credentials",
+    "text": "Secret key của ứng dụng không được chia sẻ công khai."
+  },
+  {
+    "label": "Credentials",
+    "text": "Refresh token được lưu trong biến môi trường."
+  },
+  {
+    "label": "Credentials",
+    "text": "Private key được sử dụng để ký số dữ liệu."
+  },
+  {
+    "label": "Credentials",
+    "text": "SSH key của server production đã bị lộ."
+  },
+  {
+    "label": "Credentials",
+    "text": "Mật khẩu WiFi nội bộ là company@2024."
+  },
+  {
+    "label": "Credentials",
+    "text": "Mã xác thực hai lớp là 774201."
+  },
+  {
+    "label": "Credentials",
+    "text": "Token truy cập GitHub cần được bảo mật."
+  },
+  {
+    "label": "Credentials",
+    "text": "Client secret không nên commit lên repository."
+  },
+  {
+    "label": "Credentials",
+    "text": "Khóa API Google Maps đã bị thu hồi."
+  },
+  {
+    "label": "Credentials",
+    "text": "Password của tài khoản email công ty đã được thay đổi."
+  },
+  {
+    "label": "Credentials",
+    "text": "Mã OTP xác nhận đăng nhập là 661092."
+  },
+  {
+    "label": "Credentials",
+    "text": "JWT token được gửi kèm trong header Authorization."
+  },
+  {
+    "label": "Credentials",
+    "text": "Access key của AWS cần được xoay vòng định kỳ."
+  },
+  {
+    "label": "Credentials",
+    "text": "Secret access key không được lưu trực tiếp trong code."
+  },
+  {
+    "label": "Credentials",
+    "text": "Mật khẩu root của máy chủ đã bị vô hiệu hóa."
+  },
+  {
+    "label": "Credentials",
+    "text": "OTP dùng để reset mật khẩu là 558934."
+  },
+  {
+    "label": "Credentials",
+    "text": "API token của hệ thống đã bị rò rỉ."
+  },
+  {
+    "label": "Credentials",
+    "text": "Private key SSL được lưu trong thư mục bảo mật."
+  },
+  {
+    "label": "Credentials",
+    "text": "Client ID và client secret được sử dụng để xác thực OAuth."
+  },
+  {
+    "label": "Credentials",
+    "text": "Mật khẩu đăng nhập hệ thống ERP là confidential."
+  },
+  {
+    "label": "Credentials",
+    "text": "Mã xác minh tài khoản là 104982."
+  },
+  {
+    "label": "Credentials",
+    "text": "Bearer token được gửi trong mỗi request."
+  },
+  {
+    "label": "Credentials",
+    "text": "Khóa bí mật của webhook cần được bảo vệ."
+  },
+  {
+    "label": "Credentials",
+    "text": "Password không nên đặt trùng với tên người dùng."
+  },
+  {
+    "label": "Credentials",
+    "text": "Mã OTP xác nhận giao dịch ngân hàng là 775421."
+  },
+  {
+    "label": "Credentials",
+    "text": "API key nội bộ chỉ được cấp cho quản trị viên."
+  },
+  {
+    "label": "Credentials",
+    "text": "Access token Facebook đã hết hạn."
+  },
+  {
+    "label": "Credentials",
+    "text": "Secret token của bot Telegram cần được giữ kín."
+  },
+  {
+    "label": "Credentials",
+    "text": "Private SSH key không được gửi qua email."
+  },
+  {
+    "label": "Credentials",
+    "text": "Mật khẩu của người dùng phải có ít nhất 8 ký tự."
+  },
+  {
+    "label": "Credentials",
+    "text": "OTP xác nhận thanh toán là 302145."
+  },
+  {
+    "label": "Credentials",
+    "text": "API key Stripe được dùng để xử lý thanh toán."
+  },
+  {
+    "label": "Credentials",
+    "text": "Refresh token giúp duy trì phiên đăng nhập."
+  },
+  {
+    "label": "Credentials",
+    "text": "Secret key đã bị thu hồi do rủi ro bảo mật."
+  },
+  {
+    "label": "Credentials",
+    "text": "Mật khẩu quản trị viên không được chia sẻ."
+  },
+  {
+    "label": "Credentials",
+    "text": "Mã OTP gửi qua email là 918203."
+  },
+  {
+    "label": "Credentials",
+    "text": "Token xác thực của hệ thống SSO."
+  },
+  {
+    "label": "Credentials",
+    "text": "Khóa API dùng cho môi trường production."
+  },
+  {
+    "label": "Credentials",
+    "text": "Private key dùng cho ký số hóa đơn điện tử."
+  },
+  {
+    "label": "Credentials",
+    "text": "Password cần được mã hóa trước khi lưu trữ."
+  },
+  {
+    "label": "Credentials",
+    "text": "OTP dùng để xác minh danh tính người dùng."
+  },
+  {
+    "label": "Credentials",
+    "text": "Access token của ứng dụng mobile."
+  },
+  {
+    "label": "Credentials",
+    "text": "Client secret không được log ra console."
+  },
+  {
+    "label": "Credentials",
+    "text": "Khóa bí mật của hệ thống thanh toán."
+  },
+  {
+    "label": "Credentials",
+    "text": "Mật khẩu hệ thống nội bộ là nội dung nhạy cảm."
+  },
+  {
+    "label": "Credentials",
+    "text": "OTP xác thực tài khoản mới là 556901."
+  },
+  {
+    "label": "Credentials",
+    "text": "API token của dịch vụ bên thứ ba."
+  },
+  {
+    "label": "Credentials",
+    "text": "Private key dùng cho xác thực máy chủ."
+  },
+  {
+    "label": "Credentials",
+    "text": "Secret token không được chia sẻ công khai."
+  },
+  {
+    "label": "Credentials",
+    "text": "Mật khẩu tạm thời cho người dùng là Temp@2024."
+  },
+  {
+    "label": "Credentials",
+    "text": "OTP đăng nhập lần đầu là 889120."
+  },
+  {
+    "label": "Credentials",
+    "text": "Access key dùng để truy cập hệ thống cloud."
+  },
+  {
+    "label": "Credentials",
+    "text": "Client secret của ứng dụng web."
+  },
+  {
+    "label": "Credentials",
+    "text": "Private key dùng cho kết nối VPN."
+  },
+  {
+    "label": "Credentials",
+    "text": "Mật khẩu email cá nhân không được tiết lộ."
+  },
+  {
+    "label": "Credentials",
+    "text": "OTP xác nhận thay đổi mật khẩu là 334912."
+  },
+  {
+    "label": "Credentials",
+    "text": "Token xác thực của API nội bộ."
+  },
+  {
+    "label": "Credentials",
+    "text": "Khóa bí mật dùng cho mã hóa dữ liệu."
+  },
+  {
+    "label": "Credentials",
+    "text": "Secret key của dịch vụ thanh toán."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Số tài khoản ngân hàng của khách hàng là 0123456789."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin thẻ tín dụng gồm số thẻ 4111 1111 1111 1111."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Giao dịch chuyển khoản trị giá 5.000.000 VNĐ đã hoàn tất."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Số dư tài khoản hiện tại là 12.450.000 đồng."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Hóa đơn thanh toán điện tháng này là 1.200.000 VNĐ."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Credit card number should never be shared publicly."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "The bank account balance was updated after the transaction."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Invoice ID 2024-INV-3321 has been paid successfully."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Payment of $250 was processed via PayPal."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "The customer provided debit card information."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Số thẻ ATM của người dùng đã bị khóa tạm thời."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Giao dịch rút tiền mặt tại ATM lúc 14:32."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Tài khoản ngân hàng nhận lương hàng tháng."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Lịch sử giao dịch tài chính được lưu trong hệ thống."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin thanh toán hóa đơn nước."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "The invoice amount was $1,200 excluding tax."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Transaction reference number is TXN839201."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "The billing address is associated with the credit card."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Payment confirmation email was sent to the customer."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "The refund was issued back to the original payment method."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Số tài khoản nhận tiền là 9876543210."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Khách hàng thanh toán bằng ví điện tử MoMo."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Lệnh chuyển tiền liên ngân hàng đã được xử lý."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Hóa đơn VAT được xuất sau khi thanh toán."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin chi tiết giao dịch ngân hàng."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "The bank statement shows multiple transactions."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Credit limit of the card is $5,000."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "The customer paid using a virtual credit card."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Monthly subscription fee was charged automatically."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "The payment gateway processed the transaction."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Số tiền giao dịch là 250.000 VNĐ."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin thẻ ghi nợ được lưu để thanh toán định kỳ."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Ngân hàng xác nhận giao dịch thành công."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Biên lai thanh toán đã được gửi qua email."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Sao kê tài khoản tháng này đã sẵn sàng."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "The transaction fee was deducted automatically."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Customer entered their card details at checkout."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "The invoice includes tax and service charges."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Bank transfer was completed within one business day."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "The payment history is stored securely."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Khách hàng yêu cầu hoàn tiền giao dịch."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin thanh toán học phí."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Lịch sử chi tiêu được thống kê theo tháng."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Số thẻ tín dụng đã được mã hóa."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thanh toán trực tuyến qua cổng VNPay."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "The merchant received the settlement payment."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Transaction amount exceeded the daily limit."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "The card expiration date is required."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Billing information must be accurate."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "The user updated their payment method."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Số dư ví điện tử hiện tại là 3.200.000 VNĐ."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Giao dịch thanh toán không tiếp xúc."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Hóa đơn mua hàng đã được thanh toán."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin tài chính được bảo mật."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Lệnh thanh toán tự động hàng tháng."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "The customer’s bank account was charged."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Payment receipt was generated successfully."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "The invoice number is linked to the transaction."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Financial records are stored for auditing."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "The transaction was flagged for review."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Khách hàng nhập thông tin thẻ để thanh toán."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Giao dịch bị từ chối do vượt hạn mức."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Hóa đơn điện tử được lưu trữ trên hệ thống."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thanh toán thành công qua Internet Banking."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin giao dịch được ghi nhận."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Bệnh nhân được chẩn đoán viêm phổi do vi khuẩn."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Kết quả xét nghiệm máu cho thấy nồng độ glucose tăng cao."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Thuốc kháng sinh được chỉ định trong vòng 7 ngày."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Hồ sơ điều trị ghi nhận tình trạng tăng huyết áp."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chẩn đoán hình ảnh cho thấy tổn thương mô phổi."
+  },
+  {
+    "label": "Health-Info",
+    "text": "The patient was diagnosed with type 2 diabetes."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Laboratory results indicate elevated cholesterol levels."
+  },
+  {
+    "label": "Health-Info",
+    "text": "The prescribed medication should be taken twice daily."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Medical records show a history of asthma."
+  },
+  {
+    "label": "Health-Info",
+    "text": "The CT scan revealed inflammation in the abdominal area."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Xét nghiệm PCR cho kết quả dương tính."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Bác sĩ chỉ định theo dõi chức năng gan."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Phác đồ điều trị ung thư được cập nhật."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Kết quả siêu âm tim cho thấy chức năng tim bình thường."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Thuốc giảm đau được kê theo chỉ định y tế."
+  },
+  {
+    "label": "Health-Info",
+    "text": "The diagnosis confirmed chronic kidney disease."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Blood test results indicate anemia."
+  },
+  {
+    "label": "Health-Info",
+    "text": "The treatment plan includes physical therapy."
+  },
+  {
+    "label": "Health-Info",
+    "text": "MRI findings suggest nerve compression."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Medication dosage was adjusted based on response."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Kết quả xét nghiệm nước tiểu cho thấy nhiễm khuẩn."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Bệnh lý dạ dày được xác nhận qua nội soi."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Liệu trình hóa trị được thực hiện theo chu kỳ."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Thuốc chống viêm không steroid được chỉ định."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chẩn đoán viêm gan virus được ghi nhận."
+  },
+  {
+    "label": "Health-Info",
+    "text": "The medical report notes signs of osteoporosis."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Test results show abnormal thyroid function."
+  },
+  {
+    "label": "Health-Info",
+    "text": "The patient received vaccination as scheduled."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Clinical symptoms suggest respiratory infection."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Follow-up examinations were recommended."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Xét nghiệm sinh hóa cho thấy men gan tăng."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chẩn đoán loãng xương dựa trên mật độ xương."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Phác đồ điều trị được điều chỉnh theo diễn biến bệnh."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Thuốc hạ sốt được sử dụng theo hướng dẫn."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Kết quả điện tâm đồ cho thấy nhịp tim không đều."
+  },
+  {
+    "label": "Health-Info",
+    "text": "The lab analysis detected bacterial infection."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Medical imaging confirmed joint inflammation."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Treatment included intravenous antibiotics."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Clinical assessment revealed neurological symptoms."
+  },
+  {
+    "label": "Health-Info",
+    "text": "The diagnosis was supported by laboratory findings."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Kết quả xét nghiệm hormone cho thấy bất thường."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Bệnh lý tuyến giáp được xác nhận."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Liệu pháp vật lý trị liệu được chỉ định."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Thuốc kháng virus được sử dụng trong điều trị."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chẩn đoán bệnh tim mạch dựa trên kết quả xét nghiệm."
+  },
+  {
+    "label": "Health-Info",
+    "text": "The medical evaluation indicated liver dysfunction."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Blood pressure readings suggest hypertension."
+  },
+  {
+    "label": "Health-Info",
+    "text": "The treatment plan includes dietary adjustments."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Diagnostic tests confirmed viral infection."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Medication was prescribed to control symptoms."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Xét nghiệm miễn dịch cho kết quả bất thường."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chẩn đoán bệnh tự miễn được ghi nhận."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Phác đồ điều trị nội khoa được áp dụng."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Thuốc điều hòa miễn dịch được chỉ định."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Kết quả sinh thiết hỗ trợ chẩn đoán."
+  },
+  {
+    "label": "Health-Info",
+    "text": "The lab report shows elevated inflammation markers."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Medical examination revealed digestive disorders."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Treatment involved long-term medication."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Radiology results indicated bone fracture."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Clinical monitoring was recommended."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Kết quả xét nghiệm cho thấy thiếu máu."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chẩn đoán bệnh hô hấp mạn tính."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Liệu trình điều trị kéo dài được đề xuất."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Thuốc bổ sung vitamin được kê đơn."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Theo dõi chỉ số sinh tồn trong quá trình điều trị."
+  },
+  {
+    "label": "Health-Info",
+    "text": "The medical findings support a diagnosis of arthritis."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Blood tests revealed electrolyte imbalance."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Treatment included pain management therapy."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Imaging results confirmed spinal degeneration."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Medication adherence was emphasized."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Kết quả xét nghiệm CRP cho thấy phản ứng viêm tăng."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chẩn đoán suy thận mạn dựa trên chỉ số creatinine."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Thuốc lợi tiểu được sử dụng để kiểm soát phù nề."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Kết quả chụp X-quang cho thấy tổn thương xương."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Theo dõi chức năng hô hấp trong quá trình điều trị."
+  },
+  {
+    "label": "Health-Info",
+    "text": "The diagnosis indicates acute bronchitis."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Laboratory tests reveal elevated white blood cell count."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Antiviral medication was prescribed."
+  },
+  {
+    "label": "Health-Info",
+    "text": "The treatment plan includes respiratory therapy."
+  },
+  {
+    "label": "Health-Info",
+    "text": "CT imaging confirmed pulmonary inflammation."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Xét nghiệm HbA1c cho thấy kiểm soát đường huyết kém."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chẩn đoán rối loạn lipid máu."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Liệu pháp insulin được chỉ định."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Thuốc hạ lipid máu được kê đơn."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Theo dõi biến chứng tim mạch."
+  },
+  {
+    "label": "Health-Info",
+    "text": "The medical report notes signs of liver fibrosis."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Blood tests indicate abnormal liver enzymes."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Treatment included hepatoprotective medication."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Ultrasound imaging showed fatty liver."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Clinical monitoring of liver function was advised."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Kết quả xét nghiệm điện giải cho thấy hạ natri máu."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chẩn đoán rối loạn điện giải."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Bù dịch và điện giải được chỉ định."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Theo dõi cân bằng dịch."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Điều chỉnh phác đồ điều trị phù hợp."
+  },
+  {
+    "label": "Health-Info",
+    "text": "The diagnosis confirms chronic obstructive pulmonary disease."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Pulmonary function tests show reduced airflow."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Bronchodilator therapy was initiated."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Long-term respiratory monitoring was recommended."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chest imaging revealed airway obstruction."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Xét nghiệm đông máu cho thấy thời gian prothrombin kéo dài."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chẩn đoán rối loạn đông máu."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Thuốc chống đông được sử dụng theo chỉ định."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Theo dõi nguy cơ xuất huyết."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Điều chỉnh liều thuốc chống đông."
+  },
+  {
+    "label": "Health-Info",
+    "text": "The laboratory analysis detected viral hepatitis markers."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Serological tests confirmed hepatitis infection."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Antiviral therapy was started."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Liver function was closely monitored."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Follow-up testing was scheduled."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Kết quả đo mật độ xương cho thấy nguy cơ loãng xương."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chẩn đoán giảm mật độ xương."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Bổ sung canxi và vitamin D."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Theo dõi nguy cơ gãy xương."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Phác đồ điều trị loãng xương được áp dụng."
+  },
+  {
+    "label": "Health-Info",
+    "text": "The diagnosis indicates inflammatory bowel disease."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Endoscopic findings show intestinal inflammation."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Anti-inflammatory medication was prescribed."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Dietary management was recommended."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Clinical symptoms were closely monitored."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Xét nghiệm miễn dịch cho thấy phản ứng miễn dịch bất thường."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chẩn đoán bệnh lý miễn dịch."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Liệu pháp ức chế miễn dịch được chỉ định."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Theo dõi tác dụng phụ của thuốc."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Đánh giá đáp ứng điều trị định kỳ."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Xét nghiệm sinh hóa máu cho thấy tăng men gan ALT."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chẩn đoán viêm gan dựa trên kết quả xét nghiệm huyết thanh."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Điều trị bằng thuốc kháng viêm được chỉ định."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Theo dõi chức năng gan định kỳ."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Kết quả siêu âm phát hiện gan nhiễm mỡ."
+  },
+  {
+    "label": "Health-Info",
+    "text": "The laboratory report shows elevated cholesterol levels."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Diagnosis of hyperlipidemia was confirmed."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Statin therapy was prescribed."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Monitoring lipid profile during treatment."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Risk assessment for cardiovascular disease was performed."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Xét nghiệm nước tiểu cho thấy protein niệu."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chẩn đoán tổn thương thận sớm."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Theo dõi mức lọc cầu thận."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Điều chỉnh chế độ điều trị để bảo vệ chức năng thận."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Khuyến cáo theo dõi huyết áp trong quá trình điều trị."
+  },
+  {
+    "label": "Health-Info",
+    "text": "The diagnosis indicates acute kidney injury."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Blood urea nitrogen levels were elevated."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Fluid management was initiated."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Renal function was closely monitored."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Follow-up laboratory testing was recommended."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Kết quả xét nghiệm hormone cho thấy rối loạn nội tiết."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chẩn đoán suy giáp dựa trên nồng độ TSH."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Điều trị hormone thay thế được chỉ định."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Theo dõi đáp ứng điều trị qua xét nghiệm định kỳ."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Điều chỉnh liều hormone phù hợp."
+  },
+  {
+    "label": "Health-Info",
+    "text": "The test results indicate abnormal thyroid function."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Hormonal imbalance was detected."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Endocrine therapy was initiated."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Clinical symptoms were monitored."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Regular hormone level assessments were advised."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Xét nghiệm huyết học cho thấy thiếu máu."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chẩn đoán thiếu máu do thiếu sắt."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Bổ sung sắt theo phác đồ điều trị."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Theo dõi chỉ số hemoglobin."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Đánh giá đáp ứng điều trị thiếu máu."
+  },
+  {
+    "label": "Health-Info",
+    "text": "The blood test shows reduced hemoglobin levels."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Diagnosis of iron deficiency anemia was made."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Iron supplementation therapy was started."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Hematological parameters were monitored."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Treatment effectiveness was evaluated."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Kết quả xét nghiệm miễn dịch cho thấy kháng thể tăng."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chẩn đoán bệnh tự miễn."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Liệu pháp ức chế miễn dịch được áp dụng."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Theo dõi đáp ứng miễn dịch trong điều trị."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Đánh giá nguy cơ biến chứng."
+  },
+  {
+    "label": "Health-Info",
+    "text": "The immunological test detected abnormal antibody levels."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Autoimmune disorder was diagnosed."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Immunosuppressive treatment was prescribed."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Clinical response was carefully observed."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Long-term monitoring was recommended."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Xét nghiệm khí máu cho thấy toan chuyển hóa."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Chẩn đoán rối loạn cân bằng kiềm toan."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Điều chỉnh điện giải và khí máu."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Theo dõi tình trạng hô hấp."
+  },
+  {
+    "label": "Health-Info",
+    "text": "Đánh giá hiệu quả điều trị qua xét nghiệm khí máu."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Hệ thống được thiết kế để xử lý dữ liệu ở quy mô lớn."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Phần mềm này hỗ trợ nhiều nền tảng khác nhau."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Tài liệu hướng dẫn mô tả cách sử dụng ứng dụng."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Quy trình triển khai bao gồm nhiều bước."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Giao diện người dùng được thiết kế đơn giản."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "The system architecture follows a modular design."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "This document explains the overall workflow."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "The application supports multiple languages."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Users can access the dashboard through a web browser."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "The software was developed using open-source libraries."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Hệ thống cho phép mở rộng khi số lượng người dùng tăng."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Quy trình xử lý dữ liệu được tự động hóa."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Tài liệu kỹ thuật mô tả cấu trúc tổng thể của hệ thống."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Ứng dụng hỗ trợ xuất báo cáo thống kê."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Mô hình học máy được sử dụng để phân tích dữ liệu."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "The platform provides real-time monitoring features."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "This guide outlines best practices for deployment."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "The dashboard displays summary statistics."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "System performance was evaluated under load testing."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "The application follows standard security guidelines."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Hệ thống được xây dựng theo kiến trúc microservices."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Mỗi thành phần đảm nhận một chức năng riêng biệt."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Tài liệu mô tả luồng xử lý dữ liệu tổng quát."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Ứng dụng hỗ trợ tích hợp với các dịch vụ bên ngoài."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Quá trình kiểm thử được thực hiện tự động."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "The system is designed for high availability."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Documentation includes setup and configuration steps."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "The platform supports scalable data processing."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Users can visualize data through charts and graphs."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "The software lifecycle includes continuous integration."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Hệ thống được tối ưu để giảm độ trễ."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Tài liệu này trình bày các khái niệm cơ bản."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Ứng dụng hỗ trợ nhiều định dạng dữ liệu."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Quy trình vận hành được chuẩn hóa."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Hệ thống có khả năng chịu lỗi cao."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "The application provides logging and monitoring tools."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "This tutorial explains the basic usage of the system."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "The platform follows industry-standard design patterns."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "The software supports automated testing."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "System documentation is publicly available."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Hệ thống được sử dụng cho mục đích nghiên cứu."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Tài liệu hướng dẫn dành cho người mới bắt đầu."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Ứng dụng cho phép cấu hình linh hoạt."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Quy trình phát triển phần mềm được mô tả chi tiết."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Hệ thống hỗ trợ cập nhật phiên bản."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "The platform is intended for educational purposes."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "This document provides an overview of system components."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "The application offers data visualization features."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "System scalability was tested under simulated conditions."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "The software complies with general development standards."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Hệ thống cho phép quản lý dữ liệu hiệu quả."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Tài liệu này không chứa thông tin nhạy cảm."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Ứng dụng được thiết kế để dễ sử dụng."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Quy trình xử lý dữ liệu mang tính tổng quát."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "Hệ thống hỗ trợ phân tích dữ liệu cơ bản."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "The system provides general information for users."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "This content is intended for public documentation."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "The application explains standard operational steps."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "System behavior is described at a high level."
+  },
+  {
+    "label": "Non-sensitive",
+    "text": "The platform documentation does not include private data."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Số tài khoản ngân hàng: 123456789 tại chi nhánh Hà Nội."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thanh toán hóa đơn điện với mã giao dịch 987654."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Số thẻ tín dụng **** **** **** 4321 đã được sử dụng."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Lịch sử giao dịch cho thấy khoản thanh toán 5.000.000 VND."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Hóa đơn mua hàng có tổng giá trị 2.300.000 đồng."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Bank account number 987654321 was used for transfer."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Credit card ending in 1122 was charged successfully."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Invoice number INV-2024-001 has been generated."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "The transaction history shows multiple debit entries."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Payment was processed via online banking."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin thanh toán bao gồm số tài khoản và số tiền."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Giao dịch chuyển khoản liên ngân hàng đã hoàn tất."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Hóa đơn VAT thể hiện chi tiết khoản thanh toán."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Báo cáo tài chính liệt kê các khoản thu chi."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Số dư tài khoản hiện tại là 15.000.000 đồng."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "The billing statement includes monthly charges."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "A payment receipt was issued after the transaction."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "The bank transfer reference number is TXN889900."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Debit card information was used for payment."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Financial records show an outgoing transfer."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Số hóa đơn thanh toán là HD-556677."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Chi tiết giao dịch bao gồm ngày và số tiền."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thanh toán được thực hiện qua cổng ngân hàng."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Lịch sử thanh toán hiển thị các khoản chi phí."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Tài khoản ngân hàng đã ghi nhận khoản tiền vào."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "The invoice contains billing and tax information."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Transaction amount was deducted from the account."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "SWIFT code was used for international transfer."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "IBAN number was provided for overseas payment."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "The financial statement summarizes expenses."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Giao dịch thẻ ghi nợ đã được xác nhận."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Hệ thống ghi nhận thanh toán định kỳ."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Bảng sao kê tài khoản hiển thị nhiều giao dịch."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Khoản thanh toán trực tuyến đã hoàn tất."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Hóa đơn dịch vụ thể hiện chi phí sử dụng."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "The transaction log includes payment references."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Billing details were sent after payment."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "A bank statement was generated for review."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Funds were transferred between accounts."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Payment confirmation was received via email."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Số tài khoản thụ hưởng đã được nhập."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Khoản tiền được chuyển thành công."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Chi tiết hóa đơn bao gồm thuế và phí."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thanh toán bằng thẻ tín dụng đã được xử lý."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Lịch sử giao dịch cho thấy nhiều khoản thu."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "The payment record shows completed transactions."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Invoice data includes billing amounts."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Account balance was updated after transfer."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "The bank processed the financial transaction."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Transaction details were stored for auditing."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Hóa đơn thanh toán điện tử đã được phát hành."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Khoản chi phí được ghi nhận trong báo cáo."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thanh toán được xác nhận bởi ngân hàng."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Thông tin chuyển khoản bao gồm số tiền."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Báo cáo giao dịch tài chính được lưu trữ."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "The financial system logged a completed payment."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Billing records include invoice identifiers."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "A transaction summary was generated."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "Payment data was processed securely."
+  },
+  {
+    "label": "Financial-Info",
+    "text": "The account statement reflects recent payments."
+  },
+  {
+    "label": "System-Info",
+    "text": "Địa chỉ IP 192.168.100.25 được hệ thống ghi nhận."
+  },
+  {
+    "label": "System-Info",
+    "text": "MAC address 12:34:56:78:9A:BC xuất hiện trong log mạng."
+  },
+  {
+    "label": "System-Info",
+    "text": "Device ID SYS-900112 đã được đăng ký."
+  },
+  {
+    "label": "System-Info",
+    "text": "IMEI 490154203237518 được lưu trong hệ thống."
+  },
+  {
+    "label": "System-Info",
+    "text": "System log ghi nhận trạng thái thiết bị."
+  },
+  {
+    "label": "System-Info",
+    "text": "Authentication log cho thấy một phiên truy cập hợp lệ."
+  },
+  {
+    "label": "System-Info",
+    "text": "Địa chỉ IP nội bộ 172.20.10.3 đang hoạt động."
+  },
+  {
+    "label": "System-Info",
+    "text": "MAC address của thiết bị mạng đã được xác định."
+  },
+  {
+    "label": "System-Info",
+    "text": "Hardware fingerprint được tạo trong quá trình khởi động."
+  },
+  {
+    "label": "System-Info",
+    "text": "Log hệ thống phản ánh trạng thái phần cứng."
+  },
+  {
+    "label": "System-Info",
+    "text": "The system logged a new IP address."
+  },
+  {
+    "label": "System-Info",
+    "text": "Device identifier DEV-772299 was detected."
+  },
+  {
+    "label": "System-Info",
+    "text": "Authentication logs were updated successfully."
+  },
+  {
+    "label": "System-Info",
+    "text": "MAC address was recorded during device scan."
+  },
+  {
+    "label": "System-Info",
+    "text": "System logs captured network activity."
+  },
+  {
+    "label": "System-Info",
+    "text": "GPS coordinates were logged by the system module."
+  },
+  {
+    "label": "System-Info",
+    "text": "Thiết bị có mã định danh phần cứng."
+  },
+  {
+    "label": "System-Info",
+    "text": "IMEI được hệ thống sử dụng để nhận diện thiết bị."
+  },
+  {
+    "label": "System-Info",
+    "text": "Log xác thực cho biết thiết bị đã kết nối."
+  },
+  {
+    "label": "System-Info",
+    "text": "Hệ thống lưu thông tin địa chỉ IP."
+  },
+  {
+    "label": "System-Info",
+    "text": "The server recorded hardware fingerprint data."
+  },
+  {
+    "label": "System-Info",
+    "text": "Device ID was logged for monitoring purposes."
+  },
+  {
+    "label": "System-Info",
+    "text": "Authentication events were stored in system logs."
+  },
+  {
+    "label": "System-Info",
+    "text": "IP address was used in a network session."
+  },
+  {
+    "label": "System-Info",
+    "text": "Hardware fingerprint verification succeeded."
+  },
+  {
+    "label": "System-Info",
+    "text": "Hệ thống ghi nhận thông tin định danh thiết bị."
+  },
+  {
+    "label": "System-Info",
+    "text": "IMEI xuất hiện trong bản ghi hệ thống."
+  },
+  {
+    "label": "System-Info",
+    "text": "Địa chỉ IP được gán cho phiên kết nối."
+  },
+  {
+    "label": "System-Info",
+    "text": "MAC address của thiết bị được lưu trữ."
+  },
+  {
+    "label": "System-Info",
+    "text": "System log cập nhật trạng thái truy cập."
+  },
+  {
+    "label": "System-Info",
+    "text": "The system processed device identification data."
+  },
+  {
+    "label": "System-Info",
+    "text": "Device identifier was included in system logs."
+  },
+  {
+    "label": "System-Info",
+    "text": "Authentication logs were reviewed."
+  },
+  {
+    "label": "System-Info",
+    "text": "IP address tracking was enabled."
+  },
+  {
+    "label": "System-Info",
+    "text": "Hardware fingerprint information was stored."
+  },
+  {
+    "label": "Personal-Info",
+    "text": "Tên cá nhân được sử dụng cho nhận dạng."
+  }
+]

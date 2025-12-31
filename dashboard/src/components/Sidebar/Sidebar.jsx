@@ -13,7 +13,7 @@ function Sidebar({
       <div className="sidebar-content">
         <div className="sidebar-nav-content">
           <img
-            src="https://res.cloudinary.com/dxcbyypga/image/upload/v1766676849/logo_e84qvl.png"
+            src="https://res.cloudinary.com/dxcbyypga/image/upload/v1766730509/logo_mcnz6u.png"
             className="logo-image"
             alt="Logo"
             style={{ width: "350px", height: "auto" }}
