@@ -157,7 +157,12 @@ export const utilityscanCloudMisconfig = async (cloud) => {
 
         // Uncomment to send to CloudSploit
         const response = await axios.post(`${process.env.CLOUDSPLOIT_ENDPOINT}/scan`, payload);
-        return { status: 200, message: 'Scan completed', data: response.data };
+        
+        return {
+            status: 200,
+            message: 'Scan completed',
+            data: response.data
+        };
 
         // return {
         //     status: 200,
