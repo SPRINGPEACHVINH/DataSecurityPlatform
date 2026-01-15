@@ -24,7 +24,7 @@ services:
       - .env
     restart: unless-stopped
   dsp-model:
-    image: dsp-model:12.1.0-base-ubi8
+    image: dsp-model:latest
     container_name: dsp-model
     ports:
       - 8000:8000

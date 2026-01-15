@@ -333,19 +333,13 @@ export const utilityGetDocumentContent = async (indexName, documentId) => {
       throw new Error(`Document ${documentId} not found in index ${indexName}`);
     }
 
-    const source = response.data._source;
+    const source = response.data.hits.hits[0]._source;
     
     // If no content field, try alternative field names
-    let content = source.content;
+    let content = source.body;
     if (!content) {
-      // Try common alternative field names
-      content = source.file_content || 
-                source.text || 
-                source.data || 
-                source.body ||
-                source.message;
+      throw new Error(`[ES] Document ${documentId} has no 'body' field.`);
     }
-
     // If still no content, stringify the entire source (for debugging)
     if (!content) {
       console.warn(`[ES] Document ${documentId} has no recognizable content field. Using full source.`);
@@ -434,13 +428,14 @@ export const utilityGetAllDocumentsFromIndex = async (indexName, size = 100, fro
     if (response.status !== 200) {
       throw new Error(`Failed to fetch documents from index ${indexName}`);
     }
-
     const documents = response.data.hits.hits.map((hit) => ({
       _id: hit._id,
       _source: hit._source,
       _score: hit._score,
     }));
 
+    console.log(`[ES] document: `, documents);
+    console.log(`[ES] content of first document:`, documents[0]._source.body);
     console.log(`[ES] Successfully fetched ${documents.length} documents from ${response.data.hits.total.value} total`);
     
     return {

@@ -1,2 +1,8 @@
 dockerfile
 .dockerignore
+evaluation_*.json
+fix_dataset.json
+remove_technical_content.py
+evaluate_model.py
+test_improvements.py
+evaluation_results/
