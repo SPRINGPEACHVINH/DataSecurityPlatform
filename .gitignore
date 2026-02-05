@@ -6,7 +6,6 @@ local/utils/*
 
 agent/FilePaths*
 agent/PotentialData*
-agent/*.exe
 
 # Logs
 logs

@@ -1,6 +1,9 @@
 import axios from "axios";
+import dotenv from "dotenv";
 
-const PYTHON_MODEL_URL = process.env.PYTHON_MODEL_URL || "http://localhost:8000";
+dotenv.config();
+
+const PYTHON_MODEL_URL = process.env.PYTHON_MODEL_URL;
 
 export const classifyText = async (text, labels = null) => {
   try {
@@ -17,6 +20,7 @@ export const classifyText = async (text, labels = null) => {
 
 export const classifyByStandard = async (text, standard) => {
   try {
+    console.log(`model url: ${PYTHON_MODEL_URL}`);
     const response = await axios.post(
       `${PYTHON_MODEL_URL}/classify_by_standard`,
       {
